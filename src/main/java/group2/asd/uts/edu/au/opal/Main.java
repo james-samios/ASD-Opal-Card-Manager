@@ -27,4 +27,8 @@ public class Main {
             System.out.println("Customer is null.");
         }
     }
+
+    public static API getApi() {
+        return api;
+    }
 }

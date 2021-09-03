@@ -8,6 +8,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import group2.asd.uts.edu.au.opal.object.Customer;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 public class API {
 
@@ -56,6 +57,25 @@ public class API {
             doc = getCollection(mongoClient, CollectionType.ACCOUNTS).find(where).first();
             if (doc == null || doc.isEmpty()) return null;
             return new Customer(doc);
+        }
+    }
+
+    /**
+     * Registers a new Customer object into the API.
+     * @param customer The customer to register.
+     * @param password The customer's chosen password, as a md5 hash.
+     */
+    public void registerCustomer(final Customer customer, final String password) {
+        Document user = new Document("_id", new ObjectId());
+        user.append("account_id", customer.getAccountId())
+                .append("first_name", customer.getFirstName())
+                .append("last_name", customer.getLastName())
+                .append("email_address", customer.getEmailAddress())
+                .append("phone_number", customer.getPhoneNumber())
+                .append("password", password);
+
+        try (MongoClient mongoClient = MongoClients.create(settings)) {
+            getCollection(mongoClient, CollectionType.ACCOUNTS).insertOne(user);
         }
     }
 
