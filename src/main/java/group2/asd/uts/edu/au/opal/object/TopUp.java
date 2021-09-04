@@ -19,6 +19,8 @@ public class TopUp {
      * @param document The BSON document from the card document.
      * @author James
      */
+
+    /**methods**/
     public TopUp(final Document document) {
         this.enabled = document.getBoolean("enabled");
         if (enabled) {
