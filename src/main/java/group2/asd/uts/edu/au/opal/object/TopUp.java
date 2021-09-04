@@ -27,4 +27,8 @@ public class TopUp {
             this.paymentDetailsId = UUID.fromString(document.getString("payment_details_id"));
         }
     }
+    public void updateBalance(double topUpFees) {
+        this.amount = this.amount + topUpFees;
+        
+    }
 }
