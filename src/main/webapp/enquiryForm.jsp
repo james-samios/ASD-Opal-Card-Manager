@@ -13,7 +13,7 @@
 
     <div id="enquirySubmissionForm">
 
-        <form action="enquirySubmission">
+        <form action="enquirySubmission.jsp">
 
             <table>
                 <tr>
