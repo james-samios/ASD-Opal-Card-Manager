@@ -58,6 +58,34 @@ public class Customer {
         Main.getApi().registerCustomer(this, password);
     }
 
+    /**
+     * Set getters for retrieve firstName, lastName, emailAddress, and phoneNumber
+    */
+
+    public UUID getAccountUuid() {
+        return this.accountId;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+    
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getEmailAddress() {
+        return this.emailAddress;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public ArrayList<Card> getOpalCards() {
+        return this.opalCards;
+    }
+
     @Override
     public String toString() {
         return getFirstName() + " " + getLastName() + " - " + getEmailAddress() + " - " + getPhoneNumber();

@@ -49,4 +49,45 @@ public class Card {
             return name().charAt(0) + name().substring(1).toLowerCase();
         }
     }
+
+    /**
+     * Getters for retrieve cardId, cardNumber, cardPin,
+     * type, balance, linked, active, locked, and topUp
+     */
+
+    public UUID getCardId() {
+        return cardId;
+    }
+
+    public int getCardNumber() {
+        return cardNumber;
+    }
+
+    public int getCardPin() {
+        return cardPin;
+    }
+
+    public CardType getCardType() {
+        return type;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public boolean getLinked() {
+        return linked;
+    }
+
+    public boolean getActive() {
+        return active;
+    }
+
+    public boolean getLocked() {
+        return locked;
+    }
+
+    public TopUp getTopUp() {
+        return topUp;
+    }
 }
