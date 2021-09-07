@@ -1,16 +1,26 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Seargent Squid's PC
-  Date: 6/09/2021
-  Time: 5:29 pm
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Opal Activity</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="CSS/index.css">
+    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<nav>
+    <input type="checkbox" id="check">
 
+    <label class="logo">Transport for NSW</label>
+    <ul>
+
+        <li><a href="login.jsp">Sign in</a></li>
+        <li><a href="register.jsp">Sign up</a></li>
+    </ul>
+</nav>
+<section></section>
 </body>
 </html>

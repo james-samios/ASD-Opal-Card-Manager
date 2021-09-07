@@ -10,8 +10,5 @@
         <module name="ASD-Opal-Card-Manager" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ASD-Opal-Card-Manager" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
