@@ -26,7 +26,7 @@
 
     <ul>
         <!--<li><a href="AddProductController">ADD PRODUCT</a></li>-->
-        <li><a href="/ASD_Opal_Card_Manager_war_exploded/userprofile.jsp">BACK</a></li>
+        <li><a href="userprofile.jsp">BACK</a></li>
     </ul>
 
 </nav>

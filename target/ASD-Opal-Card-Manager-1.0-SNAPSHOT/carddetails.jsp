@@ -24,13 +24,13 @@
     </label>
     <label class="logo">Card Details</label>
     <ul>
-        <li><a href="/ASD_Opal_Card_Manager_war_exploded/carddetails.jsp">Activate Card</a></li>
+        <li><a href="carddetails.jsp">Activate Card</a></li>
 
-        <li><a href="/ASD_Opal_Card_Manager_war_exploded/topupmenu.jsp">Top Up</a></li>
+        <li><a href="topupmenu.jsp">Top Up</a></li>
 
-        <li><a href="/ASD_Opal_Card_Manager_war_exploded/login.jsp">linked To Account</a></li>
+        <li><a href="login.jsp">linked To Account</a></li>
 
-        <li><a href="/ASD_Opal_Card_Manager_war_exploded/index.jsp">Logout</a></li>
+        <li><a href="index.jsp">Logout</a></li>
     </ul>
 </nav>
 

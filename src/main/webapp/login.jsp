@@ -16,16 +16,13 @@
     <title>Login Page</title>
 </head>
 <body>
-
-
-<form class="box" action="/ASD_Opal_Card_Manager_war_exploded/userprofile.jsp" method="get" id="login">
-    <h1>Login</h1>
-    <input type="text" id="uname" name="uname" autocomplete="off" placeholder="Username" required>
-    <input type="password" id="upassword" name="upassword" autocomplete="off" placeholder="Password" required>
-    <input type="submit" form="login" name="login" value="Login">
-    <input type="button" value="Back" onclick="location.href='http://localhost:8080/ASD_Opal_Card_Manager_war_exploded/'">
-    <p> Not a Customer? <a href="register.jsp">Register</a></p>
-</form>
-
+    <form class="box" action="userprofile.jsp" method="get" id="login">
+        <h1>Login</h1>
+        <input type="text" id="uname" name="uname" autocomplete="off" placeholder="Username" required>
+        <input type="password" id="upassword" name="upassword" autocomplete="off" placeholder="Password" required>
+        <input type="submit" form="login" name="login" value="Login">
+        <input type="button" value="Back" onclick="location.href='index.jsp'">
+        <p> Not a Customer? <a href="register.jsp">Register</a></p>
+    </form>
 </body>
 </html>

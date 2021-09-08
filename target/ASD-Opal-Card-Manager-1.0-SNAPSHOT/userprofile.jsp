@@ -24,7 +24,7 @@
     </label>
     <label class="logo">My Profile</label>
     <ul>
-        <li><a href="/ASD_Opal_Card_Manager_war_exploded/linkedopalcards.jsp">My OpalCard</a></li>
+        <li><a href="linkedopalcards.jsp">My OpalCard</a></li>
 
         <li><a href="EditServlet">Edit Profile</a></li>
 
@@ -32,7 +32,7 @@
 
         <li><a href="DeleteUserServlet">Delete Account</a></li>
 
-        <li><a href="/ASD_Opal_Card_Manager_war_exploded/index.jsp">Logout</a></li>
+        <li><a href="index.jsp">Logout</a></li>
     </ul>
 </nav>
 

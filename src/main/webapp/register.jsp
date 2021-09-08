@@ -20,14 +20,14 @@
 
 
 
-<form class="box" action="/ASD_Opal_Card_Manager_war_exploded/userprofile.jsp" method="post" id="register">
+<form class="box" action="userprofile.jsp" method="post" id="register">
     <h1>Register</h1>
     <input type="text" id="uname" name="uname" autocomplete="off" placeholder="Username" required>
     <input type="password" id="upassword" name="upassword" autocomplete="off" placeholder="Password" required>
     <input type="password" id="cupassword" name="cupassword" autocomplete="off" placeholder="Confirm Password" required>
     <input type="mail" id="email" name="email" autocomplete="off" placeholder="xxx.xxx@xxx.xxx.xx" required>
     <input type="submit" form="register" name="register" value="Register">
-    <input type="button" value="Back" onclick="location.href='http://localhost:8080/ASD_Opal_Card_Manager_war_exploded/'">
+    <input type="button" value="Back" onclick="location.href='index.jsp'">
     <p> Already a Customer? <a href="login.jsp">Login</a></p>
 
 

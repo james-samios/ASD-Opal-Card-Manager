@@ -17,7 +17,7 @@
     <title>Top Up Menu</title>
 </head>
 <body>
-<form class="box" action="/ASD_Opal_Card_Manager_war_exploded/carddetails.jsp" method="get" id="topup">
+<form class="box" action="carddetails.jsp" method="get" id="topup">
     <h1>Top-up</h1>
     <h3>Card Number</h3>
     <h3>xxxx-xxxx-xxxx-xxxx</h3>
@@ -52,7 +52,7 @@
     <input type="text" id="pnumber" name="pnumber" autocomplete="off" placeholder="Payment Number" required>
     <input type="text" id="pccv" name="pccv" autocomplete="off" placeholder="CCV">
     <input type="submit" form="topup" name="confirm" value="Confirm">
-    <input type="button" value="Back" onclick="location.href='http://localhost:8080/ASD_Opal_Card_Manager_war_exploded/carddetails.jsp'">
+    <input type="button" value="Back" onclick="location.href='carddetails.jsp'">
 </form>
 
 </body>
