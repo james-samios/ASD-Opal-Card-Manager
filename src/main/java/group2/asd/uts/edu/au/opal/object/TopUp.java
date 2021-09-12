@@ -9,7 +9,6 @@ import java.util.UUID;
 public class TopUp extends Document {
 
     private final boolean enabled;
-
     private double amount;
     private double when;
     private UUID paymentDetailsId;
@@ -28,5 +27,9 @@ public class TopUp extends Document {
             this.when = document.getDouble("when");
             this.paymentDetailsId = UUID.fromString(document.getString("payment_details_id"));
         }
+    }
+    @Override
+    public String toString() {
+        return paymentDetailsId + " " + enabled + " " + amount + " " + when;
     }
 }

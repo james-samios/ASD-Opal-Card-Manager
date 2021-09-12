@@ -16,8 +16,8 @@ public class Card extends Document {
     private boolean linked;
     private boolean active;
     private boolean locked;
-    private ArrayList<TopUp> topUp;
-
+    private TopUp topUp;
+    private ArrayList<Trip> trips;
     /**
      * Loads an Opal Card object from the API.
      * @param document The BSON document from the cards collection.
@@ -32,10 +32,15 @@ public class Card extends Document {
         this.linked = document.getBoolean("linked_to_account");
         this.active = document.getBoolean("active");
         this.locked = document.getBoolean("locked");
-        /*
-        Should solve this
-        this.topUp = new TopUp(Document.parse("top_up"));
-        */
+        this.topUp = new TopUp(document.get("top_up", Document.class));
+
+        /*add trips into trip array list*/
+        this.trips = new ArrayList<Trip>();
+        for (Document eachTrip : document.getList("trips", Document.class)) {
+            Trip newTrip = new Trip(eachTrip);
+            System.out.println(newTrip);
+            this.trips.add(newTrip);
+        }
     }
 
     /**
@@ -52,6 +57,7 @@ public class Card extends Document {
             return name().charAt(0) + name().substring(1).toLowerCase();
         }
     }
+
     @Override
     public String toString() {
         return getCardId() + " " + getCardNumber() + " " + getCardPin() + " " + getType() + " " + getBalance() + " " + getTopUp();

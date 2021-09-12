@@ -75,11 +75,10 @@ public class API {
      * @author Jung
      */
 
-    public Card getCard(final String cardNumber, final String cardPin) {
-
-        Document doc;
+    public Card getCardByNumberAndPin(final String cardNumber, final String cardPin) {
         try (MongoClient mongoClient = MongoClients.create(settings)) {
             BasicDBObject where = new BasicDBObject();
+            Document doc;
             where.put("card_number", Double.parseDouble(cardNumber));
             where.put("card_pin", Integer.parseInt(cardPin));
             doc = getCollection(mongoClient, CollectionType.CARDS).find(where).first();
@@ -94,7 +93,32 @@ public class API {
         }
     }
 
+    /**
+     * Returns a Card with provided card ID.
+     * If no data is found, it will return
+     * null, implying incorrect details were supplied.
+     * @param cardId The Opal card's ID
+     * @return Card
+     * @author Jung
+     */
+    public Card getCardByCardId(final String cardId) {
+        try (MongoClient mongoClient = MongoClients.create(settings)) {
+            BasicDBObject where = new BasicDBObject();
+            Document doc;
+            where.put("card_id", Double.parseDouble(cardId));
+            doc = getCollection(mongoClient, CollectionType.CARDS).find(where).first();
+            //System.out.println("Card " + doc);
+            //Retrieving the documents
+            if (doc == null || doc.isEmpty()) {
+                throw new Exception();
+            }
+            return new Card(doc);
+        }catch(Exception e) {
+            return null;
+        }
 
+
+    }
 
     /**
      * Registers a new Customer object into the API.

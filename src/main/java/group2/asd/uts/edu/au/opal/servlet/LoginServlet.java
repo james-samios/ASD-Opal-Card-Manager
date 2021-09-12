@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-
     // This method is called by the servlet container to process a 'post' request
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         handleRequest(req, resp);
@@ -24,13 +22,13 @@ public class LoginServlet extends HttpServlet {
 
     public void handleRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         // Reading post parameters from the request
-        String param1 = req.getParameter("uname");
-        String param2 = req.getParameter("upassword");
+        String param1 = req.getParameter("user_email");
+        String param2 = req.getParameter("user_password");
 
 
         // Checking for null and empty values
         if(param1 == null || param2 == null || "".equals(param1) || "".equals(param2)) {
-            req.setAttribute("error_message", "Please enter login id and password");
+            req.setAttribute("error_message", "Please enter email and password");
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         } else {
             //Get customer data by calling API

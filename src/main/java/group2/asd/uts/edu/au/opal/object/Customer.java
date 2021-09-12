@@ -1,6 +1,7 @@
 package group2.asd.uts.edu.au.opal.object;
 
 import group2.asd.uts.edu.au.opal.Main;
+import group2.asd.uts.edu.au.opal.api.API;
 import lombok.Getter;
 import org.bson.Document;
 
@@ -11,7 +12,6 @@ import java.util.UUID;
 public class Customer extends Document {
 
     private final UUID accountId;
-
     private final String firstName;
     private final String lastName;
     private final String emailAddress;
@@ -24,6 +24,7 @@ public class Customer extends Document {
      * @param document The BSON document from the users collection.
      * @author James
      */
+
     public Customer(final Document document) {
         this.accountId = UUID.fromString(document.getString("account_id"));
         this.firstName = document.getString("first_name");
@@ -31,6 +32,8 @@ public class Customer extends Document {
         this.emailAddress = document.getString("email_address");
         this.password = document.getString("password");
         this.phoneNumber = document.getString("phone_number");
+        ArrayList<String> opalCardIds = (ArrayList<String>) document.getList("opal_card", String.class);
+        opalCardIds.forEach(cardId -> opalCards.add(new API().getCardByCardId(cardId)));
     }
 
     /**

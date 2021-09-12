@@ -18,8 +18,8 @@
 <body>
     <form class="box" action="LoginServlet" method="post" id="login">
         <h1>Login</h1>
-        <input type="text" id="uname" name="uname" autocomplete="off" placeholder="Username" required>
-        <input type="password" id="upassword" name="upassword" autocomplete="off" placeholder="Password" required>
+        <input type="text" id="user_email" name="user_email" autocomplete="off" placeholder="User Email" required>
+        <input type="password" id="user_password" name="user_password" autocomplete="off" placeholder="Password" required>
         <input type="submit" form="login" name="login" value="Login">
         <input type="button" value="Back" onclick="location.href='index.jsp'">
         <p> Not a Customer? <a href="register.jsp">Register</a></p>
