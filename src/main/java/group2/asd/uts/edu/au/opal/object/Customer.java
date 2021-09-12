@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @Getter
-public class Customer {
+public class Customer extends Document {
 
     private final UUID accountId;
 
@@ -16,7 +16,7 @@ public class Customer {
     private final String lastName;
     private final String emailAddress;
     private final String phoneNumber;
-
+    private final String password;
     private ArrayList<Card> opalCards;
 
     /**
@@ -29,6 +29,7 @@ public class Customer {
         this.firstName = document.getString("first_name");
         this.lastName = document.getString("last_name");
         this.emailAddress = document.getString("email_address");
+        this.password = document.getString("password");
         this.phoneNumber = document.getString("phone_number");
     }
 
@@ -41,25 +42,34 @@ public class Customer {
      * @param password The customer's chosen password, to be encrypted as a md5 hash.
      * @author James
      */
+
     public Customer(final String firstName, final String lastName, final String emailAddress, final String password, final String phoneNumber) {
         this.accountId = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
-        register(password);
+        this.password = password;
     }
 
     /**
      * Registers a new customer into the API.
      * @author James
      */
-    private void register(final String password) { // TODO: Hash password
+
+    /*private void register(final String password) { // TODO: Hash password
         Main.getApi().registerCustomer(this, password);
-    }
+    }*/
+
+
 
     @Override
     public String toString() {
-        return getFirstName() + " " + getLastName() + " - " + getEmailAddress() + " - " + getPhoneNumber();
+        return getFirstName() + " " + getLastName() + " - " + getEmailAddress() + " - " + getPassword() + " - " + getPhoneNumber();
+    }
+
+    @Override
+    public Object getOrDefault(Object key, Object defaultValue) {
+        return super.getOrDefault(key, defaultValue);
     }
 }

@@ -16,7 +16,7 @@
     <title>Login Page</title>
 </head>
 <body>
-    <form class="box" action="userprofile.jsp" method="get" id="login">
+    <form class="box" action="LoginServlet" method="post" id="login">
         <h1>Login</h1>
         <input type="text" id="uname" name="uname" autocomplete="off" placeholder="Username" required>
         <input type="password" id="upassword" name="upassword" autocomplete="off" placeholder="Password" required>

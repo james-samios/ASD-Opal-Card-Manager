@@ -6,6 +6,7 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import group2.asd.uts.edu.au.opal.object.Card;
 import group2.asd.uts.edu.au.opal.object.Customer;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -26,6 +27,10 @@ public class API {
                 .applyConnectionString(connectionString)
                 .build();
         System.out.println("MongoDB setup and ready for queries.");
+    }
+
+    public MongoClientSettings getSettings() {
+        return this.settings;
     }
 
     /**
@@ -59,6 +64,37 @@ public class API {
             return new Customer(doc);
         }
     }
+
+    /**
+     * Returns a Card with provided card number and pin.
+     * If no data is found, it will return
+     * null, implying incorrect details were supplied.
+     * @param cardNumber The Opal card's number
+     * @param cardPin The customer's password, in md5 hash form.
+     * @return Card
+     * @author Jung
+     */
+
+    public Card getCard(final String cardNumber, final String cardPin) {
+
+        Document doc;
+        try (MongoClient mongoClient = MongoClients.create(settings)) {
+            BasicDBObject where = new BasicDBObject();
+            where.put("card_number", Double.parseDouble(cardNumber));
+            where.put("card_pin", Integer.parseInt(cardPin));
+            doc = getCollection(mongoClient, CollectionType.CARDS).find(where).first();
+            System.out.println("Card " + doc);
+            //Retrieving the documents
+            if (doc == null || doc.isEmpty()) {
+                throw new Exception();
+            }
+            return new Card(doc);
+        }catch(Exception e) {
+            return null;
+        }
+    }
+
+
 
     /**
      * Registers a new Customer object into the API.

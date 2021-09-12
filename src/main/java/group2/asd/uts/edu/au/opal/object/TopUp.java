@@ -6,7 +6,7 @@ import org.bson.Document;
 import java.util.UUID;
 
 @Getter
-public class TopUp {
+public class TopUp extends Document {
 
     private final boolean enabled;
 
@@ -20,7 +20,7 @@ public class TopUp {
      * @author James
      */
 
-    /**methods**/
+    /**Constructor**/
     public TopUp(final Document document) {
         this.enabled = document.getBoolean("enabled");
         if (enabled) {

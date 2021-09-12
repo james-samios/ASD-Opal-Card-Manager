@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="CSS/opalcard.css">
 </head>
 <body>
-    <form class="box" action="carddetails.jsp" method="get" id="signin">
+    <form class="box" action="CardLoginServlet" method="post" id="signin">
         <h1>Opal Card</h1>
         <input type="text" id="cardnumber" name="cnumber" autocomplete="off" placeholder="Card Number">
-        <input type="text" id="cardpin" name="cpin" autocomplete="off" placeholder="Card Pin">
+        <input type="password" id="cardpin" name="cpin" autocomplete="off" placeholder="Card Pin">
         <input type="submit" form="signin" name="signin" value="Sign in">
         <input type="button" value="Back" onclick="location.href='index.jsp'">
     </form>
