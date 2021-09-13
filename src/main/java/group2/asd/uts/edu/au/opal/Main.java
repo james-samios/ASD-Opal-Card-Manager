@@ -9,6 +9,8 @@ import com.mongodb.client.MongoCollection;
 import group2.asd.uts.edu.au.opal.api.API;
 import group2.asd.uts.edu.au.opal.object.Card;
 import group2.asd.uts.edu.au.opal.object.Customer;
+import group2.asd.uts.edu.au.opal.object.PaymentHistory;
+import group2.asd.uts.edu.au.opal.object.PaymentMethod;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -26,14 +28,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //Customer test = new API().getCustomer("john.smith@gmail.com", "123gnjk12gnsbjky523fg%#2vnjk1");
-        //Card test = new API().getCard("john.smith@gmail.com", "123gnjk12gnsbjky523fg%#2vnjk1");
+        //PaymentHistory test = new API().getPaymentHistory("123412341234");
+        Customer test = new API().getCustomer("john.smith@gmail.com", "123gnjk12gnsbjky523fg%#2vnjk1");
 
-        //if (test != null) {
-            //System.out.println("Loaded Card: " + test);
-        //} else {
-            //System.out.println("Card is null.");
-        //}
+        if (test != null) {
+            System.out.println("Loaded Customer: " + test);
+        } else {
+            System.out.println("Customer is null.");
+        }
 
 
     }

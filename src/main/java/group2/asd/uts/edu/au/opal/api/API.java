@@ -8,6 +8,8 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import group2.asd.uts.edu.au.opal.object.Card;
 import group2.asd.uts.edu.au.opal.object.Customer;
+import group2.asd.uts.edu.au.opal.object.PaymentHistory;
+import group2.asd.uts.edu.au.opal.object.PaymentMethod;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -57,9 +59,11 @@ public class API {
         BasicDBObject where = new BasicDBObject();
         where.put("email_address", email);
         where.put("password", password);
-        Document doc;
+
         try (MongoClient mongoClient = MongoClients.create(settings)) {
+            Document doc;
             doc = getCollection(mongoClient, CollectionType.ACCOUNTS).find(where).first();
+            System.out.println("Customer " + doc);
             if (doc == null || doc.isEmpty()) return null;
             return new Customer(doc);
         }
@@ -82,7 +86,7 @@ public class API {
             where.put("card_number", Double.parseDouble(cardNumber));
             where.put("card_pin", Integer.parseInt(cardPin));
             doc = getCollection(mongoClient, CollectionType.CARDS).find(where).first();
-            System.out.println("Card " + doc);
+            //System.out.println("Card " + doc);
             //Retrieving the documents
             if (doc == null || doc.isEmpty()) {
                 throw new Exception();
@@ -118,6 +122,60 @@ public class API {
         }
 
 
+    }
+
+
+    /**
+     * Returns a payment with provided card number and CVS.
+     * If no data is found, it will return
+     * null, implying incorrect details were supplied.
+     * @param cardNumber The credit card's number
+     * @param cardCVC The card CVS.
+     * @return PaymentMethod
+     * @author Jung
+     */
+
+    public PaymentMethod getPayment(final String cardNumber, final String cardCVC) {
+        try (MongoClient mongoClient = MongoClients.create(settings)) {
+            BasicDBObject where = new BasicDBObject();
+            Document doc;
+            where.put("card_number", Double.parseDouble(cardNumber));
+            where.put("cvc", Integer.parseInt(cardCVC));
+            doc = getCollection(mongoClient, CollectionType.PAYMENT_METHODS).find(where).first();
+            //System.out.println("payment " + doc);
+            //Retrieving the documents
+            if (doc == null || doc.isEmpty()) {
+                throw new Exception();
+            }
+            return new PaymentMethod(doc);
+        }catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Returns a payment history with provided account ID.
+     * If no data is found, it will return
+     * null, implying incorrect details were supplied.
+     * @param accountId The customer's account ID
+     * @return PaymentHistory
+     * @author Jung
+     */
+    public PaymentHistory getPaymentHistory(final String accountId) {
+        try (MongoClient mongoClient = MongoClients.create(settings)) {
+            BasicDBObject where = new BasicDBObject();
+            Document doc;
+            where.put("account_id", Double.parseDouble(accountId));
+            doc = getCollection(mongoClient, CollectionType.PAYMENT_HISTORY).find(where).first();
+            //System.out.println("PaymentHistory " + doc);
+            //Retrieving the documents
+            if (doc == null || doc.isEmpty()) {
+                throw new Exception();
+            }
+            return new PaymentHistory(doc);
+        }catch(Exception e) {
+            return null;
+        }
     }
 
     /**

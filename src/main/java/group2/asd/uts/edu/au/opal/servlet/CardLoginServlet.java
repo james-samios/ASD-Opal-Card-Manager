@@ -30,22 +30,22 @@ public class CardLoginServlet extends HttpServlet {
 
 
         // Reading post parameters from the request
-        String param1 = req.getParameter("card_number");
-        String param2 = req.getParameter("card_pin");
+        String cardNumber = req.getParameter("card_number");
+        String cardPin = req.getParameter("card_pin");
 
 
         // Checking for null and empty values
-        if(!validator.validateCardNumber(param1)) {
+        if(!validator.validateCardNumber(cardNumber)) {
             System.out.println("card number error");
             session.setAttribute("cardNumberFormErr", "Error: 16 digits for card number");
             req.getRequestDispatcher("/opalcard.jsp").forward(req, resp);
-        } else if(!validator.validateCardPin(param2)) {
+        } else if(!validator.validateCardPin(cardPin)) {
             System.out.println("card pin error");
             session.setAttribute("cardPinFormErr", "Error: 4 digits for card pin");
             req.getRequestDispatcher("/opalcard.jsp").forward(req, resp);
         } else {
             //Get customer data by calling API
-            Card card = new API().getCardByNumberAndPin(param1, param2);
+            Card card = new API().getCardByNumberAndPin(cardNumber, cardPin);
 
             //Check the customer is found or not
             boolean isCardFound = card != null;

@@ -1,4 +1,5 @@
-<%--
+<%@ page import="group2.asd.uts.edu.au.opal.object.Card" %>
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 7/09/2021
@@ -17,43 +18,52 @@
     <title>Top Up Menu</title>
 </head>
 <body>
-<form class="box" action="carddetails.jsp" method="get" id="topup">
-    <h1>Top-up</h1>
-    <h3>Card Number</h3>
-    <h3>xxxx-xxxx-xxxx-xxxx</h3>
-    <h3>Top-Up Fees:</h3>
-    <label for="twenty">
-        <input type="radio" id="twenty" name="ttype" value="20" checked>
-        $20
-        <span></span>
-    </label>
-    <label for="forty">
-        <input type="radio" id="forty" name="ttype" value="40">
-        $40
-        <span></span>
-    </label>
-    <label for="sixty">
-        <input type="radio" id="sixty" name="ttype" value="60">
-        $60
-        <span></span>
-    </label>
-    <h3>Payment Type:</h3>
-    <label for="creditcard">
-        <input type="radio" id="creditcard" name="ptype" value="credit" checked>
-        Credit Card
-        <span></span>
-    </label>
-    <label for="paypal">
-        <input type="radio" id="paypal" name="ptype" value="paypal">
-        PayPal
-        <span></span>
-    </label>
-    <h3>Payment Number</h3>
-    <input type="text" id="pnumber" name="pnumber" autocomplete="off" placeholder="Payment Number" required>
-    <input type="text" id="pccv" name="pccv" autocomplete="off" placeholder="CCV">
-    <input type="submit" form="topup" name="confirm" value="Confirm">
-    <input type="button" value="Back" onclick="location.href='carddetails.jsp'">
-</form>
+<%
+    Card card = (Card)session.getAttribute("card");
+    DecimalFormat balanceFormat = new DecimalFormat("$###,###.##");
+%>
+    <form class="box" action="carddetails.jsp" method="get" id="top_up">
+        <h1>Top Up</h1>
+        <h3>Card Number</h3>
+        <h2><%=card.getCardNumber()%></h2>
+        <h3>Balance</h3>
+        <h2><%=balanceFormat.format(card.getBalance())%></h2>
+        <h3>Top-Up Fees:</h3>
+        <label for="twenty">
+            <input type="radio" id="twenty" name="amount" value="20" checked>
+            $20
+            <span></span>
+        </label>
+        <label for="forty">
+            <input type="radio" id="forty" name="amount" value="40">
+            $40
+            <span></span>
+        </label>
+        <label for="sixty">
+            <input type="radio" id="sixty" name="amount" value="60">
+            $60
+            <span></span>
+        </label>
+        <!--
+        <h3>Payment Type:</h3>
+        <label for="credit_card">
+            <input type="radio" id="credit_card" name="pay_type" value="credit_card" checked>
+            Credit Card
+            <span></span>
+        </label>
+        <label for="paypal">
+            <input type="radio" id="paypal" name="pay_type" value="paypal">
+            PayPal
+            <span></span>
+        </label>
+        -->
+        <h3>Payment Details</h3>
+        <input type="text" id="pay_number" name="pay_number" autocomplete="off" placeholder="Payment Number" required>
+        <input type="text" id="pay_ccv" name="pay_cvc" autocomplete="off" placeholder="CVC">
+        <input type="text" id="pay_name" name="pay_name" autocomplete="off" placeholder="Card Name">
+        <input type="submit" form="top_up" name="confirm" value="Confirm">
+        <input type="button" value="Back" onclick="location.href='carddetails.jsp'">
+    </form>
 
 </body>
 </html>

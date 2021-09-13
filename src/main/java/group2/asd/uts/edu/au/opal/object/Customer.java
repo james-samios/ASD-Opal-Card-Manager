@@ -12,12 +12,14 @@ import java.util.UUID;
 public class Customer extends Document {
 
     private final UUID accountId;
-    private final String firstName;
-    private final String lastName;
     private final String emailAddress;
-    private final String phoneNumber;
-    private final String password;
-    private ArrayList<Card> opalCards;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private ArrayList<String> opalCards;
+    private Address address;
+    private WeeklyTripReward weeklyTripReward;
 
     /**
      * Loads a Customer object from the API.
@@ -32,8 +34,9 @@ public class Customer extends Document {
         this.emailAddress = document.getString("email_address");
         this.password = document.getString("password");
         this.phoneNumber = document.getString("phone_number");
-        ArrayList<String> opalCardIds = (ArrayList<String>) document.getList("opal_card", String.class);
-        opalCardIds.forEach(cardId -> opalCards.add(new API().getCardByCardId(cardId)));
+        this.opalCards = (ArrayList<String>) document.getList("opal_card", String.class);
+        this.address = new Address(document.get("address", Document.class));
+        this.weeklyTripReward = new WeeklyTripReward(document.get("weekly_trip_reward", Document.class));
     }
 
     /**
@@ -64,11 +67,17 @@ public class Customer extends Document {
         Main.getApi().registerCustomer(this, password);
     }*/
 
-
-
     @Override
     public String toString() {
-        return getFirstName() + " " + getLastName() + " - " + getEmailAddress() + " - " + getPassword() + " - " + getPhoneNumber();
+        return getAccountId() + " -" +
+                getFirstName() + " - " +
+                getLastName() + " - " +
+                getEmailAddress() + " - " +
+                getPassword() + " - " +
+                getPhoneNumber() + " - " +
+                getOpalCards() + " - " +
+                getAddress() + " - " +
+                getWeeklyTripReward();
     }
 
     @Override

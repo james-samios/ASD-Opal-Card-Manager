@@ -37,9 +37,7 @@ public class Card extends Document {
         /*add trips into trip array list*/
         this.trips = new ArrayList<Trip>();
         for (Document eachTrip : document.getList("trips", Document.class)) {
-            Trip newTrip = new Trip(eachTrip);
-            System.out.println(newTrip);
-            this.trips.add(newTrip);
+            this.trips.add(new Trip(eachTrip));
         }
     }
 

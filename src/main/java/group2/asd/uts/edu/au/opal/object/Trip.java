@@ -6,10 +6,10 @@ import java.util.Date;
 
 @Getter
 public class Trip extends Document {
-    private String tripStart;
-    private String tripEnd;
-    private Date startTime;
-    private Date endTime;
+    private final String tripStart;
+    private final String tripEnd;
+    private final Date startTime;
+    private final Date endTime;
 
     /**
      * Loads a Trip object from an Opal Card object.
@@ -21,7 +21,7 @@ public class Trip extends Document {
         this.tripStart = document.getString("trip_start");
         this.tripEnd = document.getString("trip_end");
         this.startTime = document.getDate("start_time");
-        this.endTime = document.getDate("end_time");
+        this.endTime = document.getDate("end-time");
     }
     @Override
     public String toString() {
