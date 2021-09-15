@@ -6,6 +6,7 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Updates;
 import group2.asd.uts.edu.au.opal.object.Card;
 import group2.asd.uts.edu.au.opal.object.Customer;
 import group2.asd.uts.edu.au.opal.object.PaymentHistory;
@@ -42,7 +43,7 @@ public class API {
      * @return The collection of BSON Documents.
      * @author James
      */
-    private MongoCollection<Document> getCollection(final MongoClient client, final CollectionType type) {
+    public MongoCollection<Document> getCollection(final MongoClient client, final CollectionType type) {
         return client.getDatabase("dev").getCollection(type.name().toLowerCase());
     }
 
@@ -66,90 +67,6 @@ public class API {
             System.out.println("Customer " + doc);
             if (doc == null || doc.isEmpty()) return null;
             return new Customer(doc);
-        }
-    }
-
-    /**
-     * Returns a Card with provided card number and pin.
-     * If no data is found, it will return
-     * null, implying incorrect details were supplied.
-     * @param cardNumber The Opal card's number
-     * @param cardPin The customer's password, in md5 hash form.
-     * @return Card
-     * @author Jung
-     */
-
-    public Card getCardByNumberAndPin(final String cardNumber, final String cardPin) {
-        try (MongoClient mongoClient = MongoClients.create(settings)) {
-            BasicDBObject where = new BasicDBObject();
-            Document doc;
-            where.put("card_number", Double.parseDouble(cardNumber));
-            where.put("card_pin", Integer.parseInt(cardPin));
-            doc = getCollection(mongoClient, CollectionType.CARDS).find(where).first();
-            //System.out.println("Card " + doc);
-            //Retrieving the documents
-            if (doc == null || doc.isEmpty()) {
-                throw new Exception();
-            }
-            return new Card(doc);
-        }catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Returns a Card with provided card ID.
-     * If no data is found, it will return
-     * null, implying incorrect details were supplied.
-     * @param cardId The Opal card's ID
-     * @return Card
-     * @author Jung
-     */
-    public Card getCardByCardId(final String cardId) {
-        try (MongoClient mongoClient = MongoClients.create(settings)) {
-            BasicDBObject where = new BasicDBObject();
-            Document doc;
-            where.put("card_id", Double.parseDouble(cardId));
-            doc = getCollection(mongoClient, CollectionType.CARDS).find(where).first();
-            //System.out.println("Card " + doc);
-            //Retrieving the documents
-            if (doc == null || doc.isEmpty()) {
-                throw new Exception();
-            }
-            return new Card(doc);
-        }catch(Exception e) {
-            return null;
-        }
-
-
-    }
-
-
-    /**
-     * Returns a payment with provided card number and CVS.
-     * If no data is found, it will return
-     * null, implying incorrect details were supplied.
-     * @param cardNumber The credit card's number
-     * @param cardCVC The card CVS.
-     * @return PaymentMethod
-     * @author Jung
-     */
-
-    public PaymentMethod getPayment(final String cardNumber, final String cardCVC) {
-        try (MongoClient mongoClient = MongoClients.create(settings)) {
-            BasicDBObject where = new BasicDBObject();
-            Document doc;
-            where.put("card_number", Double.parseDouble(cardNumber));
-            where.put("cvc", Integer.parseInt(cardCVC));
-            doc = getCollection(mongoClient, CollectionType.PAYMENT_METHODS).find(where).first();
-            //System.out.println("payment " + doc);
-            //Retrieving the documents
-            if (doc == null || doc.isEmpty()) {
-                throw new Exception();
-            }
-            return new PaymentMethod(doc);
-        }catch(Exception e) {
-            return null;
         }
     }
 
@@ -196,5 +113,7 @@ public class API {
             getCollection(mongoClient, CollectionType.ACCOUNTS).insertOne(user);
         }
     }
+
+
 
 }

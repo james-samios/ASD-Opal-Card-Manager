@@ -1,48 +1,31 @@
 package group2.asd.uts.edu.au.opal;
 
-import com.mongodb.Block;
-import com.mongodb.DBCursor;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import group2.asd.uts.edu.au.opal.api.API;
-import group2.asd.uts.edu.au.opal.object.Card;
-import group2.asd.uts.edu.au.opal.object.Customer;
-import group2.asd.uts.edu.au.opal.object.PaymentHistory;
+import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.object.PaymentMethod;
-import org.bson.Document;
+import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
 
 /**
  * UTS Advanced Software Development - Assignment
  * Opal Card Management System
  * Created by: James Samios, Jack Shakespeare, Christopher Cruz, Nadeem Ahmed, Qiyang Wu and Tzu-Jung Yeh
  */
+
 public class Main {
-
-    private static ArrayList<Document> loggedInCustomers;
-    private static API api;
-    //private static MongoClient client;
-
     public static void main(String[] args) {
+        DBPaymentMethodManager dbPaymentMethodManager = new DBPaymentMethodManager();
+        System.out.println("Before: Display All methods");
+        //dbPaymentMethodManager.getAllPaymentMethods();
+        //PaymentMethod paymentMethod = new PaymentMethod("1111222233334444", "Tzu Jung",  "333", "10/22");
 
-        //PaymentHistory test = new API().getPaymentHistory("123412341234");
-        Customer test = new API().getCustomer("john.smith@gmail.com", "123gnjk12gnsbjky523fg%#2vnjk1");
+        //dbPaymentMethodManager.createPaymentMethod(paymentMethod);
+        ObjectId objectId = new ObjectId("612ed59a56cb54f515475557");
+        PaymentMethod getPaymentMethod = dbPaymentMethodManager.getPaymentByObjectId(objectId);
+        System.out.println("PaymentMethod: " + getPaymentMethod);
+        //dbPaymentMethodManager.deletePaymentByPaymentMethodId("529361c5-9aa7-4609-a76c-ea452894f869");
 
-        if (test != null) {
-            System.out.println("Loaded Customer: " + test);
-        } else {
-            System.out.println("Customer is null.");
-        }
-
+        System.out.println("After: Display All methods");
+        dbPaymentMethodManager.getAllPaymentMethods();
 
     }
-
-    public static API getApi() {
-        return api;
-    }
-
-
 }

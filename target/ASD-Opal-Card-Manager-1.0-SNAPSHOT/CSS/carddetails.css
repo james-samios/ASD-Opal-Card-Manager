@@ -26,7 +26,6 @@ nav {
 
 .root {
     background: #5A7670;
-
 }
 
 .staff {
@@ -48,11 +47,9 @@ label.logo {
 
 }
 
-nav ul{
+nav ul {
     float: right;
     margin-right: 20px;
-
-
 }
 
 nav ul li {
@@ -69,6 +66,7 @@ nav ul li a {
     text-transform: uppercase;
 
 }
+
 a.active {
 
 
@@ -95,8 +93,8 @@ a:hover {
 
 #check {
     display: none;
-
 }
+
 @media (max-width: 952px) {
     label.logo {
         font-size: 30px;
@@ -141,8 +139,6 @@ a:hover {
 
 }
 
-
-
 section {
     /*
     background: url('https://miro.medium.com/max/4800/0*Ujfq0bFIEYEoMiEG') no-repeat;
@@ -172,9 +168,8 @@ section {
 
 .table-style th,
 .table-style td {
-    padding: 12px 15px;
     text-align: center;
-
+    padding: 12px 15px;
 }
 
 .table-style tbody tr {
@@ -184,19 +179,19 @@ section {
 
 .table-style tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
-
-
 }
 
 .table-style tbody tr:nth-of-type(odd) {
     background-color: white;
 
-
 }
 
+.table-style tbody tr:first-of-type {
+    border-top: 2px solid white;
+}
 
 .table-style tbody tr:last-of-type {
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid white;
 }
 
 
@@ -204,4 +199,67 @@ section {
     color: #ffffff;
     font-weight: bold;
     width: 40%;
+}
+
+.submit {
+    width: 100%;
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: white;
+    background-color: #2ecc71;
+    border-style: none;
+}
+
+.submit:hover {
+    color: white;
+    background-color: grey;
+}
+
+
+.submit2 {
+    width: 100%;
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: white;
+    background-color: #3FB0AC;
+    border-style: none;
+}
+.submit2:hover {
+    color: white;
+    background-color: grey;
+}
+
+.submit3 {
+    width: 100%;
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: white;
+    background-color: #B89F5D;
+    border-style: none;
+}
+
+.submit3:hover {
+    color: white;
+    background-color: grey;
+}
+
+.padding {
+    padding: 12px 16px;
+}
+
+.border_radius {
+    border-radius: 3px;
+}
+
+.light_green {
+    background-color: #2ecc71;
+}
+.light_blue {
+    background-color: #3FB0AC;
+}
+.yellow {
+    background-color: #B89F5D;
 }

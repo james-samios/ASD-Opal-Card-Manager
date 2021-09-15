@@ -1,6 +1,8 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.http.HttpSession;
@@ -20,6 +22,8 @@ public class Validator implements Serializable{
     private final String cardPinPattern = "[0-9]{4}";
     private final String paymentTypePattern = "[A-Za-z\\s]{4,20}";
     private final String paymentNumberPattern = "[0-9]{6,20}";
+    private final String creditCardCvc = "[0-9]{3}";
+    private final String paymentExpiry = "[0-9]{2}[/]{1}[0-9]{2}";
 
     /*Constructor*/
     public Validator(){}
@@ -29,6 +33,15 @@ public class Validator implements Serializable{
         Pattern regEx = Pattern.compile(pattern);
         Matcher match = regEx.matcher(input);
         return match.matches();
+    }
+
+    public boolean validateCardExpiry(String expiry, int cMonth, int cYear) {
+        if(!validate(paymentExpiry, expiry)) return false;
+        return validateMonthAndYear(expiry, cMonth, cYear);
+    }
+
+    public boolean validateCardCvc (final String number) {
+        return validate(creditCardCvc, number);
     }
 
     public boolean checkEmpty(String email, String password){
@@ -62,21 +75,35 @@ public class Validator implements Serializable{
     }
 
     public boolean validatePaymentType(String type){
-        return validate(paymentTypePattern,type);
+        return validate(paymentTypePattern, type);
     }
 
     public boolean validatePaymentNumber(String number){
-        return validate(paymentNumberPattern,number);
+        return validate(paymentNumberPattern, number);
     }
 
     public boolean validateNumber(String number){
-        return validate(namePattern,number);
+        return validate(namePattern, number);
     }
 
-    public boolean validateCardNumber(String number){ return validate(cardNumberPattern,number);}
+    public boolean validateCardNumber(String number){ return validate(cardNumberPattern, number);}
 
     public boolean validateCardPin(String number){
-        return validate(cardPinPattern,number);
+        return validate(cardPinPattern, number);
+    }
+
+
+    public boolean validateMonthAndYear(String expiry, int cMonth, int cYear) {
+        try {
+            String[] splits = expiry.split("/");
+            int month = Integer.parseInt(splits[0]);
+            int year = Integer.parseInt(splits[1]);
+            if(month <= 0 || month >= 13) return false;
+            if(month + year * 12 < cYear * 12 + cMonth) return false;
+            return true;
+        }catch(Exception e) {
+            return false;
+        }
     }
 
     public boolean validateDate(String month, String days) {
@@ -132,5 +159,16 @@ public class Validator implements Serializable{
         session.setAttribute("cardNumberFormErr", "");
         session.setAttribute("cardPinFormErr", "");
         session.setAttribute("cardNumAndPinErr", "");
+        session.setAttribute("cardNameErr", "");
+        session.setAttribute("cardCvcErr", "");
+        session.setAttribute("cardExpiryErr", "");
+
+        /*clean previous input*/
+        session.setAttribute("previous_card_number", "");
+        session.setAttribute("previous_card_pin", "");
+        session.setAttribute("previous_payment_number", "");
+        session.setAttribute("previous_payment_owner", "");
+        session.setAttribute("previous_payment_cvc", "");
+        session.setAttribute("previous_payment_expiry", "");
     }
 }

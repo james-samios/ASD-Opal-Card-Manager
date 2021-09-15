@@ -11,13 +11,32 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="CSS/userprofile.css">
+    <link rel="stylesheet" href="CSS/carddetails.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <title>Card Details Page</title>
 </head>
 <body>
     <%
+        //String redirectURL = "http://localhost:8080/LogoutServlet";
         Card card = (Card)session.getAttribute("card");
+
+        /*
+        boolean isCardNull = card == null? true: false;
+        if(isCardNull) {
+
+        }*/
+
+        String cardId = card.getCardId().toString();
+        String cardNumber = "" + card.getCardNumber();
+        String cardPin = "" + card.getCardPin();
+        String type = card.getType().toString();
+        boolean isActive = card.isActive();
+        boolean isLocked = card.isLocked();
+        boolean isLinked = card.isLinked();
+        String balance = "" + card.getBalance();
+        String paymentDetailsId = card.getTopUp().getPaymentDetailsId().toString();
+        String amount = "" + card.getTopUp().getAmount();
+        String when = "" + card.getTopUp().getWhen();
     %>
 
     <nav class="customer">
@@ -29,11 +48,13 @@
         <ul>
             <li><a href="carddetails.jsp">Activate Card</a></li>
 
+            <li><a href="login.jsp">Auto Top-up Setting</a></li>
+
             <li><a href="topupmenu.jsp">Top Up</a></li>
 
             <li><a href="login.jsp">linked To Account</a></li>
 
-            <li><a href="index.jsp">Logout</a></li>
+            <li><a href="LogoutServlet">Logout</a></li>
         </ul>
     </nav>
 
@@ -43,80 +64,107 @@
                 <tbody>
                     <tr>
                         <td class="table-header customer">Card ID</td>
-                        <td data-label="card_id"><%=card.getCardId()%></td>
+                        <td data-label="card_id"><%=cardId%></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="table-header customer">Card Number</td>
-                        <td data-label="card_number"><%=card.getCardNumber()%></td>
+                        <td data-label="card_number"><%=cardNumber%></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="table-header customer">Card Pin</td>
-                        <td data-label="card_number"><%=card.getCardPin()%></td>
+                        <td data-label="card_number"><%=cardPin%></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="table-header customer">Card Type</td>
-                        <td data-label="card_type"><%=card.getType()%></td>
+                        <td data-label="card_type"><%=type%></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="table-header customer">Card Activate</td>
-                        <td data-label="card_active"><%=card.isActive()?"Active": "Lock"%></td>
+                        <td data-label="card_active"><%=isActive?"Active": "Lock"%></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="table-header customer">Card Lock</td>
-                        <td data-label="card_locked"><%=card.isLocked()%></td>
+                        <td data-label="card_locked"><%=isLocked%></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="table-header customer">Card Link</td>
-                        <td data-label="card_link"><%=card.isLinked()%></td>
+                        <td data-label="card_link"><%=isLinked%></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="table-header customer">Balance</td>
-                        <td data-label="balance"><%=card.getBalance()%></td>
+                        <td data-label="balance"><%=balance%></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="table-header customer">Card Owner</td>
                         <td data-label="card_owner"></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="table-header customer">Owner Email</td>
                         <td data-label="email"></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="table-header customer">Owner Phone</td>
                         <td data-label="phone"></td>
+                        <td></td>
                     </tr>
-                    <tr>
-                        <td class="table-header customer">Top-Up Amount</td>
-                        <td data-label="top_up_amount"><%=card.getTopUp().getAmount()%></td>
-                    </tr>
-                    <tr>
-                        <td class="table-header customer">Top-Up Payment ID</td>
-                        <td data-label="top_up_payment_id"><%=card.getTopUp().getPaymentDetailsId()%></td>
-                    </tr>
-                    <tr>
-                        <td class="table-header customer">Top-Up When</td>
-                        <td data-label="top_up_when"><%=card.getTopUp().getWhen()%></td>
-                    </tr>
-                    <%for(Trip trip: card.getTrips()) {%>
-                        <tr>
-                            <td class="table-header customer">Trip Start</td>
-                            <td data-label="trip_start"><%=trip.getTripStart()%></td>
-                        </tr>
-                        <tr>
-                            <td class="table-header customer">Trip End</td>
-                            <td data-label="trip_end"><%=trip.getTripEnd()%></td>
-                        </tr>
-                        <tr>
-                            <td class="table-header customer">Trip Start Time</td>
-                            <td data-label="trip_start_time"><%=trip.getStartTime()%></td>
-                        </tr>
-                        <tr>
-                            <td class="table-header customer">Trip End Time</td>
-                            <td data-label="trip_end_time"><%=trip.getEndTime()%></td>
-                        </tr>
-                    <%}%>
                 </tbody>
             </table>
+                <table class="table-style">
+                    <tbody>
+                        <tr>
+                            <td class="table-header customer">Auto Top Up</td>
+                            <td data-label="auto_top_up"><%=isActive? "Enable": "Disable"%></td>
+                            <td><button class="submit <%=isActive?"yellow":"light_green"%>"><%=isActive?"Deactivation":"Activation"%></button></td>
+                        </tr>
+                        <%if(paymentDetailsId != null) {%>
+                            <tr>
+                                <td class="table-header customer">Payment Method</td>
+                                <td class="table-header customer"></td>
+                                <td class="table-header customer"><button class="submit">Edit</button></td>
+                            </tr>
+                            <tr>
+                                <td class="table-header customer">Card Number</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="table-header customer">Card Owner Name</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="table-header customer">CVC</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="table-header customer">Card Expiry</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="table-header customer">Top-Up Amount</td>
+                                <td><%=amount%></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="table-header customer">Top up when the price below</td>
+                                <td><%=when%></td>
+                                <td></td>
+                            </tr>
+                        <%}%>
+                    </tbody>
+                </table>
         </section>
     </center>
 </body>

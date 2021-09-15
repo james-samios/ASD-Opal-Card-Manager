@@ -69,7 +69,8 @@ public class Customer extends Document {
 
     @Override
     public String toString() {
-        return getAccountId() + " -" +
+        return "" +
+                getAccountId() + " -" +
                 getFirstName() + " - " +
                 getLastName() + " - " +
                 getEmailAddress() + " - " +
@@ -84,4 +85,5 @@ public class Customer extends Document {
     public Object getOrDefault(Object key, Object defaultValue) {
         return super.getOrDefault(key, defaultValue);
     }
+
 }

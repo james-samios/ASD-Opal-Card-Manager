@@ -9,12 +9,6 @@ and open the template in the editor.
 */
 
 body {
-    /*
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background: #3CB371;
-    */
     font-family: Arial, Helvetica, sans-serif;
     background:linear-gradient(rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5) 100%), url('../img/background.jpg');
 }
@@ -42,7 +36,9 @@ body {
 .box input[type = "password"],
 .box input[type = "mail"],
 .box input[type = "date"],
-.box input[type = "tel"] {
+.box input[type = "month"],
+.box input[type = "tel"],
+.box select {
     border: 0;
     background: none;
     display: block;
@@ -61,10 +57,15 @@ body {
 .box input[type = "password"]:focus,
 .box input[type = "mail"]:focus,
 .box input[type = "date"]:focus,
-.box input[type = "tel"]:focus{
+.box input[type = "month"]:focus,
+.box input[type = "tel"]:focus {
     width: 280px;
     border-color: #3498db;
+}
 
+.box select:focus {
+    width: 250px;
+    border-color: #3498db;
 }
 
 .box input[type = "submit"] {
@@ -122,3 +123,4 @@ body {
 .errorinfo {
     color: red;
 }
+

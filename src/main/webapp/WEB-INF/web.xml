@@ -23,5 +23,23 @@
             <url-pattern>/CardLoginServlet</url-pattern>
         </servlet-mapping>
 
+        <servlet>
+            <servlet-name>LogoutServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.LogoutServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>LogoutServlet</servlet-name>
+            <url-pattern>/LogoutServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>TopUpServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.TopUpServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>TopUpServlet</servlet-name>
+            <url-pattern>/TopUpServlet</url-pattern>
+        </servlet-mapping>
+
 
 </web-app>

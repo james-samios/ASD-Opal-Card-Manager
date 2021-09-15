@@ -11,7 +11,7 @@ public class Card extends Document {
     private final UUID cardId;
     private final long cardNumber;
     private final int cardPin;
-    private CardType type;
+    private final CardType type;
     private double balance;
     private boolean linked;
     private boolean active;
@@ -24,7 +24,7 @@ public class Card extends Document {
      * @author James
      */
     public Card(final Document document) {
-        this.cardId = UUID.fromString(document.getString("card_id"));
+        this.cardId = UUID.fromString(document.get("card_id").toString());
         this.cardNumber = document.getLong("card_number");
         this.cardPin = document.getInteger("card_pin");
         this.type = CardType.valueOf(document.getString("type").toUpperCase());
@@ -49,15 +49,18 @@ public class Card extends Document {
         SCHOOL,
         CONCESSION,
         ADULT;
-
         @Override
         public String toString() {
             return name().charAt(0) + name().substring(1).toLowerCase();
         }
     }
 
+    public void setBalance(Double amount) {
+        this.balance = amount;
+    }
+
     @Override
     public String toString() {
-        return getCardId() + " " + getCardNumber() + " " + getCardPin() + " " + getType() + " " + getBalance() + " " + getTopUp();
+        return getCardId() + " " + getCardNumber() + " " + getCardPin() + " " + getType() + " " + getBalance() + " " + getTopUp() + " " + getTrips();
     }
 }

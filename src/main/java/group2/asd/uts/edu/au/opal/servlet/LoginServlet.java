@@ -5,14 +5,11 @@ import group2.asd.uts.edu.au.opal.object.Customer;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
 
     // This method is called by the servlet container to process a 'post' request
@@ -51,7 +48,5 @@ public class LoginServlet extends HttpServlet {
                 req.getRequestDispatcher("/login.jsp").forward(req, resp);
             }
         }
-
-
     }
 }
