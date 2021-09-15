@@ -23,7 +23,7 @@ public class CardLoginServlet extends HttpServlet {
         //create an instance of the Validator class
         Validator validator = new Validator();
 
-        //initialise the error message
+        //initialise all messages in session
         validator.clean(session);
 
         //Create the card DBManager
@@ -38,22 +38,14 @@ public class CardLoginServlet extends HttpServlet {
             /*store error message of the type of card number*/
             session.setAttribute("cardNumberFormErr", "Error: 16 digits for card number");
 
-            /*store previous input*/
-            session.setAttribute("previous_card_number", cardNumber);
-            session.setAttribute("previous_card_pin", cardPin);
-
-            /*push view*/
-            req.getRequestDispatcher("/opalcard.jsp").forward(req, resp);
+            /*call method to store previous input and then push view to /opalcard.jsp*/
+            setPreviousInput(session, req, resp, cardNumber, cardPin);
         } else if(!validator.validateCardPin(cardPin)) {
             /*store error message of the type of card Pin*/
             session.setAttribute("cardPinFormErr", "Error: 4 digits for card pin");
 
-            /*store previous input*/
-            session.setAttribute("previous_card_number", cardNumber);
-            session.setAttribute("previous_card_pin", cardPin);
-
-            /*push view*/
-            req.getRequestDispatcher("/opalcard.jsp").forward(req, resp);
+            /*call method to store previous input and then push view to /opalcard.jsp*/
+            setPreviousInput(session, req, resp, cardNumber, cardPin);
         } else {
             //Get customer data by calling API
             Card card = dbCardsManager.getCardByNumberAndPin(cardNumber, cardPin);
@@ -62,12 +54,11 @@ public class CardLoginServlet extends HttpServlet {
             boolean isCardFound = card != null;
 
             if(isCardFound) {
+                /*clean previous input*/
+                validator.clean(session);
+
                 //Store customer into attribute
                 session.setAttribute("card", card);
-
-                /*clean previous input*/
-                session.setAttribute("previous_card_number", "");
-                session.setAttribute("previous_card_pin", "");
 
                 //Push view to welcome.jsp
                 req.getRequestDispatcher("/carddetails.jsp").forward(req, resp);
@@ -75,13 +66,20 @@ public class CardLoginServlet extends HttpServlet {
                 /*Store error message of no matches of card number and pin*/
                 session.setAttribute("cardNumAndPinErr", "Error: No match of card number and pin");
 
-                /*store previous input*/
-                session.setAttribute("previous_card_number", cardNumber);
-                session.setAttribute("previous_card_pin", cardPin);
-
-                /*push view*/
-                req.getRequestDispatcher("/opalcard.jsp").forward(req, resp);
+                /*call method to store previous input and then push view to /opalcard.jsp*/
+                setPreviousInput(session, req, resp, cardNumber, cardPin);
             }
         }
+    }
+    private void setPreviousInput(HttpSession session, HttpServletRequest req, HttpServletResponse resp,
+                                  final String cardNumber, final String cardPin)
+            throws IOException, ServletException {
+        /*store previous input*/
+        session.setAttribute("previous_card_number", cardNumber);
+        session.setAttribute("previous_card_pin", cardPin);
+
+        /*push view*/
+        req.getRequestDispatcher("/opalcard.jsp").forward(req, resp);
+
     }
 }

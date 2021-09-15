@@ -70,6 +70,7 @@ public class TopUpServlet extends HttpServlet {
             dbCardsManager.updateCardBalance(card.getCardId().toString(), newBalance);
             card.setBalance(newBalance);
             session.setAttribute("card", card);
+            validator.clean(session);
             req.getRequestDispatcher("/carddetails.jsp").forward(req, resp);
         }
     }

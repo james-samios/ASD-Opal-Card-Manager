@@ -60,7 +60,6 @@ public class DBCardsManager {
             where.put("card_number", Double.parseDouble(cardNumber));
             where.put("card_pin", Integer.parseInt(cardPin));
             document = mongoCollection.find(where).first();
-            System.out.println("Card " + document);
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
