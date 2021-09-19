@@ -1,21 +1,22 @@
 package group2.asd.uts.edu.au.opal.model;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import java.util.UUID;
 
-@Getter
+@Getter @Setter
 public class PaymentMethod extends Document {
 
     private ObjectId objectId;
-    private final UUID paymentMethodId;
-    private final UUID opalCardId;
-    private final long cardNumber;
-    private final String cardName;
-    private final int cardCVC;
-    private final String expiryDate;
+    private UUID paymentMethodId;
+    private UUID opalCardId;
+    private String cardNumber;
+    private String cardName;
+    private String cardCVC;
+    private String expiryDate;
 
     /*Constructor*/
     /**
@@ -27,9 +28,9 @@ public class PaymentMethod extends Document {
         this.objectId = new ObjectId(document.get("_id").toString());
         this.paymentMethodId = UUID.fromString(document.get("payment_method_id").toString());
         this.opalCardId = UUID.fromString(document.get("opal_card_id").toString());
-        this.cardNumber = document.getLong("card_number");
+        this.cardNumber = document.getString("card_number");
         this.cardName = document.getString("card_name");
-        this.cardCVC = document.getInteger("cvc");
+        this.cardCVC = document.getString("cvc");
         this.expiryDate = document.getString("expiry_date");
     }
 
@@ -37,13 +38,11 @@ public class PaymentMethod extends Document {
                          String expiryDate) {
         this.paymentMethodId = UUID.fromString(paymentMethodId);
         this.opalCardId = UUID.fromString(opalCardId);
-        this.cardNumber = Long.parseLong(cardNumber);
+        this.cardNumber = cardNumber;
         this.cardName = cardName;
-        this.cardCVC = Integer.parseInt(cardCVC);
+        this.cardCVC = cardCVC;
         this.expiryDate = expiryDate;
     }
-
-    public void setObjectId(ObjectId objectId) {this.objectId = objectId;}
 
     public Document convertClassToDocument() {
         return new Document("payment_method_id", paymentMethodId)

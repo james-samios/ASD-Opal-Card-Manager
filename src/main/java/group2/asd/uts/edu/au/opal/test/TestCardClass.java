@@ -10,7 +10,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.UUID;
-
 import static org.junit.Assert.*;
 
 public class TestCardClass {
@@ -18,14 +17,14 @@ public class TestCardClass {
     /*Fields used for auto testing references*/
     final ObjectId objectId = new ObjectId("612ed59a56cb54f515475557");
     final UUID cardId = UUID.fromString("8c7eda3f-ab45-4c82-9ba8-a462043f1dde");
-    final long cardNumber = Long.parseLong("3085220000000000");
-    final int cardPin = 999;
+    final String cardNumber = "3085220000000000";
+    final String cardPin = "9999";
     final CardType cardType = CardType.CONCESSION;
     final double balance = 55.0;
     final UUID accountId = UUID.randomUUID();
     final boolean active = false;
     final boolean locked = false;
-    final TopUp topUp = new TopUp(false, 10, 5);
+    final TopUp topUp = new TopUp(UUID.randomUUID(), false, 10, 5);
     final Trip trip = new Trip("Kings Cross", "Bondi Junction",
                 Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
     final ArrayList<Trip> trips = new ArrayList<Trip>() {{
@@ -106,7 +105,7 @@ public class TestCardClass {
         String expectedCardNumber = "0000222211113333";
         Card actualCard = this.expectedCard;
         actualCard.setCardNumber(expectedCardNumber);
-        assertEquals(Long.parseLong(expectedCardNumber), expectedCard.getCardNumber());
+        assertEquals(expectedCardNumber, expectedCard.getCardNumber());
     }
 
     @Test
@@ -114,7 +113,7 @@ public class TestCardClass {
         String expectedCardPin = "0000";
         Card actualCard = this.expectedCard;
         actualCard.setCardPin(expectedCardPin);
-        assertEquals(Integer.parseInt(expectedCardPin), actualCard.getCardPin());
+        assertEquals(expectedCardPin, actualCard.getCardPin());
     }
 
     @Test
@@ -158,10 +157,19 @@ public class TestCardClass {
     @Test
     public void testSetTopUpMethod() {
         Card actualCard = this.expectedCard;
-        TopUp expectedTopUp = new TopUp(true, 20, 10);
+        TopUp expectedTopUp = new TopUp(UUID.randomUUID(),true, 20, 10);
         actualCard.setTopUp(expectedTopUp);
         assertEquals(expectedTopUp, actualCard.getTopUp());
     }
+
+    @Test
+    public void testSetTopUpPaymentMethodIdMethod() {
+        Card actualCard = this.expectedCard;
+        UUID expectedPaymentMethodId = UUID.randomUUID();
+        actualCard.setTopUpPaymentMethodId(expectedPaymentMethodId);
+        assertEquals(expectedPaymentMethodId, actualCard.getTopUp().getPaymentMethodId());
+    }
+
 
     @Test
     public void testSetTopUpEnabledMethod() {

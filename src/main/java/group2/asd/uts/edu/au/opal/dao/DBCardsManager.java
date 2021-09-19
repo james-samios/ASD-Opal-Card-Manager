@@ -10,6 +10,8 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -67,8 +69,8 @@ public class DBCardsManager {
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
-            where.put("card_number", Double.parseDouble(cardNumber));
-            where.put("card_pin", Integer.parseInt(cardPin));
+            where.put("card_number", cardNumber);
+            where.put("card_pin", cardPin);
             document = mongoCollection.find(where).first();
             System.out.println("Document: " + document);
             //Retrieving the documents
@@ -77,7 +79,7 @@ public class DBCardsManager {
             }
             return new Card(document);
         }catch(Exception e) {
-            System.out.println(e);
+            Logger.getLogger(DBCardsManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -106,7 +108,7 @@ public class DBCardsManager {
             System.out.println("Card " + document);
             return new Card(document);
         }catch(Exception e) {
-            System.out.println(e);
+            Logger.getLogger(DBCardsManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -133,7 +135,7 @@ public class DBCardsManager {
             }
             return new Card(document);
         }catch(Exception e) {
-            System.out.println(e);
+            Logger.getLogger(DBCardsManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -181,7 +183,7 @@ public class DBCardsManager {
      * @author Jung
      */
 
-    public void updateCardNumber(final ObjectId objectId, final long cardNumber) {
+    public void updateCardNumber(final ObjectId objectId, final String cardNumber) {
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -200,7 +202,7 @@ public class DBCardsManager {
      * @author Jung
      */
 
-    public void updateCardPin(final ObjectId objectId, final int cardPin) {
+    public void updateCardPin(final ObjectId objectId, final String cardPin) {
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -292,7 +294,7 @@ public class DBCardsManager {
      * @param trips The Opal card's trips
      * @author Jung
      */
-    public void updateCardTopUp(final ObjectId objectId, final Document trips) {
+    public void updateCardTrips(final ObjectId objectId, final Document trips) {
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);

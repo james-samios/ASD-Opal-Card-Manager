@@ -1,4 +1,4 @@
-<%@ page import="group2.asd.uts.edu.au.opal.object.Card" %><%--
+<%@ page import="group2.asd.uts.edu.au.opal.model.Card" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 7/09/2021
@@ -7,7 +7,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="group2.asd.uts.edu.au.opal.object.Card"%>
+<%@page import="group2.asd.uts.edu.au.opal.model.Card"%>
 <!DOCTYPE html>
 <html>
 <head>

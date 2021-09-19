@@ -11,11 +11,11 @@ public class Card extends Document {
 
     private ObjectId objectId;
     private UUID cardId;
-    private long cardNumber;
-    private int cardPin;
+    private UUID accountId;
+    private String cardNumber;
+    private String cardPin;
     private CardType type;
     private double balance;
-    private UUID accountId;
     private boolean active;
     private boolean locked;
     private TopUp topUp;
@@ -30,8 +30,8 @@ public class Card extends Document {
     public Card(final Document document) {
         this.objectId = new ObjectId(document.get("_id").toString());
         this.cardId = UUID.fromString(document.get("card_id").toString());
-        this.cardNumber = document.getLong("card_number");
-        this.cardPin = document.getInteger("card_pin");
+        this.cardNumber = document.getString("card_number");
+        this.cardPin = document.getString("card_pin");
         this.type = CardType.valueOf(document.getString("type").toUpperCase());
         this.balance = document.getDouble("balance");
         this.accountId = UUID.fromString(document.get("account_id").toString());
@@ -48,8 +48,8 @@ public class Card extends Document {
 
     public Card (final ObjectId objectId,
                  final UUID cardId,
-                 final long cardNumber,
-                 final int cardPin,
+                 final String cardNumber,
+                 final String cardPin,
                  final CardType type,
                  final double balance,
                  final UUID accountId,
@@ -97,18 +97,18 @@ public class Card extends Document {
 
     public void setObjectId(final ObjectId objectId) {this.objectId = objectId;}
     public void setCardId(final UUID cardId) {this.cardId = cardId;}
-    public void setCardNumber(String cardNumber) {this.cardNumber = Long.parseLong(cardNumber);}
-    public void setCardPin(String cardPin) {this.cardPin = Integer.parseInt(cardPin);}
+    public void setCardNumber(String cardNumber) {this.cardNumber = cardNumber;}
+    public void setCardPin(String cardPin) {this.cardPin = cardPin;}
     public void setType(CardType type) {this.type = type;}
     public void setBalance(Double amount) {this.balance = amount;}
     public void setActive(boolean value) {this.active = value;}
     public void setAccountId(UUID accountId) {this.accountId = accountId;}
     public void setLocked(boolean value) {this.locked = value;}
     public void setTopUp(TopUp topUp) {this.topUp = topUp;}
+    public void setTopUpPaymentMethodId(final UUID paymentMethodId) {this.topUp.setPaymentMethodId(paymentMethodId);}
     public void setTopUpEnabled(final boolean value) {this.topUp.setEnabled(value);}
     public void setTopUpAmount(final double value) {this.topUp.setAmount(value);}
     public void setTopUpWhen(final double value) {this.topUp.setWhen(value);}
-    //public void setTopUpPaymentDetailsId(UUID paymentDetailsId) {this.topUp.setPaymentDetailsId(paymentDetailsId);}
     public void setTrips(ArrayList<Trip> trips) {this.trips = trips;}
 
     public String outPutCardFormat() {

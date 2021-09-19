@@ -21,14 +21,14 @@
         Card card = (Card)session.getAttribute("card");
 
         String cardId = card.getCardId().toString();
-        String cardNumber = "" + card.getCardNumber();
-        String cardPin = "" + card.getCardPin();
+        String cardNumber = card.getCardNumber();
+        String cardPin = card.getCardPin();
         String type = card.getType().toString();
         boolean isActive = card.isActive();
         boolean isLocked = card.isLocked();
-        String accountId = card.getAccount_id().toString();
+        String accountId = card.getAccountId().toString();
         String balance = "" + card.getBalance();
-        String paymentDetailsId = card.getTopUp().getPaymentDetailsId().toString();
+        String paymentDetailsId = card.getTopUp().getPaymentMethodId().toString();
         String amount = "" + card.getTopUp().getAmount();
         String when = "" + card.getTopUp().getWhen();
         String typeToLowerCase = type.toLowerCase();
@@ -65,13 +65,7 @@
                             <td data-label="balance"><%=balance%></td>
                             <td><button class="submit light_blue" onclick="location.href='topupmenu.jsp'">Top Up</button></td>
                         </tr>
-                        <!--
-                        <tr>
-                            <td class="<%=tdClass%>">Card Link</td>
-                            <td data-label="card_link"><%=isLinked%></td>
-                            <td><button class="submit <%=isLinked?"red":"light_green"%>"><%=isLinked?"Unlink":"Link"%></button></td>
-                        </tr>
-                        -->
+
                         <tr>
                             <td class="<%=tdClass%>">Auto Top Up</td>
                             <td data-label="auto_top_up"><%=isActive?"Activation": "Deactivation"%></td>

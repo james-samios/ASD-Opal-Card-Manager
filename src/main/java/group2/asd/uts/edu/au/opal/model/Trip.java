@@ -17,6 +17,7 @@ public class Trip extends Document {
      * @param document The BSON document from the card document.
      * @author Jung
      */
+
     /*Constructor*/
     public Trip(final Document document) {
         this.tripStart = document.getString("trip_start");

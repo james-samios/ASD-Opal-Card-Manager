@@ -18,7 +18,7 @@ public class DBConnection {
         settings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();
-        System.out.println("MongoDB connection is set up");
+
     }
 
     /*The method is to find the table in mongoDB by providing table name*/

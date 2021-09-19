@@ -1,9 +1,17 @@
 package group2.asd.uts.edu.au.opal.test;
 
 
+import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
+import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
+import group2.asd.uts.edu.au.opal.model.*;
+import org.bson.types.ObjectId;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.UUID;
 
 
 /**
@@ -17,13 +25,33 @@ public class DemoTestClass {
     public static void main(String[] args) {
 
         /*Test of models*/
-        testCardModel();
-        testPaymentMethodModel();
-        testTopUpModel();
-        testTripModel();
+        //testCardModel();
+        //testPaymentMethodModel();
+        //testTopUpModel();
+        //testTripModel();
 
         /*Test of DAO*/
+        DBCardsManager dbCardsManager = new DBCardsManager();
+        dbCardsManager.readAllCards();
+        dbCardsManager.updateCardPin(new ObjectId("61473d1760f9601b1b82d2f5"), "9999");
+        dbCardsManager.updateCardNumber(new ObjectId("61473d1760f9601b1b82d2f5"), "3085220000000000");
+        //DBPaymentMethodManager dbpaymentMethodManager = new DBPaymentMethodManager();
+        //dbpaymentMethodManager.readAllPaymentMethods();
+        /*
+        final PaymentMethod paymentMethod = new PaymentMethod(
+                "adc8a0e8-eda8-4ac1-989c-c82407d008e1",
+                "8c7eda3f-ab45-4c82-9ba8-a462043f1dde",
+                "1111222211112222",
+                "Tzu Jung",
+                "111",
+                "12/22"
+        );
+        final ObjectId objectId = new ObjectId("6147405173eeae77825d8320");
+        paymentMethod.setObjectId(objectId);
+        dbpaymentMethodManager.updatePaymentMethodByProvidedObjectId(paymentMethod);
+        dbpaymentMethodManager.readAllPaymentMethods();
 
+         */
     }
 
     /*Methods for testing class*/

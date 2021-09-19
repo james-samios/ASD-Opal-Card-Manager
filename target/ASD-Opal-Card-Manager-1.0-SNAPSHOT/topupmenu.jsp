@@ -1,4 +1,4 @@
-<%@ page import="group2.asd.uts.edu.au.opal.object.Card" %>
+<%@ page import="group2.asd.uts.edu.au.opal.model.Card" %>
 <%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: Administrator

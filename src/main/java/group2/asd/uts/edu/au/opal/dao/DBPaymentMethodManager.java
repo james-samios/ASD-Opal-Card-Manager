@@ -4,11 +4,12 @@ package group2.asd.uts.edu.au.opal.dao;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
 * DBPaymentMethodManager is used for access of PaymentMethod table on mongoDB
@@ -17,7 +18,7 @@ import java.util.UUID;
 
 public class DBPaymentMethodManager {
     private final MongoCollection<Document> mongoCollection;
-
+    private Document document = new Document();
     /**
      * Constructor for choosing a table with table name
      * */
@@ -42,9 +43,9 @@ public class DBPaymentMethodManager {
     public void createPaymentMethod(final PaymentMethod paymentMethod) {
         try {
             mongoCollection.insertOne(paymentMethod.convertClassToDocument());
-            System.out.println("Success: Success of running createPaymentMethod");
+            //System.out.println("Success: Success of running createPaymentMethod");
         } catch (Exception e) {
-            System.out.println("Error: Failure of running createPaymentMethod");
+            Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -54,28 +55,55 @@ public class DBPaymentMethodManager {
      * Returns a payment with provided objectId.
      * If no data is found, it will return
      * null, implying incorrect details were supplied.
-     * @param providedId The credit card's _id
+     * @param objectId The credit card's _id
      * @return PaymentMethod
      * @author Jung
      */
 
-    public PaymentMethod getPaymentByObjectId(final ObjectId providedId) {
+    public PaymentMethod readPaymentByObjectId(final ObjectId objectId) {
         try {
-            Document document;
+            //Document document;
             BasicDBObject where = new BasicDBObject();
 
-            where.put("_id", providedId);
-            document = (Document) mongoCollection.find(where).first();
+            where.put("_id", objectId);
+            document = mongoCollection.find(where).first();
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
             }
             return new PaymentMethod(document);
         }catch(Exception e) {
-            System.out.println(e);
+            Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
+
+    /**
+     * Returns a payment with provided payment details' ID.
+     * If no data is found, it will return
+     * null, implying incorrect details were supplied.
+     * @param paymentMethodId The credit card's number
+     * @return PaymentMethod
+     * @author Jung
+     */
+
+    public PaymentMethod readPaymentMethodByPaymentMethodId(final String paymentMethodId) {
+        try {
+            //Document doc;
+            BasicDBObject where = new BasicDBObject();
+            where.put("payment_method_id", UUID.fromString(paymentMethodId));
+            document = mongoCollection.find(where).first();
+            //Retrieving the documents
+            if (document == null || document.isEmpty()) {
+                throw new Exception("Error: The document is null or empty.");
+            }
+            return new PaymentMethod(document);
+        }catch(Exception e) {
+            Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+
 
     /**
      * Returns a payment with provided card number and CVC.
@@ -87,52 +115,28 @@ public class DBPaymentMethodManager {
      * @author Jung
      */
 
-    public PaymentMethod getPaymentMethodByNumberAndCVC(final String cardNumber, final String cardCVC) {
+    public PaymentMethod readPaymentMethodByNumberAndCVC(final String cardNumber, final String cardCVC) {
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
-            where.put("card_number", Double.parseDouble(cardNumber));
-            where.put("cvc", Integer.parseInt(cardCVC));
+            where.put("card_number", cardNumber);
+            where.put("cvc", cardCVC);
             document = mongoCollection.find(where).first();
-            //System.out.println("payment " + doc);
-            //Retrieving the documents
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
             }
             return new PaymentMethod(document);
         }catch(Exception e) {
-            System.out.println(e);
+            Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
 
     /**
-     * Returns a payment with provided payment details' ID.
-     * If no data is found, it will return
-     * null, implying incorrect details were supplied.
-     * @param paymentDetailsId The credit card's number
-     * @return PaymentMethod
+     * read all payment methods form the payment method table
+     * No return
      * @author Jung
      */
-
-    public PaymentMethod getPaymentMethodById(final String paymentDetailsId) {
-        try {
-            Document doc;
-            BasicDBObject where = new BasicDBObject();
-            where.put("payment_details_id", paymentDetailsId);
-            doc = mongoCollection.find(where).first();
-            System.out.println("payment " + doc);
-            //Retrieving the documents
-            if (doc == null || doc.isEmpty()) {
-                throw new Exception("Error: The document is null or empty.");
-            }
-            return new PaymentMethod(doc);
-        }catch(Exception e) {
-            System.out.println(e);
-            return null;
-        }
-    }
-
     public void readAllPaymentMethods() {
         try {
             int counter = 1;
@@ -141,7 +145,7 @@ public class DBPaymentMethodManager {
                 counter = counter + 1;
             }
         }catch(Exception e) {
-            System.out.println("Error: the failure of displaying all payment methods");
+            Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
         }
 
     }
@@ -151,79 +155,43 @@ public class DBPaymentMethodManager {
     /**
      * If a payment method is found with provided object ID, it will update the payment method's owner name
      * No return
-     * @param objectId The payment method's object_id
-     * @param ownerName The payment method's owner name
+     * @param paymentMethod A payment method
      * @author Jung
      **/
 
-    public void updatePaymentOwnerName(final ObjectId objectId, final String ownerName) {
+    public void updatePaymentMethodByProvidedObjectId(PaymentMethod paymentMethod) {
         try {
             BasicDBObject where = new BasicDBObject();
-            where.put("_id", objectId);
-            mongoCollection.updateOne(where, Updates.set("card_name", ownerName));
-            System.out.println("Success: the success of updating card's name");
+            where.put("_id", paymentMethod.getObjectId());
+            BasicDBObject newDocument = new BasicDBObject();
+            newDocument.put("opal_card_id", paymentMethod.getOpalCardId());
+            newDocument.put("card_number", paymentMethod.getCardNumber());
+            newDocument.put("card_name", paymentMethod.getCardName());
+            newDocument.put("cvc", paymentMethod.getCardCVC());
+            newDocument.put("expiry_date", paymentMethod.getExpiryDate());
+            BasicDBObject updateObject = new BasicDBObject();
+            updateObject.put("$set", newDocument);
+            mongoCollection.updateOne(where, updateObject);
         }catch(Exception e) {
-            System.out.println("Error: the failure of updating card's object");
+            System.out.println("Error: Update error happens. Check the code");
         }
     }
-
-    /**
-     * If a card is found with provided objectId, it will update the card number
-     * No return
-     * @param objectId The payment method's object_id
-     * @param cardNumber The payment method number
-     * @author Jung
-     */
-
-    public void updatePaymentCardNumber(final ObjectId objectId, final long cardNumber) {
-        try {
-            BasicDBObject where = new BasicDBObject();
-            where.put("_id", objectId);
-            mongoCollection.updateOne(where, Updates.set("card_number", cardNumber));
-            System.out.println("Success: the success of updating card's number");
-        }catch(Exception e) {
-            System.out.println("Error: the failure of updating card's object");
-        }
-    }
-
-
-    /**
-     * If a card is found, it will update the account ID
-     * No return
-     * @param objectId The Opal card's objectId
-     * @param accountId The Opal card's account_id
-     * @author Jung
-     */
-
-    public void updatePaymentAccountId(final ObjectId objectId, final String accountId) {
-        try {
-            BasicDBObject where = new BasicDBObject();
-            where.put("_id", objectId);
-            mongoCollection.updateOne(where, Updates.set("account_id", accountId));
-            System.out.println("Success: the success of updating card's name");
-        }catch(Exception e) {
-            System.out.println("Error: the failure of updating card's object");
-        }
-    }
-
-
 
     /*   *************************************Methods for "D" section below****************************************   */
 
     /**
      * If a payment method is found with provided payment_details_id, it will delete it
      * No return
-     * @param paymentDetailId The credit card's payment_details_id
+     * @param paymentMethodId The credit card's payment_details_id
      * @author Jung
      */
 
-    public void deletePaymentByPaymentMethodId(final String paymentDetailId) {
+    public void deletePaymentByPaymentMethodId(final String paymentMethodId) {
         try {
             //deleting an object from table
-            mongoCollection.deleteMany(Filters.eq("payment_details_id", UUID.fromString(paymentDetailId)));
-            System.out.println("Success: the success of deleting an object from table");
+            mongoCollection.deleteMany(Filters.eq("payment_method_id", UUID.fromString(paymentMethodId)));
         }catch(Exception e) {
-            System.out.println("Error: the failure of deleting an object from table");
+            System.out.println("Error: Delete error happens. Check the code");
         }
     }
 
@@ -234,15 +202,12 @@ public class DBPaymentMethodManager {
      * @author Jung
      */
 
-
     public void deletePaymentByObjectId(final ObjectId objectId) {
         try {
             //deleting an object from table
             mongoCollection.deleteMany(Filters.eq("_id", objectId));
-            //display the success of deleting an instance from table
-            System.out.println("Success: the success of deleting an object from table");
         }catch(Exception e) {
-            System.out.println("Error: the failure of deleting an object from table");
+            Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 

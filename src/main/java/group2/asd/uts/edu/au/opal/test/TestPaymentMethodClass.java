@@ -10,13 +10,13 @@ import static org.junit.Assert.assertEquals;
 
 public class TestPaymentMethodClass {
 
-    private final ObjectId objectId = new ObjectId("612ed59a56cb54f515475557");
-    private final UUID paymentMethodId = UUID.fromString("5653e70d-8291-4705-8140-291442652d58");
-    private final UUID opalCardId = UUID.fromString("f4e2cf7d-0dcd-4db6-bfc0-5625c5da3254");
-    private final long cardNumber = Long.parseLong("1234567812345678");
-    private final String cardName = "John Smith";
-    private final int cardCvc = 999;
-    private final String expiryDate = "10/21";
+    private final ObjectId objectId = new ObjectId("6147405173eeae77825d8320");
+    private final UUID paymentMethodId = UUID.fromString("adc8a0e8-eda8-4ac1-989c-c82407d008e1");
+    private final UUID opalCardId = UUID.fromString("8c7eda3f-ab45-4c82-9ba8-a462043f1dde");
+    private final String cardNumber = "8765432112345678";
+    private final String cardName = "Tzu Jung Yeh";
+    private final String cardCvc = "000";
+    private final String expiryDate = "12/21";
 
     /*create a new document and append all fields into the document*/
     private final Document document = new Document("_id", objectId)
@@ -28,12 +28,12 @@ public class TestPaymentMethodClass {
             .append("expiry_date", expiryDate);
 
     private final PaymentMethod paymentMethod = new PaymentMethod(
-            "5653e70d-8291-4705-8140-291442652d58",
-            "f4e2cf7d-0dcd-4db6-bfc0-5625c5da3254",
-            "1234567812345678",
-            "John Smith",
-            "999",
-            "10/21"
+            "adc8a0e8-eda8-4ac1-989c-c82407d008e1",
+            "8c7eda3f-ab45-4c82-9ba8-a462043f1dde",
+            "8765432112345678",
+            "Tzu Jung Yeh",
+            "000",
+            "12/21"
     );
 
     @Test
