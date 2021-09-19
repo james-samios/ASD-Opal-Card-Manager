@@ -5,8 +5,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import group2.asd.uts.edu.au.opal.api.CollectionType;
-import group2.asd.uts.edu.au.opal.object.PaymentMethod;
+import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import java.util.UUID;
@@ -34,7 +33,7 @@ public class DBPaymentMethodManager {
      * "D" means deleting table's objects
      */
 
-
+    /*   *************************************Methods for "C" section below****************************************   */
     /**
      * Registers a new object of payment method into the API.
      * @param paymentMethod The payment method to register.
@@ -42,14 +41,14 @@ public class DBPaymentMethodManager {
 
     public void createPaymentMethod(final PaymentMethod paymentMethod) {
         try {
-            mongoCollection.insertOne(paymentMethod.convertToDocument());
+            mongoCollection.insertOne(paymentMethod.convertClassToDocument());
             System.out.println("Success: Success of running createPaymentMethod");
         } catch (Exception e) {
             System.out.println("Error: Failure of running createPaymentMethod");
         }
     }
 
-    /* *************************************Methods for "R" section below**************************************** */
+    /*   *************************************Methods for "R" section below****************************************   */
 
     /**
      * Returns a payment with provided objectId.
@@ -134,7 +133,7 @@ public class DBPaymentMethodManager {
         }
     }
 
-    public void getAllPaymentMethods() {
+    public void readAllPaymentMethods() {
         try {
             int counter = 1;
             for (Document document : mongoCollection.find()) {
@@ -147,7 +146,7 @@ public class DBPaymentMethodManager {
 
     }
 
-    /* *************************************Methods for "U" section below**************************************** */
+    /*   *************************************Methods for "U" section below****************************************   */
 
     /**
      * If a payment method is found with provided object ID, it will update the payment method's owner name
@@ -209,7 +208,7 @@ public class DBPaymentMethodManager {
 
 
 
-    /* *************************************Methods for "D" section below**************************************** */
+    /*   *************************************Methods for "D" section below****************************************   */
 
     /**
      * If a payment method is found with provided payment_details_id, it will delete it

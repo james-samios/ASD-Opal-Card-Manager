@@ -6,11 +6,9 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.Updates;
-import group2.asd.uts.edu.au.opal.object.Card;
-import group2.asd.uts.edu.au.opal.object.Customer;
-import group2.asd.uts.edu.au.opal.object.PaymentHistory;
-import group2.asd.uts.edu.au.opal.object.PaymentMethod;
+import group2.asd.uts.edu.au.opal.dao.CollectionType;
+import group2.asd.uts.edu.au.opal.model.Customer;
+import group2.asd.uts.edu.au.opal.model.PaymentHistory;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 

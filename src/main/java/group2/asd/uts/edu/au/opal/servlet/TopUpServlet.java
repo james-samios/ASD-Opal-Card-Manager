@@ -1,7 +1,7 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
-import group2.asd.uts.edu.au.opal.object.Card;
+import group2.asd.uts.edu.au.opal.model.Card;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -67,7 +67,7 @@ public class TopUpServlet extends HttpServlet {
         }else {
             /*need to add update payment method*/
             Double newBalance = card.getBalance() + Double.parseDouble(amount);
-            dbCardsManager.updateCardBalance(card.getCardId().toString(), newBalance);
+            dbCardsManager.updateCardBalance(card.getObjectId(), newBalance);
             card.setBalance(newBalance);
             session.setAttribute("card", card);
             validator.clean(session);

@@ -1,7 +1,7 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
-import group2.asd.uts.edu.au.opal.object.Card;
+import group2.asd.uts.edu.au.opal.model.Card;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

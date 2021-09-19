@@ -1,7 +1,7 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.api.API;
-import group2.asd.uts.edu.au.opal.object.Customer;
+import group2.asd.uts.edu.au.opal.model.Customer;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
