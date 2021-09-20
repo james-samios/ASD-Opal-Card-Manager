@@ -70,8 +70,6 @@ public class Card extends Document {
         this.trips = trips;
     }
 
-
-
     public Document convertClassToDocument() {
         Document document = new Document("card_id", cardId)
                 .append("card_number", cardNumber)
@@ -118,7 +116,6 @@ public class Card extends Document {
             if (i % 4 == 0 && i != 0) {
                 result.append("-");
             }
-
             result.append(strCardNumber.charAt(i));
         }
         return result.toString();

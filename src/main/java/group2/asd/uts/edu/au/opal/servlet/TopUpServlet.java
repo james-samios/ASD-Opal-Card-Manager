@@ -66,7 +66,7 @@ public class TopUpServlet extends HttpServlet {
                     amount, paymentNumber, paymentOwner, paymentCvc, paymentExpiry);
         }else {
             /*need to add update payment method*/
-            Double newBalance = card.getBalance() + Double.parseDouble(amount);
+            double newBalance = card.getBalance() + Double.parseDouble(amount);
             dbCardsManager.updateCardBalance(card.getObjectId(), newBalance);
             card.setBalance(newBalance);
             session.setAttribute("card", card);

@@ -18,7 +18,7 @@ public class TestDBPaymentMethodManagerClass {
 
 
     @Test
-    public void testCreatePaymentMethod() {
+    public void testDBPaymentMethodManager() {
         PaymentMethod expectedPaymentMethod = new PaymentMethod(paymentMethodId, opalCardId, cardNumber,
                 cardName, cardCvc, expiryDate);
         /*Test DBPaymentMethodManager createPaymentMethod method*/

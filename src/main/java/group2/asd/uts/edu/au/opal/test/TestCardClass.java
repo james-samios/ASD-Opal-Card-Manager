@@ -95,16 +95,14 @@ public class TestCardClass {
     @Test
     public void testSetCardIdMethod() {
         UUID expectedCardId = UUID.randomUUID();
-        Card actualCard = this.expectedCard;
-        actualCard.setCardId(expectedCardId);
+        this.expectedCard.setCardId(expectedCardId);
         assertEquals(expectedCardId, expectedCard.getCardId());
     }
 
     @Test
     public void testSetCardNumberMethod() {
         String expectedCardNumber = "0000222211113333";
-        Card actualCard = this.expectedCard;
-        actualCard.setCardNumber(expectedCardNumber);
+        this.expectedCard.setCardNumber(expectedCardNumber);
         assertEquals(expectedCardNumber, expectedCard.getCardNumber());
     }
 

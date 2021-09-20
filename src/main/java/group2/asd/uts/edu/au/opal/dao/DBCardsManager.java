@@ -9,6 +9,7 @@ import group2.asd.uts.edu.au.opal.model.TopUp;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +46,6 @@ public class DBCardsManager {
     public void createOpalCard(final Card card) {
         try {
             mongoCollection.insertOne(card.convertClassToDocument());
-            System.out.println("Success: Success of running createPaymentMethod");
         } catch (Exception e) {
             System.out.println("Error: Failure of running createPaymentMethod");
         }
@@ -65,14 +65,13 @@ public class DBCardsManager {
      * @author Jung
      */
 
-    public Card getCardByNumberAndPin(final String cardNumber, final String cardPin) {
+    public Card readCardByNumberAndPin(final String cardNumber, final String cardPin) {
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
             where.put("card_number", cardNumber);
             where.put("card_pin", cardPin);
             document = mongoCollection.find(where).first();
-            System.out.println("Document: " + document);
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
@@ -93,19 +92,17 @@ public class DBCardsManager {
      * @author Jung
      */
 
-    public Card getCardByCardId(final String cardId) {
+    public Card readCardByCardId(final String cardId) {
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
             where.put("card_id", UUID.fromString(cardId));
             document = mongoCollection.find(where).first();
 
-            //System.out.println("Document: " + document);
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
             }
-            System.out.println("Card " + document);
             return new Card(document);
         }catch(Exception e) {
             Logger.getLogger(DBCardsManager.class.getName()).log(Level.SEVERE, null, e);
@@ -122,13 +119,12 @@ public class DBCardsManager {
      * @author Jung
      */
 
-    public Card getCardByObjectId(final ObjectId objectId) {
+    public Card readCardByObjectId(final ObjectId objectId) {
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
             document = mongoCollection.find(where).first();
-            System.out.println("Document: " + document);
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
@@ -147,7 +143,6 @@ public class DBCardsManager {
                 System.out.println("" + counter + ": " + document);
                 counter = counter + 1;
             }
-            System.out.println("Success: the success of running displayAllCards");
         }catch(Exception e) {
             System.out.println("Error: the failure of running displayAllCards");
         }
@@ -226,7 +221,6 @@ public class DBCardsManager {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
             mongoCollection.updateOne(where, Updates.set("type", type));
-            System.out.println("Success: the success of updating card's type");
         }catch(Exception e) {
             System.out.println("Error: the failure of updating card's object");
         }
@@ -244,7 +238,6 @@ public class DBCardsManager {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
             mongoCollection.updateOne(where, Updates.set("account_id", accountId));
-            System.out.println("Success: the success of updating card's linked account ID");
         }catch(Exception e) {
             System.out.println("Error: the failure of updating card's linked account ID");
         }
@@ -263,7 +256,6 @@ public class DBCardsManager {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
             mongoCollection.updateOne(where, Updates.set("active", active));
-            System.out.println("Success: the success of updating card's activate");
         }catch(Exception e) {
             System.out.println("Error: the failure of updating card's activate");
         }
@@ -294,7 +286,7 @@ public class DBCardsManager {
      * @param trips The Opal card's trips
      * @author Jung
      */
-    public void updateCardTrips(final ObjectId objectId, final Document trips) {
+    public void updateCardTrips(final ObjectId objectId, final ArrayList<Document> trips) {
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -309,7 +301,6 @@ public class DBCardsManager {
         try {
             //deleting an object from table
             mongoCollection.deleteMany(Filters.eq("_id", objectId));
-            System.out.println("Success: the success of deleting an object from table");
         }catch(Exception e) {
             System.out.println("Error: the failure of deleting an object from table");
         }

@@ -48,7 +48,7 @@ public class CardLoginServlet extends HttpServlet {
             setPreviousInput(session, req, resp, cardNumber, cardPin);
         } else {
             //Get customer data by calling API
-            Card card = dbCardsManager.getCardByNumberAndPin(cardNumber, cardPin);
+            Card card = dbCardsManager.readCardByNumberAndPin(cardNumber, cardPin);
 
             //Check the customer is found or not
             boolean isCardFound = card != null;
