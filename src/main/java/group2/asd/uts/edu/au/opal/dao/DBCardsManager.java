@@ -28,7 +28,7 @@ public class DBCardsManager {
      * */
 
     public DBCardsManager() {
-        this.mongoCollection = new DBConnection().getTableCollection(CollectionType.CARDS);
+        this.mongoCollection = new DBConnection().getCollection(CollectionType.CARDS);
     }
 
     /*

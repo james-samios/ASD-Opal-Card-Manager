@@ -1,22 +1,19 @@
 package group2.asd.uts.edu.au.opal.dao;
 
-import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 
-public class DBCustomerManager {
-    private final MongoCollection<Document> mongoCollection;
+public class DBCustomerManager extends DBManager {
+
     public DBCustomerManager() {
-        this.mongoCollection = new DBConnection().getTableCollection(CollectionType.ACCOUNTS);
+        super(CollectionType.ACCOUNTS);
     }
-
-
 
     /*   *************************************Methods for "C" section below****************************************   */
     /*   *************************************Methods for "R" section below****************************************   */
     public void displayAllCustomers() {
         try {
             int counter = 1;
-            for (Document document : mongoCollection.find()) {
+            for (Document document : getCollection().find()) {
                 System.out.println("" + counter + ": " + document);
                 counter = counter + 1;
             }

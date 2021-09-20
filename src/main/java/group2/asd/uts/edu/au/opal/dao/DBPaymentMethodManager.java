@@ -23,7 +23,7 @@ public class DBPaymentMethodManager {
      * Constructor for choosing a table with table name
      * */
     public DBPaymentMethodManager() {
-        this.mongoCollection = new DBConnection().getTableCollection(CollectionType.PAYMENT_METHODS);
+        this.mongoCollection = new DBConnection().getCollection(CollectionType.PAYMENT_METHODS);
     }
 
     /*
