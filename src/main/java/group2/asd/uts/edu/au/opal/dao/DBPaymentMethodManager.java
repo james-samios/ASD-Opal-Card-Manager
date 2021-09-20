@@ -62,7 +62,6 @@ public class DBPaymentMethodManager extends DBManager {
         try {
             //Document document;
             BasicDBObject where = new BasicDBObject();
-
             where.put("_id", objectId);
             document = getCollection().find(where).first();
             //Retrieving the documents

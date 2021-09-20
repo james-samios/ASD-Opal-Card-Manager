@@ -20,7 +20,6 @@ public class DBCustomerManager extends DBManager {
         }catch(Exception e) {
             System.out.println("Error: the failure of displaying all payment methods");
         }
-
     }
     /*   *************************************Methods for "U" section below****************************************   */
     /*   *************************************Methods for "D" section below****************************************   */
