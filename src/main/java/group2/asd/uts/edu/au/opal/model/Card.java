@@ -1,12 +1,13 @@
 package group2.asd.uts.edu.au.opal.model;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.UUID;
 
-@Getter
+@Getter @Setter
 public class Card extends Document {
 
     private ObjectId objectId;
@@ -86,28 +87,17 @@ public class Card extends Document {
 
     public ArrayList<Document> getArrayListOfDocumentOfTrips() {
         ArrayList<Document> allTrips = new ArrayList<>();
-
         for(Trip trip: trips) {
             allTrips.add(trip.convertClassToDocument());
         }
         return allTrips;
     }
 
-    public void setObjectId(final ObjectId objectId) {this.objectId = objectId;}
-    public void setCardId(final UUID cardId) {this.cardId = cardId;}
-    public void setCardNumber(String cardNumber) {this.cardNumber = cardNumber;}
-    public void setCardPin(String cardPin) {this.cardPin = cardPin;}
-    public void setType(CardType type) {this.type = type;}
-    public void setBalance(Double amount) {this.balance = amount;}
-    public void setActive(boolean value) {this.active = value;}
-    public void setAccountId(UUID accountId) {this.accountId = accountId;}
-    public void setLocked(boolean value) {this.locked = value;}
-    public void setTopUp(TopUp topUp) {this.topUp = topUp;}
     public void setTopUpPaymentMethodId(final UUID paymentMethodId) {this.topUp.setPaymentMethodId(paymentMethodId);}
     public void setTopUpEnabled(final boolean value) {this.topUp.setEnabled(value);}
     public void setTopUpAmount(final double value) {this.topUp.setAmount(value);}
     public void setTopUpWhen(final double value) {this.topUp.setWhen(value);}
-    public void setTrips(ArrayList<Trip> trips) {this.trips = trips;}
+
 
     public String outPutCardFormat() {
         String strCardNumber = String.valueOf(cardNumber);

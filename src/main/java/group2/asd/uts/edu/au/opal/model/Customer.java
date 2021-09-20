@@ -50,7 +50,8 @@ public class Customer extends Document {
      * @author James
      */
 
-    public Customer(final String firstName, final String lastName, final String emailAddress, final String password, final String phoneNumber) {
+    public Customer(final String firstName, final String lastName, final String emailAddress, final String password,
+                    final String phoneNumber) {
         this.accountId = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;

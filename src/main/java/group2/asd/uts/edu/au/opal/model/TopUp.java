@@ -1,11 +1,12 @@
 package group2.asd.uts.edu.au.opal.model;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bson.Document;
 
 import java.util.UUID;
 
-@Getter
+@Getter @Setter
 public class TopUp extends Document {
     private UUID paymentMethodId;
     private boolean enabled;
@@ -17,6 +18,7 @@ public class TopUp extends Document {
      * @param document The BSON document from the card document.
      * @author James
      */
+
     public TopUp(final Document document) {
         this.paymentMethodId = UUID.fromString(document.get("payment_method_id").toString());
         this.enabled = document.getBoolean("enabled");
@@ -31,26 +33,11 @@ public class TopUp extends Document {
         this.when = when;
     }
 
-
     public Document convertClassToDocument() {
         return new Document("payment_method_id", paymentMethodId)
                 .append("enabled", enabled)
                 .append("amount", amount)
                 .append("when", when);
-    }
-
-    public void setPaymentMethodId(UUID paymentMethodId) { this.paymentMethodId = paymentMethodId;}
-
-    public void setEnabled(final boolean isEnable) {
-        this.enabled = isEnable;
-    }
-
-    public void setAmount(final double amount) {
-        this.amount = amount;
-    }
-
-    public void setWhen(final double amount) {
-        this.when = amount;
     }
 
     @Override

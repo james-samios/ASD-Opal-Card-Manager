@@ -53,7 +53,6 @@ public class TestCardClass {
 
         /*Display the document*/
         System.out.println("Display the Document: " + document);
-
         Card actualCard = new Card(document);
         assertEquals(expectedCard, actualCard);
 

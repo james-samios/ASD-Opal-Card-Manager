@@ -39,6 +39,7 @@ public class TestTopUpClass {
         Document actualTopUpDocument = expectedTopUp.convertClassToDocument();
         assertEquals(document, actualTopUpDocument);
     }
+
     @Test
     public void testGetPaymentMethodIDMethod() {
         assertEquals(paymentMethodId, expectedTopUp.getPaymentMethodId());

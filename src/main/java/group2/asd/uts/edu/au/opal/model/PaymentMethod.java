@@ -34,7 +34,7 @@ public class PaymentMethod extends Document {
         this.expiryDate = document.getString("expiry_date");
     }
 
-    public PaymentMethod(String paymentMethodId, String opalCardId, String cardNumber, String cardName,  String cardCVC,
+    public PaymentMethod(String paymentMethodId, String opalCardId, String cardNumber, String cardName, String cardCVC,
                          String expiryDate) {
         this.paymentMethodId = UUID.fromString(paymentMethodId);
         this.opalCardId = UUID.fromString(opalCardId);
@@ -52,7 +52,6 @@ public class PaymentMethod extends Document {
                 .append("cvc", cardCVC)
                 .append("expiry_date", expiryDate);
     }
-
 
     @Override
     public String toString() {
