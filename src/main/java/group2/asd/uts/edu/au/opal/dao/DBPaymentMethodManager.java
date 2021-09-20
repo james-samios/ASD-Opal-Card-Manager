@@ -2,7 +2,6 @@ package group2.asd.uts.edu.au.opal.dao;
 
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 import org.bson.Document;
@@ -16,14 +15,13 @@ import java.util.logging.Logger;
 *
 * */
 
-public class DBPaymentMethodManager {
-    private final MongoCollection<Document> mongoCollection;
+public class DBPaymentMethodManager extends DBManager {
     private Document document = new Document();
     /**
      * Constructor for choosing a table with table name
      * */
     public DBPaymentMethodManager() {
-        this.mongoCollection = new DBConnection().getCollection(CollectionType.PAYMENT_METHODS);
+        super(CollectionType.PAYMENT_METHODS);
     }
 
     /*
@@ -42,7 +40,7 @@ public class DBPaymentMethodManager {
 
     public void createPaymentMethod(final PaymentMethod paymentMethod) {
         try {
-            mongoCollection.insertOne(paymentMethod.convertClassToDocument());
+            getCollection().insertOne(paymentMethod.convertClassToDocument());
             //System.out.println("Success: Success of running createPaymentMethod");
         } catch (Exception e) {
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
@@ -66,7 +64,7 @@ public class DBPaymentMethodManager {
             BasicDBObject where = new BasicDBObject();
 
             where.put("_id", objectId);
-            document = mongoCollection.find(where).first();
+            document = getCollection().find(where).first();
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
@@ -92,7 +90,7 @@ public class DBPaymentMethodManager {
             //Document doc;
             BasicDBObject where = new BasicDBObject();
             where.put("payment_method_id", UUID.fromString(paymentMethodId));
-            document = mongoCollection.find(where).first();
+            document = getCollection().find(where).first();
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
@@ -121,7 +119,7 @@ public class DBPaymentMethodManager {
             BasicDBObject where = new BasicDBObject();
             where.put("card_number", cardNumber);
             where.put("cvc", cardCVC);
-            document = mongoCollection.find(where).first();
+            document = getCollection().find(where).first();
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
             }
@@ -140,7 +138,7 @@ public class DBPaymentMethodManager {
     public void readAllPaymentMethods() {
         try {
             int counter = 1;
-            for (Document document : mongoCollection.find()) {
+            for (Document document : getCollection().find()) {
                 System.out.println("" + counter + ": " + document);
                 counter = counter + 1;
             }
@@ -171,7 +169,7 @@ public class DBPaymentMethodManager {
             newDocument.put("expiry_date", paymentMethod.getExpiryDate());
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
-            mongoCollection.updateOne(where, updateObject);
+            getCollection().updateOne(where, updateObject);
         }catch(Exception e) {
             System.out.println("Error: Update error happens. Check the code");
         }
@@ -189,7 +187,7 @@ public class DBPaymentMethodManager {
     public void deletePaymentByPaymentMethodId(final String paymentMethodId) {
         try {
             //deleting an object from table
-            mongoCollection.deleteMany(Filters.eq("payment_method_id", UUID.fromString(paymentMethodId)));
+            getCollection().deleteMany(Filters.eq("payment_method_id", UUID.fromString(paymentMethodId)));
         }catch(Exception e) {
             System.out.println("Error: Delete error happens. Check the code");
         }
@@ -205,7 +203,7 @@ public class DBPaymentMethodManager {
     public void deletePaymentByObjectId(final ObjectId objectId) {
         try {
             //deleting an object from table
-            mongoCollection.deleteMany(Filters.eq("_id", objectId));
+            getCollection().deleteMany(Filters.eq("_id", objectId));
         }catch(Exception e) {
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
         }
