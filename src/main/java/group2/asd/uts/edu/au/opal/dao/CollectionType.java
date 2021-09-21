@@ -1,4 +1,4 @@
-package group2.asd.uts.edu.au.opal.api;
+package group2.asd.uts.edu.au.opal.dao;
 
 public enum CollectionType {
 

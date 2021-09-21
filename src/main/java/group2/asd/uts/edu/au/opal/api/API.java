@@ -6,7 +6,9 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import group2.asd.uts.edu.au.opal.object.Customer;
+import group2.asd.uts.edu.au.opal.dao.CollectionType;
+import group2.asd.uts.edu.au.opal.model.Customer;
+import group2.asd.uts.edu.au.opal.model.PaymentHistory;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -28,6 +30,10 @@ public class API {
         System.out.println("MongoDB setup and ready for queries.");
     }
 
+    public MongoClientSettings getSettings() {
+        return this.settings;
+    }
+
     /**
      * Gets a collection of documents from the Mongo Database.
      * @param client The active client
@@ -35,7 +41,7 @@ public class API {
      * @return The collection of BSON Documents.
      * @author James
      */
-    private MongoCollection<Document> getCollection(final MongoClient client, final CollectionType type) {
+    public MongoCollection<Document> getCollection(final MongoClient client, final CollectionType type) {
         return client.getDatabase("dev").getCollection(type.name().toLowerCase());
     }
 
@@ -52,11 +58,38 @@ public class API {
         BasicDBObject where = new BasicDBObject();
         where.put("email_address", email);
         where.put("password", password);
-        Document doc;
+
         try (MongoClient mongoClient = MongoClients.create(settings)) {
+            Document doc;
             doc = getCollection(mongoClient, CollectionType.ACCOUNTS).find(where).first();
+            System.out.println("Customer " + doc);
             if (doc == null || doc.isEmpty()) return null;
             return new Customer(doc);
+        }
+    }
+
+    /**
+     * Returns a payment history with provided account ID.
+     * If no data is found, it will return
+     * null, implying incorrect details were supplied.
+     * @param accountId The customer's account ID
+     * @return PaymentHistory
+     * @author Jung
+     */
+    public PaymentHistory getPaymentHistory(final String accountId) {
+        try (MongoClient mongoClient = MongoClients.create(settings)) {
+            BasicDBObject where = new BasicDBObject();
+            Document doc;
+            where.put("account_id", Double.parseDouble(accountId));
+            doc = getCollection(mongoClient, CollectionType.PAYMENT_HISTORY).find(where).first();
+            //System.out.println("PaymentHistory " + doc);
+            //Retrieving the documents
+            if (doc == null || doc.isEmpty()) {
+                throw new Exception();
+            }
+            return new PaymentHistory(doc);
+        }catch(Exception e) {
+            return null;
         }
     }
 
@@ -78,5 +111,7 @@ public class API {
             getCollection(mongoClient, CollectionType.ACCOUNTS).insertOne(user);
         }
     }
+
+
 
 }
