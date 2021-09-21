@@ -5,6 +5,16 @@
          version="4.0">
 
 
+
+        <servlet>
+            <servlet-name>ConnServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.ConnServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>ConnServlet</servlet-name>
+            <url-pattern>/ConnServlet</url-pattern>
+        </servlet-mapping>
+
         <servlet>
             <servlet-name>LoginServlet</servlet-name>
             <servlet-class>group2.asd.uts.edu.au.opal.servlet.LoginServlet</servlet-class>

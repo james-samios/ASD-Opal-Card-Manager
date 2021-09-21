@@ -1,11 +1,15 @@
 package group2.asd.uts.edu.au.opal.dao;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import lombok.Getter;
 import org.bson.Document;
 
-public class DBCustomerManager extends DBManager {
-
-    public DBCustomerManager() {
-        super(CollectionType.ACCOUNTS);
+@Getter
+public class DBCustomerManager {
+    private final MongoCollection<Document> collection;
+    public DBCustomerManager(MongoDatabase db) {
+        collection = db.getCollection(CollectionType.ACCOUNTS.toString().toLowerCase());
     }
 
     /*   *************************************Methods for "C" section below****************************************   */

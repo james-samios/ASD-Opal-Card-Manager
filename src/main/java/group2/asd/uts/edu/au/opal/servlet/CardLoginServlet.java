@@ -27,11 +27,18 @@ public class CardLoginServlet extends HttpServlet {
         validator.clean(session);
 
         //Create the card DBManager
-        DBCardsManager dbCardsManager = new DBCardsManager();
+        DBCardsManager dbCardsManager = (DBCardsManager) session.getAttribute("dbCardsManager");
+
+        /*Check*/
+        System.out.println(dbCardsManager == null? "NULL": "Not NULL");
+
 
         // Reading post parameters from the request
         String cardNumber = req.getParameter("card_number");
         String cardPin = req.getParameter("card_pin");
+
+        System.out.println("cardNumber: " + cardNumber);
+        System.out.println("cardPin: " + cardPin);
 
         // Checking for null and empty values
         if(!validator.validateCardNumber(cardNumber)) {
