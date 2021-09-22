@@ -4,7 +4,6 @@ package group2.asd.uts.edu.au.opal.dao;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 import lombok.Getter;
 import org.bson.Document;
@@ -72,7 +71,6 @@ public class DBPaymentMethodManager {
             }
             return new PaymentMethod(document);
         }catch(Exception e) {
-            System.out.println(e);
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }

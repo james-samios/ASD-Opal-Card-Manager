@@ -25,7 +25,7 @@ public class AutoTopUpServlet extends HttpServlet {
         Card card = (Card) session.getAttribute("card");
 
         //create an instance of the Validator class
-        Validator validator = new Validator();
+        Validator validator = (Validator) session.getAttribute("validator");
 
         //initialise the error message
         validator.clean(session);
@@ -33,7 +33,6 @@ public class AutoTopUpServlet extends HttpServlet {
         //Create the card DBManager
         DBCardsManager dbCardsManager = (DBCardsManager) session.getAttribute("dbCardsManager");
         DBPaymentMethodManager dbPaymentMethodManager = (DBPaymentMethodManager) session.getAttribute("dbPaymentMethodManager");
-
 
         //Reading post parameters from the request
         String when = req.getParameter("when");
@@ -47,8 +46,6 @@ public class AutoTopUpServlet extends HttpServlet {
         cal.setTime(today);
         int month = cal.get(Calendar.MONTH) + 1;
         int year = cal.get(Calendar.YEAR) - 2000;
-        System.out.println("Month: " + month);
-        System.out.println("Year: " + year);
 
         if(!validator.validateCardNumber(paymentNumber)) {
             session.setAttribute("cardNumberFormErr", "Error: 16 digits for credit card number");

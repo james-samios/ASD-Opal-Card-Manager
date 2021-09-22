@@ -320,6 +320,4 @@ public class DBCardsManager {
             System.out.println("Error: the failure of deleting an object from table");
         }
     }
-
-
 }
