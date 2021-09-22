@@ -21,7 +21,7 @@ public class CardLoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
 
         //create an instance of the Validator class
-        Validator validator = new Validator();
+        Validator validator = (Validator) session.getAttribute("validator");
 
         //initialise all messages in session
         validator.clean(session);
@@ -29,16 +29,9 @@ public class CardLoginServlet extends HttpServlet {
         //Create the card DBManager
         DBCardsManager dbCardsManager = (DBCardsManager) session.getAttribute("dbCardsManager");
 
-        /*Check*/
-        System.out.println(dbCardsManager == null? "NULL": "Not NULL");
-
-
         // Reading post parameters from the request
         String cardNumber = req.getParameter("card_number");
         String cardPin = req.getParameter("card_pin");
-
-        System.out.println("cardNumber: " + cardNumber);
-        System.out.println("cardPin: " + cardPin);
 
         // Checking for null and empty values
         if(!validator.validateCardNumber(cardNumber)) {

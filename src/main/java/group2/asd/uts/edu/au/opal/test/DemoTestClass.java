@@ -2,10 +2,12 @@ package group2.asd.uts.edu.au.opal.test;
 
 
 import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.client.ListCollectionsIterable;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import group2.asd.uts.edu.au.opal.dao.CollectionType;
+import group2.asd.uts.edu.au.opal.dao.DB;
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
 import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.model.*;
@@ -39,52 +41,21 @@ public class DemoTestClass {
                 "mongodb+srv://opal:OPALCARDMANAGER@asd.axojh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
                 .getDatabase("dev"));
         */
-        MongoDatabase mongoDatabase = MongoClients.create(new ConnectionString(
-                        "mongodb+srv://opal:OPALCARDMANAGER@asd.axojh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
-                .getDatabase("dev");
-        ListCollectionsIterable<Document> collections;
-        collections =  mongoDatabase.listCollections();
-
-        //dbCardsManager.readAllCards();
+        //DB db = new DB();
+        //MongoClientSettings settings = MongoClientSettings.builder().applyConnectionString(new ConnectionString(db.getUrl())).build();
+        //DBCardsManager dbCardsManager = new DBCardsManager(MongoClients.create(settings).getDatabase(db.getDatabaseName()));
+        //DBPaymentMethodManager dbPaymentMethodManager = new DBPaymentMethodManager(MongoClients.create(settings).getDatabase(db.getDatabaseName()));
 
 
-        /*
-        Trip trip = new Trip("Padstow", "Central", Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
-        ArrayList<Trip> trips = new ArrayList<>();
-        trips.add(trip);
-        Card newCard = new Card(new ObjectId(),
-                UUID.randomUUID(),
-                "3085220000000000",
-                "9999",
-                CardType.CONCESSION,
-                100.0,
-                UUID.randomUUID(),
-                false,
-                false,
-                new TopUp(UUID.randomUUID(), true, 10.0, 5.0 ),
-                trips);
-        dbCardsManager.createOpalCard(newCard);
-        dbCardsManager.readAllCards();
 
-         */
-        /*
-        Document{{_id=612ed0e456cb54f515475554,
-                card_id=8c7eda3f-ab45-4c82-9ba8-a462043f1dde,
-                card_number="3085220000000000",
-                card_pin="9999",
-                "type"=CONCESSION,
-                balance=131.5,
-                linked_to_account=true,
-                active=true,
-                locked=false,
-                top_up=Document{{enabled=true, amount=10.0, when=5.0, payment_details_id=5653e70d-8291-4705-8140-291442652d58}},
-            trips=[Document{{trip_start=Kings Cross,
-                    trip_end=Bondi Junction,
-                    start_time=Wed Jan 01 00:00:00 AEDT 2020,
-                    end_time=Wed Jan 01 00:00:00 AEDT 2020}}]}}
-
-         */
-
+        UUID uuid1 = new UUID(0, 0);
+        UUID uuid2 = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        System.out.println(uuid1.compareTo(uuid2));
+        if(uuid1.compareTo(uuid2) > -1) {
+            System.out.println("same");
+        }else {
+            System.out.println("different");
+        }
         /*
         testCardModel();
         testPaymentMethodModel();

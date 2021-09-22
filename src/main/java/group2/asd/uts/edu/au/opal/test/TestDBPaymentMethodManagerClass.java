@@ -83,7 +83,7 @@ public class TestDBPaymentMethodManagerClass {
         expectedPaymentMethod.setCardName(expectedCardName);
         expectedPaymentMethod.setCardCVC(expectedCardCvc);
         expectedPaymentMethod.setExpiryDate(expiryDate);
-        dbPaymentMethodManager.updatePaymentMethodByProvidedObjectId(expectedPaymentMethod);
+        dbPaymentMethodManager.updatePaymentMethod(expectedPaymentMethod);
         actualPaymentMethod = dbPaymentMethodManager.readPaymentByObjectId(expectedPaymentMethod.getObjectId());
         dbPaymentMethodManager.deletePaymentByObjectId(expectedPaymentMethod.getObjectId());
         assertEquals(expectedPaymentMethod, actualPaymentMethod);
@@ -111,6 +111,7 @@ public class TestDBPaymentMethodManagerClass {
     public void generateInstanceOnTable() {
         dbPaymentMethodManager.createPaymentMethod(expectedPaymentMethod);
         actualPaymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(paymentMethodId);
+        dbPaymentMethodManager.readAllPaymentMethods();
         expectedPaymentMethod.setObjectId(actualPaymentMethod.getObjectId());
     }
 

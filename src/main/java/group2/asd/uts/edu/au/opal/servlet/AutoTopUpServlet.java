@@ -1,7 +1,9 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
+import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.model.Card;
+import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +14,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
-
-public class TopUpServlet extends HttpServlet {
+public class AutoTopUpServlet extends HttpServlet {
     // This method is called by the servlet container to process a 'post' request
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -31,9 +32,11 @@ public class TopUpServlet extends HttpServlet {
 
         //Create the card DBManager
         DBCardsManager dbCardsManager = (DBCardsManager) session.getAttribute("dbCardsManager");
+        DBPaymentMethodManager dbPaymentMethodManager = (DBPaymentMethodManager) session.getAttribute("dbPaymentMethodManager");
+
 
         //Reading post parameters from the request
-
+        String when = req.getParameter("when");
         String amount = req.getParameter("amount");
         String paymentNumber = req.getParameter("payment_number");
         String paymentCvc = req.getParameter("payment_cvc");
@@ -66,17 +69,34 @@ public class TopUpServlet extends HttpServlet {
             setPreviousInput(session, req, resp,
                     amount, paymentNumber, paymentOwner, paymentCvc, paymentExpiry);
         }else {
-            /*need to add update payment method*/
+            /*Update payment method*/
+            PaymentMethod paymentMethod =
+                    dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(
+                            card.getTopUp().getPaymentMethodId().toString());
+            paymentMethod.setOpalCardId(card.getCardId());
+            paymentMethod.setCardNumber(paymentNumber);
+            paymentMethod.setCardName(paymentOwner);
+            paymentMethod.setCardCVC(paymentCvc);
+            paymentMethod.setExpiryDate(paymentExpiry);
+            dbPaymentMethodManager.updatePaymentMethod(paymentMethod);
+            session.setAttribute("paymentMethod", paymentMethod);
 
-            /*Update balance*/
-            double newBalance = card.getBalance() + Double.parseDouble(amount);
-            dbCardsManager.updateCardBalance(card.getObjectId(), newBalance);
-            card.setBalance(newBalance);
+            /*Update amount and when*/
+            double newWhen = Double.parseDouble(when);
+            double newAmount = Double.parseDouble(amount);
+            card.setTopUpEnabled(true);
+            card.setTopUpWhen(newWhen);
+            card.setTopUpAmount(newAmount);
+
+            dbCardsManager.updateCardTopUp(card.getObjectId(), card.getTopUp());
             session.setAttribute("card", card);
             validator.clean(session);
             req.getRequestDispatcher("/carddetails.jsp").forward(req, resp);
+
         }
+
     }
+
     private void setPreviousInput(HttpSession session, HttpServletRequest req, HttpServletResponse resp,
                                   String amount, String paymentNumber, String paymentOwner, String paymentCvc,
                                   String expiry
@@ -86,6 +106,6 @@ public class TopUpServlet extends HttpServlet {
         session.setAttribute("previous_payment_owner", paymentOwner);
         session.setAttribute("previous_payment_cvc", paymentCvc);
         session.setAttribute("previous_payment_expiry", expiry);
-        req.getRequestDispatcher("/topupmenu.jsp").forward(req, resp);
+        req.getRequestDispatcher("/autotopupmenu.jsp").forward(req, resp);
     }
 }

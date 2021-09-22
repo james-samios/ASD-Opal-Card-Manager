@@ -75,6 +75,7 @@ public class ConnServlet extends HttpServlet {
         session.setAttribute("dbCardsManager", dbCardsManager);
         session.setAttribute("dbPaymentMethodManager", dbPaymentMethodManager);
         session.setAttribute("dbCustomerManager", dbCustomerManager);
+        session.setAttribute("validator", validator);
     }
 
     //Destroy the servlet and release the resources of the application (terminate also the db connection)

@@ -17,7 +17,6 @@ public class Customer extends Document {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private ArrayList<String> opalCards;
     private Address address;
     private WeeklyTripReward weeklyTripReward;
 
@@ -35,7 +34,6 @@ public class Customer extends Document {
         this.emailAddress = document.getString("email_address");
         this.password = document.getString("password");
         this.phoneNumber = document.getString("phone_number");
-        this.opalCards = (ArrayList<String>) document.getList("opal_card", String.class);
         this.address = new Address(document.get("address", Document.class));
         this.weeklyTripReward = new WeeklyTripReward(document.get("weekly_trip_reward", Document.class));
     }
@@ -70,14 +68,14 @@ public class Customer extends Document {
                 getEmailAddress() + " - " +
                 getPassword() + " - " +
                 getPhoneNumber() + " - " +
-                getOpalCards() + " - " +
                 getAddress() + " - " +
                 getWeeklyTripReward();
     }
 
+    /*
     @Override
     public Object getOrDefault(Object key, Object defaultValue) {
         return super.getOrDefault(key, defaultValue);
     }
-
+    */
 }

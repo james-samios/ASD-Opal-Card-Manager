@@ -1,4 +1,5 @@
 <%@ page import="group2.asd.uts.edu.au.opal.model.Card" %>
+<%@ page import="java.util.UUID" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -17,16 +18,12 @@
 </head>
 <body>
     <%
-        //String redirectURL = "http://localhost:8080/LogoutServlet";
         Card card = (Card)session.getAttribute("card");
-
-        String cardId = card.getCardId().toString();
-        String cardNumber = card.getCardNumber();
-        String cardPin = card.getCardPin();
         String type = card.getType().toString();
         boolean isActive = card.isActive();
-        boolean isLocked = card.isLocked();
-        String accountId = card.getAccountId().toString();
+        boolean isAutoTopUp = card.getTopUp().isEnabled();
+        UUID accountId = card.getAccountId();
+        boolean isAccountLinked = accountId.compareTo(new UUID(0, 0)) <= -1;
         String balance = "" + card.getBalance();
         String paymentDetailsId = card.getTopUp().getPaymentMethodId().toString();
         String amount = "" + card.getTopUp().getAmount();
@@ -35,9 +32,7 @@
         String colorChosen = typeToLowerCase.equals("child")?"child":
             typeToLowerCase.equals("senior")?"senior":
             typeToLowerCase.equals("concession")?"concession":"adult";
-        System.out.println(colorChosen);
         String tdClass = "table-header " + colorChosen;
-
     %>
 
     <nav class="<%=colorChosen%>">
@@ -57,8 +52,12 @@
                     <tbody>
                         <tr>
                             <td class="<%=tdClass%>">Card Status</td>
-                            <td data-label="card_active"><%=isActive?"Activation": "Deactivation"%></td>
-                            <td><button class="submit <%=isActive?"red":"light_green"%>"><%=isActive?"Deactivation":"Activation"%></button></td>
+                            <td data-label="card_active"><%=isActive?"ON": "OFF"%></td>
+                            <td>
+                                <button class="submit <%=isActive?"red":"light_green"%>" onclick="location.href='CardStatusServlet'">
+                                    <%=isActive?"OFF":"ON"%>
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td class="<%=tdClass%>">Balance</td>
@@ -67,11 +66,40 @@
                         </tr>
 
                         <tr>
-                            <td class="<%=tdClass%>">Auto Top Up</td>
-                            <td data-label="auto_top_up"><%=isActive?"Activation": "Deactivation"%></td>
-                            <td><button class="submit <%=isActive?"red":"light_green"%>"><%=isActive?"Deactivation":"Activation"%></button></td>
+                            <td class="<%=tdClass%>">Linked Account</td>
+                            <td data-label="linked_account"><%=isAccountLinked?"ON": "OFF"%></td>
+                            <td>
+                                <%if(isAccountLinked) {%>
+                                    <button class="submit red" onclick="location.href='linkaccount.jsp'">
+                                        <%="Cancel"%>
+                                    </button>
+                                <%}else {%>
+                                    <button class="submit light_green" onclick="location.href='linkaccount.jsp'">
+                                        <%="Link"%>
+                                    </button>
+                                <%}%>
+                            </td>
                         </tr>
-                        <%if(paymentDetailsId != null) {%>
+                        <tr>
+                            <td class="<%=tdClass%>">Auto Top Up</td>
+                            <td data-label="auto_top_up"><%=isAutoTopUp?"ON": "OFF"%></td>
+                            <%if(isAutoTopUp) {%>
+                                <td>
+                                    <button class="submit red" onclick="location.href='CancelAutoTopUpServlet'">
+                                        <%="OFF"%>
+                                    </button>
+                                </td>
+                            <%}else {%>
+                                <td>
+                                    <button class="submit light_green" onclick="location.href='autotopupmenu.jsp'">
+                                        <%="ON"%>
+                                    </button>
+                                </td>
+                            <%}%>
+
+                        </tr>
+
+                        <%if(isAutoTopUp) {%>
                             <tr>
                                 <td class="<%=tdClass%>">Payment Method</td>
                                 <td class="<%=tdClass%>"></td>

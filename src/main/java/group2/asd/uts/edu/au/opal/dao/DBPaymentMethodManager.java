@@ -72,6 +72,7 @@ public class DBPaymentMethodManager {
             }
             return new PaymentMethod(document);
         }catch(Exception e) {
+            System.out.println(e);
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
@@ -158,7 +159,7 @@ public class DBPaymentMethodManager {
      * @author Jung
      **/
 
-    public void updatePaymentMethodByProvidedObjectId(PaymentMethod paymentMethod) {
+    public void updatePaymentMethod(PaymentMethod paymentMethod) {
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", paymentMethod.getObjectId());
