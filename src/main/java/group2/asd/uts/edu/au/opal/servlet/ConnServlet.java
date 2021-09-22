@@ -5,7 +5,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import group2.asd.uts.edu.au.opal.dao.DB;
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
-import group2.asd.uts.edu.au.opal.dao.DBCustomerManager;
+//import group2.asd.uts.edu.au.opal.dao.DBCustomerManager;
 import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 
 import javax.servlet.http.HttpServlet;
@@ -24,7 +24,7 @@ public class ConnServlet extends HttpServlet {
     /*Add DB manager below*/
     private DBCardsManager dbCardsManager;
     private DBPaymentMethodManager dbPaymentMethodManager;
-    private DBCustomerManager dbCustomerManager;
+    //private DBCustomerManager dbCustomerManager;
 
     //Create and instance of DBConnection for the deployment session
     @Override
@@ -65,7 +65,7 @@ public class ConnServlet extends HttpServlet {
             //4 An instance to connect to DBManager database with database manager's name
             dbCardsManager = new DBCardsManager(mongoDatabase);
             dbPaymentMethodManager = new DBPaymentMethodManager(mongoDatabase);
-            dbCustomerManager = new DBCustomerManager(mongoDatabase);
+            //dbCustomerManager = new DBCustomerManager(mongoDatabase);
         } catch (Exception ex) {
             Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,7 +74,7 @@ public class ConnServlet extends HttpServlet {
         //5 add the instance into current session
         session.setAttribute("dbCardsManager", dbCardsManager);
         session.setAttribute("dbPaymentMethodManager", dbPaymentMethodManager);
-        session.setAttribute("dbCustomerManager", dbCustomerManager);
+        //session.setAttribute("dbCustomerManager", dbCustomerManager);
         session.setAttribute("validator", validator);
     }
 

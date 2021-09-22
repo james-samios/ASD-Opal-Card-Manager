@@ -6,12 +6,15 @@ import lombok.Getter;
 import org.bson.Document;
 
 @Getter
-public class DBCustomerManager {
+public class DBCustomerManager extends DBManager{
+    /*
     private final MongoCollection<Document> collection;
     public DBCustomerManager(MongoDatabase db) {
         collection = db.getCollection(CollectionType.ACCOUNTS.toString().toLowerCase());
+    }*/
+    public DBCustomerManager() {
+        super(CollectionType.ACCOUNTS);
     }
-
     /*   *************************************Methods for "C" section below****************************************   */
     /*   *************************************Methods for "R" section below****************************************   */
     public void displayAllCustomers() {
