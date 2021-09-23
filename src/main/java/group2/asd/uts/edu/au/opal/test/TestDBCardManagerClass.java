@@ -39,10 +39,7 @@ public class TestDBCardManagerClass {
     private Card actualCard;
 
     public TestDBCardManagerClass () {
-        DB db = new DB();
-        ConnectionString connectionString = new ConnectionString(db.getUrl());
-        MongoClientSettings settings = MongoClientSettings.builder().applyConnectionString(connectionString).build();
-        dbCardsManager = new DBCardsManager(MongoClients.create(settings).getDatabase(db.getDatabaseName()));
+        dbCardsManager = new DBCardsManager();
     }
 
     @Test

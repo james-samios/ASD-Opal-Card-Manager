@@ -22,13 +22,10 @@ import java.util.logging.Logger;
  *
  * */
 @Getter
-public class DBCardsManager {
-    private final MongoCollection<Document> collection;
-    /*
-     * Constructor for choosing a table with table name
-     * */
-    public DBCardsManager(MongoDatabase db) {
-        collection = db.getCollection(CollectionType.CARDS.toString().toLowerCase());
+public class DBCardsManager extends DBManager {
+
+    public DBCardsManager() {
+        super(CollectionType.CARDS);
     }
 
 
