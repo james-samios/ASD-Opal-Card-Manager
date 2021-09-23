@@ -24,7 +24,7 @@
     </label>
     <label class="logo">My Profile</label>
     <ul>
-        <li><a href="linkedopalcards.jsp">My OpalCard</a></li>
+        <li><a href="LinkedOpalCardsServlet">My OpalCard</a></li>
 
         <li><a href="EditServlet">Edit Profile</a></li>
 
