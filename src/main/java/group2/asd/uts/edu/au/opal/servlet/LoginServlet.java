@@ -1,6 +1,7 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
-import group2.asd.uts.edu.au.opal.api.API;
+
+import group2.asd.uts.edu.au.opal.dao.DBCustomerManager;
 import group2.asd.uts.edu.au.opal.model.Customer;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class LoginServlet extends HttpServlet {
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         } else {
             //Get customer data by calling API
-            Customer customer = new API().getCustomer(param1, param2);
+            Customer customer = new DBCustomerManager().getCustomer(param1, param2);
 
             //Check the customer is found or not
             boolean isUserFound = customer != null;

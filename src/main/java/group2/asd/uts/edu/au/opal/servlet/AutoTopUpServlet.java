@@ -25,14 +25,14 @@ public class AutoTopUpServlet extends HttpServlet {
         Card card = (Card) session.getAttribute("card");
 
         //create an instance of the Validator class
-        Validator validator = (Validator) session.getAttribute("validator");
+        Validator validator = new Validator();
 
         //initialise the error message
         validator.clean(session);
 
         //Create the card DBManager
-        DBCardsManager dbCardsManager = (DBCardsManager) session.getAttribute("dbCardsManager");
-        DBPaymentMethodManager dbPaymentMethodManager = (DBPaymentMethodManager) session.getAttribute("dbPaymentMethodManager");
+        DBCardsManager dbCardsManager = new DBCardsManager();
+        DBPaymentMethodManager dbPaymentMethodManager = new DBPaymentMethodManager();
 
         //Reading post parameters from the request
         String when = req.getParameter("when");

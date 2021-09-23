@@ -30,7 +30,7 @@ public class TopUpServlet extends HttpServlet {
         validator.clean(session);
 
         //Create the card DBManager
-        DBCardsManager dbCardsManager = (DBCardsManager) session.getAttribute("dbCardsManager");
+        DBCardsManager dbCardsManager = new DBCardsManager();
 
         //Reading post parameters from the request
 

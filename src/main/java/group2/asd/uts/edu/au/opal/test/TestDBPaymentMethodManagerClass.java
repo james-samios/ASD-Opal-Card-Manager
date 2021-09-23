@@ -1,7 +1,5 @@
 package group2.asd.uts.edu.au.opal.test;
 
-import com.mongodb.ConnectionString;
-import com.mongodb.client.MongoClients;
 import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 import org.junit.Test;
@@ -28,10 +26,7 @@ public class TestDBPaymentMethodManagerClass {
         expiryDate = "12/25";
         expectedPaymentMethod = new PaymentMethod(paymentMethodId, opalCardId, cardNumber,
                 cardName, cardCvc, expiryDate);
-        ConnectionString connectionString = new ConnectionString(
-                "mongodb+srv://opal:OPALCARDMANAGER@asd.axojh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-        dbPaymentMethodManager =
-                new DBPaymentMethodManager(MongoClients.create(connectionString).getDatabase("dev"));
+        dbPaymentMethodManager = new DBPaymentMethodManager();
     }
 
     @Test
@@ -82,7 +77,7 @@ public class TestDBPaymentMethodManagerClass {
         expectedPaymentMethod.setCardNumber(expectedCardNumber);
         expectedPaymentMethod.setCardName(expectedCardName);
         expectedPaymentMethod.setCardCVC(expectedCardCvc);
-        expectedPaymentMethod.setExpiryDate(expiryDate);
+        expectedPaymentMethod.setExpiryDate(expectedExpiryDate);
         dbPaymentMethodManager.updatePaymentMethod(expectedPaymentMethod);
         actualPaymentMethod = dbPaymentMethodManager.readPaymentByObjectId(expectedPaymentMethod.getObjectId());
         dbPaymentMethodManager.deletePaymentByObjectId(expectedPaymentMethod.getObjectId());
@@ -111,7 +106,6 @@ public class TestDBPaymentMethodManagerClass {
     public void generateInstanceOnTable() {
         dbPaymentMethodManager.createPaymentMethod(expectedPaymentMethod);
         actualPaymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(paymentMethodId);
-        dbPaymentMethodManager.readAllPaymentMethods();
         expectedPaymentMethod.setObjectId(actualPaymentMethod.getObjectId());
     }
 

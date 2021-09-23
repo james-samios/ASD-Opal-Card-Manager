@@ -20,7 +20,7 @@ public class CancelAutoTopUpServlet extends HttpServlet {
         boolean value = !card.getTopUp().isEnabled();
 
         //Create the card DBManager
-        DBCardsManager dbCardsManager = (DBCardsManager) session.getAttribute("dbCardsManager");
+        DBCardsManager dbCardsManager = new DBCardsManager();
         card.setTopUpEnabled(value);
         dbCardsManager.updateCardTopUp(card.getObjectId(), card.getTopUp());
         session.setAttribute("card", card);

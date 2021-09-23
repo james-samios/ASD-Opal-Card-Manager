@@ -7,15 +7,6 @@
 
 
         <servlet>
-            <servlet-name>ConnServlet</servlet-name>
-            <servlet-class>group2.asd.uts.edu.au.opal.servlet.ConnServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>ConnServlet</servlet-name>
-            <url-pattern>/ConnServlet</url-pattern>
-        </servlet-mapping>
-
-        <servlet>
             <servlet-name>LoginServlet</servlet-name>
             <servlet-class>group2.asd.uts.edu.au.opal.servlet.LoginServlet</servlet-class>
         </servlet>
@@ -76,6 +67,24 @@
         <servlet-mapping>
             <servlet-name>CancelAutoTopUpServlet</servlet-name>
             <url-pattern>/CancelAutoTopUpServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>LinkAccountServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.LinkAccountServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>LinkAccountServlet</servlet-name>
+            <url-pattern>/LinkAccountServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>CancelAccountLinkServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.CancelAccountLinkServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>CancelAccountLinkServlet</servlet-name>
+            <url-pattern>/CancelAccountLinkServlet</url-pattern>
         </servlet-mapping>
 
 

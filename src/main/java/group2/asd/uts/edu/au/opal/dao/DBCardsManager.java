@@ -1,8 +1,6 @@
 package group2.asd.uts.edu.au.opal.dao;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import group2.asd.uts.edu.au.opal.model.Card;
@@ -22,13 +20,9 @@ import java.util.logging.Logger;
  *
  * */
 @Getter
-public class DBCardsManager {
-    private final MongoCollection<Document> collection;
-    /*
-     * Constructor for choosing a table with table name
-     * */
-    public DBCardsManager(MongoDatabase db) {
-        collection = db.getCollection(CollectionType.CARDS.toString().toLowerCase());
+public class DBCardsManager extends DBManager {
+    public DBCardsManager() {
+        super(CollectionType.CARDS);
     }
 
 
@@ -45,6 +39,7 @@ public class DBCardsManager {
     /*   *************************************Methods for "C" section below****************************************   */
 
     public void createOpalCard(final Card card) {
+        refresh();
         try {
             getCollection().insertOne(card.convertClassToDocument());
 
@@ -70,6 +65,7 @@ public class DBCardsManager {
      */
 
     public Card readCardByNumberAndPin(final String cardNumber, final String cardPin) {
+        refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
@@ -97,6 +93,7 @@ public class DBCardsManager {
      */
 
     public Card readCardByCardId(final String cardId) {
+        refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
@@ -124,6 +121,7 @@ public class DBCardsManager {
      */
 
     public Card readCardByObjectId(final ObjectId objectId) {
+        refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
@@ -141,6 +139,7 @@ public class DBCardsManager {
     }
 
     public void readAllCards() {
+        refresh();
         try {
             int counter = 1;
             for (Document document : getCollection().find()) {
@@ -164,6 +163,7 @@ public class DBCardsManager {
      */
 
     public void updateCardBalance(final ObjectId objectId, final double amount) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -182,6 +182,7 @@ public class DBCardsManager {
      */
 
     public void updateCardNumber(final ObjectId objectId, final String cardNumber) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -201,6 +202,7 @@ public class DBCardsManager {
      */
 
     public void updateCardPin(final ObjectId objectId, final String cardPin) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -220,6 +222,7 @@ public class DBCardsManager {
      */
 
     public void updateCardType(final ObjectId objectId, final String type) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -237,6 +240,7 @@ public class DBCardsManager {
      * @author Jung
      */
     public void updateAccountId(final ObjectId objectId, final UUID accountId) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -255,6 +259,7 @@ public class DBCardsManager {
      */
 
     public void updateCardActive(final ObjectId objectId, final boolean active) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -273,6 +278,7 @@ public class DBCardsManager {
      * @author Jung
      */
     public void updateCardTopUp(final ObjectId objectId, final TopUp topUp) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -290,6 +296,7 @@ public class DBCardsManager {
      * @author Jung
      */
     public void updateCardTrips(final ObjectId objectId, final ArrayList<Document> trips) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -301,6 +308,7 @@ public class DBCardsManager {
 
     /*   *************************************Methods for "D" section below****************************************   */
     public void deleteCardByObjectId(final ObjectId objectId) {
+        refresh();
         try {
             //deleting an object from table
             getCollection().deleteMany(Filters.eq("_id", objectId));
@@ -310,6 +318,7 @@ public class DBCardsManager {
     }
 
     public void deleteCardByCardNumberAndPin(final String cardNumber, final String cardPin) {
+        refresh();
         try {
             //deleting an object from table
             BasicDBObject where = new BasicDBObject();
