@@ -3,7 +3,6 @@ package group2.asd.uts.edu.au.opal.test;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClients;
-import group2.asd.uts.edu.au.opal.dao.DB;
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
 
 import group2.asd.uts.edu.au.opal.model.Card;
