@@ -21,13 +21,13 @@ public class CardLoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
 
         //create an instance of the Validator class
-        Validator validator = new Validator();
+        Validator validator = (Validator) session.getAttribute("validator");
 
         //initialise all messages in session
         validator.clean(session);
 
         //Create the card DBManager
-        DBCardsManager dbCardsManager = new DBCardsManager();
+        DBCardsManager dbCardsManager = (DBCardsManager) session.getAttribute("dbCardsManager");
 
         // Reading post parameters from the request
         String cardNumber = req.getParameter("card_number");

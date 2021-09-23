@@ -5,6 +5,16 @@
          version="4.0">
 
 
+
+        <servlet>
+            <servlet-name>ConnServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.ConnServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>ConnServlet</servlet-name>
+            <url-pattern>/ConnServlet</url-pattern>
+        </servlet-mapping>
+
         <servlet>
             <servlet-name>LoginServlet</servlet-name>
             <servlet-class>group2.asd.uts.edu.au.opal.servlet.LoginServlet</servlet-class>
@@ -39,6 +49,33 @@
         <servlet-mapping>
             <servlet-name>TopUpServlet</servlet-name>
             <url-pattern>/TopUpServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>CardStatusServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.CardStatusServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>CardStatusServlet</servlet-name>
+            <url-pattern>/CardStatusServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>AutoTopUpServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.AutoTopUpServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>AutoTopUpServlet</servlet-name>
+            <url-pattern>/AutoTopUpServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>CancelAutoTopUpServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.CancelAutoTopUpServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>CancelAutoTopUpServlet</servlet-name>
+            <url-pattern>/CancelAutoTopUpServlet</url-pattern>
         </servlet-mapping>
 
 

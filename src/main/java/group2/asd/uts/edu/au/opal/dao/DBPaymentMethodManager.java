@@ -2,8 +2,10 @@ package group2.asd.uts.edu.au.opal.dao;
 
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.model.Filters;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
+import lombok.Getter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import java.util.UUID;
@@ -14,14 +16,14 @@ import java.util.logging.Logger;
 * DBPaymentMethodManager is used for access of PaymentMethod table on mongoDB
 *
 * */
-
-public class DBPaymentMethodManager extends DBManager {
-    private Document document = new Document();
+@Getter
+public class DBPaymentMethodManager {
+    private final MongoCollection<Document> collection;
     /**
      * Constructor for choosing a table with table name
      * */
-    public DBPaymentMethodManager() {
-        super(CollectionType.PAYMENT_METHODS);
+    public DBPaymentMethodManager(MongoDatabase db) {
+        collection = db.getCollection(CollectionType.PAYMENT_METHODS.toString().toLowerCase());
     }
 
     /*
@@ -41,7 +43,6 @@ public class DBPaymentMethodManager extends DBManager {
     public void createPaymentMethod(final PaymentMethod paymentMethod) {
         try {
             getCollection().insertOne(paymentMethod.convertClassToDocument());
-            //System.out.println("Success: Success of running createPaymentMethod");
         } catch (Exception e) {
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -60,7 +61,7 @@ public class DBPaymentMethodManager extends DBManager {
 
     public PaymentMethod readPaymentByObjectId(final ObjectId objectId) {
         try {
-            //Document document;
+            Document document;
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
             document = getCollection().find(where).first();
@@ -86,7 +87,7 @@ public class DBPaymentMethodManager extends DBManager {
 
     public PaymentMethod readPaymentMethodByPaymentMethodId(final String paymentMethodId) {
         try {
-            //Document doc;
+            Document document;
             BasicDBObject where = new BasicDBObject();
             where.put("payment_method_id", UUID.fromString(paymentMethodId));
             document = getCollection().find(where).first();
@@ -156,11 +157,12 @@ public class DBPaymentMethodManager extends DBManager {
      * @author Jung
      **/
 
-    public void updatePaymentMethodByProvidedObjectId(PaymentMethod paymentMethod) {
+    public void updatePaymentMethod(PaymentMethod paymentMethod) {
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", paymentMethod.getObjectId());
             BasicDBObject newDocument = new BasicDBObject();
+            newDocument.put("payment_method_id", paymentMethod.getPaymentMethodId());
             newDocument.put("opal_card_id", paymentMethod.getOpalCardId());
             newDocument.put("card_number", paymentMethod.getCardNumber());
             newDocument.put("card_name", paymentMethod.getCardName());
@@ -186,7 +188,9 @@ public class DBPaymentMethodManager extends DBManager {
     public void deletePaymentByPaymentMethodId(final String paymentMethodId) {
         try {
             //deleting an object from table
-            getCollection().deleteMany(Filters.eq("payment_method_id", UUID.fromString(paymentMethodId)));
+            BasicDBObject where = new BasicDBObject();
+            where.put("payment_method_id", UUID.fromString(paymentMethodId));
+            getCollection().deleteMany(where);
         }catch(Exception e) {
             System.out.println("Error: Delete error happens. Check the code");
         }
@@ -202,7 +206,9 @@ public class DBPaymentMethodManager extends DBManager {
     public void deletePaymentByObjectId(final ObjectId objectId) {
         try {
             //deleting an object from table
-            getCollection().deleteMany(Filters.eq("_id", objectId));
+            BasicDBObject where = new BasicDBObject();
+            where.put("_id", objectId);
+            getCollection().deleteOne(where);
         }catch(Exception e) {
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
         }

@@ -1,13 +1,20 @@
 package group2.asd.uts.edu.au.opal.dao;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import lombok.Getter;
 import org.bson.Document;
 
-public class DBCustomerManager extends DBManager {
-
+@Getter
+public class DBCustomerManager extends DBManager{
+    /*
+    private final MongoCollection<Document> collection;
+    public DBCustomerManager(MongoDatabase db) {
+        collection = db.getCollection(CollectionType.ACCOUNTS.toString().toLowerCase());
+    }*/
     public DBCustomerManager() {
         super(CollectionType.ACCOUNTS);
     }
-
     /*   *************************************Methods for "C" section below****************************************   */
     /*   *************************************Methods for "R" section below****************************************   */
     public void displayAllCustomers() {
