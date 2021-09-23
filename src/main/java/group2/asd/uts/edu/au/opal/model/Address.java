@@ -8,7 +8,7 @@ public class Address extends Document {
     private final String addressLine1;
     private final String addressLine2;
     private final String suburb;
-    private final int postCode;
+    private final String postCode;
     private final String state;
 
     /**Constructor**/
@@ -16,7 +16,7 @@ public class Address extends Document {
         this.addressLine1 = document.getString("address_line_1");
         this.addressLine2 = document.getString("address_line_2");
         this.suburb = document.getString("suburb");
-        this.postCode = document.getInteger("post_code");
+        this.postCode = document.getString("post_code");
         this.state = document.getString("state");
     }
 

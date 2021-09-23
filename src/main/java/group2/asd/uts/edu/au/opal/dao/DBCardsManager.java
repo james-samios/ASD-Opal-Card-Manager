@@ -1,10 +1,13 @@
 package group2.asd.uts.edu.au.opal.dao;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import group2.asd.uts.edu.au.opal.model.Card;
 import group2.asd.uts.edu.au.opal.model.TopUp;
+import lombok.Getter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -18,14 +21,13 @@ import java.util.logging.Logger;
  * DBCardsManager is used for access of cards table on mongoDB
  *
  * */
+@Getter
 public class DBCardsManager extends DBManager {
 
-    /*
-     * Constructor for choosing a table with table name
-     * */
     public DBCardsManager() {
         super(CollectionType.CARDS);
     }
+
 
     /*
      * Add methods for accessing CRUD on Table
@@ -42,8 +44,11 @@ public class DBCardsManager extends DBManager {
     public void createOpalCard(final Card card) {
         try {
             getCollection().insertOne(card.convertClassToDocument());
+
         } catch (Exception e) {
             System.out.println("Error: Failure of running createPaymentMethod");
+            Logger.getLogger(DBCardsManager.class.getName()).log(Level.SEVERE, null, e);
+
         }
     }
 
@@ -144,7 +149,6 @@ public class DBCardsManager extends DBManager {
         }
 
     }
-
     /*   *************************************Methods for "U" section below****************************************   */
 
     /**
@@ -302,5 +306,15 @@ public class DBCardsManager extends DBManager {
         }
     }
 
-
+    public void deleteCardByCardNumberAndPin(final String cardNumber, final String cardPin) {
+        try {
+            //deleting an object from table
+            BasicDBObject where = new BasicDBObject();
+            where.put("card_number", cardNumber);
+            where.put("card_pin", cardPin);
+            getCollection().deleteMany(where);
+        }catch(Exception e) {
+            System.out.println("Error: the failure of deleting an object from table");
+        }
+    }
 }

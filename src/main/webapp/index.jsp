@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -81,5 +83,18 @@
     </ul>
 </nav>
 <section></section>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">Transport for NSW</label>
+        <ul>
+            <li><a href="opalcard.jsp">Opal Card</a></li>
+            <li><a href="login.jsp">Sign in</a></li>
+            <li><a href="register.jsp">Sign up</a></li>
+        </ul>
+    </nav>
+    <section></section>
 </body>
 </html>
