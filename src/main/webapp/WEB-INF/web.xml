@@ -4,8 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-
-
         <servlet>
             <servlet-name>ConnServlet</servlet-name>
             <servlet-class>group2.asd.uts.edu.au.opal.servlet.ConnServlet</servlet-class>
@@ -77,6 +75,4 @@
             <servlet-name>CancelAutoTopUpServlet</servlet-name>
             <url-pattern>/CancelAutoTopUpServlet</url-pattern>
         </servlet-mapping>
-
-
 </web-app>
