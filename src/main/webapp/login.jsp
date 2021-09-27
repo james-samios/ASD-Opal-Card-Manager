@@ -1,31 +1,22 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Opal - Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="CSS/login.css">
+    <title>Login Page</title>
 </head>
 <body>
-<h1><%= "Please enter your email and password" %>
-</h1>
-<br/>
-<form action="LoginServlet" method="post">
-    <div class="container">
-        <label for="uname"><b>Email Address</b></label>
-        <input type="text" placeholder="Enter Email Address" name="uname" required>
-
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-
-        <button type="submit">Login</button>
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn">Cancel</button>
-        <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-</form>
+    <form class="box" action="LoginServlet" method="post" id="login">
+        <h1>Login</h1>
+        <input type="text" id="user_email" name="user_email" autocomplete="off" placeholder="User Email" required>
+        <input type="password" id="user_password" name="user_password" autocomplete="off" placeholder="Password" required>
+        <input type="submit" form="login" name="login" value="Login">
+        <input type="button" value="Back" onclick="location.href='index.jsp'">
+        <p> Not a Customer? <a href="register.jsp">Register</a></p>
+    </form>
 </body>
 </html>

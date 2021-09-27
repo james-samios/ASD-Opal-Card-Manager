@@ -1,33 +1,31 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Opal - Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="CSS/register.css">
+    <title>User Registration Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
-<body>
-<h1><%= "Register new Account" %>
-</h1>
-<br/>
-    <form action="RegisterServlet" method="post">
-        <label for="fname"><b>First Name</b></label>
-        <input type="text" placeholder="John" name="fname" required>
+<body class="back">
 
-        <label for="lname"><b>Last Name</b></label>
-        <input type="text" placeholder="Smith" name="lname" required>
 
-        <label for="email"><b>Email Address</b></label>
-        <input type="text" placeholder="john.smith@email.com" name="email" required>
 
-        <label for="phone"><b>Phone Number</b></label>
-        <input type="text" placeholder="0412 345 678" name="phone" required>
+<form class="box" action="userprofile.jsp" method="post" id="register">
+    <h1>Register</h1>
+    <input type="text" id="uname" name="uname" autocomplete="off" placeholder="Username" required>
+    <input type="password" id="upassword" name="upassword" autocomplete="off" placeholder="Password" required>
+    <input type="password" id="cupassword" name="cupassword" autocomplete="off" placeholder="Confirm Password" required>
+    <input type="mail" id="email" name="email" autocomplete="off" placeholder="xxx.xxx@xxx.xxx.xx" required>
+    <input type="submit" form="register" name="register" value="Register">
+    <input type="button" value="Back" onclick="location.href='index.jsp'">
+    <p> Already a Customer? <a href="login.jsp">Login</a></p>
 
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
 
-        <button type="submit">Register Account</button>
-        <label>
-            <input type="checkbox" checked="checked" name="offers"> Receive Opal Card Updates via Email
-        </label>
-    </form>
+</form>
+
 </body>
 </html>
