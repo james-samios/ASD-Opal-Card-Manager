@@ -22,6 +22,8 @@
 <body>
 <h1>Opal</h1>
 <a href="payment-manager.jsp">Payments Management</a>
+<h2>Card Activity:</h2>
+
 
 <table>
     <tr>
