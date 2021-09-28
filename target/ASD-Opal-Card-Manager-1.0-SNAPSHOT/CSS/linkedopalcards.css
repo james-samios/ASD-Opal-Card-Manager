@@ -1,0 +1,398 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 05/09/2022, 3:10:54 PM
+    Author     : Administrator
+*/
+
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+
+
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:linear-gradient(rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5) 100%), url('../img/background.jpg');
+}
+
+nav {
+    /*background: #3CB371;*/
+    height: 80px;
+    width: 100%;
+}
+
+section {
+
+    width: 60%;
+    background-color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 5px 5px 5px 5px;
+
+}
+
+div {
+    width: 100%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    padding: 5px 5px 5px 5px;
+}
+
+.root {
+    background: #5A7670;
+
+}
+
+.staff {
+    background: #B89F5D;
+
+}
+
+.customer {
+    background: #3FB0AC;
+}
+
+label.logo {
+    color: white;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+
+
+}
+
+nav ul{
+    float: right;
+    margin-right: 20px;
+
+
+}
+
+nav ul li {
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+
+}
+a.active {
+
+
+}
+
+a:hover {
+    /*background: #17202A;*/
+    transition: .5s;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.inline {
+    display: inline-block;
+    width: 15%;
+    margin:auto;
+    background-color: red;
+}
+
+.inline button {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.checkbtn {
+
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+
+}
+@media (max-width: 952px) {
+    label.logo {
+        font-size: 30px;
+        padding-left: 50px;
+    }
+    nav ul li a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 858px) {
+    ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #2c3e50;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+    nav ul li {
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+    }
+    nav ul li a {
+        display: block;
+        font-size: 20px;
+    }
+    a.active, a:hover {
+        background: none;
+        color: #0082e6;
+    }
+    #check:checked ~ ul {
+        left: 0;
+    }
+    .checkbtn {
+        display: block;
+    }
+
+
+}
+
+
+
+
+
+.table-style {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    max-width: 100%;
+    min-width: 40%;
+    border-radius: 3px 3px 3px 3px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table-style thead tr {
+    background-color: #3CB371;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+
+}
+
+.table-style th,
+.table-style td {
+    padding: 12px 15px;
+    text-align: center;
+
+}
+
+.table-style tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+
+.table-style tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+
+
+}
+
+.table-style tbody tr:nth-of-type(odd) {
+    background-color: white;
+
+
+}
+
+
+.table-style tbody tr:last-of-type {
+
+    border-bottom: 1px solid #3CB371;
+
+}
+
+
+.table-header {
+    background-color: #3CB371;
+    color: #ffffff;
+    font-weight: bold;
+    width: 40%;
+}
+
+.root {
+    background: #5A7670;
+
+}
+
+.staff {
+    background: #B89F5D;
+
+}
+
+.customer {
+    background: #3FB0AC;
+}
+
+
+.actived {
+    color:white;
+    background-color: limegreen;
+    border-style: none;
+}
+
+.actived:hover {
+    color:white;
+    background-color: grey;
+    border-style: none;
+}
+
+.edit {
+    color:white;
+    background-color:#0082e6;
+    border-style: none;
+}
+
+.edit:hover {
+    color:white;
+    background-color: grey;
+    border-style: none;
+}
+
+.delete {
+    color:white;
+    background-color:firebrick;
+    border-style: none;
+}
+
+.delete:hover {
+    color:white;
+    background-color: grey;
+    border-style: none;
+}
+
+
+
+
+.lock {
+    color:white;
+    background-color: crimson;
+    border-style: none;
+
+}
+
+
+
+.lock:hover {
+    color:white;
+    background-color: grey;
+    border-style: none;
+
+}
+
+.unlocked {
+    color: limegreen;
+}
+.locked {
+    color: crimson;
+}
+
+.keyword {
+    width: 100%;
+    margin: auto;
+}
+
+.keyword input[type = "text"]:focus {
+    border-color: #3498db;
+    transition: 0.5s;
+
+}
+
+.search {
+    width: 40%;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 4px;
+    border-color: lightgrey;
+}
+
+
+
+.submit {
+    width: 10%;
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: white;
+    background-color: #2ecc71;
+    border-style: none;
+}
+
+.submit:hover {
+    color: white;
+    background-color: grey;
+}
+
+
+.submit2 {
+    width: 10%;
+    padding: 12px;
+    font-size: 15px;
+    color: white;
+    background-color: #3FB0AC;
+    border-style: none;
+}
+.submit2:hover {
+    color: white;
+    background-color: grey;
+}
+
+
+.submit3 {
+    width: 10%;
+    padding: 12px;
+    font-size: 15px;
+    color: white;
+    background-color: #B89F5D;
+    border-style: none;
+}
+
+.submit3:hover {
+    color: white;
+    background-color: grey;
+}
+
+
+.adult {
+    background-color:#5A7670;
+}
+
+
+
+.successinfo {
+    margin: 5px;
+    color: green;
+}
