@@ -71,11 +71,4 @@ public class Customer extends Document {
                 getAddress() + " - " +
                 getWeeklyTripReward();
     }
-
-    /*
-    @Override
-    public Object getOrDefault(Object key, Object defaultValue) {
-        return super.getOrDefault(key, defaultValue);
-    }
-    */
 }

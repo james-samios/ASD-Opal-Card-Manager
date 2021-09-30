@@ -37,9 +37,11 @@ public class LoginServlet extends HttpServlet {
 
             if(customer != null) {
                 //Store customer into attribute
+                HttpSession session = req.getSession();
+                session.setAttribute("customer", customer);
 
                 //Push view to welcome.jsp
-                req.getRequestDispatcher("/welcome.jsp").forward(req, resp);
+                req.getRequestDispatcher("/userprofile.jsp").forward(req, resp);
             } else {
                 //Store error message into attribute
                 req.setAttribute("error_message", "Sorry, there was an error retrieving your account details. Please try again later.");
