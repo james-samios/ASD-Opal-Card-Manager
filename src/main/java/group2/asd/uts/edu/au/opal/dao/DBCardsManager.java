@@ -97,7 +97,7 @@ public class DBCardsManager extends DBManager {
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
-            where.put("card_id", UUID.fromString(cardId));
+            where.put("card_id", cardId);
             document = getCollection().find(where).first();
 
             //Retrieving the documents
@@ -244,7 +244,7 @@ public class DBCardsManager extends DBManager {
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
-            getCollection().updateOne(where, Updates.set("account_id", accountId));
+            getCollection().updateOne(where, Updates.set("account_id", accountId.toString()));
         }catch(Exception e) {
             System.out.println("Error: the failure of updating card's linked account ID");
         }

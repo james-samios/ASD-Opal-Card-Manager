@@ -141,6 +141,7 @@
                                 <td><%=when%></td>
                                 <td></td>
                             </tr>
+
                         <%}%>
                     </tbody>
                 </table>

@@ -15,12 +15,14 @@ import org.junit.runner.notification.Failure;
 public class DemoTestClass {
     public static void main(String[] args) {
 
-        /*Test of models*/
-        testCardModel();
-        testPaymentMethodModel();
-        testTopUpModel();
-        testTripModel();
 
+
+
+        /*Test of models*/
+        //testCardModel();
+        //testPaymentMethodModel();
+        //testTopUpModel();
+        //testTripModel();
         /*Test of DAO*/
 
     }

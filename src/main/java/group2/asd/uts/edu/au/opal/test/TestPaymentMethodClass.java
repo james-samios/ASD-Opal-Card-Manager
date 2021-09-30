@@ -20,16 +20,16 @@ public class TestPaymentMethodClass {
 
     /*create a new document and append all fields into the document*/
     private final Document document = new Document("_id", objectId)
-            .append("payment_method_id", paymentMethodId)
-            .append("opal_card_id", opalCardId)
+            .append("payment_method_id", paymentMethodId.toString())
+            .append("opal_card_id", opalCardId.toString())
             .append("card_number", cardNumber)
             .append("card_name", cardName)
             .append("cvc", cardCvc)
             .append("expiry_date", expiryDate);
 
     private final PaymentMethod paymentMethod = new PaymentMethod(
-            "adc8a0e8-eda8-4ac1-989c-c82407d008e1",
-            "8c7eda3f-ab45-4c82-9ba8-a462043f1dde",
+            UUID.fromString("adc8a0e8-eda8-4ac1-989c-c82407d008e1"),
+            UUID.fromString("8c7eda3f-ab45-4c82-9ba8-a462043f1dde"),
             "8765432112345678",
             "Tzu Jung Yeh",
             "000",

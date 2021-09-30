@@ -1,7 +1,9 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
+import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.model.Card;
+import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -59,6 +61,14 @@ public class CardLoginServlet extends HttpServlet {
 
                 //Store customer into attribute
                 session.setAttribute("card", card);
+
+                if(card.getTopUp().isEnabled()) {
+                    DBPaymentMethodManager dbPaymentMethodManager = new DBPaymentMethodManager();
+                    PaymentMethod paymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(
+                            card.getTopUp().getPaymentMethodId().toString());
+                    System.out.println(paymentMethod);
+                    session.setAttribute("paymentMethod", paymentMethod);
+                }
 
                 //Push view to welcome.jsp
                 req.getRequestDispatcher("/carddetails.jsp").forward(req, resp);

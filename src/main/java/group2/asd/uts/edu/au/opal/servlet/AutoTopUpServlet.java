@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 public class AutoTopUpServlet extends HttpServlet {
     // This method is called by the servlet container to process a 'post' request
@@ -66,16 +67,28 @@ public class AutoTopUpServlet extends HttpServlet {
             setPreviousInput(session, req, resp,
                     amount, paymentNumber, paymentOwner, paymentCvc, paymentExpiry);
         }else {
-            /*Update payment method*/
+            /*Get payment method*/
             PaymentMethod paymentMethod =
                     dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(
                             card.getTopUp().getPaymentMethodId().toString());
-            paymentMethod.setOpalCardId(card.getCardId());
-            paymentMethod.setCardNumber(paymentNumber);
-            paymentMethod.setCardName(paymentOwner);
-            paymentMethod.setCardCVC(paymentCvc);
-            paymentMethod.setExpiryDate(paymentExpiry);
-            dbPaymentMethodManager.updatePaymentMethod(paymentMethod);
+            if(paymentMethod == null) {
+                paymentMethod = new PaymentMethod(UUID.randomUUID(), card.getCardId(),
+                        paymentNumber,
+                        paymentOwner,
+                        paymentCvc,
+                        paymentExpiry);
+                dbPaymentMethodManager.createPaymentMethod(paymentMethod);
+
+            }else {
+                paymentMethod.setOpalCardId(card.getCardId());
+                paymentMethod.setCardNumber(paymentNumber);
+                paymentMethod.setCardName(paymentOwner);
+                paymentMethod.setCardCVC(paymentCvc);
+                paymentMethod.setExpiryDate(paymentExpiry);
+                dbPaymentMethodManager.updatePaymentMethod(paymentMethod);
+
+            }
+
             session.setAttribute("paymentMethod", paymentMethod);
 
             /*Update amount and when*/

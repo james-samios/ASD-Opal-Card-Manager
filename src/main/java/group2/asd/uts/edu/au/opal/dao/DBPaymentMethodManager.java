@@ -92,7 +92,7 @@ public class DBPaymentMethodManager extends DBManager{
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
-            where.put("payment_method_id", UUID.fromString(paymentMethodId));
+            where.put("payment_method_id", paymentMethodId);
             document = getCollection().find(where).first();
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
@@ -168,8 +168,8 @@ public class DBPaymentMethodManager extends DBManager{
             BasicDBObject where = new BasicDBObject();
             where.put("_id", paymentMethod.getObjectId());
             BasicDBObject newDocument = new BasicDBObject();
-            newDocument.put("payment_method_id", paymentMethod.getPaymentMethodId());
-            newDocument.put("opal_card_id", paymentMethod.getOpalCardId());
+            newDocument.put("payment_method_id", paymentMethod.getPaymentMethodId().toString());
+            newDocument.put("opal_card_id", paymentMethod.getOpalCardId().toString());
             newDocument.put("card_number", paymentMethod.getCardNumber());
             newDocument.put("card_name", paymentMethod.getCardName());
             newDocument.put("cvc", paymentMethod.getCardCVC());
@@ -196,7 +196,7 @@ public class DBPaymentMethodManager extends DBManager{
         try {
             //deleting an object from table
             BasicDBObject where = new BasicDBObject();
-            where.put("payment_method_id", UUID.fromString(paymentMethodId));
+            where.put("payment_method_id", paymentMethodId);
             getCollection().deleteMany(where);
         }catch(Exception e) {
             System.out.println("Error: Delete error happens. Check the code");
