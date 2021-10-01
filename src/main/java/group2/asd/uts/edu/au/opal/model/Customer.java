@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @Getter
-public class Customer extends Document {
+public class Customer {
 
     private ObjectId objectId;
     private final UUID accountId;
     private final String emailAddress;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
+    private final String password;
+    private final String firstName;
+    private final String lastName;
+    private final String phoneNumber;
     private Address address;
     private WeeklyTripReward weeklyTripReward;
 
@@ -45,17 +45,19 @@ public class Customer extends Document {
      * @param emailAddress The customer's email address, which will be used as their username.
      * @param phoneNumber The customer's mobile/landline number.
      * @param password The customer's chosen password, to be encrypted as a md5 hash.
+     * @param address The customer's address, as an Address object.
      * @author James
      */
 
     public Customer(final String firstName, final String lastName, final String emailAddress, final String password,
-                    final String phoneNumber) {
+                    final String phoneNumber, final Address address) {
         this.accountId = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.address = address;
     }
 
     @Override
@@ -71,11 +73,4 @@ public class Customer extends Document {
                 getAddress() + " - " +
                 getWeeklyTripReward();
     }
-
-    /*
-    @Override
-    public Object getOrDefault(Object key, Object defaultValue) {
-        return super.getOrDefault(key, defaultValue);
-    }
-    */
 }
