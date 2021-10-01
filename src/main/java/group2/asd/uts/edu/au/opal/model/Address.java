@@ -24,7 +24,14 @@ public class Address {
         this.state = document.getString("state");
     }
 
-
+    /**
+     * Creates a new Address object from the registration form.
+     * @param line1 Address Line 1
+     * @param line2 Address Line 2 (not required)
+     * @param suburb Suburb
+     * @param postcode Postcode
+     * @param state State
+     */
     public Address(final String line1, final String line2, final String suburb, final int postcode, final String state) {
         this.addressLine1 = line1;
         this.addressLine2 = line2;

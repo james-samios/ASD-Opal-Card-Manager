@@ -31,7 +31,9 @@ public class DBCustomerManager extends DBManager {
 
         Address a = customer.getAddress();
 
-        Document address = new Document(
+        Document address = new Document();
+
+        address.append(
                 "address_line_1", a.getAddressLine1())
                 .append("address_line_2", a.getAddressLine2())
                 .append("suburb", a.getSuburb())
@@ -39,8 +41,10 @@ public class DBCustomerManager extends DBManager {
                 .append("state", a.getState()
         );
 
-        Document weeklyReward = new Document(
-                "reward_percentage", 0)
+        Document weeklyReward = new Document();
+
+        weeklyReward.append(
+                "reward_percentage", 0.0)
                 .append("reward_name", "null")
                 .append("reward_claimed", false
         );

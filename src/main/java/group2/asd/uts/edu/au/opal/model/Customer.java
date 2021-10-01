@@ -57,6 +57,7 @@ public class Customer {
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.address = address;
     }
 
     @Override

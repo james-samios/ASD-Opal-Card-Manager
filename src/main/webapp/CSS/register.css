@@ -31,7 +31,7 @@ body {
 
 .box input[type = "text"],
 .box input[type = "password"],
-.box input[type = "number"]:focus,
+.box input[type = "number"],
 .box input[type = "email"],
 .box input[type = "date"],
 .box input[type = "tel"] {
