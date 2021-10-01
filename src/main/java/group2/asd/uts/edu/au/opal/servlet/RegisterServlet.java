@@ -2,6 +2,7 @@ package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBConnection;
 import group2.asd.uts.edu.au.opal.dao.DBCustomerManager;
+import group2.asd.uts.edu.au.opal.model.Address;
 import group2.asd.uts.edu.au.opal.model.Customer;
 
 import javax.servlet.ServletException;
@@ -33,6 +34,14 @@ public class RegisterServlet extends HttpServlet {
         String lastName = req.getParameter("lname");
         String phone = req.getParameter("phone");
 
+        String addressLine1 = req.getParameter("address_line_1");
+        String addressLine2 = req.getParameter("address_line_2");
+        String suburb = req.getParameter("suburb");
+        int postcode = Integer.parseInt(req.getParameter("postcode"));
+        String state = req.getParameter("state");
+
+        Address address = new Address(addressLine1, addressLine2, suburb, postcode, state);
+
         if (email.isEmpty() || password.isEmpty()) {
             req.setAttribute("error_message", "Please fill out all required fields.");
             req.getRequestDispatcher("/register.jsp").forward(req, resp);
@@ -45,7 +54,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        Customer customer = new Customer(firstName, lastName, email, password, phone);
+        Customer customer = new Customer(firstName, lastName, email, password, phone, address);
         dbCustomerManager.registerCustomer(customer, password);
 
         HttpSession session = req.getSession();

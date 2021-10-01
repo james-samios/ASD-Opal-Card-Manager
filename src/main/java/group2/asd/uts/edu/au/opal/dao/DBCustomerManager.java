@@ -1,6 +1,7 @@
 package group2.asd.uts.edu.au.opal.dao;
 
 import com.mongodb.BasicDBObject;
+import group2.asd.uts.edu.au.opal.model.Address;
 import group2.asd.uts.edu.au.opal.model.Customer;
 import lombok.Getter;
 import org.bson.Document;
@@ -27,13 +28,32 @@ public class DBCustomerManager extends DBManager {
      */
     public void registerCustomer(final Customer customer, final String password) {
         refresh();
+
+        Address a = customer.getAddress();
+
+        Document address = new Document(
+                "address_line_1", a.getAddressLine1())
+                .append("address_line_2", a.getAddressLine2())
+                .append("suburb", a.getSuburb())
+                .append("post_code", a.getPostCode())
+                .append("state", a.getState()
+        );
+
+        Document weeklyReward = new Document(
+                "reward_percentage", 0)
+                .append("reward_name", "null")
+                .append("reward_claimed", false
+        );
+
         Document user = new Document("_id", new ObjectId());
         user.append("account_id", customer.getAccountId().toString())
                 .append("first_name", customer.getFirstName())
                 .append("last_name", customer.getLastName())
                 .append("email_address", customer.getEmailAddress())
                 .append("phone_number", customer.getPhoneNumber())
-                .append("password", stringToMd5(password));
+                .append("password", stringToMd5(password))
+                .append("address", address)
+                .append("weekly_trip_reward", weeklyReward);
 
         getCollection().insertOne(user);
     }
