@@ -4,23 +4,23 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-        <servlet>
-            <servlet-name>ConnServlet</servlet-name>
-            <servlet-class>group2.asd.uts.edu.au.opal.servlet.ConnServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>ConnServlet</servlet-name>
-            <url-pattern>/ConnServlet</url-pattern>
-        </servlet-mapping>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
 
-        <servlet>
-            <servlet-name>LoginServlet</servlet-name>
-            <servlet-class>group2.asd.uts.edu.au.opal.servlet.LoginServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>LoginServlet</servlet-name>
-            <url-pattern>/LoginServlet</url-pattern>
-        </servlet-mapping>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
 
         <servlet>
             <servlet-name>CardLoginServlet</servlet-name>
@@ -75,4 +75,23 @@
             <servlet-name>CancelAutoTopUpServlet</servlet-name>
             <url-pattern>/CancelAutoTopUpServlet</url-pattern>
         </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateCustomerEnquiryServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CreateCustomerEnquiryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateCustomerEnquiryServlet</servlet-name>
+        <url-pattern>/CreateCustomerEnquiryServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListEnquiriesServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ListEnquiriesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListEnquiriesServlet</servlet-name>
+        <url-pattern>/ListEnquiriesServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

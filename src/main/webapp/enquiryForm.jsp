@@ -26,16 +26,16 @@
         <h1>Customer Enquiry Form</h1>
         <p>Welcome to the Customer Enquiry Form page. Please fill out the following details to begin an enquiry.</p>
 
-        <form action="enquiryConfirmation.jsp">
+        <form method="post" action="CreateCustomerEnquiryServlet">
 
-            <table align="center">
+            <table>
                 <tr>
                     <td>Enquiry Title:</td>
-                    <td><input type="text"></td>
+                    <td><input type="text" name="enquiryTitle" required></td>
                 </tr>
                 <tr>
                     <td>Enquiry Details:</td>
-                    <td><textarea name="enquiryDetails" rows="5" cols="30"></textarea></td>
+                    <td><textarea name="enquiryDetails" rows="5" cols="30" name="enquiryDetails" required></textarea></td>
                 </tr>
                 <tr>
                     <td>Preferred Contact Method:</td>
@@ -52,7 +52,6 @@
         </form>
 
     </div>
-
 </body>
 
 </html>

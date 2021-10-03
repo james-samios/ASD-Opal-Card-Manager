@@ -1,6 +1,8 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
-import group2.asd.uts.edu.au.opal.dao.*;
+import group2.asd.uts.edu.au.opal.dao.DBConnection;
+import group2.asd.uts.edu.au.opal.dao.DBCustomerEnquiryManager;
+import group2.asd.uts.edu.au.opal.model.CustomerEnquiry;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.UUID;
+import java.util.ArrayList;
 
-public class CreateCustomerEnquiryServlet extends HttpServlet {
+public class ListEnquiriesServlet extends HttpServlet {
 
     private DBConnection connection;
     private DBCustomerEnquiryManager customerEnquiryManager;
@@ -35,18 +37,10 @@ public class CreateCustomerEnquiryServlet extends HttpServlet {
         //Create the Customer Enquiry DBManager
         //DBCustomerEnquiryManager customerEnquiryManager = (DBCustomerEnquiryManager) session.getAttribute("customerEnquiryManager");
 
-        //Read POST parameters from the request
-        UUID customerEnquiryID = UUID.randomUUID();
-        String enquiryTitle = request.getParameter("enquiryTitle");
-        String enquiryDetails = request.getParameter("enquiryDetails");
-        String enquiryStatus = "Submitted";
-        String enquiryDate = "2/10/2021"; //temporary - TO DO put current date
-
-        //Create the enquiry
-        customerEnquiryManager.createCustomerEnquiry(customerEnquiryID, enquiryTitle, enquiryDetails, enquiryDate, enquiryStatus);
-
-        //Push to enquiry home page
-        request.getRequestDispatcher("/enquiryConfirmation.jsp").forward(request, response);
+        ArrayList<CustomerEnquiry> enquiriesList = null;
+        enquiriesList = customerEnquiryManager.listCustomerEnquiries();
+        session.setAttribute("enquiriesList", enquiriesList);
+        request.getRequestDispatcher("/enquiryList.jsp").forward(request, response);
 
     }
 

@@ -75,4 +75,23 @@
             <servlet-name>CancelAutoTopUpServlet</servlet-name>
             <url-pattern>/CancelAutoTopUpServlet</url-pattern>
         </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateCustomerEnquiryServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CreateCustomerEnquiryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateCustomerEnquiryServlet</servlet-name>
+        <url-pattern>/CreateCustomerEnquiryServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListEnquiriesServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ListEnquiriesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListEnquiriesServlet</servlet-name>
+        <url-pattern>/ListEnquiriesServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

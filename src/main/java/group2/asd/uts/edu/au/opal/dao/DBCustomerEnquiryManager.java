@@ -1,11 +1,17 @@
 package group2.asd.uts.edu.au.opal.dao;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBCursor;
 import com.mongodb.client.model.Updates;
 import group2.asd.uts.edu.au.opal.model.CustomerEnquiry;
 import lombok.Getter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+
+import javax.print.Doc;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Getter
 public class DBCustomerEnquiryManager extends DBManager {
@@ -23,15 +29,16 @@ public class DBCustomerEnquiryManager extends DBManager {
      * @param enquiryDate The date the enquiry was submitted.
      * @param enquiryStatus The status of the enquiry (initially set as "Submitted").
      */
-    public void createCustomerEnquiry(final String enquiryTitle, final String enquiryDetails, final String enquiryDate, final String enquiryStatus) {
+    public void createCustomerEnquiry(final UUID customerEnquiryID, final String enquiryTitle, final String enquiryDetails, final String enquiryDate, final String enquiryStatus) {
         refresh();
 
         Document enquiry = new Document("_id", new ObjectId());
-        enquiry.append("enquiry_title", enquiryTitle)
+        enquiry.append("enquiry_id", customerEnquiryID.toString())
+                .append("enquiry_title", enquiryTitle)
                 .append("enquiry_details", enquiryDetails)
                 .append("date_of_enquiry", enquiryDate)
                 .append("enquiry_status", enquiryStatus);
-
+                //to add comments
         getCollection().insertOne(enquiry);
     }
 
@@ -52,6 +59,27 @@ public class DBCustomerEnquiryManager extends DBManager {
         Document doc = getCollection().find(where).first();
         if (doc == null || doc.isEmpty()) return null;
         return new CustomerEnquiry(doc);
+    }
+
+    /**
+     * Returns a list of all the enquiries submitted
+     * @return ArrayList of customer enquiries
+     * @author Chris
+     */
+
+    public ArrayList<CustomerEnquiry> listCustomerEnquiries() {
+
+        ArrayList<CustomerEnquiry> enquiries = new ArrayList<CustomerEnquiry>();
+
+        //to do - return only submitted enquiries?
+        List<Document> enquiriesList = getCollection().find().into(new ArrayList<>());
+        for (Document enquiry : enquiriesList) {
+            CustomerEnquiry newEnquiry = new CustomerEnquiry(enquiry);
+            enquiries.add(newEnquiry);
+        }
+
+        return enquiries;
+
     }
 
     /*   *************************************Methods for "U" section below****************************************   */

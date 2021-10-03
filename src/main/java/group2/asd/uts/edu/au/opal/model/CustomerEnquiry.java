@@ -45,8 +45,8 @@ public class CustomerEnquiry extends Document {
      * @author Chris
      */
 
-    public CustomerEnquiry(final String enquiryTitle, final String enquiryDetails, final String enquiryDate, final String enquiryStatus) {
-        this.customerEnquiryId = UUID.randomUUID();
+    public CustomerEnquiry(final UUID customerEnquiryId, final String enquiryTitle, final String enquiryDetails, final String enquiryDate, final String enquiryStatus) {
+        this.customerEnquiryId = customerEnquiryId;
         this.enquiryTitle = enquiryTitle;
         this.enquiryDetails = enquiryDetails;
         this.enquiryDate = enquiryDate; //to fix
