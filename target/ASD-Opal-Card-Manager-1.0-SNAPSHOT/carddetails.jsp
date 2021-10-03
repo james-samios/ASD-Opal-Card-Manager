@@ -54,6 +54,7 @@
                         <tr>
                             <td class="<%=tdClass%>">Card Status</td>
                             <td data-label="card_active"><%=isActive?"ON": "OFF"%></td>
+                            <td></td>
                             <td>
                                 <button class="submit <%=isActive?"red":"light_green"%>" onclick="location.href='CardStatusServlet'">
                                     <%=isActive?"OFF":"ON"%>
@@ -63,12 +64,18 @@
                         <tr>
                             <td class="<%=tdClass%>">Balance</td>
                             <td data-label="balance"><%=balance%></td>
-                            <td><button class="submit light_blue" onclick="location.href='topupmenu.jsp'">Top Up</button></td>
+                            <td>
+                                <button class="submit light_blue" onclick="location.href='topupmenu.jsp'">Top Up</button>
+                            </td>
+                            <td>
+                                <button class="submit light_blue" onclick="location.href='PaymentHistoryServlet'">Record</button>
+                            </td>
                         </tr>
 
                         <tr>
                             <td class="<%=tdClass%>">Linked Account</td>
                             <td data-label="linked_account"><%=customerEmail == null? "OFF": customerEmail%></td>
+                            <td></td>
                             <%if(isAccountLinked) {%>
                                 <td>
                                     <button class="submit red" onclick="location.href='CancelAccountLinkServlet'">
@@ -87,6 +94,7 @@
                         <tr>
                             <td class="<%=tdClass%>">Auto Top Up</td>
                             <td data-label="auto_top_up"><%=isAutoTopUp?"ON": "OFF"%></td>
+                            <td></td>
                             <%if(isAutoTopUp) {%>
                                 <td>
                                     <button class="submit red" onclick="location.href='CancelAutoTopUpServlet'">
@@ -109,39 +117,45 @@
                             <tr>
                                 <td class="<%=tdClass%>">Payment Method</td>
                                 <td class="<%=tdClass%>"></td>
-                                <td class="<%=tdClass%>"></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">Card Number</td>
                                 <td><%=paymentMethod.getCardNumber()%></td>
+                                <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">Card Owner Name</td>
                                 <td><%=paymentMethod.getCardName()%></td>
                                 <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">CVC</td>
                                 <td><%=paymentMethod.getCardCVC()%></td>
+                                <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">Card Expiry</td>
                                 <td><%=paymentMethod.getExpiryDate()%></td>
                                 <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">Top-Up Amount</td>
                                 <td><%=amount%></td>
+                                <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">When</td>
                                 <td><%=when%></td>
                                 <td></td>
+                                <td></td>
                             </tr>
-
                         <%}%>
                     </tbody>
                 </table>

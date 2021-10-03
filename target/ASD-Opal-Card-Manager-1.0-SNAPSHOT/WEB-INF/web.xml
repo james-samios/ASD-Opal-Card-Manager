@@ -87,5 +87,14 @@
             <url-pattern>/CancelAccountLinkServlet</url-pattern>
         </servlet-mapping>
 
+        <servlet>
+            <servlet-name>PaymentHistoryServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.PaymentHistoryServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>PaymentHistoryServlet</servlet-name>
+            <url-pattern>/PaymentHistoryServlet</url-pattern>
+        </servlet-mapping>
+
 
 </web-app>

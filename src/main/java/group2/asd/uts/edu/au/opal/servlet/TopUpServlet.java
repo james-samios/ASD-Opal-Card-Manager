@@ -1,7 +1,11 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
+import group2.asd.uts.edu.au.opal.dao.DBPaymentHistoryManager;
+import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.model.Card;
+import group2.asd.uts.edu.au.opal.model.PaymentHistory;
+import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 
 public class TopUpServlet extends HttpServlet {
@@ -31,7 +36,8 @@ public class TopUpServlet extends HttpServlet {
 
         //Create the card DBManager
         DBCardsManager dbCardsManager = new DBCardsManager();
-
+        DBPaymentMethodManager dbPaymentMethodManager = new DBPaymentMethodManager();
+        DBPaymentHistoryManager dbPaymentHistoryManager = new DBPaymentHistoryManager();
         //Reading post parameters from the request
 
         String amount = req.getParameter("amount");
@@ -44,8 +50,6 @@ public class TopUpServlet extends HttpServlet {
         cal.setTime(today);
         int month = cal.get(Calendar.MONTH) + 1;
         int year = cal.get(Calendar.YEAR) - 2000;
-        System.out.println("Month: " + month);
-        System.out.println("Year: " + year);
 
         if(!validator.validateCardNumber(paymentNumber)) {
             session.setAttribute("cardNumberFormErr", "Error: 16 digits for credit card number");
@@ -73,6 +77,31 @@ public class TopUpServlet extends HttpServlet {
             dbCardsManager.updateCardBalance(card.getObjectId(), newBalance);
             card.setBalance(newBalance);
             session.setAttribute("card", card);
+
+
+            /*Create a payment history*/
+            /*step 1 create new paymentMethod*/
+            UUID newPaymentMethodId = UUID.randomUUID();
+            PaymentMethod newPaymentMethod = new PaymentMethod(
+                newPaymentMethodId,
+                    card.getCardId(),
+                    paymentNumber,
+                    paymentOwner,
+                    paymentCvc,
+                    paymentExpiry
+            );
+            dbPaymentMethodManager.createPaymentMethod(newPaymentMethod);
+
+            /*step 2 create new payment history*/
+            PaymentHistory newPaymentHistory = new PaymentHistory(
+                    newPaymentMethodId,
+                    card.getCardId(),
+                    Double.parseDouble(amount),
+                    "Complete",
+                    "CREDIT_CARD",
+                    Calendar.getInstance().getTime());
+
+            dbPaymentHistoryManager.createPaymentHistory(newPaymentHistory);
             validator.clean(session);
             req.getRequestDispatcher("/carddetails.jsp").forward(req, resp);
         }
