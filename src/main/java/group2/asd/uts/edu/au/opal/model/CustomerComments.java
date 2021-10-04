@@ -3,17 +3,31 @@ package group2.asd.uts.edu.au.opal.model;
 import lombok.Getter;
 import org.bson.Document;
 
+import java.util.ArrayList;
+
 @Getter
-public class CustomerComments extends Document {
+public class CustomerComments {
+
     private final String comment;
     private final String order;
-    //add date
 
-    /**Constructor**/
+    /**
+     * Creates a new Customer Comments object from the provided MongoDB Document.
+     * @param document The provided MongoDB document.
+     */
     public CustomerComments(final Document document) {
-        this.comment = document.getString("customer_comments.comment");
-        this.order = document.getString("customer_comments.order");
-        //add date
+        this.comment = document.getString("comment");
+        this.order = document.getString("order");
+    }
+
+    /**
+     * Creates a new Customer Comments object from the registration form.
+     * @param comment Text of the customer's comment
+     * @param order The order of the comment
+     */
+    public CustomerComments(final String comment, final String order) {
+        this.comment = comment;
+        this.order = order;
     }
 
     @Override

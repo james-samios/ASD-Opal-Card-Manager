@@ -8,6 +8,7 @@ import lombok.Getter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import javax.persistence.Basic;
 import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,6 +99,18 @@ public class DBCustomerEnquiryManager extends DBManager {
 
         // to do
     }
+
+    /**
+     * Adds a customer comment to the enquiry
+     */
+
+    public void addCustomerComment(final String customerEnquiryId, String comment) {
+        BasicDBObject where = new BasicDBObject();
+        where.put("enquiry_id", customerEnquiryId);
+        //to do
+    }
+
+
 
     /*   *************************************Methods for "D" section below****************************************   */
 

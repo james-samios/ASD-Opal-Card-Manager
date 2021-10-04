@@ -15,7 +15,7 @@ public class CustomerEnquiry extends Document {
     private String enquiryDetails;
     private String enquiryDate; //requires Date type
     private String enquiryStatus;
-    // private String customerComments; //Create a customer comments object - to do for next release
+    // private CustomerComments customerComments;
     // private String officerComments; //Create an officer comments object - to do for next release
 
     /**
@@ -31,7 +31,7 @@ public class CustomerEnquiry extends Document {
         this.enquiryDetails = document.getString("enquiry_details");
         this.enquiryDate = document.getString("date_of_enquiry"); //to fix
         this.enquiryStatus = document.getString("enquiry_status");
-        //to add customerComments
+        //this.customerComments = new CustomerComments(document.get("customer_comments", Document.class));
         //to add officerComments
 
     }
@@ -62,7 +62,7 @@ public class CustomerEnquiry extends Document {
                 getEnquiryDetails() + " - " +
                 getEnquiryDate() + " - " +
                 getEnquiryStatus();
-                //to add customerComments
+                //getCustomerComments();
                 //to add officerComments
     }
 
