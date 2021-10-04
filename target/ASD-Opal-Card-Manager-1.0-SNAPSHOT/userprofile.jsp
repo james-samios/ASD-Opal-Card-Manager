@@ -32,7 +32,7 @@
 
         <li><a href="DeleteUserServlet">Delete Account</a></li>
 
-        <li><a href="payment-manager.jsp">Payment </a></li>
+        <li><a href="payment.jsp">Payment</a></li>
 
         <li><a href="index.jsp">Logout</a></li>
     </ul>

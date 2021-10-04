@@ -3,10 +3,12 @@
 <html>
 <head>
     <title>Payment Information</title>
+    <link rel="stylesheet" href="CSS/payment.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 <h1>Payment Information</h1>
-<form name="PaymentForm" action="results.jsp" method="post">
+<form name="PaymentForm" action="paymentresult.jsp" method="post">
     <table>
         <tbody>
         <tr>

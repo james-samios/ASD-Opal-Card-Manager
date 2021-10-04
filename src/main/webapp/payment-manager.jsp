@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Payment Information</h1>
-<form name="PaymentForm" action="results.jsp" method="post">
+<form name="PaymentForm" action="paymentresult.jsp" method="post">
     <table>
         <tbody>
         <tr>
