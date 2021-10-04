@@ -71,9 +71,9 @@
             </tbody>
         </table>
 
-        <button onclick="window.location.href='ChangePasswordServlet'" type="button">Change Password</button>
+        <button onclick="window.location.href='changepassword.jsp'" type="button">Change Password</button>
         <br>
-        <button onclick="window.location.href='DeleteAccountServlet'" type="button">Delete Account</button>
+        <button onclick="window.location.href='deleteaccount.jsp'" type="button">Delete Account</button>
     </section>
 </center>
 </body>
