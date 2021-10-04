@@ -31,7 +31,8 @@ body {
 
 .box input[type = "text"],
 .box input[type = "password"],
-.box input[type = "mail"],
+.box input[type = "number"],
+.box input[type = "email"],
 .box input[type = "date"],
 .box input[type = "tel"] {
     border: 0;
@@ -50,7 +51,8 @@ body {
 
 .box input[type = "text"]:focus,
 .box input[type = "password"]:focus,
-.box input[type = "mail"]:focus,
+.box input[type = "number"]:focus,
+.box input[type = "email"]:focus,
 .box input[type = "date"]:focus,
 .box input[type = "tel"]:focus{
     width: 280px;
