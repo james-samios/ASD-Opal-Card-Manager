@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
 <nav class="customer">
@@ -61,6 +62,28 @@
         </div>
     </div>
 
+    <div class="adult">
+        <table class = "table-style">
+            <tr class = "table-style">
+                <th class = "table-header">Date/time</th>
+                <th class = "table-header">Mode</th>
+                <th class = "table-header">Details</th>
+                <th class = "table-header">Fare</th>
+            </tr>
+            <tr class = "table-style">
+                <td class = "table-style customer">${card.get}</td>
+                <td class = "table-style customer">Maria Anders</td>
+                <td class = "table-style customer">Germany</td>
+                <td class = "table-style customer">Maria Anders</td>
+            </tr>
+            <tr class = "table-style">
+                <td class = "table-style customer">Centro comercial Moctezuma</td>
+                <td class = "table-style customer">Francisco Chang</td>
+                <td class = "table-style customer">Mexico</td>
+                <td class = "table-style customer">Francisco Chang</td>
+            </tr>
+        </table>
+     </div>
 </section>
 </body>
 </html>
