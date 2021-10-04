@@ -21,9 +21,6 @@
         <a href="#about">Logout</a>
     </div>
 
-    <%
-        ArrayList<CustomerEnquiry> customerEnquiryList = (ArrayList<CustomerEnquiry>) session.getAttribute("customerEnquiryList");
-    %>
 
     <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
 
@@ -34,9 +31,7 @@
         <form action="ListEnquiriesServlet" method="post"><input type="submit" value="View Your Enquiries"></form>
 
     </div>
-    <%
-        }
-    %>
+
 
 </body>
 </html>

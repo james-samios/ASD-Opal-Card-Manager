@@ -1,4 +1,5 @@
-<%--
+<%@ page import="group2.asd.uts.edu.au.opal.model.Customer" %>
+<%@ page import="group2.asd.uts.edu.au.opal.model.CustomerEnquiry" %><%--
   Created by IntelliJ IDEA.
   User: chrom
   Date: 7/09/2021
@@ -20,6 +21,10 @@
         <a href="#about">Logout</a>
     </div>
 
+    <%
+        CustomerEnquiry customerEnquiry = (CustomerEnquiry) session.getAttribute("customerEnquiry");
+    %>
+
     <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
 
     <div class="return">
@@ -28,19 +33,19 @@
 
     <div class="enquiryDetails">
         <h1>Enquiry Details</h1>
-        <p>This enquiry is currently <span style="color: darkorange">in progress</span>. Our team is reviewing your enquiry and will be in touch with you soon.</p>
+        <p>This enquiry is currently <span style="color: darkorange"><%=customerEnquiry.getEnquiryStatus()%></span>. Our team is reviewing your enquiry and will be in touch with you soon.</p>
         <table class="detailsTable">
             <tr>
                 <th>Title:</th>
-                <td>How to add funds</td>
+                <td><%=customerEnquiry.getEnquiryTitle()%></td>
             </tr>
             <tr>
                 <th>Details:</th>
-                <td>Hi, I'm having difficulty adding funds to my card. How do I add funds? Thanks</td>
+                <td><%=customerEnquiry.getEnquiryDetails()%></td>
             </tr>
             <tr>
                 <th>Comments:</th>
-                <td>Status updated to in progress: we are currently looking into your issue</td>
+                <td>TO DO</td>
             </tr>
         </table>
 

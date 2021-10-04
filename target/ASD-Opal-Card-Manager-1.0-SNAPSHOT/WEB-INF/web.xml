@@ -94,4 +94,13 @@
         <url-pattern>/ListEnquiriesServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>EnquiryDetailsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.EnquiryDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EnquiryDetailsServlet</servlet-name>
+        <url-pattern>/EnquiryDetailsServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

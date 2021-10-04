@@ -23,6 +23,8 @@
 
     <%
         ArrayList<CustomerEnquiry> customerEnquiryList = (ArrayList<CustomerEnquiry>) session.getAttribute("enquiriesList");
+        String enquirySearchErr = (String) session.getAttribute("enquirySearchErr");
+        session.setAttribute("enquirySearchErr", "");
     %>
 
     <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
@@ -35,6 +37,15 @@
 
         <h1>Your enquiries</h1>
         <p>Below is a summary of your recent enquiries. We will endeavour to provide you updates as soon as possible.</p>
+
+        <h2>Search an enquiry</h2>
+
+        <form method="post" action="EnquiryDetailsServlet">
+            <input type="text" name="customerEnquiryId" placeholder="Enquiry ID" required>
+            <input type="submit" value="Search">
+        </form>
+
+        <span><%=(enquirySearchErr != null ? enquirySearchErr : "")%></span>
 
         <table class="enquiryTable">
             <tr>
