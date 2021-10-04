@@ -20,13 +20,9 @@
     </label>
     <label class="logo">My Profile</label>
     <ul>
-        <li><a href="linkedopalcards.jsp">My OpalCard</a></li>
+        <li><a href="linkedopalcards.jsp">Opal Cards</a></li>
 
         <li><a href="EditProfileServlet">Edit Profile</a></li>
-
-        <li><a href="ChangePasswordServlet">Change Password</a></li>
-
-        <li><a href="DeleteUserServlet">Delete Account</a></li>
 
         <li><a href="LogoutServlet">Logout</a></li>
     </ul>
@@ -74,6 +70,10 @@
                 </tr>
             </tbody>
         </table>
+
+        <button onclick="window.location.href='ChangePasswordServlet'" type="button">Change Password</button>
+        <br>
+        <button onclick="window.location.href='DeleteAccountServlet'" type="button">Delete Account</button>
     </section>
 </center>
 </body>
