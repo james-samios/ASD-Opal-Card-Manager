@@ -79,5 +79,6 @@
                 <version>3.3.1</version>
             </plugin>
         </plugins>
+        <testSourceDirectory>${project.basedir}/src/main/java/group2/asd/uts/edu/au/opal/test</testSourceDirectory>
     </build>
 </project>
