@@ -17,7 +17,7 @@ public class Customer {
     private final String firstName;
     private final String lastName;
     private final String phoneNumber;
-    private Address address;
+    private final Address address;
     private WeeklyTripReward weeklyTripReward;
 
     /**

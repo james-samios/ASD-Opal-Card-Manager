@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 7/09/2021
-  Time: 1:25 am
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="group2.asd.uts.edu.au.opal.model.Customer" %>
+<%@ page import="group2.asd.uts.edu.au.opal.model.Address" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,6 +11,7 @@
 </head>
 <body>
 
+<% Customer customer = (Customer) session.getAttribute("customer"); %>
 
 <nav class="customer">
     <input type="checkbox" id="check">
@@ -24,9 +20,9 @@
     </label>
     <label class="logo">My Profile</label>
     <ul>
-        <li><a href="linkedopalcards.jsp">My OpalCard</a></li>
+        <li><a href="linkedopalcards.jsp">Opal Cards</a></li>
 
-        <li><a href="EditServlet">Edit Profile</a></li>
+        <li><a href="EditProfileServlet">Edit Profile</a></li>
 
         <li><a href="ChangePasswordServlet">Change Password</a></li>
 
@@ -42,32 +38,48 @@
     <section>
         <table class="table-style">
             <tbody>
-            <tr>
-                <td class="table-header customer">First Name</td>
-                <td data-label="First Name"></td>
-            </tr>
-            <tr>
-                <td class="table-header customer">Last Name</td>
-                <td data-label="Last Name"></td>
-            </tr>
-            <tr>
-                <td class="table-header customer">Password</td>
-                <td data-label="Password"></td>
-            </tr>
-            <tr>
-                <td class="table-header customer">Email</td>
-                <td data-label="Email"></td>
-            </tr>
-            <tr>
-                <td class="table-header customer">Birthday</td>
-                <td data-label="Birthday"></td>
-            </tr>
-            <tr>
-                <td class="table-header customer">Phone</td>
-                <td data-label="Phone"></td>
-            </tr>
+                <tr>
+                    <td class="table-header customer">First Name</td>
+                    <td data-label="First Name">${customer.getFirstName()}</td>
+                </tr>
+                <tr>
+                    <td class="table-header customer">Last Name</td>
+                    <td data-label="Last Name">${customer.getLastName()}</td>
+                </tr>
+                <tr>
+                    <td class="table-header customer">Email Address</td>
+                    <td data-label="Email Address">${customer.getEmailAddress()}</td>
+                </tr>
+                <tr>
+                    <td class="table-header customer">Phone Number</td>
+                    <td data-label="Phone Number">${customer.getPhoneNumber()}</td>
+                </tr>
+                <tr>
+                    <td class="table-header customer">Address Line 1</td>
+                    <td data-label="Address Line 1">${customer.getAddress().getAddressLine1()}</td>
+                </tr>
+                <tr>
+                    <td class="table-header customer">Address Line 2</td>
+                    <td data-label="Address Line 2">${customer.getAddress().getAddressLine2()}</td>
+                </tr>
+                <tr>
+                    <td class="table-header customer">Suburb</td>
+                    <td data-label="Suburb">${customer.getAddress().getSuburb()}</td>
+                </tr>
+                <tr>
+                    <td class="table-header customer">Postcode</td>
+                    <td data-label="Postcode">${customer.getAddress().getPostCode()}</td>
+                </tr>
+                <tr>
+                    <td class="table-header customer">State</td>
+                    <td data-label="State">${customer.getAddress().getState()}</td>
+                </tr>
             </tbody>
         </table>
+
+        <button onclick="window.location.href='changepassword.jsp'" type="button">Change Password</button>
+        <br>
+        <button onclick="window.location.href='deleteaccount.jsp'" type="button">Delete Account</button>
     </section>
 </center>
 </body>
