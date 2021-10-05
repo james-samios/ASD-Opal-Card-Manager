@@ -1,8 +1,26 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
+
 <html>
 <head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="CSS/index.css">
     <title>Home Page</title>
@@ -20,7 +38,6 @@
         <li><a href="opalcard.jsp">Opal Card</a></li>
         <li><a href="login.jsp">Sign in</a></li>
         <li><a href="register.jsp">Sign up</a></li>
-
     </ul>
 </nav>
 <section></section>

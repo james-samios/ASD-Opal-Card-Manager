@@ -192,6 +192,7 @@ a:hover {
     max-width: 100%;
     min-width: 40%;
     border-radius: 3px 3px 3px 3px;
+    border-color: black;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
@@ -208,7 +209,6 @@ a:hover {
 .table-style td {
     padding: 12px 15px;
     text-align: center;
-
 }
 
 .table-style tbody tr {
