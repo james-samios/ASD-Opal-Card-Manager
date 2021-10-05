@@ -29,11 +29,12 @@ public class DBIncidentReportManager extends DBManager {
      * @param incidentReportStatus The status of the report (initially set as "Submitted").
      * @param resolveReason Customer's reason for resolving an incident before investigation.
      */
-    public void createIncidentReport(final UUID incidentReportId, final String incidentReportType, final String incidentReportDetails, final String incidentReportDate, final String incidentReportStatus, final String resolveReason) {
+    public void createIncidentReport(final UUID incidentReportId, final String accountId, final String incidentReportType, final String incidentReportDetails, final String incidentReportDate, final String incidentReportStatus, final String resolveReason) {
         refresh();
 
         Document incidentReport = new Document("_id", new ObjectId());
         incidentReport.append("report_id", incidentReportId.toString())
+                .append("account_id", accountId)
                 .append("report_type", incidentReportType)
                 .append("report_details", incidentReportDetails)
                 .append("date_of_report", incidentReportDate)
@@ -63,17 +64,20 @@ public class DBIncidentReportManager extends DBManager {
     }
 
     /**
-     * Returns a list of all the incident reports submitted
+     * Returns a list of all the incident reports given an accountID
      * @return ArrayList of incident reports
      * @author Chris
      */
 
-    public ArrayList<IncidentReport> listIncidentReports() {
+    public ArrayList<IncidentReport> listIncidentReports(String accountId) {
 
         ArrayList<IncidentReport> incidentReports = new ArrayList<>();
 
         //to do - return only submitted enquiries?
-        List<Document> enquiriesList = getCollection().find().into(new ArrayList<>());
+        BasicDBObject where = new BasicDBObject();
+        where.put("account_id", accountId);
+
+        List<Document> enquiriesList = getCollection().find(where).into(new ArrayList<>());
         for (Document enquiry : enquiriesList) {
             IncidentReport newIncidentReport = new IncidentReport(enquiry);
             incidentReports.add(newIncidentReport);

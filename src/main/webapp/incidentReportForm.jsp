@@ -19,7 +19,7 @@
     <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
 
     <div class="return">
-        <a href="enquiryHome.jsp">&lt Return</a>
+        <a href="incidentReportHome.jsp">&lt Return</a>
     </div>
 
     <div class="enquirySubmissionForm">

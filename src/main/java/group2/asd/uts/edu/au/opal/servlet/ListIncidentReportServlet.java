@@ -3,6 +3,7 @@ package group2.asd.uts.edu.au.opal.servlet;
 import group2.asd.uts.edu.au.opal.dao.DBConnection;
 import group2.asd.uts.edu.au.opal.dao.DBCustomerEnquiryManager;
 import group2.asd.uts.edu.au.opal.dao.DBIncidentReportManager;
+import group2.asd.uts.edu.au.opal.model.Customer;
 import group2.asd.uts.edu.au.opal.model.CustomerEnquiry;
 import group2.asd.uts.edu.au.opal.model.IncidentReport;
 
@@ -29,18 +30,13 @@ public class ListIncidentReportServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         //Retrieve the current session
         HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("customer");
 
-        //Create an instance of the Validator class
-        //Validator validator = (Validator) session.getAttribute("validatorMessage");
-
-        //Initialise the error message
-        //validator.clean(session);
-
-        //Create the Customer Enquiry DBManager
-        //DBCustomerEnquiryManager customerEnquiryManager = (DBCustomerEnquiryManager) session.getAttribute("customerEnquiryManager");
+        //Store accountId
+        String accountID = customer.getAccountId().toString();
 
         ArrayList<IncidentReport> incidentReportsList = null;
-        incidentReportsList = incidentReportManager.listIncidentReports();
+        incidentReportsList = incidentReportManager.listIncidentReports(accountID);
         session.setAttribute("incidentReportsList", incidentReportsList);
         request.getRequestDispatcher("/incidentReportList.jsp").forward(request, response);
 

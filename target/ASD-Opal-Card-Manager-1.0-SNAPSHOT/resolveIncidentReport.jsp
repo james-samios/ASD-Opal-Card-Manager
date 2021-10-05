@@ -33,10 +33,6 @@
                     <td>Reason:</td>
                     <td><textarea name="resolveReason" rows="5" cols="30" required></textarea></td>
                 </tr>
-                <tr>
-                    <td>Date the incident occurred:</td>
-                    <td><input type="date" name="incidentReportDate"></td>
-                </tr>
             </table>
 
             <input type="submit" value="Lodge Report" class="submitButton">
