@@ -1,4 +1,9 @@
-<%--
+<%@ page import="group2.asd.uts.edu.au.opal.model.Customer" %>
+<%@ page import="group2.asd.uts.edu.au.opal.model.Card" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="group2.asd.uts.edu.au.opal.model.Trip" %>
+<%@ page import="java.util.*" %>
+<%@ page import="org.bson.Document" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 7/09/2021
@@ -15,6 +20,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
+<%
+    //Customer customer = (Customer) session.getAttribute("customer");
+    //List<Card> cards = customer.getLinkedCards();
+    ArrayList<Trip> trips = new ArrayList<Trip>();
+    trips.add(new Trip("Kings Cross", "Bondi Junction", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 1.49));
+    trips.add(new Trip("Kings Cross2", "Bondi Junction", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 1.49));
+    trips.add(new Trip("Kings Cross3", "Bondi Junction", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 1.49));
+
+%>
 <body>
 
 <nav class="customer">
@@ -62,26 +77,22 @@
     </div>
 
     <div class="adult">
-        <table class = "table-style">
+        <table class = "table-style"><br/>
             <tr class = "table-style">
                 <th class = "table-header">Date/time</th>
                 <th class = "table-header">Mode</th>
                 <th class = "table-header">Details</th>
                 <th class = "table-header">Fare</th>
             </tr>
+            <c:forEach items="${trips}" var="t">
             <tr class = "table-style">
-                <td class = "table-style customer">Alfreds Futterkiste</td>
-                <td class = "table-style customer">Maria Anders</td>
-                <td class = "table-style customer">Germany</td>
-                <td class = "table-style customer">Maria Anders</td>
+                <td class = "table-style customer"><c:out value="${t.tripStart}"/></td>
+                <td class = "table-style customer"><c:out value="${t.tripEnd}"/></td>
+                <td class = "table-style customer"><c:out value="${t.startTime}"/></td>
+                <td class = "table-style customer"><c:out value="${t.endTime}"/></td>
+                <td class = "table-style customer"><c:out value="${t.fare}"/></td>
             </tr>
-            <tr class = "table-style">
-                <td class = "table-style customer">Centro comercial Moctezuma</td>
-                <td class = "table-style customer">Francisco Chang</td>
-                <td class = "table-style customer">Mexico</td>
-                <td class = "table-style customer">Francisco Chang</td>
-            </tr>
-        </table>
+            </c:forEach>
      </div>
 </section>
 </body>
