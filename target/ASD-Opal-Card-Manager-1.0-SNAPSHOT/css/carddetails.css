@@ -1,0 +1,284 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+
+
+}
+
+body {
+    /*
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('https://miro.medium.com/max/4800/0*Ujfq0bFIEYEoMiEG');
+    */
+    font-family: Arial, Helvetica, sans-serif;
+    background:linear-gradient(rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5) 100%), url('../img/background.jpg');
+}
+
+nav {
+    /*background: #3CB371;*/
+    height: 80px;
+    width: 100%;
+}
+
+.root {
+    background: #5A7670;
+}
+
+.staff {
+    background: #B89F5D;
+
+}
+
+.customer {
+    background: #3FB0AC;
+}
+
+label.logo {
+    color: white;
+    font-size: 35px;
+    line-height: 80px;
+    padding: 0 100px;
+    font-weight: bold;
+
+
+}
+
+nav ul {
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+
+}
+
+a.active {
+
+
+}
+
+a:hover {
+    /*background: #17202A;*/
+    transition: .5s;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+
+.checkbtn {
+
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+@media (max-width: 952px) {
+    label.logo {
+        font-size: 30px;
+        padding-left: 50px;
+    }
+    nav ul li a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 858px) {
+    ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #2c3e50;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+    nav ul li {
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+    }
+    nav ul li a {
+        display: block;
+        font-size: 20px;
+    }
+    a.active, a:hover {
+        background: none;
+        color: #0082e6;
+    }
+    #check:checked ~ ul {
+        left: 0;
+    }
+    .checkbtn {
+        display: block;
+    }
+
+
+}
+
+section {
+    /*
+    background: url('https://miro.medium.com/max/4800/0*Ujfq0bFIEYEoMiEG') no-repeat;
+    background-size: cover;
+    height: calc(100vh -80px);
+    */
+}
+
+.table-style {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    max-width: 100%;
+    min-width: 40%;
+    border-radius: 3px 3px 3px 3px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table-style thead tr {
+    background-color: #3CB371;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+
+}
+
+.table-style th,
+.table-style td {
+    text-align: center;
+    padding: 12px 15px;
+}
+
+.table-style tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+
+.table-style tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.table-style tbody tr:nth-of-type(odd) {
+    background-color: white;
+
+}
+
+.table-style tbody tr:first-of-type {
+    border-top: 2px solid white;
+}
+
+.table-style tbody tr:last-of-type {
+    border-bottom: 2px solid white;
+}
+
+
+.table-header {
+    color: #ffffff;
+    font-weight: bold;
+    width: 40%;
+}
+
+.submit {
+    width: 60%;
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: white;
+    background-color: #2ecc71;
+    border-style: none;
+}
+
+.submit:hover {
+    color: white;
+    background-color: lightgrey;
+}
+
+
+.submit2 {
+    width: 100%;
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: white;
+    background-color: #3FB0AC;
+    border-style: none;
+}
+.submit2:hover {
+    color: white;
+    background-color: lightgrey;
+}
+
+.submit3 {
+    width: 100%;
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: white;
+    background-color: #B89F5D;
+    border-style: none;
+}
+
+.submit3:hover {
+    color: white;
+    background-color: lightgrey;
+}
+
+.padding {
+    padding: 12px 16px;
+}
+
+.border_radius {
+    border-radius: 3px;
+}
+
+.light_green {
+    background-color: #2ecc71;
+}
+.light_blue {
+    background-color: #3FB0AC;
+}
+.yellow {
+    background-color: #B89F5D;
+}
+.red {
+    background-color: #CD5C5C;
+}
+
+.adult {
+    background-color: #2c3e50;
+}
+
+.senior {
+    background-color: #B89F5D;
+}
+
+.child {
+    background-color: #3FB0AC;
+}
+
+.concession {
+    background-color: gray;
+}

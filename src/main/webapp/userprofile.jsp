@@ -30,6 +30,8 @@
 
         <li><a href="enquiryHome.jsp">Make an Enquiry</a></li>
 
+        <li><a href="incidentReportHome.jsp">Report a lost or stolen Opal Card</a></li>
+
         <li><a href="index.jsp">Logout</a></li>
     </ul>
 </nav>

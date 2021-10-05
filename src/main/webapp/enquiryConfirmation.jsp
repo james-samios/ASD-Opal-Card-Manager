@@ -12,7 +12,7 @@
     <div class="navbar">
         <a href="#home">Home</a>
         <a href="enquiryHome.jsp">Make an enquiry</a>
-        <a href="#contact">Theft or loss</a>
+        <a href="incidentReportHome.jsp">Theft or loss</a>
         <a href="#about">Logout</a>
     </div>
 

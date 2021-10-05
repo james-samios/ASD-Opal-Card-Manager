@@ -103,4 +103,31 @@
         <url-pattern>/EnquiryDetailsServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CreateIncidentReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CreateIncidentReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateIncidentReportServlet</servlet-name>
+        <url-pattern>/CreateIncidentReportServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListIncidentReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ListIncidentReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListIncidentReportServlet</servlet-name>
+        <url-pattern>/ListIncidentReportServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>IncidentReportDetailsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.IncidentReportDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IncidentReportDetailsServlet</servlet-name>
+        <url-pattern>/IncidentReportDetailsServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -3,6 +3,7 @@ package group2.asd.uts.edu.au.opal.dao;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.model.Updates;
 import group2.asd.uts.edu.au.opal.model.CustomerEnquiry;
+import group2.asd.uts.edu.au.opal.model.IncidentReport;
 import lombok.Getter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -45,40 +46,40 @@ public class DBIncidentReportManager extends DBManager {
     /*   *************************************Methods for "R" section below****************************************   */
 
     /**
-     * Returns a Customer Enquiry with a provided customerEnquiryId
+     * Returns an Incident Report object with a provided incidentReportId
      * If the Customer Enquiry cannot be found, it will return null
-     * @param customerEnquiryId The ID of the Customer Enquiry object.
-     * @return Customer Enquiry object.
+     * @param incidentReportId The ID of the Incident Report object.
+     * @return Incident Report object.
      * @author Chris
      */
 
-    public CustomerEnquiry getCustomerEnquiry(final String customerEnquiryId) {
+    public IncidentReport getIncidentReport(final String incidentReportId) {
         refresh();
         BasicDBObject where = new BasicDBObject();
-        where.put("enquiry_id", customerEnquiryId);
+        where.put("report_id", incidentReportId);
         Document doc = getCollection().find(where).first();
         if (doc == null || doc.isEmpty()) return null;
-        return new CustomerEnquiry(doc);
+        return new IncidentReport(doc);
     }
 
     /**
-     * Returns a list of all the enquiries submitted
-     * @return ArrayList of customer enquiries
+     * Returns a list of all the incident reports submitted
+     * @return ArrayList of incident reports
      * @author Chris
      */
 
-    public ArrayList<CustomerEnquiry> listCustomerEnquiries() {
+    public ArrayList<IncidentReport> listIncidentReports() {
 
-        ArrayList<CustomerEnquiry> enquiries = new ArrayList<CustomerEnquiry>();
+        ArrayList<IncidentReport> incidentReports = new ArrayList<>();
 
         //to do - return only submitted enquiries?
         List<Document> enquiriesList = getCollection().find().into(new ArrayList<>());
         for (Document enquiry : enquiriesList) {
-            CustomerEnquiry newEnquiry = new CustomerEnquiry(enquiry);
-            enquiries.add(newEnquiry);
+            IncidentReport newIncidentReport = new IncidentReport(enquiry);
+            incidentReports.add(newIncidentReport);
         }
 
-        return enquiries;
+        return incidentReports;
 
     }
 
