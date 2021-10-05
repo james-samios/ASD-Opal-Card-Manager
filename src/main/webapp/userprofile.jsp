@@ -34,15 +34,13 @@
 
         <li><a href="payment.jsp">Payment</a></li>
 
-        <li><a href="tripmanager.jsp">Trip Planner</a></li>
-
         <li><a href="index.jsp">Logout</a></li>
 
 
     </ul>
 </nav>
 
-<center>
+
     <section>
         <table class="table-style">
             <tbody>
@@ -73,6 +71,6 @@
             </tbody>
         </table>
     </section>
-</center>
+
 </body>
 </html>
