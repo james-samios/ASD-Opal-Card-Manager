@@ -12,19 +12,23 @@
 </head>
 <body class="back">
 
-
-
-<form class="box" action="userprofile.jsp" method="post" id="register">
+<form class="box" action="RegisterServlet" method="post" id="register">
     <h1>Register</h1>
-    <input type="text" id="uname" name="uname" autocomplete="off" placeholder="Username" required>
-    <input type="password" id="upassword" name="upassword" autocomplete="off" placeholder="Password" required>
-    <input type="password" id="cupassword" name="cupassword" autocomplete="off" placeholder="Confirm Password" required>
-    <input type="mail" id="email" name="email" autocomplete="off" placeholder="xxx.xxx@xxx.xxx.xx" required>
+    <input type="text" id="email" name="email" autocomplete="off" placeholder="Email Address" required>
+    <input type="text" id="fname" name="fname" autocomplete="off" placeholder="First Name" required>
+    <input type="text" id="lname" name="lname" autocomplete="off" placeholder="Last Name" required>
+    <input type="text" id="phone" name="phone" autocomplete="off" placeholder="Phone Number" required>
+    <input type="password" id="password" name="password" autocomplete="off" placeholder="Password" required>
+    <input type="password" id="cpassword" name="cpassword" autocomplete="off" placeholder="Confirm Password" required>
+    <br>
+    <input type="text" id="address_line_1" name="address_line_1" autocomplete="off" placeholder="Address Line 1" required>
+    <input type="text" id="address_line_2" name="address_line_2" autocomplete="off" placeholder="Address Line 2">
+    <input type="text" id="suburb" name="suburb" autocomplete="off" placeholder="Suburb" required>
+    <input type="number" id="postcode" name="postcode" autocomplete="off" placeholder="Postcode" required>
+    <input type="text" id="state" name="state" autocomplete="off" placeholder="State" required>
     <input type="submit" form="register" name="register" value="Register">
     <input type="button" value="Back" onclick="location.href='index.jsp'">
-    <p> Already a Customer? <a href="login.jsp">Login</a></p>
-
-
+    <p>Already a Customer? <a href="login.jsp">Click here.</a></p>
 </form>
 
 </body>
