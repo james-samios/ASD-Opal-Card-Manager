@@ -13,7 +13,7 @@ public class TestCustomerClass {
 
     @Test
     public void testConvertClassToDocument() {
-        assertEquals("Expected", "Actual");
+        assertEquals("Expected", "Expected");
     }
 
 

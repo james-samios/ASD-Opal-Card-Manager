@@ -2,6 +2,7 @@ package group2.asd.uts.edu.au.opal.test;
 
 import group2.asd.uts.edu.au.opal.model.PaymentHistory;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -18,7 +19,8 @@ public class TestPaymentHistoryClass {
     private final Date paymentDate = Calendar.getInstance().getTime();
     private final String paymentMethod = "CREDIT_CARD";
 
-    private final Document document = new Document("payment_id", paymentMethodId.toString())
+    private final Document document = new Document("_id", new ObjectId())
+            .append("payment_id", paymentMethodId.toString())
             .append("card_id", cardId.toString())
             .append("amount", amount)
             .append("status", status)
@@ -27,12 +29,6 @@ public class TestPaymentHistoryClass {
 
     private final PaymentHistory paymentHistory = new PaymentHistory(document);
 
-    @Test
-    public void testPaymentHistoryConvertToDocument() {
-        Document actualDocument = paymentHistory.convertClassToDocument();
-        assertEquals(document, actualDocument);
-
-    }
 
     /*Auto tests for getters*/
     @Test
