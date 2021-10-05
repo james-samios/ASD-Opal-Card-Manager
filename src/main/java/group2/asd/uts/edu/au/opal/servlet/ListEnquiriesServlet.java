@@ -2,6 +2,7 @@ package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBConnection;
 import group2.asd.uts.edu.au.opal.dao.DBCustomerEnquiryManager;
+import group2.asd.uts.edu.au.opal.model.Customer;
 import group2.asd.uts.edu.au.opal.model.CustomerEnquiry;
 
 import javax.servlet.ServletException;
@@ -27,18 +28,11 @@ public class ListEnquiriesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         //Retrieve the current session
         HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("customer");
 
-        //Create an instance of the Validator class
-        //Validator validator = (Validator) session.getAttribute("validatorMessage");
-
-        //Initialise the error message
-        //validator.clean(session);
-
-        //Create the Customer Enquiry DBManager
-        //DBCustomerEnquiryManager customerEnquiryManager = (DBCustomerEnquiryManager) session.getAttribute("customerEnquiryManager");
-
+        String accountId = customer.getAccountId().toString();
         ArrayList<CustomerEnquiry> enquiriesList = null;
-        enquiriesList = customerEnquiryManager.listCustomerEnquiries();
+        enquiriesList = customerEnquiryManager.listCustomerEnquiries(accountId);
         session.setAttribute("enquiriesList", enquiriesList);
         request.getRequestDispatcher("/enquiryList.jsp").forward(request, response);
 

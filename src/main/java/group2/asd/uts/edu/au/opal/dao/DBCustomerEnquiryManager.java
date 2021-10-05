@@ -30,11 +30,12 @@ public class DBCustomerEnquiryManager extends DBManager {
      * @param enquiryDate The date the enquiry was submitted.
      * @param enquiryStatus The status of the enquiry (initially set as "Submitted").
      */
-    public void createCustomerEnquiry(final UUID customerEnquiryID, final String enquiryTitle, final String enquiryDetails, final String enquiryDate, final String enquiryStatus) {
+    public void createCustomerEnquiry(final UUID customerEnquiryID, final String accountId, final String enquiryTitle, final String enquiryDetails, final String enquiryDate, final String enquiryStatus) {
         refresh();
 
         Document enquiry = new Document("_id", new ObjectId());
         enquiry.append("enquiry_id", customerEnquiryID.toString())
+                .append("account_id", accountId)
                 .append("enquiry_title", enquiryTitle)
                 .append("enquiry_details", enquiryDetails)
                 .append("date_of_enquiry", enquiryDate)
@@ -68,12 +69,14 @@ public class DBCustomerEnquiryManager extends DBManager {
      * @author Chris
      */
 
-    public ArrayList<CustomerEnquiry> listCustomerEnquiries() {
+    public ArrayList<CustomerEnquiry> listCustomerEnquiries(String accountId) {
 
         ArrayList<CustomerEnquiry> enquiries = new ArrayList<CustomerEnquiry>();
 
-        //to do - return only submitted enquiries?
-        List<Document> enquiriesList = getCollection().find().into(new ArrayList<>());
+        BasicDBObject where = new BasicDBObject();
+        where.put("account_id", accountId);
+
+        List<Document> enquiriesList = getCollection().find(where).into(new ArrayList<>());
         for (Document enquiry : enquiriesList) {
             CustomerEnquiry newEnquiry = new CustomerEnquiry(enquiry);
             enquiries.add(newEnquiry);

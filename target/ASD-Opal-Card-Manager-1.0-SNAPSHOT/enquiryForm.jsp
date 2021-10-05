@@ -10,10 +10,10 @@
 <body>
 
     <div class="navbar">
-        <a href="#home">Home</a>
+        <a href="userprofile.jsp">Return to profile</a>
         <a href="enquiryHome.jsp">Make an enquiry</a>
-        <a href="#contact">Theft or loss</a>
-        <a href="#about">Logout</a>
+        <a href="incidentReportHome.jsp">Theft or loss</a>
+        <a href="index.jsp">Logout</a>
     </div>
 
     <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
@@ -35,20 +35,11 @@
                 </tr>
                 <tr>
                     <td>Enquiry Details:</td>
-                    <td><textarea name="enquiryDetails" rows="5" cols="30" name="enquiryDetails" required></textarea></td>
-                </tr>
-                <tr>
-                    <td>Preferred Contact Method:</td>
-                    <td>
-                        <select name="preferredContactMethod">
-                            <option value="Email">Email</option>
-                            <option value="Phone">Phone</option>
-                        </select>
-                    </td>
+                    <td><textarea name="enquiryDetails" rows="5" cols="30" required></textarea></td>
                 </tr>
             </table>
 
-            <input type="submit" value="Submit Enquiry" class="submitButton">
+            <input type="submit" value="Submit" class="submitButton">
         </form>
 
     </div>
