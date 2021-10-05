@@ -86,18 +86,18 @@ public class DBIncidentReportManager extends DBManager {
     /*   *************************************Methods for "U" section below****************************************   */
 
     /**
-     * Updates a Customer Enquiry status with a provided customerEnquiryId
-     * @param customerEnquiryId The ID of the customer enquiry to be updated.
-     * @param updatedStatus The updated status of the customer enquiry.
+     * Updates a Report status and resolve reason with a provided incidentReportId
+     * @param incidentReportId The ID of the report to be updated.
+     * @param resolveReason The Customer's reason to resolve the report.
+     * @param reportStatus The status to be updated.
      * @author Chris
      */
 
-    public void updateEnquiryStatus(final String customerEnquiryId, final String updatedStatus) {
+    public void updateResolveReason(final String incidentReportId, final String resolveReason, final String reportStatus) {
         BasicDBObject where = new BasicDBObject();
-        where.put("enquiry_id", customerEnquiryId);
-        getCollection().updateOne(where, Updates.set("enquiry_status", updatedStatus));
-
-        // to do
+        where.put("report_id", incidentReportId);
+        getCollection().updateOne(where, Updates.set("resolve_reason", resolveReason));
+        getCollection().updateOne(where, Updates.set("report_status", reportStatus));
     }
 
     /**

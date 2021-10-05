@@ -40,7 +40,7 @@
                 </tr>
                 <tr>
                     <td>Report Details:</td>
-                    <td><textarea name="incidentReportDetails" rows="5" cols="30" name="incidentReportDetails" required></textarea></td>
+                    <td><textarea name="incidentReportDetails" rows="5" cols="30" required></textarea></td>
                 </tr>
                 <tr>
                     <td>Date the incident occurred:</td>

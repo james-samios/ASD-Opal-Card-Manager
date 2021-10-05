@@ -130,4 +130,13 @@
         <url-pattern>/IncidentReportDetailsServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CustomerResolveReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CustomerResolveReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerResolveReportServlet</servlet-name>
+        <url-pattern>/CustomerResolveReportServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

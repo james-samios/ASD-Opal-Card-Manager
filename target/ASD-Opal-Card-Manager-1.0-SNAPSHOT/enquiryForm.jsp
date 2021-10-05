@@ -35,20 +35,11 @@
                 </tr>
                 <tr>
                     <td>Enquiry Details:</td>
-                    <td><textarea name="enquiryDetails" rows="5" cols="30" name="enquiryDetails" required></textarea></td>
-                </tr>
-                <tr>
-                    <td>Preferred Contact Method:</td>
-                    <td>
-                        <select name="preferredContactMethod">
-                            <option value="Email">Email</option>
-                            <option value="Phone">Phone</option>
-                        </select>
-                    </td>
+                    <td><textarea name="enquiryDetails" rows="5" cols="30" required></textarea></td>
                 </tr>
             </table>
 
-            <input type="submit" value="Submit Enquiry" class="submitButton">
+            <input type="submit" value="Submit Reason" class="submitButton">
         </form>
 
     </div>

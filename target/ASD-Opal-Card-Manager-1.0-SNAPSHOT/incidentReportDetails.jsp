@@ -50,11 +50,11 @@
             </tr>
         </table>
 
-        <p>If you no longer need to continue with the report, click here to request an early resolution.</p>
+        <p>If you no longer need to continue with the report, <a href="resolveIncidentReport.jsp">click here</a> to request an early resolution.</p>
 
         <div class="addComments">
             <h2>Add Comments</h2>
-            <p>You can provide comments to your enquiry if you have further details.</p>
+            <p>You can provide comments to your report if you have further details.</p>
             <form>
                 <textarea name="enquiryComments" rows="5" col="50"></textarea>
                 <div style="padding: 10px;">

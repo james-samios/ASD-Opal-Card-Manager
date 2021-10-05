@@ -19,28 +19,19 @@
     <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
 
     <div class="return">
-        <a href="enquiryHome.jsp">&lt Return</a>
+        <a href="incidentReportDetails.jsp">&lt Return</a>
     </div>
 
     <div class="enquirySubmissionForm">
-        <h1>Report Theft or Loss</h1>
-        <p>Please fill out the following details to report a case of a stolen or lost Opal Card.</p>
+        <h1>Request to resolve a report</h1>
+        <p>Please fill out the reason for resolving your report. Your Opal Card will remain locked until reviewed by our team. We thank you for your patience.</p>
 
-        <form method="post" action="CreateIncidentReportServlet">
+        <form method="post" action="CustomerResolveReportServlet">
 
             <table>
                 <tr>
-                    <td>Report Type:</td>
-                    <td>
-                        <select name="incidentReportType">
-                            <option value="Missing Opal Card">Missing Opal Card</option>
-                            <option value="Stolen Opal Card">Stolen Opal Card</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Report Details:</td>
-                    <td><textarea name="incidentReportDetails" rows="5" cols="30" required></textarea></td>
+                    <td>Reason:</td>
+                    <td><textarea name="resolveReason" rows="5" cols="30" required></textarea></td>
                 </tr>
                 <tr>
                     <td>Date the incident occurred:</td>
