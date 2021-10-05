@@ -20,7 +20,7 @@
     </label>
     <label class="logo">My Profile</label>
     <ul>
-        <li><a href="linkedopalcards.jsp">Opal Cards</a></li>
+        <li><a href="LinkedOpalCardsServlet">Opal Cards</a></li>
 
         <li><a href="EditProfileServlet">Edit Profile</a></li>
 

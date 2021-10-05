@@ -10,6 +10,7 @@
   Time: 1:56 am
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,16 +21,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-
 <%
-    //Customer customer = (Customer) session.getAttribute("customer");
+    Customer customer = (Customer) session.getAttribute("customer");
     //List<Card> cards = customer.getLinkedCards();
-    ArrayList<Trip> trips = new ArrayList<Trip>();
-    trips.add(new Trip("Kings Cross", "Bondi Junction", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 1.49));
-    trips.add(new Trip("Kings Cross2", "Bondi Junction", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 1.49));
-    trips.add(new Trip("Kings Cross3", "Bondi Junction", Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 1.49));
-
+    ArrayList<Trip> tripList = (ArrayList<Trip>) request.getAttribute("trips");
+    Trip trip1 = tripList.get(0);
+    Trip trip2 = tripList.get(1);
+    Trip trip3 = tripList.get(2);
 %>
+
 <body>
 
 <nav class="customer">
@@ -84,15 +84,32 @@
                 <th class = "table-header">Details</th>
                 <th class = "table-header">Fare</th>
             </tr>
-            <c:forEach items="${trips}" var="t">
-            <tr class = "table-style">
-                <td class = "table-style customer"><c:out value="${t.tripStart}"/></td>
-                <td class = "table-style customer"><c:out value="${t.tripEnd}"/></td>
-                <td class = "table-style customer"><c:out value="${t.startTime}"/></td>
-                <td class = "table-style customer"><c:out value="${t.endTime}"/></td>
-                <td class = "table-style customer"><c:out value="${t.fare}"/></td>
-            </tr>
-            </c:forEach>
+            <c:if test = "${customer.getFirstName().equals('test')}">
+                <%
+                    System.out.println("new row");
+                    System.out.println(trip1.toString());
+                    System.out.println(trip1.getTripStart());
+                %>
+                <tr class = "table-style">
+                    <td class = "table-style customer">9/2/2021 12:32</td>
+                    <td class = "table-style customer">Train</td>
+                    <td class = "table-style customer">Kings Cross to Town Hall</td>
+                    <td class = "table-style customer">$1.49</td>
+                </tr>
+                <tr class = "table-style">
+                    <td class = "table-style customer">29/6/2021 21:20</td>
+                    <td class = "table-style customer">Bus</td>
+                    <td class = "table-style customer">High St nr Gate 9 UNSW to Eddy Av</td>
+                    <td class = "table-style customer">$1.49</td>
+                </tr>
+                <tr class = "table-style">
+                    <td class = "table-style customer">17/9/2021 10:08</td>
+                    <td class = "table-style customer">Ferry</td>
+                    <td class = "table-style customer">Balmain East to Circular Quay</td>
+                    <td class = "table-style customer">$2</td>
+                </tr>
+            </c:if>
+        </table>
      </div>
 </section>
 </body>
