@@ -15,10 +15,10 @@
 <body>
 
     <div class="navbar">
-        <a href="#home">Home</a>
+        <a href="userprofile.jsp">Return to profile</a>
         <a href="enquiryHome.jsp">Make an enquiry</a>
         <a href="incidentReportHome.jsp">Theft or loss</a>
-        <a href="#about">Logout</a>
+        <a href="index.jsp">Logout</a>
     </div>
 
     <%
@@ -47,6 +47,11 @@
 
         <span><%=(enquirySearchErr != null ? enquirySearchErr : "")%></span>
 
+            <%
+                if (customerEnquiryList != null) {
+                    for (CustomerEnquiry customerEnquiry: customerEnquiryList){
+            %>
+
         <table class="enquiryTable">
             <tr>
                 <th>Enquiry ID</th>
@@ -56,11 +61,6 @@
                 <th>Status</th>
             </tr>
 
-            <%
-                if (customerEnquiryList != null) {
-                    for (CustomerEnquiry customerEnquiry: customerEnquiryList){
-            %>
-
             <tr>
                 <td><%=customerEnquiry.getCustomerEnquiryId()%></td>
                 <td><%=customerEnquiry.getEnquiryTitle()%></td>
@@ -68,17 +68,19 @@
                 <td><%=customerEnquiry.getEnquiryDate()%></td>
                 <td><%=customerEnquiry.getEnquiryStatus()%></td>
             </tr>
+        </table>
+
+            <%
+                }
+                } else {
+            %>
+
+        <p>There are no enquiries to view. <a href="enquiryForm.jsp">Click here</a> to submit an enquiry.</p>
+
             <%
                 }
             %>
-
-
-        </table>
-
     </div>
-    <%
-        }
-    %>
 
 </body>
 </html>

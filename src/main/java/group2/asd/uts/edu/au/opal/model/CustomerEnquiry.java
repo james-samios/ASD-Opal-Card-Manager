@@ -11,6 +11,7 @@ public class CustomerEnquiry extends Document {
 
     private ObjectId objectId;
     private final UUID customerEnquiryId;
+    private String accountId;
     private String enquiryTitle;
     private String enquiryDetails;
     private String enquiryDate; //requires Date type
@@ -27,6 +28,7 @@ public class CustomerEnquiry extends Document {
     public CustomerEnquiry(final Document document) {
         this.objectId = new ObjectId(document.get("_id").toString());
         this.customerEnquiryId = UUID.fromString(document.getString("enquiry_id"));
+        this.accountId = document.getString("account_id");
         this.enquiryTitle = document.getString("enquiry_title");
         this.enquiryDetails = document.getString("enquiry_details");
         this.enquiryDate = document.getString("date_of_enquiry"); //to fix
@@ -45,8 +47,9 @@ public class CustomerEnquiry extends Document {
      * @author Chris
      */
 
-    public CustomerEnquiry(final UUID customerEnquiryId, final String enquiryTitle, final String enquiryDetails, final String enquiryDate, final String enquiryStatus) {
+    public CustomerEnquiry(final UUID customerEnquiryId, final String accountId, final String enquiryTitle, final String enquiryDetails, final String enquiryDate, final String enquiryStatus) {
         this.customerEnquiryId = customerEnquiryId;
+        this.accountId = accountId;
         this.enquiryTitle = enquiryTitle;
         this.enquiryDetails = enquiryDetails;
         this.enquiryDate = enquiryDate; //to fix
@@ -58,6 +61,7 @@ public class CustomerEnquiry extends Document {
         return "" +
                 getObjectId() + " - " +
                 getCustomerEnquiryId() + " - " +
+                getAccountId() + " - " +
                 getEnquiryTitle() + " - " +
                 getEnquiryDetails() + " - " +
                 getEnquiryDate() + " - " +

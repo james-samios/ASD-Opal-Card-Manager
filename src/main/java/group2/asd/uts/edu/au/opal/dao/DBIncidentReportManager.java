@@ -73,7 +73,6 @@ public class DBIncidentReportManager extends DBManager {
 
         ArrayList<IncidentReport> incidentReports = new ArrayList<>();
 
-        //to do - return only submitted enquiries?
         BasicDBObject where = new BasicDBObject();
         where.put("account_id", accountId);
 

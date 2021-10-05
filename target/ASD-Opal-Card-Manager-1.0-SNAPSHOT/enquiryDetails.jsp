@@ -15,10 +15,10 @@
 <body>
 
     <div class="navbar">
-        <a href="#home">Home</a>
+        <a href="userprofile.jsp">Return to profile</a>
         <a href="enquiryHome.jsp">Make an enquiry</a>
         <a href="incidentReportHome.jsp">Theft or loss</a>
-        <a href="#about">Logout</a>
+        <a href="index.jsp">Logout</a>
     </div>
 
     <%
