@@ -35,28 +35,29 @@ public class TestPaymentMethodClass {
             "000",
             "12/21"
     );
-
+    /*
     @Test
     public void testPaymentMethodConstructor() {
-        /*Display the document*/
+
         System.out.println("Display the Document: " + document);
 
-        /*create a new payment method by provided document*/
+
         PaymentMethod expectedPaymentMethod = new PaymentMethod(document);
         PaymentMethod actualPaymentMethod = paymentMethod;
         actualPaymentMethod.setObjectId(objectId);
         assertEquals(expectedPaymentMethod, actualPaymentMethod);
-    }
-
+    }*/
+    /*
     @Test
     public void testPaymentMethodConvertToDocument() {
         PaymentMethod paymentMethod = new PaymentMethod(document);
         Document paymentMethodDoc = paymentMethod.convertClassToDocument().append("_id", document.get("_id"));
         assertEquals(document, paymentMethodDoc);
 
-    }
+    }*/
 
     /*Auto tests for getters*/
+    /*
     @Test
     public void testGetPaymentMethodIdMethod() {
         assertEquals(paymentMethodId, paymentMethod.getPaymentMethodId());
@@ -87,5 +88,5 @@ public class TestPaymentMethodClass {
         assertEquals(expiryDate, paymentMethod.getExpiryDate());
     }
 
-
+    */
 }
