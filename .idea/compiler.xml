@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ASD-Opal-Card-Manager" />
-        <module name="asd-opalcard-activation" />
       </profile>
     </annotationProcessing>
   </component>

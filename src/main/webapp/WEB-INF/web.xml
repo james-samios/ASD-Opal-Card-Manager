@@ -76,6 +76,7 @@
             <url-pattern>/CancelAutoTopUpServlet</url-pattern>
         </servlet-mapping>
 
+
         <servlet>
             <servlet-name>LinkedOpalCardsServlet</servlet-name>
             <servlet-class>group2.asd.uts.edu.au.opal.servlet.LinkedOpalCardsServlet</servlet-class>
@@ -86,5 +87,67 @@
         </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>CreateCustomerEnquiryServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CreateCustomerEnquiryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateCustomerEnquiryServlet</servlet-name>
+        <url-pattern>/CreateCustomerEnquiryServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListEnquiriesServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ListEnquiriesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListEnquiriesServlet</servlet-name>
+        <url-pattern>/ListEnquiriesServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EnquiryDetailsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.EnquiryDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EnquiryDetailsServlet</servlet-name>
+        <url-pattern>/EnquiryDetailsServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateIncidentReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CreateIncidentReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateIncidentReportServlet</servlet-name>
+        <url-pattern>/CreateIncidentReportServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListIncidentReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ListIncidentReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListIncidentReportServlet</servlet-name>
+        <url-pattern>/ListIncidentReportServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>IncidentReportDetailsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.IncidentReportDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IncidentReportDetailsServlet</servlet-name>
+        <url-pattern>/IncidentReportDetailsServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomerResolveReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CustomerResolveReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerResolveReportServlet</servlet-name>
+        <url-pattern>/CustomerResolveReportServlet</url-pattern>
+    </servlet-mapping>
 
 </web-app>
