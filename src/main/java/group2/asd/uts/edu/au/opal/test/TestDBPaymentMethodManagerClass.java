@@ -5,10 +5,8 @@ import com.mongodb.client.MongoClients;
 import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 import org.junit.Test;
-
-import java.util.UUID;
-
 import static org.junit.Assert.*;
+import java.util.UUID;
 
 public class TestDBPaymentMethodManagerClass {
     private final DBPaymentMethodManager dbPaymentMethodManager;

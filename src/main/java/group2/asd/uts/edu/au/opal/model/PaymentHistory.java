@@ -1,10 +1,8 @@
 package group2.asd.uts.edu.au.opal.model;
 
 import lombok.Getter;
-import org.bson.Document;
-
 import java.util.UUID;
-
+import org.bson.Document;
 @Getter
 public class PaymentHistory extends Document {
     private final UUID paymentId;

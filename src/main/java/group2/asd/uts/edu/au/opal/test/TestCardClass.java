@@ -7,11 +7,9 @@ import group2.asd.uts.edu.au.opal.model.Trip;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.UUID;
-
 import static org.junit.Assert.*;
 
 public class TestCardClass {

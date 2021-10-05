@@ -1,6 +1,10 @@
 package group2.asd.uts.edu.au.opal.test;
 
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClients;
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
+
 import group2.asd.uts.edu.au.opal.model.Card;
 import group2.asd.uts.edu.au.opal.model.CardType;
 import group2.asd.uts.edu.au.opal.model.TopUp;
@@ -13,7 +17,6 @@ import java.util.Calendar;
 import java.util.UUID;
 
 import static org.junit.Assert.*;
-
 public class TestDBCardManagerClass {
 
     private final DBCardsManager dbCardsManager;

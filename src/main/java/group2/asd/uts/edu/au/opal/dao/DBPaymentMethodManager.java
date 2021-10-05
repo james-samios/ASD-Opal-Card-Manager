@@ -13,9 +13,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * DBPaymentMethodManager is used for access of PaymentMethod table on mongoDB
- *
- * */
+* DBPaymentMethodManager is used for access of PaymentMethod table on mongoDB
+*
+* */
 @Getter
 public class DBPaymentMethodManager {
     private final MongoCollection<Document> collection;

@@ -5,15 +5,6 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>ConnServlet</servlet-name>
-        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ConnServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ConnServlet</servlet-name>
-        <url-pattern>/ConnServlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>group2.asd.uts.edu.au.opal.servlet.LoginServlet</servlet-class>
     </servlet>
@@ -23,56 +14,129 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>CardLoginServlet</servlet-name>
-        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CardLoginServlet</servlet-class>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.RegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CardLoginServlet</servlet-name>
-        <url-pattern>/CardLoginServlet</url-pattern>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+
+        <servlet>
+            <servlet-name>CardLoginServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.CardLoginServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>CardLoginServlet</servlet-name>
+            <url-pattern>/CardLoginServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>LogoutServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.LogoutServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>LogoutServlet</servlet-name>
+            <url-pattern>/LogoutServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>TopUpServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.TopUpServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>TopUpServlet</servlet-name>
+            <url-pattern>/TopUpServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>CardStatusServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.CardStatusServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>CardStatusServlet</servlet-name>
+            <url-pattern>/CardStatusServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>AutoTopUpServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.AutoTopUpServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>AutoTopUpServlet</servlet-name>
+            <url-pattern>/AutoTopUpServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>CancelAutoTopUpServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.CancelAutoTopUpServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>CancelAutoTopUpServlet</servlet-name>
+            <url-pattern>/CancelAutoTopUpServlet</url-pattern>
+        </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateCustomerEnquiryServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CreateCustomerEnquiryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateCustomerEnquiryServlet</servlet-name>
+        <url-pattern>/CreateCustomerEnquiryServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>group2.asd.uts.edu.au.opal.servlet.LogoutServlet</servlet-class>
+        <servlet-name>ListEnquiriesServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ListEnquiriesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/LogoutServlet</url-pattern>
+        <servlet-name>ListEnquiriesServlet</servlet-name>
+        <url-pattern>/ListEnquiriesServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>TopUpServlet</servlet-name>
-        <servlet-class>group2.asd.uts.edu.au.opal.servlet.TopUpServlet</servlet-class>
+        <servlet-name>EnquiryDetailsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.EnquiryDetailsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>TopUpServlet</servlet-name>
-        <url-pattern>/TopUpServlet</url-pattern>
+        <servlet-name>EnquiryDetailsServlet</servlet-name>
+        <url-pattern>/EnquiryDetailsServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>CardStatusServlet</servlet-name>
-        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CardStatusServlet</servlet-class>
+        <servlet-name>CreateIncidentReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CreateIncidentReportServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CardStatusServlet</servlet-name>
-        <url-pattern>/CardStatusServlet</url-pattern>
+        <servlet-name>CreateIncidentReportServlet</servlet-name>
+        <url-pattern>/CreateIncidentReportServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>AutoTopUpServlet</servlet-name>
-        <servlet-class>group2.asd.uts.edu.au.opal.servlet.AutoTopUpServlet</servlet-class>
+        <servlet-name>ListIncidentReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ListIncidentReportServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AutoTopUpServlet</servlet-name>
-        <url-pattern>/AutoTopUpServlet</url-pattern>
+        <servlet-name>ListIncidentReportServlet</servlet-name>
+        <url-pattern>/ListIncidentReportServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>CancelAutoTopUpServlet</servlet-name>
-        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CancelAutoTopUpServlet</servlet-class>
+        <servlet-name>IncidentReportDetailsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.IncidentReportDetailsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CancelAutoTopUpServlet</servlet-name>
-        <url-pattern>/CancelAutoTopUpServlet</url-pattern>
+        <servlet-name>IncidentReportDetailsServlet</servlet-name>
+        <url-pattern>/IncidentReportDetailsServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomerResolveReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CustomerResolveReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerResolveReportServlet</servlet-name>
+        <url-pattern>/CustomerResolveReportServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
