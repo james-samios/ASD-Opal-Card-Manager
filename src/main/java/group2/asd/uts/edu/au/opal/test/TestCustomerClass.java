@@ -10,11 +10,4 @@ public class TestCustomerClass {
         String str = "Junit test";
         assertEquals(str, "Junit test");
     }
-
-    @Test
-    public void testConvertClassToDocument() {
-        assertEquals("Expected", "Actual");
-    }
-
-
 }
