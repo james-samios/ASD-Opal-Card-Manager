@@ -35,6 +35,9 @@
         <li><a href="payment.jsp">Payment</a></li>
 
         <li><a href="index.jsp">Logout</a></li>
+        
+        <li><a href="tripmanager.jsp">Trip Planner</a></li>
+
     </ul>
 </nav>
 

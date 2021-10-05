@@ -30,7 +30,7 @@
     <label class="logo">Payment Details</label>
 
     <ul>
-        <li><a href="userprofile.jsp">BACK</a></li>
+        <li><a href="payment.jsp">BACK</a></li>
     </ul>
 
 </nav>

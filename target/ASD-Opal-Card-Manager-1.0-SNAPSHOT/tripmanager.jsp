@@ -4,10 +4,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="CSS/index.css">
-    <title>Home Page</title>
+    <link rel="stylesheet" href="CSS/tripmanager.css">
+    <title>Trip Planner</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <nav>
@@ -20,7 +20,6 @@
         <li><a href="opalcard.jsp">Opal Card</a></li>
         <li><a href="login.jsp">Sign in</a></li>
         <li><a href="register.jsp">Sign up</a></li>
-
     </ul>
 </nav>
 <section></section>

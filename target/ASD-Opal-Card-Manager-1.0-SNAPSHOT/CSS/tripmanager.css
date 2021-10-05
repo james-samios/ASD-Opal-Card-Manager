@@ -1,24 +1,4 @@
-
-body {
-    /*
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url('https://miro.medium.com/max/4800/0*Ujfq0bFIEYEoMiEG');
-    */
-    font-family: Arial, Helvetica, sans-serif;
-    background:linear-gradient(rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5) 100%), url('../img/background.jpg');
-
-}
-* {
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
-
-
-}
-
-/** Navigation bar **/
+/** Nav**/
 
 nav {
     /*background: #3CB371;*/
@@ -138,57 +118,3 @@ a:hover {
 .customer {
     background: #3FB0AC;
 }
-
-/** Table **/
-
-.table-style {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    max-width: 100%;
-    min-width: 40%;
-    border-radius: 3px 3px 3px 3px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
-
-.table-style thead tr {
-    background-color: #3CB371;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-
-}
-
-.table-style th,
-.table-style td {
-    padding: 12px 15px;
-    text-align: center;
-
-}
-
-.table-style tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-
-.table-style tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-.table-style tbody tr:nth-of-type(odd) {
-    background-color: white;
-}
-
-
-.table-style tbody tr:last-of-type {
-    border-bottom: 1px solid white;
-}
-
-
-.table-header {
-    color: #ffffff;
-    font-weight: bold;
-    width: 40%;
-}
-
