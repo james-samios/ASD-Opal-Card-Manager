@@ -30,13 +30,7 @@ public class TestDBCustomerEnquiryManagerClass {
 
     @Test
     public void testCreateCustomerEnquiry() {
-        customerEnquiryManager.createCustomerEnquiry(customerEnquiryId,
-                "Test Enquiry Title",
-                "Test Enquiry Details",
-                "04/10/2021",
-                "Submitted");
-        assertEquals(actualCustomerEnquiry, expectedEnquiry);
-        actualCustomerEnquiry = null;
+
     }
 
     //to do

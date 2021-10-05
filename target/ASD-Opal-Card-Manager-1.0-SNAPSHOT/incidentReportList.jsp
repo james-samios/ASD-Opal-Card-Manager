@@ -48,6 +48,11 @@
 
         <span><%=(reportSearchErr != null ? reportSearchErr : "")%></span>
 
+            <%
+                if (incidentReportsList != null) {
+                    for (IncidentReport incidentReport: incidentReportsList){
+            %>
+
         <table class="enquiryTable">
             <tr>
                 <th>Report ID</th>
@@ -57,11 +62,6 @@
                 <th>Status</th>
             </tr>
 
-            <%
-                if (incidentReportsList != null) {
-                    for (IncidentReport incidentReport: incidentReportsList){
-            %>
-
             <tr>
                 <td><%=incidentReport.getIncidentReportId()%></td>
                 <td><%=incidentReport.getIncidentReportType()%></td>
@@ -69,17 +69,21 @@
                 <td><%=incidentReport.getIncidentReportDate()%></td>
                 <td><%=incidentReport.getIncidentReportStatus()%></td>
             </tr>
-            <%
-                }
-            %>
-
 
         </table>
 
+            <%
+                }
+                } else {
+            %>
+
+        <p>There are no reports submitted. <a href="incidentReportForm.jsp">Click here</a> to lodge a report.</p>
+
+        <%
+            }
+        %>
+
     </div>
-    <%
-        }
-    %>
 
 </body>
 </html>

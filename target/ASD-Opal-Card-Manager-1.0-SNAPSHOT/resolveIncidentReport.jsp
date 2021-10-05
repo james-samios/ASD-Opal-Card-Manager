@@ -35,7 +35,7 @@
                 </tr>
             </table>
 
-            <input type="submit" value="Lodge Report" class="submitButton">
+            <input type="submit" value="Submit" class="submitButton">
         </form>
 
     </div>

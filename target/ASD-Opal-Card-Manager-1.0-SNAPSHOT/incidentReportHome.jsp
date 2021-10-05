@@ -28,7 +28,9 @@
         <h1>Lost or Stolen Opal Cards</h1>
         <p>If your Opal Card was lost or stolen, lodge a report so our team can investigate and freeze your card from unauthorised transactions.</p>
         <button class="button" onclick="document.location='incidentReportForm.jsp'">Make a report</button>
-        <form action="ListIncidentReportServlet" method="post"><input type="submit" value="View Your Lodged Reports"></form>
+        <h1>My Lodged Reports</h1>
+        <p>If you have a lodged a report, you can view your reports and their status.</p>
+        <form action="ListIncidentReportServlet" method="post"><input class="button" type="submit" value="View Your Lodged Reports"></form>
 
     </div>
 

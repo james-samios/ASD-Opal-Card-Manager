@@ -11,6 +11,7 @@ public class IncidentReport extends Document {
 
     private ObjectId objectId;
     private final UUID incidentReportId;
+    private String accountId;
     private String incidentReportType;
     private String incidentReportDetails;
     private String incidentReportDate; //requires Date type
@@ -47,7 +48,8 @@ public class IncidentReport extends Document {
      * @author Chris
      */
 
-    public IncidentReport(final UUID incidentReportId, final String incidentReportType, final String incidentReportDetails, final String incidentReportDate, final String incidentReportStatus, final String resolveReason) {
+    public IncidentReport(final UUID incidentReportId, final String accountId, final String incidentReportType, final String incidentReportDetails, final String incidentReportDate, final String incidentReportStatus, final String resolveReason) {
+        this.accountId = accountId;
         this.incidentReportId = incidentReportId;
         this.incidentReportType = incidentReportType;
         this.incidentReportDetails = incidentReportDetails;
@@ -61,6 +63,7 @@ public class IncidentReport extends Document {
         return "" +
                 getObjectId() + " - " +
                 getIncidentReportId() + " - " +
+                getAccountId() + " - " +
                 getIncidentReportType() + " - " +
                 getIncidentReportDetails() + " - " +
                 getIncidentReportDate() + " - " +

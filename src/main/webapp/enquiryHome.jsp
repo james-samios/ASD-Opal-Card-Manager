@@ -26,9 +26,11 @@
 
     <div class="enquiryHome">
         <h1>Make an enquiry</h1>
-        <p>Our team is ready to provide you answers to any of your questions.</p>
+        <p>Our team is ready to provide answers to any of your questions.</p>
         <button class="button" onclick="document.location='enquiryForm.jsp'">Make an enquiry</button>
-        <form action="ListEnquiriesServlet" method="post"><input type="submit" value="View Your Enquiries"></form>
+        <h1>My enquiries</h1>
+        <p>If you have submitted enquiries you can view your enquiries and their status.</p>
+        <form action="ListEnquiriesServlet" method="post"><input class="button" type="submit" value="View Your Enquiries"></form>
 
     </div>
 
