@@ -20,13 +20,15 @@
     </label>
     <label class="logo">My Profile</label>
     <ul>
-        <li><a href="linkedopalcards.jsp">Opal Cards</a></li>
+        <li><a href="LinkedOpalCardsServlet">Opal Cards</a></li>
 
         <li><a href="EditProfileServlet">Edit Profile</a></li>
 
         <li><a href="ChangePasswordServlet">Change Password</a></li>
 
         <li><a href="DeleteUserServlet">Delete Account</a></li>
+
+        <li><a href="payment.jsp">Payment</a></li>
 
         <li><a href="enquiryHome.jsp">Make an Enquiry</a></li>
 

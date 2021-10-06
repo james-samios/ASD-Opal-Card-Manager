@@ -26,7 +26,7 @@ public class TestCardClass {
     final boolean locked = false;
     final TopUp topUp = new TopUp(UUID.randomUUID(), false, 10, 5);
     final Trip trip = new Trip("Kings Cross", "Bondi Junction",
-                Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
+                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 2.20);
     final ArrayList<Trip> trips = new ArrayList<Trip>() {{
             add(trip);
     }};

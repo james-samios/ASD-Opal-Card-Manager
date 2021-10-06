@@ -14,12 +14,14 @@ public class TestTripClass {
     private final String tripEnd = "Bondi Junction";
     private final Date startTime = Calendar.getInstance().getTime();
     private final Date endTime = Calendar.getInstance().getTime();
+    private final Double fare = 1.49;
     private final Document document = new Document("trip_start", tripStart)
             .append("trip_end", tripEnd)
             .append("start_time", startTime)
-            .append("end_time", endTime);
+            .append("end_time", endTime)
+            .append("fare", fare);
 
-    private final Trip expectedTrip = new Trip(tripStart, tripEnd, startTime, endTime);
+    private final Trip expectedTrip = new Trip(tripStart, tripEnd, startTime, endTime, fare);
 
 
     @Test
