@@ -109,6 +109,53 @@
                 </td>
                 <%}%>
             </tr>
+            <%if(isAutoTopUp) {
+                PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
+            %>
+
+                    <tr>
+                        <td class="<%=tdClass%>">Payment Method</td>
+                        <td class="<%=tdClass%>"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="<%=tdClass%>">Card Number</td>
+                        <td><%=paymentMethod.getCardNumber()%></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="<%=tdClass%>">Card Owner Name</td>
+                        <td><%=paymentMethod.getCardName()%></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="<%=tdClass%>">CVC</td>
+                        <td><%=paymentMethod.getCardCVC()%></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="<%=tdClass%>">Card Expiry</td>
+                        <td><%=paymentMethod.getExpiryDate()%></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="<%=tdClass%>">Top-Up Amount</td>
+                        <td><%=amount%></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="<%=tdClass%>">When</td>
+                        <td><%=when%></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                <%}%>
             </tbody>
         </table>
     </section>

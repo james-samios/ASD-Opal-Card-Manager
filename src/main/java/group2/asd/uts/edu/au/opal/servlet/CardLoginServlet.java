@@ -62,23 +62,32 @@ public class CardLoginServlet extends HttpServlet {
                 /*clean previous input*/
                 validator.clean(session);
 
-                //Store customer into attribute
-                session.setAttribute("card", card);
-
                 if(card.getTopUp().isEnabled()) {
                     DBPaymentMethodManager dbPaymentMethodManager = new DBPaymentMethodManager();
                     PaymentMethod paymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(
                             card.getTopUp().getPaymentMethodId().toString());
-                    System.out.println(paymentMethod);
-                    session.setAttribute("paymentMethod", paymentMethod);
+
+                    //Check the paymentMethod is null, then disable the payment
+                    if(paymentMethod == null) {
+                        card.setTopUpEnabled(false);
+                    } else {
+                        //otherwise, store payment into session
+                        session.setAttribute("paymentMethod", paymentMethod);
+                    }
                 }
 
                 if(card.getAccountId() != UUID.fromString("00000000-0000-0000-0000-000000000000")) {
                     DBCustomerManager dbCustomerManager = new DBCustomerManager();
                     Customer customer = dbCustomerManager.getCustomerByAccountId(card.getAccountId());
-                    session.setAttribute("customerEmail", customer.getEmailAddress());
-
+                    if(customer != null) {
+                        session.setAttribute("customerEmail", customer.getEmailAddress());
+                    }else {
+                        session.setAttribute("customerEmail", "OFF");
+                    }
                 }
+
+                //Store customer into attribute
+                session.setAttribute("card", card);
 
                 //Push view to welcome.jsp
                 req.getRequestDispatcher("/carddetails.jsp").forward(req, resp);
@@ -91,6 +100,8 @@ public class CardLoginServlet extends HttpServlet {
             }
         }
     }
+
+
     private void setPreviousInput(HttpSession session, HttpServletRequest req, HttpServletResponse resp,
                                   final String cardNumber, final String cardPin)
             throws IOException, ServletException {
