@@ -33,11 +33,6 @@ public class TestCustomerClass {
     }
 
     @Test
-    public void testCustomerPhone() {
-        assertEquals(phone, expectedCustomer.getPhoneNumber());
-    }
-
-    @Test
     public void testCustomerAddress() {
         assertEquals(address, expectedCustomer.getAddress());
     }
