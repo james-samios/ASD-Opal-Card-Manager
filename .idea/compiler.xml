@@ -8,6 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ASD-Opal-Card-Manager" />
+<<<<<<< Updated upstream
+=======
+        <module name="ASD-Opal-Card-Manager-Master" />
+        <module name="ASD-Opal-Card-Manager-master" />
+>>>>>>> Stashed changes
       </profile>
     </annotationProcessing>
   </component>
