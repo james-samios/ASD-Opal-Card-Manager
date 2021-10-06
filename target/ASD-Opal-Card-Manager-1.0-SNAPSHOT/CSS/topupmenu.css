@@ -1,0 +1,126 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 06/09/2022, 7:56:33 PM
+    Author     : Administrator
+*/
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:linear-gradient(rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5) 100%), url('../img/background.jpg');
+}
+
+
+.box {
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    text-align: center;
+    border-radius: 4px;
+}
+.box h1{
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+
+}
+
+.box input[type = "text"],
+.box input[type = "password"],
+.box input[type = "mail"],
+.box input[type = "date"],
+.box input[type = "month"],
+.box input[type = "tel"],
+.box select {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #778899;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: black;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.box input[type = "text"]:focus,
+.box input[type = "password"]:focus,
+.box input[type = "mail"]:focus,
+.box input[type = "date"]:focus,
+.box input[type = "month"]:focus,
+.box input[type = "tel"]:focus {
+    width: 280px;
+    border-color: #3498db;
+}
+
+.box select:focus {
+    width: 250px;
+    border-color: #3498db;
+}
+
+.box input[type = "submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: black;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+
+}
+
+.box input[type = "submit"]:hover {
+    background: #2ecc71;
+    color: white;
+}
+
+.box input[type = "button"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #CD5C5C;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: black;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+
+}
+
+.box input[type = "button"]:hover {
+    background: #CD5C5C;
+    color: white;
+}
+
+.box p {
+
+}
+
+.successinfo {
+    color: green;
+}
+
+.errorinfo {
+    color: red;
+}
+
