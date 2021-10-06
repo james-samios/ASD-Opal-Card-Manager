@@ -3,17 +3,6 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="ASD-Opal-Card-Manager" />
-<<<<<<< Updated upstream
-=======
-        <module name="ASD-Opal-Card-Manager-Master" />
-        <module name="ASD-Opal-Card-Manager-master" />
->>>>>>> Stashed changes
-      </profile>
     </annotationProcessing>
   </component>
 </project>

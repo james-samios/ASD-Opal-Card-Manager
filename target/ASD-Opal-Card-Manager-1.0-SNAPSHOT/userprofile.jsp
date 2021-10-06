@@ -24,6 +24,10 @@
 
         <li><a href="EditProfileServlet">Edit Profile</a></li>
 
+        <li><a href="ChangePasswordServlet">Change Password</a></li>
+
+        <li><a href="DeleteUserServlet">Delete Account</a></li>
+
         <li><a href="payment.jsp">Payment</a></li>
 
         <li><a href="enquiryHome.jsp">Make an Enquiry</a></li>

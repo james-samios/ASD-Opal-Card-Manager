@@ -10,6 +10,7 @@ import org.bson.types.ObjectId;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 @Getter
 public class DBCustomerManager extends DBManager {
@@ -99,6 +100,23 @@ public class DBCustomerManager extends DBManager {
         BasicDBObject where = new BasicDBObject();
         where.put("email_address", email);
         where.put("password", stringToMd5(password));
+        Document doc = getCollection().find(where).first();
+        if (doc == null || doc.isEmpty()) return null;
+        return new Customer(doc);
+    }
+
+    /**
+     * Returns a Customer with provided email and password.
+     * If the provided email / password combo is not found, it will return
+     * null, implying incorrect details were supplied.
+     * @param accountId The customer's accountId
+     * @return Customer Account
+     * @author James
+     */
+    public Customer getCustomerByAccountId(UUID accountId) {
+        refresh();
+        BasicDBObject where = new BasicDBObject();
+        where.put("account_id", accountId.toString());
         Document doc = getCollection().find(where).first();
         if (doc == null || doc.isEmpty()) return null;
         return new Customer(doc);

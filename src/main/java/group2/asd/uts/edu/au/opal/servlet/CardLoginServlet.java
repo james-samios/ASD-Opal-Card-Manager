@@ -1,11 +1,14 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
+import group2.asd.uts.edu.au.opal.dao.DBCustomerManager;
 import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.model.Card;
+import group2.asd.uts.edu.au.opal.model.Customer;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 
 import java.io.IOException;
+import java.util.UUID;
 import javax.servlet.ServletException;
 
 import javax.servlet.http.HttpServlet;
@@ -68,6 +71,13 @@ public class CardLoginServlet extends HttpServlet {
                             card.getTopUp().getPaymentMethodId().toString());
                     System.out.println(paymentMethod);
                     session.setAttribute("paymentMethod", paymentMethod);
+                }
+
+                if(card.getAccountId() != UUID.fromString("00000000-0000-0000-0000-000000000000")) {
+                    DBCustomerManager dbCustomerManager = new DBCustomerManager();
+                    Customer customer = dbCustomerManager.getCustomerByAccountId(card.getAccountId());
+                    session.setAttribute("customerEmail", customer.getEmailAddress());
+
                 }
 
                 //Push view to welcome.jsp
