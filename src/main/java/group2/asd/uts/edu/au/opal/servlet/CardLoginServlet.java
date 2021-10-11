@@ -78,7 +78,7 @@ public class CardLoginServlet extends HttpServlet {
 
                 if(card.getAccountId() != UUID.fromString("00000000-0000-0000-0000-000000000000")) {
                     DBCustomerManager dbCustomerManager = new DBCustomerManager();
-                    Customer customer = dbCustomerManager.getCustomerByAccountId(card.getAccountId());
+                    Customer customer = dbCustomerManager.getCustomerById(card.getAccountId());
                     if(customer != null) {
                         session.setAttribute("customerEmail", customer.getEmailAddress());
                     }else {

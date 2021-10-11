@@ -35,20 +35,20 @@ public class DBCustomerManager extends DBManager {
         Document address = new Document();
 
         address.append(
-                "address_line_1", a.getAddressLine1())
+                        "address_line_1", a.getAddressLine1())
                 .append("address_line_2", a.getAddressLine2())
                 .append("suburb", a.getSuburb())
                 .append("post_code", a.getPostCode())
                 .append("state", a.getState()
-        );
+                );
 
         Document weeklyReward = new Document();
 
         weeklyReward.append(
-                "reward_percentage", 0.0)
+                        "reward_percentage", 0.0)
                 .append("reward_name", "null")
                 .append("reward_claimed", false
-        );
+                );
 
         Document user = new Document("_id", new ObjectId());
         user.append("account_id", customer.getAccountId().toString())
@@ -105,18 +105,10 @@ public class DBCustomerManager extends DBManager {
         return new Customer(doc);
     }
 
-    /**
-     * Returns a Customer with provided email and password.
-     * If the provided email / password combo is not found, it will return
-     * null, implying incorrect details were supplied.
-     * @param accountId The customer's accountId
-     * @return Customer Account
-     * @author James
-     */
-    public Customer getCustomerByAccountId(UUID accountId) {
+    public Customer getCustomerById(final UUID uuid) {
         refresh();
         BasicDBObject where = new BasicDBObject();
-        where.put("account_id", accountId.toString());
+        where.put("account_id", uuid.toString());
         Document doc = getCollection().find(where).first();
         if (doc == null || doc.isEmpty()) return null;
         return new Customer(doc);
