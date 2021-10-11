@@ -5,7 +5,7 @@ body {
 
 .navbar {
     overflow: hidden;
-    background-color: #1d78d4;
+    background-color: #3FB0AC;
 }
 
 .navbar a {
@@ -100,7 +100,7 @@ img {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #1d78d4;
+    background-color: #3FB0AC;
     color: white;
 }
 
@@ -117,7 +117,7 @@ img {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #1d78d4;
+    background-color: #3FB0AC;
     color: white;
 }
 
@@ -131,7 +131,7 @@ img {
 .detailsTable tr:hover {background-color: #ddd;}
 
 .submitButton {
-    background-color: #1d78d4;
+    background-color: #3FB0AC;
     border: none;
     color: white;
     padding: 10px 15px;
@@ -148,8 +148,8 @@ img {
 }
 
 .navButton {
-    background-color: #1d78d4;
-    border: #1d78d4;
+    background-color: #3FB0AC;
+    border: #3FB0AC;
     color: white;
     padding: 10px 15px;
     text-align: center;
@@ -176,7 +176,7 @@ img {
 }
 
 .button {
-    background-color: #1d78d4;
+    background-color: #3FB0AC;
     border: none;
     color: white;
     padding: 15px 32px;

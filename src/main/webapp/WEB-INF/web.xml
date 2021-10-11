@@ -165,4 +165,13 @@
         <url-pattern>/CustomerResolveReportServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LinkedOpalCardsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.LinkedOpalCardsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LinkedOpalCardsServlet</servlet-name>
+        <url-pattern>/LinkedOpalCardsServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
