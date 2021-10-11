@@ -7,6 +7,6 @@ public enum CollectionType {
     PAYMENT_METHODS,
     CARDS,
     INCIDENT_REPORTS,
-    CUSTOMER_ENQUIRIES,
-    FARES
+    FARES,
+    CUSTOMER_ENQUIRIES
 }

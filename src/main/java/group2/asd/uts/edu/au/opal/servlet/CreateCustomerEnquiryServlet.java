@@ -34,7 +34,7 @@ public class CreateCustomerEnquiryServlet extends HttpServlet {
         String enquiryTitle = request.getParameter("enquiryTitle");
         String enquiryDetails = request.getParameter("enquiryDetails");
         String enquiryStatus = "Submitted";
-        String enquiryDate = "2/10/2021"; //temporary - TO DO put current date
+        String enquiryDate = "2021-10-06"; //temporary - TO DO put current date
 
         //Create the enquiry
         customerEnquiryManager.createCustomerEnquiry(customerEnquiryID, accountId, enquiryTitle, enquiryDetails, enquiryDate, enquiryStatus);
