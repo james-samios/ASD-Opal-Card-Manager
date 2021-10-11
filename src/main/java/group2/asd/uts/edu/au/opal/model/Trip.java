@@ -11,6 +11,7 @@ public class Trip extends Document {
     private final String tripEnd;
     private final Date startTime;
     private final Date endTime;
+    private final Double fare;
 
     /**
      * Loads a Trip object from an Opal Card object.
@@ -24,13 +25,15 @@ public class Trip extends Document {
         this.tripEnd = document.getString("trip_end");
         this.startTime = document.getDate("start_time");
         this.endTime = document.getDate("end_time");
+        this.fare = document.getDouble("fare");
     }
 
-    public Trip(final String tripStart, final  String tripEnd, final Date startTime, final Date endTime) {
+    public Trip(final String tripStart, final  String tripEnd, final Date startTime, final Date endTime, final Double fare) {
         this.tripStart = tripStart;
         this.tripEnd = tripEnd;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.fare = fare;
     }
 
     /*object convert to a document*/
@@ -38,7 +41,8 @@ public class Trip extends Document {
         return new Document("trip_start", tripStart)
                 .append("trip_end", tripEnd)
                 .append("start_time", startTime)
-                .append("end_time", endTime);
+                .append("end_time", endTime)
+                .append("fare", fare);
     }
 
     @Override

@@ -28,8 +28,6 @@
 
         <li><a href="DeleteUserServlet">Delete Account</a></li>
 
-        <li><a href="payment.jsp">Payment</a></li>
-
         <li><a href="enquiryHome.jsp">Make an Enquiry</a></li>
 
         <li><a href="incidentReportHome.jsp">Report a lost or stolen Opal Card</a></li>

@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Customer Enquiries</title>
-    <link rel="stylesheet" href="css/interface.css">
+    <link rel="stylesheet" href="CSS/interface.css">
 </head>
 <body>
 

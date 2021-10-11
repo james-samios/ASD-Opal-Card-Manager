@@ -20,7 +20,7 @@ public class TopUp extends Document {
      */
 
     public TopUp(final Document document) {
-        this.paymentMethodId = UUID.fromString(document.get("payment_method_id").toString());
+        this.paymentMethodId = UUID.fromString(document.getString("payment_method_id"));
         this.enabled = document.getBoolean("enabled");
         this.amount = document.getDouble("amount");
         this.when = document.getDouble("when");
@@ -34,7 +34,7 @@ public class TopUp extends Document {
     }
 
     public Document convertClassToDocument() {
-        return new Document("payment_method_id", paymentMethodId)
+        return new Document("payment_method_id", paymentMethodId.toString())
                 .append("enabled", enabled)
                 .append("amount", amount)
                 .append("when", when);
