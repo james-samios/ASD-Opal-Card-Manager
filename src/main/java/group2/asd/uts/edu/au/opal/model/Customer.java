@@ -27,7 +27,6 @@ public class Customer {
      * @param document The BSON document from the users collection.
      * @author James
      */
-
     public Customer(final Document document) {
         this.objectId = new ObjectId(document.get("_id").toString());
         this.accountId = UUID.fromString(document.getString("account_id"));
@@ -51,7 +50,6 @@ public class Customer {
      * @param address The customer's address, as an Address object.
      * @author James
      */
-
     public Customer(final String firstName, final String lastName, final String emailAddress, final String password,
                     final String phoneNumber, final Address address) {
         this.accountId = UUID.randomUUID();
