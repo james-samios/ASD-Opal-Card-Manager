@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Report Details</title>
-    <link rel="stylesheet" href="css/interface.css">
+    <link rel="stylesheet" href="CSS/interface.css">
 </head>
 <body>
 

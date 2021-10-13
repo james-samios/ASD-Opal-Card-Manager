@@ -1,39 +1,20 @@
-
-body {
-    /*
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url('https://miro.medium.com/max/4800/0*Ujfq0bFIEYEoMiEG');
-    */
-    font-family: Arial, Helvetica, sans-serif;
-    background:linear-gradient(rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5) 100%), url('../img/background.jpg');
-
-}
 * {
     padding: 0;
     margin: 0;
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
-
-
 }
 
-/** Navigation bar **/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('../img/background.jpg');
+}
 
 nav {
-    /*background: #3CB371;*/
+    background: #3CB371;
     height: 80px;
     width: 100%;
-}
-
-.root {
-    background: #5A7670;
-
-}
-
-.customer {
-    background: #3FB0AC;
-
 }
 
 label.logo {
@@ -61,21 +42,16 @@ nav ul li a {
     padding: 7px 13px;
     border-radius: 3px;
     text-transform: uppercase;
-
 }
-a.active {
 
-
-}
 a:hover {
-    /*background: #17202A;*/
     transition: .5s;
     font-size: 20px;
     text-decoration: underline;
 }
 
-.checkbtn {
 
+.checkbtn {
     font-size: 30px;
     color: white;
     float: right;
@@ -89,6 +65,7 @@ a:hover {
     display: none;
 
 }
+
 @media (max-width: 952px) {
     label.logo {
         font-size: 30px;
@@ -100,6 +77,9 @@ a:hover {
 }
 
 @media (max-width: 858px) {
+    .checkbtn {
+        display: block;
+    }
     ul {
         position: fixed;
         width: 100%;
@@ -126,69 +106,4 @@ a:hover {
     #check:checked ~ ul {
         left: 0;
     }
-    .checkbtn {
-        display: block;
-    }
-
 }
-
-.root {
-    background: #5A7670;
-}
-.customer {
-    background: #3FB0AC;
-}
-
-/** Table **/
-
-.table-style {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    max-width: 100%;
-    min-width: 40%;
-    border-radius: 3px 3px 3px 3px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
-
-.table-style thead tr {
-    background-color: #3CB371;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-
-}
-
-.table-style th,
-.table-style td {
-    padding: 12px 15px;
-    text-align: center;
-
-}
-
-.table-style tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-
-.table-style tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-.table-style tbody tr:nth-of-type(odd) {
-    background-color: white;
-}
-
-
-.table-style tbody tr:last-of-type {
-    border-bottom: 1px solid white;
-}
-
-
-.table-header {
-    color: #ffffff;
-    font-weight: bold;
-    width: 40%;
-}
-

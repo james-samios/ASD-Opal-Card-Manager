@@ -20,7 +20,7 @@ public class CardStatusServlet extends HttpServlet {
         boolean value = !card.isActive();
 
         //Create the card DBManager
-        DBCardsManager dbCardsManager = (DBCardsManager) session.getAttribute("dbCardsManager");
+        DBCardsManager dbCardsManager = new DBCardsManager();
         dbCardsManager.updateCardActive(card.getObjectId(), value);
         card.setActive(value);
         session.setAttribute("card", card);

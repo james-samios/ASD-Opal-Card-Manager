@@ -99,8 +99,7 @@ public class Validator implements Serializable{
             int month = Integer.parseInt(splits[0]);
             int year = Integer.parseInt(splits[1]);
             if(month <= 0 || month >= 13) return false;
-            if(month + year * 12 < cYear * 12 + cMonth) return false;
-            return true;
+            return month + year * 12 >= cYear * 12 + cMonth;
         }catch(Exception e) {
             return false;
         }
@@ -110,8 +109,7 @@ public class Validator implements Serializable{
         if(validateNumber(month) && validateNumber(days)){
             int intMonth = Integer.parseInt(month);
             int intDays = Integer.parseInt(days);
-            if((intMonth <= 12 && intMonth >= 0) && (intDays > 0 && intDays <= getDaysByMonth(intMonth)))
-                return true;
+            return (intMonth <= 12 && intMonth >= 0) && (intDays > 0 && intDays <= getDaysByMonth(intMonth));
         }
         return false;
     }
@@ -170,5 +168,7 @@ public class Validator implements Serializable{
         session.setAttribute("previous_payment_owner", "");
         session.setAttribute("previous_payment_cvc", "");
         session.setAttribute("previous_payment_expiry", "");
+        session.setAttribute("previous_email", "");
+        session.setAttribute("previous_password", "");
     }
 }

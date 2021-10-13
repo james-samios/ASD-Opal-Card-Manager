@@ -26,7 +26,7 @@ public class TestCardClass {
     final boolean locked = false;
     final TopUp topUp = new TopUp(UUID.randomUUID(), false, 10, 5);
     final Trip trip = new Trip("Kings Cross", "Bondi Junction",
-                Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
+                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 2.20);
     final ArrayList<Trip> trips = new ArrayList<Trip>() {{
             add(trip);
     }};
@@ -39,12 +39,12 @@ public class TestCardClass {
     @Test
     public void testCardConstructor() {
         Document document = new Document("_id", objectId)
-                .append("card_id", cardId)
+                .append("card_id", cardId.toString())
                 .append("card_number", cardNumber)
                 .append("card_pin", cardPin)
                 .append("type", cardType.toString())
                 .append("balance", balance)
-                .append("account_id", accountId)
+                .append("account_id", accountId.toString())
                 .append("active", active)
                 .append("locked", locked);
         document.put("top_up", topUp.convertClassToDocument());
@@ -61,12 +61,12 @@ public class TestCardClass {
     @Test
     public void testCardConvertToDocument() {
         Document document = expectedCard.convertClassToDocument();
-        Document expectDoc = new Document("card_id", cardId)
+        Document expectDoc = new Document("card_id", cardId.toString())
                 .append("card_number", cardNumber)
                 .append("card_pin", cardPin)
                 .append("type", cardType.toString().toUpperCase())
                 .append("balance", balance)
-                .append("account_id", accountId)
+                .append("account_id", accountId.toString())
                 .append("active", active)
                 .append("locked", locked);
         expectDoc.put("top_up", topUp.convertClassToDocument());

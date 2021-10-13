@@ -1,8 +1,4 @@
 package group2.asd.uts.edu.au.opal.test;
-
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClients;
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
 
 import group2.asd.uts.edu.au.opal.model.Card;
@@ -22,7 +18,7 @@ public class TestDBCardManagerClass {
     private final DBCardsManager dbCardsManager;
     private final UUID cardId = UUID.randomUUID();
     private final Trip trip = new Trip("Kings Cross", "Bondi Junction",
-            Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
+            Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 2.20);
     private final ArrayList<Trip> trips = new ArrayList<Trip>() {{
         add(trip);
     }};
@@ -194,7 +190,7 @@ public class TestDBCardManagerClass {
         /*Initialise new trips up for testing*/
         ArrayList<Trip> expectedTrips = new ArrayList<>();
         Trip newTrip = new Trip("Padstow", "Bondi",
-                Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
+                Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 2.20);
         expectedTrips.add(newTrip);
         /*set the trips into expectedCard for comparison*/
         expectedCard.setTrips(expectedTrips);

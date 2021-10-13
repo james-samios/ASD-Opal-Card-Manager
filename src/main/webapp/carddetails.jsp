@@ -1,5 +1,6 @@
 <%@ page import="group2.asd.uts.edu.au.opal.model.Card" %>
 <%@ page import="java.util.UUID" %>
+<%@ page import="group2.asd.uts.edu.au.opal.model.PaymentMethod" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -25,7 +26,7 @@
         UUID accountId = card.getAccountId();
         boolean isAccountLinked = accountId.compareTo(new UUID(0, 0)) <= -1;
         String balance = "" + card.getBalance();
-        String paymentDetailsId = card.getTopUp().getPaymentMethodId().toString();
+        String customerEmail = (String) session.getAttribute("customerEmail");
         String amount = "" + card.getTopUp().getAmount();
         String when = "" + card.getTopUp().getWhen();
         String typeToLowerCase = type.toLowerCase();
@@ -53,6 +54,7 @@
                         <tr>
                             <td class="<%=tdClass%>">Card Status</td>
                             <td data-label="card_active"><%=isActive?"ON": "OFF"%></td>
+                            <td></td>
                             <td>
                                 <button class="submit <%=isActive?"red":"light_green"%>" onclick="location.href='CardStatusServlet'">
                                     <%=isActive?"OFF":"ON"%>
@@ -62,27 +64,37 @@
                         <tr>
                             <td class="<%=tdClass%>">Balance</td>
                             <td data-label="balance"><%=balance%></td>
-                            <td><button class="submit light_blue" onclick="location.href='topupmenu.jsp'">Top Up</button></td>
+                            <td>
+                                <button class="submit light_blue" onclick="location.href='topupmenu.jsp'">Top Up</button>
+                            </td>
+                            <td>
+                                <button class="submit light_blue" onclick="location.href='PaymentHistoryServlet'">Record</button>
+                            </td>
                         </tr>
 
                         <tr>
                             <td class="<%=tdClass%>">Linked Account</td>
-                            <td data-label="linked_account"><%=isAccountLinked?"ON": "OFF"%></td>
-                            <td>
-                                <%if(isAccountLinked) {%>
-                                    <button class="submit red" onclick="location.href='linkaccount.jsp'">
-                                        <%="Cancel"%>
+                            <td data-label="linked_account"><%=customerEmail == null? "OFF": customerEmail%></td>
+                            <td></td>
+                            <%if(isAccountLinked) {%>
+                                <td>
+                                    <button class="submit red" onclick="location.href='CancelAccountLinkServlet'">
+                                        Cancel
                                     </button>
-                                <%}else {%>
+                                </td>
+                            <%}else {%>
+                                <td>
                                     <button class="submit light_green" onclick="location.href='linkaccount.jsp'">
-                                        <%="Link"%>
+                                        Link
                                     </button>
-                                <%}%>
-                            </td>
+                                </td>
+                            <%}%>
                         </tr>
+
                         <tr>
                             <td class="<%=tdClass%>">Auto Top Up</td>
                             <td data-label="auto_top_up"><%=isAutoTopUp?"ON": "OFF"%></td>
+                            <td></td>
                             <%if(isAutoTopUp) {%>
                                 <td>
                                     <button class="submit red" onclick="location.href='CancelAutoTopUpServlet'">
@@ -96,32 +108,39 @@
                                     </button>
                                 </td>
                             <%}%>
-
                         </tr>
 
-                        <%if(isAutoTopUp) {%>
+                        <%if(isAutoTopUp) {
+                            PaymentMethod paymentMethod = (PaymentMethod) session.getAttribute("paymentMethod");
+                        %>
+
                             <tr>
                                 <td class="<%=tdClass%>">Payment Method</td>
                                 <td class="<%=tdClass%>"></td>
-                                <td class="<%=tdClass%>"><button class="submit">Edit</button></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">Card Number</td>
+                                <td><%=paymentMethod.getCardNumber()%></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">Card Owner Name</td>
+                                <td><%=paymentMethod.getCardName()%></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">CVC</td>
+                                <td><%=paymentMethod.getCardCVC()%></td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">Card Expiry</td>
+                                <td><%=paymentMethod.getExpiryDate()%></td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -129,10 +148,12 @@
                                 <td class="<%=tdClass%>">Top-Up Amount</td>
                                 <td><%=amount%></td>
                                 <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td class="<%=tdClass%>">When</td>
                                 <td><%=when%></td>
+                                <td></td>
                                 <td></td>
                             </tr>
                         <%}%>

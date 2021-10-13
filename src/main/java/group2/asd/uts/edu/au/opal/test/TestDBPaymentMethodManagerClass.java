@@ -1,7 +1,5 @@
 package group2.asd.uts.edu.au.opal.test;
 
-import com.mongodb.ConnectionString;
-import com.mongodb.client.MongoClients;
 import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 import org.junit.Test;
@@ -10,8 +8,8 @@ import java.util.UUID;
 
 public class TestDBPaymentMethodManagerClass {
     private final DBPaymentMethodManager dbPaymentMethodManager;
-    private final String paymentMethodId;
-    private final String opalCardId;
+    private final UUID paymentMethodId;
+    private final UUID opalCardId;
     private final String cardNumber;
     private final String cardName;
     private final String cardCvc;
@@ -20,18 +18,15 @@ public class TestDBPaymentMethodManagerClass {
     private PaymentMethod actualPaymentMethod;
 
     public TestDBPaymentMethodManagerClass() {
-        paymentMethodId = UUID.randomUUID().toString();
-        opalCardId = UUID.randomUUID().toString();
+        paymentMethodId = UUID.randomUUID();
+        opalCardId = UUID.randomUUID();
         cardNumber = "0000000000000000";
         cardName = "Yeh";
         cardCvc = "000";
         expiryDate = "12/25";
         expectedPaymentMethod = new PaymentMethod(paymentMethodId, opalCardId, cardNumber,
                 cardName, cardCvc, expiryDate);
-        ConnectionString connectionString = new ConnectionString(
-                "mongodb+srv://opal:OPALCARDMANAGER@asd.axojh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-        dbPaymentMethodManager =
-                new DBPaymentMethodManager(MongoClients.create(connectionString).getDatabase("dev"));
+        dbPaymentMethodManager = new DBPaymentMethodManager();
     }
 
     @Test
@@ -53,7 +48,7 @@ public class TestDBPaymentMethodManagerClass {
     @Test
     public void testReadPaymentMethodByPaymentMethodId() {
         generateInstanceOnTable();
-        actualPaymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(paymentMethodId);
+        actualPaymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(paymentMethodId.toString());
         dbPaymentMethodManager.deletePaymentByObjectId(expectedPaymentMethod.getObjectId());
         assertEquals(expectedPaymentMethod, actualPaymentMethod);
     }
@@ -82,7 +77,7 @@ public class TestDBPaymentMethodManagerClass {
         expectedPaymentMethod.setCardNumber(expectedCardNumber);
         expectedPaymentMethod.setCardName(expectedCardName);
         expectedPaymentMethod.setCardCVC(expectedCardCvc);
-        expectedPaymentMethod.setExpiryDate(expiryDate);
+        expectedPaymentMethod.setExpiryDate(expectedExpiryDate);
         dbPaymentMethodManager.updatePaymentMethod(expectedPaymentMethod);
         actualPaymentMethod = dbPaymentMethodManager.readPaymentByObjectId(expectedPaymentMethod.getObjectId());
         dbPaymentMethodManager.deletePaymentByObjectId(expectedPaymentMethod.getObjectId());
@@ -93,7 +88,7 @@ public class TestDBPaymentMethodManagerClass {
     public void testDeletePaymentByObjectId() {
         generateInstanceOnTable();
         dbPaymentMethodManager.deletePaymentByObjectId(expectedPaymentMethod.getObjectId());
-        actualPaymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(paymentMethodId);
+        actualPaymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(paymentMethodId.toString());
         assertNull(actualPaymentMethod);
     }
 
@@ -101,8 +96,8 @@ public class TestDBPaymentMethodManagerClass {
     @Test
     public void testDeletePaymentByPaymentMethodId() {
         generateInstanceOnTable();
-        dbPaymentMethodManager.deletePaymentByPaymentMethodId(paymentMethodId);
-        actualPaymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(paymentMethodId);
+        dbPaymentMethodManager.deletePaymentByPaymentMethodId(paymentMethodId.toString());
+        actualPaymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(paymentMethodId.toString());
         assertNull(actualPaymentMethod);
     }
 
@@ -110,8 +105,7 @@ public class TestDBPaymentMethodManagerClass {
 
     public void generateInstanceOnTable() {
         dbPaymentMethodManager.createPaymentMethod(expectedPaymentMethod);
-        actualPaymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(paymentMethodId);
-        dbPaymentMethodManager.readAllPaymentMethods();
+        actualPaymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(paymentMethodId.toString());
         expectedPaymentMethod.setObjectId(actualPaymentMethod.getObjectId());
     }
 

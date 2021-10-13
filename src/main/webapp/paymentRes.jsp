@@ -83,10 +83,10 @@
 
         <script>
             function submitForm(x){
-                if(x.id=='b1'){
+                if(x.id==='b1'){
                     document.getElementById('hid1').value='button1action';
                 }
-                else if(x.id=='b2'){
+                else if(x.id==='b2'){
                     document.getElementById('hid1').value='button2action';
                 }
                 else{

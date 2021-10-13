@@ -5,6 +5,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -19,13 +20,13 @@ public class Customer {
     private final String phoneNumber;
     private final Address address;
     private WeeklyTripReward weeklyTripReward;
+    private List<Card> linkedCards;
 
     /**
      * Loads a Customer object from the API.
      * @param document The BSON document from the users collection.
      * @author James
      */
-
     public Customer(final Document document) {
         this.objectId = new ObjectId(document.get("_id").toString());
         this.accountId = UUID.fromString(document.getString("account_id"));
@@ -36,6 +37,7 @@ public class Customer {
         this.phoneNumber = document.getString("phone_number");
         this.address = new Address(document.get("address", Document.class));
         this.weeklyTripReward = new WeeklyTripReward(document.get("weekly_trip_reward", Document.class));
+        this.linkedCards = new ArrayList<>();
     }
 
     /**
@@ -48,7 +50,6 @@ public class Customer {
      * @param address The customer's address, as an Address object.
      * @author James
      */
-
     public Customer(final String firstName, final String lastName, final String emailAddress, final String password,
                     final String phoneNumber, final Address address) {
         this.accountId = UUID.randomUUID();
