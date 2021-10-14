@@ -19,6 +19,7 @@
         <ul>
             <li><a href="opalcard.jsp">Opal Card</a></li>
             <li><a href="login.jsp">Sign in</a></li>
+            <li><a href="stafflogin.jsp">Staff</a></li>
             <li><a href="register.jsp">Sign up</a></li>
         </ul>
     </nav>
