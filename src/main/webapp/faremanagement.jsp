@@ -1,12 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: Qiyang Wu
+<<<<<<< Updated upstream
   Date: 2021/9/7
   Time: 20:56
+=======
+  Date: 2021/10/14
+  Time: 9:49
+>>>>>>> Stashed changes
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<<<<<<< Updated upstream
 <head>
     <title>Opal Cards Manage</title>
 </head>
@@ -75,4 +81,12 @@
 
 <!--<input type="text" placeholder="Enter price" name="name" required>-->
 </body>
+=======
+  <head>
+    <title>$Title$</title>
+  </head>
+  <body>
+  $END$
+  </body>
+>>>>>>> Stashed changes
 </html>

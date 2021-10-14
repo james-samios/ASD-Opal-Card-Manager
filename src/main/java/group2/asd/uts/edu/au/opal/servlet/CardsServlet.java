@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBAdminCardManager;
@@ -138,4 +139,7 @@ public class CardsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
+=======
+package group2.asd.uts.edu.au.opal.servlet;public class CardsServlet {
+>>>>>>> Stashed changes
 }

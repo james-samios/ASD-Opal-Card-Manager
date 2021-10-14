@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package group2.asd.uts.edu.au.opal.model;
 
 import lombok.Getter;
@@ -341,4 +342,7 @@ public class Fares extends Document {
 
 
 
+=======
+package group2.asd.uts.edu.au.opal.model;public class Fares {
+>>>>>>> Stashed changes
 }

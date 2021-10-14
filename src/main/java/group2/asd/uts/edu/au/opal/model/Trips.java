@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package group2.asd.uts.edu.au.opal.model;
 
 import lombok.Getter;
@@ -45,4 +46,7 @@ public class Trips extends Document {
     public String toString() {
         return tripStart + " " + tripEnd + " " + startTime + " " + " " + endTime;
     }
+=======
+package group2.asd.uts.edu.au.opal.model;public class Trips {
+>>>>>>> Stashed changes
 }

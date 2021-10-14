@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package group2.asd.uts.edu.au.opal.model;
 import lombok.Getter;
 import org.bson.Document;
@@ -48,4 +49,7 @@ public class Cards {
             return name().charAt(0) + name().substring(1).toLowerCase();
         }
     }
+=======
+package group2.asd.uts.edu.au.opal.model;public class Cards {
+>>>>>>> Stashed changes
 }

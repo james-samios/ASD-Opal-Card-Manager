@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package group2.asd.uts.edu.au.opal.dao;
 
 import com.mongodb.BasicDBObject;
@@ -418,4 +419,7 @@ public class DBAdminCardManager extends DBManager {
 
 
 
+=======
+package group2.asd.uts.edu.au.opal.dao;public class DBAdminCardManager {
+>>>>>>> Stashed changes
 }

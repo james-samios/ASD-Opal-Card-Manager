@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package group2.asd.uts.edu.au.opal.dao;
 
 
@@ -64,4 +65,7 @@ public class DBFaresManager extends DBManager{
 
 
 
+=======
+package group2.asd.uts.edu.au.opal.dao;public class DBFaresManager {
+>>>>>>> Stashed changes
 }

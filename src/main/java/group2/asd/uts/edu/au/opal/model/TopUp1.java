@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package group2.asd.uts.edu.au.opal.model;
 
 import lombok.Getter;
@@ -50,4 +51,7 @@ public class TopUp1 extends Document {
     public String toString() {
         return enabled + " " + amount + " " + when;
     }
+=======
+package group2.asd.uts.edu.au.opal.model;public class TopUp1 {
+>>>>>>> Stashed changes
 }

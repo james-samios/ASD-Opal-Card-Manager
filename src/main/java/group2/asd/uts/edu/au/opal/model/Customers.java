@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package group2.asd.uts.edu.au.opal.model;
 
 
@@ -63,3 +64,7 @@ public class Customers {
     }
 }
 
+=======
+package group2.asd.uts.edu.au.opal.model;public class Customers {
+}
+>>>>>>> Stashed changes

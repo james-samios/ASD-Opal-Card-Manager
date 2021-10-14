@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package group2.asd.uts.edu.au.opal.model;
 import group2.asd.uts.edu.au.opal.model.Trips;
 import lombok.Getter;
@@ -222,4 +223,7 @@ public class Cards1 extends Document  implements Serializable {
 
     }
 
+=======
+package group2.asd.uts.edu.au.opal.model;public class Cards1 {
+>>>>>>> Stashed changes
 }

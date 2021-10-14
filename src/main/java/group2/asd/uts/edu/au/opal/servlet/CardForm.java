@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.model.CardType1;
@@ -73,3 +74,7 @@ public class CardForm {
                 '}';
     }
 }
+=======
+package group2.asd.uts.edu.au.opal.servlet;public class CardForm {
+}
+>>>>>>> Stashed changes
