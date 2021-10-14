@@ -26,7 +26,7 @@ Opal-Card-Customer-Enquiry-Management -- Opal Card Customer Enquiry Management S
 
 Opal-Activity-System -- Opal Activity System feature coded by Jack Shakespeare
 
-Payment-management -- Payments Management feature coded by Nadeem Ahmed
+Payment-management -- Payments Management feature coded by Nadeem Ahmed![](../../../../QIYANG~1/AppData/Local/Temp/download.jpg)
 
 Opal-card-activation-management -- Opal Card Activation Management feature coded by Tzu-Jung Yeh
 
