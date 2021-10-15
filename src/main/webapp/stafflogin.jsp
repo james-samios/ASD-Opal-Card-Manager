@@ -15,7 +15,7 @@
 <body>
 <form method="'get" id="form" action="<%=path%>/StaffLoginServlet">
     <td> Administrator: <input type="text" id="username" name="username"  value="${username}" placeholder="Please Enter Staff Name" /></td>
-    <td> Pass:<input type="text" id="password" name="password" placeholder="Please Enter password " /></td>
+    <td> Pass:<input type="password" id="password" name="password" placeholder="Please Enter password " /></td>
 <button type="button" name="loginButton" onclick="loginVerify();"> Login</button>
 ${error}
 </form>
