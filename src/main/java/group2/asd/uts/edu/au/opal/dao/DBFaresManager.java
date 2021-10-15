@@ -1,8 +1,10 @@
 package group2.asd.uts.edu.au.opal.dao;
 
 
+import com.mongodb.client.model.Filters;
 import group2.asd.uts.edu.au.opal.model.Fares;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 
 import java.util.logging.Level;
@@ -22,6 +24,7 @@ public class DBFaresManager extends DBManager{
      * "D" means deleting table's objects
      *
      * */
+
     /*   *************************************Methods for "C" section below****************************************   */
     public void createFare(final Fares fare) {
         refresh();
@@ -51,14 +54,31 @@ public class DBFaresManager extends DBManager{
             return null;
         }
     }
+
     /*   *************************************Methods for "U" section below****************************************   */
+    public void updateFaresByFares(final Fares fares) {
+        refresh();
+        try {
+            //deleting an object from table
+            deleteFaresByFares(fares);
+            createFare(fares);
+        }catch(Exception e) {
+            System.out.println("Error: the failure of updating a fare from table");
+        }
 
 
+    }
 
 
-
-
-
-
+    /*   *************************************Methods for "D" section below****************************************   */
+    public void deleteFaresByFares(final Fares fares) {
+        refresh();
+        try {
+            //deleting an object from table
+            getCollection().deleteMany(Filters.eq("fare_id", fares.getFareId().toString()));
+        }catch(Exception e) {
+            System.out.println("Error: the failure of deleting Fares from table");
+        }
+    }
 
 }
