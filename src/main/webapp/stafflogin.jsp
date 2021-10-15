@@ -5,22 +5,38 @@
   Time: 10:27
   To change this template use File | Settings | File Templates.
 --%>
+<% String path = request.getContextPath(); %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Login</title>
+    <title>JSP - StaffLogin</title>
 </head>
 <body>
-
-<table>
-    <form action="faremanagement.jsp" method="post">
-        <tr>
-            <td> Administrator:<input type="text" placeholder="Enter name" name="name" required="true"><br/></td>
-            <td> Pass:<input type="password" placeholder="Enter password" name="password" required><br/></td>
-            <td><input type="submit" value="login"></td>
-        </tr>
-    </form>
-</table>
+<form method="'get" id="form" action="<%=path%>/StaffLoginServlet">
+    <td> Administrator: <input type="text" id="username" name="username"  value="${username}" placeholder="Please Enter Staff Name" /></td>
+    <td> Pass:<input type="text" id="password" name="password" placeholder="Please Enter password " /></td>
+<button type="button" name="loginButton" onclick="loginVerify();"> Login</button>
+${error}
+</form>
 </body>
 </html>
+
+<script>
+    function loginVerify(){
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        if(username =='') {
+            alert('Staff name should not be empty!');
+            return;
+        }
+        if(password =='') {
+            alert('Password should not be empty!');
+            return;
+        }
+
+        document.getElementById("form").submit();
+
+    }
+
+</script>

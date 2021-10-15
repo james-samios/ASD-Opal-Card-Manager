@@ -167,4 +167,15 @@
         <url-pattern>/UpdateFaresServlet</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>StaffLoginServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.StaffLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StaffLoginServlet</servlet-name>
+        <url-pattern>/StaffLoginServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

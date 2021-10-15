@@ -1,4 +1,2 @@
-package group2.asd.uts.edu.au.opal.servlet;
-
-public class FaresServlet {
+package group2.asd.uts.edu.au.opal.servlet;public class FaresServlet {
 }
