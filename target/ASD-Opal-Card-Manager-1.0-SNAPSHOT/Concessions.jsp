@@ -21,7 +21,7 @@
 
 <h2>Daily and Weekly Caps</h2>
 <form method="post" action="UpdateFaresServlet">
-    p>never pay more than $<input type="number" name="daily_weekly_min" value="<%=fares.getDaily_weekly_min()%>"> a day, $<input type="number" name="daily_weekly_max" value="50"> a week or $<input type="number" name="daily_weekly_weekends" value="8.15"> on Saturdays, Sundays and public holidays.</p>
+    <p>never pay more than $<input type="number" name="daily_weekly_min" value="<%=fares.getDaily_weekly_min()%>"> a day, $<input type="number" name="daily_weekly_max" value="50"> a week or $<input type="number" name="daily_weekly_weekends" value="8.15"> on Saturdays, Sundays and public holidays.</p>
 
     <h2>Peak and off-peak times</h2>
     <p>30% fare discount on metro/train, bus and light rail services.<br>
