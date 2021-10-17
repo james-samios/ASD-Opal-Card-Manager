@@ -1,8 +1,8 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
-import group2.asd.uts.edu.au.opal.model.CardType1;
-import group2.asd.uts.edu.au.opal.model.TopUp1;
-import group2.asd.uts.edu.au.opal.model.Trips;
+import group2.asd.uts.edu.au.opal.model.CardType;
+import group2.asd.uts.edu.au.opal.model.TopUp;
+import group2.asd.uts.edu.au.opal.model.Trip;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.Document;
@@ -19,13 +19,13 @@ public class CardForm {
     private UUID accountId;
     private String cardNumber;
     private String cardPin;
-    private CardType1 type;
+    private CardType type;
     private String leixing;
     private double balance;
     private boolean active;
     private boolean locked;
-    private TopUp1 topUp;
-    private ArrayList<Trips> trips;
+    private TopUp topUp;
+    private ArrayList<Trip> trips;
 
     public CardForm(final Document document) {
         System.out.println(document);
@@ -34,16 +34,16 @@ public class CardForm {
         this.cardNumber = document.getString("card_number");
         this.cardPin = document.getString("card_pin");
         if(document.getString("type") == null){
-            this.type = CardType1.ADULT;
+            this.type = CardType.ADULT;
         }else{
-            this.type = CardType1.valueOf(document.getString("type").toUpperCase());
+            this.type = CardType.valueOf(document.getString("type").toUpperCase());
         }
 
         this.balance = document.getDouble("balance");
         this.accountId = UUID.fromString(document.get("account_id").toString());
         this.active = document.getBoolean("active");
         this.locked = document.getBoolean("locked");
-        this.topUp = new TopUp1(document.get("top_up", Document.class));
+        this.topUp = new TopUp(document.get("top_up", Document.class));
         this.leixing = type.toString();
         /*add trips into trip array list*/
         this.trips = new ArrayList<>();
@@ -51,7 +51,7 @@ public class CardForm {
             return;
         }
         for (Document eachTrip : document.getList("trips", Document.class)) {
-            this.trips.add(new Trips(eachTrip));
+            this.trips.add(new Trip(eachTrip));
         }
     }
 

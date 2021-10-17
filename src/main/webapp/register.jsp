@@ -5,7 +5,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="CSS/register.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <title>User Registration Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

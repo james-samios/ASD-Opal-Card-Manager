@@ -3,7 +3,7 @@
 <head>
 
     <title>Payment Information</title>
-    <link rel="stylesheet" href="CSS/paymentresult.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 </head>

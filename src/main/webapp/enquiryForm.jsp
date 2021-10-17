@@ -4,7 +4,7 @@
 
 <head>
     <title>Customer Enquiry Form</title>
-    <link rel="stylesheet" href="CSS/interface.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body>

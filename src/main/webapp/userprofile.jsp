@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="CSS/userprofile.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <title>User Profile Page</title>
 </head>
@@ -77,9 +77,9 @@
             </tbody>
         </table>
 
-        <button onclick="window.location.href='changepassword.jsp'" type="button">Change Password</button>
+        <button class="userprofile" onclick="window.location.href='changepassword.jsp'" type="button">Change Password</button>
         <br>
-        <button onclick="window.location.href='deleteaccount.jsp'" type="button">Delete Account</button>
+        <button class="userprofile" onclick="window.location.href='deleteaccount.jsp'" type="button">Delete Account</button>
     </section>
 </center>
 </body>

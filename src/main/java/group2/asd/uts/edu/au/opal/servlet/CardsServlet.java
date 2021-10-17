@@ -1,16 +1,14 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBAdminCardManager;
-import group2.asd.uts.edu.au.opal.model.Cards;
-import group2.asd.uts.edu.au.opal.model.Cards1;
-import group2.asd.uts.edu.au.opal.model.CardType1;
+import group2.asd.uts.edu.au.opal.model.Card;
+import group2.asd.uts.edu.au.opal.model.CardType;
 import org.bson.types.ObjectId;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,20 +25,20 @@ public class CardsServlet extends HttpServlet {
                 String cardNumber = request.getParameter("cardNumber");
                 String e = null;
                 if(type.equals("ADULT")){
-                    e = CardType1.ADULT.toString();
+                    e = CardType.ADULT.toString();
                 }
                 if(type.equals("CHILD")){
-                    e = CardType1.CHILD.toString();
+                    e = CardType.CHILD.toString();
                 }  if(type.equals("SCHOOL")){
-                e = CardType1.SCHOOL.toString();
+                e = CardType.SCHOOL.toString();
             }
                 if(type.equals("CONCESSION")){
-                    e = CardType1.CONCESSION.toString();
+                    e = CardType.CONCESSION.toString();
                 }
 
                 String balance = request.getParameter("balance");
                 String active = request.getParameter("active");
-                Cards1 card = new Cards1();
+                Card card = new Card();
                 card.setCardPin(cardPin);
                 card.setCardNumber(cardNumber);
                 card.setActive(Boolean.parseBoolean(active));
@@ -77,20 +75,20 @@ public class CardsServlet extends HttpServlet {
                 cardNumber = request.getParameter("cardNumber");
                 e = null;
                 if(type.equals("ADULT")){
-                    e = CardType1.ADULT.toString();
+                    e = CardType.ADULT.toString();
                 }
                 if(type.equals("CHILD")){
-                    e = CardType1.CHILD.toString();
+                    e = CardType.CHILD.toString();
                 }  if(type.equals("SCHOOL")){
-                e = CardType1.SCHOOL.toString();
+                e = CardType.SCHOOL.toString();
             }
                 if(type.equals("CONCESSION")){
-                    e = CardType1.CONCESSION.toString();
+                    e = CardType.CONCESSION.toString();
                 }
 
                 balance = request.getParameter("balance");
                 active = request.getParameter("active");
-                card = new Cards1();
+                card = new Card();
                 card.setCardPin(cardPin);
                 card.setObjectId(new ObjectId(objectId));
                 card.setCardNumber(cardNumber);

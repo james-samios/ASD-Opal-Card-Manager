@@ -4,12 +4,8 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 
-import group2.asd.uts.edu.au.opal.model.Cards;
-import group2.asd.uts.edu.au.opal.model.Cards1;
-import group2.asd.uts.edu.au.opal.model.CardType1;
-
-import group2.asd.uts.edu.au.opal.dao.CollectionType;
-import group2.asd.uts.edu.au.opal.model.TopUp1;
+import group2.asd.uts.edu.au.opal.model.Card;
+import group2.asd.uts.edu.au.opal.model.TopUp;
 import group2.asd.uts.edu.au.opal.servlet.CardForm;
 import lombok.Getter;
 import org.bson.Document;
@@ -46,7 +42,7 @@ public class DBAdminCardManager extends DBManager {
 
     /*   *************************************Methods for "C" section below****************************************   */
 
-    public void createOpalCard(final Cards1 card) {
+    public void createOpalCard(final Card card) {
         try {
             getCollection().insertOne(card.convertClassToDocument());
 
@@ -72,7 +68,7 @@ public class DBAdminCardManager extends DBManager {
      * @author Jung
      */
 
-    public Cards1 readCardByNumberAndPin(final String cardNumber, final String cardPin) {
+    public Card readCardByNumberAndPin(final String cardNumber, final String cardPin) {
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
@@ -83,7 +79,7 @@ public class DBAdminCardManager extends DBManager {
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
             }
-            return new Cards1(document);
+            return new Card(document);
         } catch (Exception e) {
             Logger.getLogger(DBCardsManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
@@ -130,7 +126,7 @@ public class DBAdminCardManager extends DBManager {
      * @author Jung
      */
 
-    public Cards1 readCardByObjectId(final ObjectId objectId) {
+    public Card readCardByObjectId(final ObjectId objectId) {
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
@@ -140,7 +136,7 @@ public class DBAdminCardManager extends DBManager {
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
             }
-            return new Cards1(document);
+            return new Card(document);
         } catch (Exception e) {
             Logger.getLogger(DBCardsManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
@@ -367,7 +363,7 @@ public class DBAdminCardManager extends DBManager {
      * @param topUp The Opal card's Top up
      * @author Jung
      */
-    public void updateCardTopUp(final ObjectId objectId, final TopUp1 topUp) {
+    public void updateCardTopUp(final ObjectId objectId, final TopUp topUp) {
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);

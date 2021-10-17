@@ -1,9 +1,9 @@
 package group2.asd.uts.edu.au.opal.test;
 
-import group2.asd.uts.edu.au.opal.model.Cards1;
-import group2.asd.uts.edu.au.opal.model.CardType1;
-import group2.asd.uts.edu.au.opal.model.TopUp1;
-import group2.asd.uts.edu.au.opal.model.Trips;
+import group2.asd.uts.edu.au.opal.model.Card;
+import group2.asd.uts.edu.au.opal.model.CardType;
+import group2.asd.uts.edu.au.opal.model.TopUp;
+import group2.asd.uts.edu.au.opal.model.Trip;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.junit.Test;
@@ -19,19 +19,19 @@ public class    TestDBAdminCardManager {
     final UUID cardId = UUID.fromString("8c7eda3f-ab45-4c82-9ba8-a462043f1dde");
     final String cardNumber = "3085220000000000";
     final String cardPin = "9999";
-    final CardType1 cardType = CardType1.CONCESSION;
+    final CardType cardType = CardType.CONCESSION;
     final double balance = 55.0;
     final UUID accountId = UUID.randomUUID();
     final boolean active = false;
     final boolean locked = false;
-    final TopUp1 topUp = new TopUp1(UUID.randomUUID(), false, 10, 5);
-    final Trips trip = new Trips("Kings Cross", "Bondi Junction",
-            Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
-    final ArrayList<Trips> trips = new ArrayList<Trips>() {{
+    final TopUp topUp = new TopUp(UUID.randomUUID(), false, 10, 5);
+    final Trip trip = new Trip("Kings Cross", "Bondi Junction",
+            Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), 1.5);
+    final ArrayList<Trip> trips = new ArrayList<Trip>() {{
         add(trip);
     }};
 
-    final Cards1 expectedCard = new Cards1(objectId, cardId, cardNumber, cardPin,
+    final Card expectedCard = new Card(objectId, cardId, cardNumber, cardPin,
             cardType, balance, accountId, active,
             locked, topUp, trips);
 
@@ -53,7 +53,7 @@ public class    TestDBAdminCardManager {
 
         /*Display the document*/
         System.out.println("Display the Document: " + document);
-        Cards1 actualCard = new Cards1(document);
+        Card actualCard = new Card(document);
         assertEquals(expectedCard, actualCard);
 
     }
@@ -63,7 +63,7 @@ public class    TestDBAdminCardManager {
     @Test
     public void testSetObjectIdMethod() {
         ObjectId expectedObjectId = new ObjectId();
-        Cards1 actualCard = this.expectedCard;
+        Card actualCard = this.expectedCard;
         actualCard.setObjectId(expectedObjectId);
         assertEquals(expectedObjectId, actualCard.getObjectId());
     }
@@ -85,15 +85,15 @@ public class    TestDBAdminCardManager {
     @Test
     public void testSetCardPinMethod() {
         String expectedCardPin = "0000";
-        Cards1 actualCard = this.expectedCard;
+        Card actualCard = this.expectedCard;
         actualCard.setCardPin(expectedCardPin);
         assertEquals(expectedCardPin, actualCard.getCardPin());
     }
 
     @Test
     public void testSetCardTypeMethod() {
-        CardType1 expectedType  = CardType1.CHILD;
-        Cards1 actualCard = this.expectedCard;
+        CardType expectedType  = CardType.CHILD;
+        Card actualCard = this.expectedCard;
         actualCard.setType(expectedType);
         assertEquals(expectedType, actualCard.getType());
     }
@@ -101,7 +101,7 @@ public class    TestDBAdminCardManager {
     @Test
     public void testSetCardBalanceMethod() {
         double expectedBalance = 100.0;
-        Cards1 actualCard = this.expectedCard;
+        Card actualCard = this.expectedCard;
         actualCard.setBalance(expectedBalance);
         assertEquals(expectedBalance, actualCard.getBalance(), 0);
     }
@@ -109,36 +109,36 @@ public class    TestDBAdminCardManager {
     @Test
     public void testSetAccountIdMethod() {
         UUID expectedAccountId = UUID.randomUUID();
-        Cards1 actualCard = this.expectedCard;
+        Card actualCard = this.expectedCard;
         actualCard.setAccountId(expectedAccountId);
         assertEquals(expectedAccountId, actualCard.getAccountId());
     }
 
     @Test
     public void testSetActiveMethod() {
-        Cards1 actualCard = this.expectedCard;
+        Card actualCard = this.expectedCard;
         actualCard.setActive(true);
         assertTrue(actualCard.isActive());
     }
 
     @Test
     public void testSetLockedMethod() {
-        Cards1 actualCard = this.expectedCard;
+        Card actualCard = this.expectedCard;
         actualCard.setLocked(true);
         assertTrue(actualCard.isLocked());
     }
 
     @Test
     public void testSetTopUpMethod() {
-        Cards1 actualCard = this.expectedCard;
-        TopUp1 expectedTopUp = new TopUp1(UUID.randomUUID(),true, 20, 10);
+        Card actualCard = this.expectedCard;
+        TopUp expectedTopUp = new TopUp(UUID.randomUUID(),true, 20, 10);
         actualCard.setTopUp(expectedTopUp);
         assertEquals(expectedTopUp, actualCard.getTopUp());
     }
 
     @Test
     public void testSetTopUpPaymentMethodIdMethod() {
-        Cards1 actualCard = this.expectedCard;
+        Card actualCard = this.expectedCard;
         UUID expectedPaymentMethodId = UUID.randomUUID();
         actualCard.setTopUpPaymentMethodId(expectedPaymentMethodId);
         assertEquals(expectedPaymentMethodId, actualCard.getTopUp().getPaymentMethodId());
@@ -147,14 +147,14 @@ public class    TestDBAdminCardManager {
 
     @Test
     public void testSetTopUpEnabledMethod() {
-        Cards1 actualCard = this.expectedCard;
+        Card actualCard = this.expectedCard;
         actualCard.setTopUpEnabled(false);
         assertFalse(actualCard.getTopUp().isEnabled());
     }
 
     @Test
     public void testSetTopUpAmountMethod() {
-        Cards1 actualCard = this.expectedCard;
+        Card actualCard = this.expectedCard;
         double expectedAmount = 20.0;
         actualCard.setTopUpAmount(expectedAmount);
         assertEquals(expectedAmount, actualCard.getTopUp().getAmount(), 0);
@@ -162,7 +162,7 @@ public class    TestDBAdminCardManager {
 
     @Test
     public void testSetTopUpWhenMethod() {
-        Cards1 actualCard = this.expectedCard;
+        Card actualCard = this.expectedCard;
         double expectedWhen = 15.0;
         actualCard.setTopUpWhen(expectedWhen);
         assertEquals(expectedWhen, actualCard.getTopUp().getWhen(), 0);
@@ -170,8 +170,8 @@ public class    TestDBAdminCardManager {
 
     @Test
     public void testSetTripsMethod() {
-        Cards1 actualCard = this.expectedCard;
-        ArrayList<Trips> expectedTrips = trips;
+        Card actualCard = this.expectedCard;
+        ArrayList<Trip> expectedTrips = trips;
         expectedTrips.add(trip);
         actualCard.setTrips(expectedTrips);
         assertEquals(expectedTrips, actualCard.getTrips());
