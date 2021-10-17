@@ -20,6 +20,9 @@ public class TopUp extends Document {
      */
 
     public TopUp(final Document document) {
+        if(document == null){
+            return;
+        }
         this.paymentMethodId = UUID.fromString(document.getString("payment_method_id"));
         this.enabled = document.getBoolean("enabled");
         this.amount = document.getDouble("amount");
