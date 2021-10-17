@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Payment Information</title>
-    <link rel="stylesheet" href="CSS/payment.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" rel="stylesheet"
           type="text/css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

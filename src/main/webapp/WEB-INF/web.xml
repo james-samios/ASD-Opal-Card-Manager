@@ -148,4 +148,34 @@
         <url-pattern>/LinkedOpalCardsServlet</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>FaresServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.FaresServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FaresServlet</servlet-name>
+        <url-pattern>/FaresServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateFaresServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.UpdateFaresServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateFaresServlet</servlet-name>
+        <url-pattern>/UpdateFaresServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>StaffLoginServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.StaffLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StaffLoginServlet</servlet-name>
+        <url-pattern>/StaffLoginServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
