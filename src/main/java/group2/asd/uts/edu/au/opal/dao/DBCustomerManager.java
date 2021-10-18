@@ -35,20 +35,20 @@ public class DBCustomerManager extends DBManager {
         Document address = new Document();
 
         address.append(
-                "address_line_1", a.getAddressLine1())
+                        "address_line_1", a.getAddressLine1())
                 .append("address_line_2", a.getAddressLine2())
                 .append("suburb", a.getSuburb())
                 .append("post_code", a.getPostCode())
                 .append("state", a.getState()
-        );
+                );
 
         Document weeklyReward = new Document();
 
         weeklyReward.append(
-                "reward_percentage", 0.0)
+                        "reward_percentage", 0.0)
                 .append("reward_name", "null")
                 .append("reward_claimed", false
-        );
+                );
 
         Document user = new Document("_id", new ObjectId());
         user.append("account_id", customer.getAccountId().toString())
