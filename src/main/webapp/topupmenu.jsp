@@ -71,6 +71,7 @@
                 <input type="text" name="payment_expiry" value="<%=previousPaymentExpiry != null? previousPaymentExpiry:""%>" autocomplete="off" placeholder="XX/XX">
             </label>
             <input type="submit" form="top_up" name="confirm" value="Confirm">
+
             <input type="button" value="Back" onclick="location.href='carddetails.jsp'">
             <p class="errorinfo"><%=cardNumberFormErr != null? cardNumberFormErr: empty%></p>
             <p class="errorinfo"><%=cardCvcErr != null? cardCvcErr: empty%></p>

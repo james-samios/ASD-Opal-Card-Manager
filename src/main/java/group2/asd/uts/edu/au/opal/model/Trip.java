@@ -47,6 +47,6 @@ public class Trip extends Document {
 
     @Override
     public String toString() {
-        return tripStart + " " + tripEnd + " " + startTime + " " + " " + endTime;
+        return tripStart + " " + tripEnd + " " + startTime + " " + " " + endTime + " " + fare;
     }
 }
