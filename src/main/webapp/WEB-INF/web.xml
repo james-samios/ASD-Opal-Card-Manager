@@ -40,6 +40,24 @@
             <url-pattern>/LogoutServlet</url-pattern>
         </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DeleteAccountServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.DeleteAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteAccountServlet</servlet-name>
+        <url-pattern>/DeleteAccountServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ChangePasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <url-pattern>/ChangePasswordServlet</url-pattern>
+    </servlet-mapping>
+
         <servlet>
             <servlet-name>TopUpServlet</servlet-name>
             <servlet-class>group2.asd.uts.edu.au.opal.servlet.TopUpServlet</servlet-class>

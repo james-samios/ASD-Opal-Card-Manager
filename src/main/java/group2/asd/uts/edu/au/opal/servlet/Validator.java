@@ -8,13 +8,13 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpSession;
 
 
-public class Validator implements Serializable{
+public class Validator implements Serializable {
 
     /*Fields for initialising Input format*/
     private final String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";
     private final String namePattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";
     private final String firstLastNamePattern = "[A-Za-z\\s]{1,20}";
-    private final String passwordPattern = "[A-za-z0-9]{4,15}";
+    private final String passwordPattern = "[A-za-z0-9]{8,15}";
     private final String usernamePattern = "[A-Za-z0-9]{4,15}";
     private final String phonePattern = "[0-9]{8,13}";
     private final String numberPattern = "[0-9]{1,}";

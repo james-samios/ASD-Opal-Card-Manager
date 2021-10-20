@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
+
+<% String regErr = (String) session.getAttribute("regErr"); %>
+
 <body class="back">
 
 <form class="box" action="RegisterServlet" method="post" id="register">
@@ -28,6 +31,9 @@
     <input type="text" id="state" name="state" autocomplete="off" placeholder="State" required>
     <input type="submit" form="register" name="register" value="Register">
     <input type="button" value="Back" onclick="location.href='index.jsp'">
+    <br>
+    <p style="color:red">${regErr}</p>
+    <br>
     <p>Already a Customer? <a href="login.jsp">Click here.</a></p>
 </form>
 
