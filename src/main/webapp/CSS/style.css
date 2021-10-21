@@ -575,7 +575,7 @@ img {
     color: #222222;
 }
 
-.button {
+.button1 {
     background-color: #3FB0AC;
     border: none;
     color: white;
@@ -589,9 +589,22 @@ img {
     transition-duration: 0.4s;
 }
 
-.button:hover {
+.button1:hover {
     background-color: #165da6;
     color: white;
+}
+
+.userprofile {
+    background-color: #3FB0AC;
+    border: none;
+    color: white;
+    padding: 6px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
 }
 
 .adult {
@@ -701,10 +714,7 @@ img {
     transition: 0.5s;
 
 }
-button:hover{
-    cursor: pointer;
-    background: #57bcd8;
-}
+
 .input-box select{
     display: inline-block;
     width: 50%;
@@ -723,20 +733,6 @@ button:hover{
     background-color: #57bcd8;
     color: #fff;
     text-align: center;
-}
-button{
-    width: 45%;
-    background: transparent;
-    border: none;
-    background: #57bcd8;
-    color: #fff;
-    padding: 15px;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: all 0.35s ease;
-    float: left;
-    margin-right: 5px;
-
 }
 
 .form-control {

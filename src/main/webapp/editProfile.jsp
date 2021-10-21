@@ -28,19 +28,11 @@
     <p>Phone Number</p>
     <input type="text" id="phone" name="phone" autocomplete="off" value="${customer.getPhoneNumber()}" placeholder="Phone Number" required>
     <br>
-    <p>Address Line 1</p>
-    <input type="text" id="address_line_1" name="address_line_1" autocomplete="off" value="${customer.getAddress().getAddressLine1()}" placeholder="Address Line 1" required>
-    <p>Address Line 2</p>
-    <input type="text" id="address_line_2" name="address_line_2" autocomplete="off" value="${customer.getAddress().getAddressLine2()}" placeholder="Address Line 2">
-    <p>Suburb</p>
-    <input type="text" id="suburb" name="suburb" autocomplete="off" value="${customer.getAddress().getSuburb()}" placeholder="Suburb" required>
-    <p>Postcode</p>
-    <input type="number" id="postcode" name="postcode" autocomplete="off" value="${customer.getAddress().getPostCode()}" placeholder="Postcode" required>
-    <p>State</p>
-    <input type="text" id="state" name="state" autocomplete="off" value="${customer.getAddress().getState()}" placeholder="State" required>
     <input type="submit" form="update" name="update" value="Update Profile">
     <input type="button" value="Back" onclick="location.href='userprofile.jsp'">
     <br>
+    <p><a href="editAddress.jsp">Click here to edit address details.</a></p>
+    <p>${editErr}</p>
     <p style="color:red">${editErr}</p>
 </form>
 
