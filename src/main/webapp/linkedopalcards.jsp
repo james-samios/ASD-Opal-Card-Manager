@@ -22,7 +22,8 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <%
-    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("linked_cards");
+    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("filter_cards");
+    String searchResult = (String) session.getAttribute("search_result");
 %>
 
 <body>
@@ -41,6 +42,18 @@
 </nav>
 <center>
     <section>
+        <form method="get" action="SearchLinkedCardServlet">
+            <table class="table-style">
+                <tr>
+                    <td><input class="input_text" type="text" name="search_input" placeholder="Card type, card number, all"></td>
+                    <td><input class="submit2" type="submit" value="Search"></td>
+                </tr>
+                <tr>
+                    <td><p class="successinfo"><%=searchResult%></p></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
         <%
             for(int i = 0; i < linkedCards.size(); i++){
                 Card card = linkedCards.get(i);
@@ -80,18 +93,6 @@
                 </tr>
             </table>
         <%}%>
-        <!--
-            <div class="adult">
-                <table class = "table-style"><br/>
-                    <tr class = "table-style">
-                        <th class = "table-header">Date/time</th>
-                        <th class = "table-header">Mode</th>
-                        <th class = "table-header">Details</th>
-                        <th class = "table-header">Fare</th>
-                    </tr>
-                </table>
-            </div>
-        -->
     </section>
 </center>
 
