@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Fares </title>
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 <%
@@ -17,7 +18,7 @@
 %>
 
 
-<h1>Fares</h1>
+<tr>    <h1>Fares</h1></tr>
 
 <h2>Daily and Weekly Caps</h2>
 <form method="post" action="UpdateFaresServlet">
@@ -186,6 +187,7 @@
         </tr>
     </table>
     <br>
+
     <button type="submit">Save</button>
     <button  onclick="location.href='faremanagement.jsp'" type="button">Return</button>
 </form>

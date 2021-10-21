@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Concession Manager</title>
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 
