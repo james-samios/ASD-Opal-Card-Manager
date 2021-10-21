@@ -266,5 +266,12 @@
         <servlet-name>ViewTripsServlet</servlet-name>
         <url-pattern>/ViewTripsServlet</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>SearchLinkedCardServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.SearchLinkedCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchLinkedCardServlet</servlet-name>
+        <url-pattern>/SearchLinkedCardServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

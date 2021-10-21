@@ -22,22 +22,36 @@ public class CancelCustomerLinkedCardServlet extends HttpServlet {
         //retrieve the current session
         HttpSession session = request.getSession();
 
+        //create an instance of the Validator class
+        Validator validator = new Validator();
+
+        //initialise all messages in session
+        validator.clean(session);
+
         //Create the card DBManager
         DBCardsManager dbCardsManager = new DBCardsManager();
 
         //Get card list
         ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("linked_cards");
+        ArrayList<Card> filterCards = (ArrayList<Card>) session.getAttribute("filter_cards");
 
         //Get selected card
-        Card selectedCard = linkedCards.get(index);
+        Card selectedCard = filterCards.get(index);
 
         //Update opal card's account id in the database with UUID(0, 0)
         dbCardsManager.updateAccountId(selectedCard.getObjectId(), new UUID(0, 0));
 
         //Remove selected card from the list
-        linkedCards.remove(index);
+        for(int i = 0; i < linkedCards.size(); i++) {
+            if(linkedCards.get(i).getCardId() == selectedCard.getCardId()) {
+                linkedCards.remove(i);
+                break;
+            }
+        }
+        filterCards.remove(index);
 
         //Store the list into the current session
+        session.setAttribute("filter_cards", filterCards);
         session.setAttribute("linked_cards", linkedCards);
 
         //Push view to welcome.jsp

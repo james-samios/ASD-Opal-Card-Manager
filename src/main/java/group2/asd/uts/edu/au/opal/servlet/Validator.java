@@ -171,5 +171,6 @@ public class Validator implements Serializable {
         session.setAttribute("previous_email", "");
         session.setAttribute("previous_password", "");
         session.setAttribute("previous_url", "");
+        session.setAttribute("search_result", "");
     }
 }
