@@ -2,8 +2,6 @@ package group2.asd.uts.edu.au.opal.dao;
 
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 import lombok.Getter;
 import org.bson.Document;
@@ -13,18 +11,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
-* DBPaymentMethodManager is used for access of PaymentMethod table on mongoDB
-*
-* */
+ * DBPaymentMethodManager is used for access of PaymentMethod table on mongoDB
+ *
+ * */
 @Getter
-public class DBPaymentMethodManager {
+public class DBPaymentMethodManager extends DBManager{
+    public DBPaymentMethodManager() {
+        super(CollectionType.PAYMENT_METHODS);
+    }
+    /*
     private final MongoCollection<Document> collection;
-    /**
-     * Constructor for choosing a table with table name
-     * */
     public DBPaymentMethodManager(MongoDatabase db) {
         collection = db.getCollection(CollectionType.PAYMENT_METHODS.toString().toLowerCase());
-    }
+    }*/
+
 
     /*
      * Add methods for accessing CRUD on Table
@@ -41,6 +41,7 @@ public class DBPaymentMethodManager {
      **/
 
     public void createPaymentMethod(final PaymentMethod paymentMethod) {
+        refresh();
         try {
             getCollection().insertOne(paymentMethod.convertClassToDocument());
         } catch (Exception e) {
@@ -60,6 +61,7 @@ public class DBPaymentMethodManager {
      */
 
     public PaymentMethod readPaymentByObjectId(final ObjectId objectId) {
+        refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
@@ -86,10 +88,11 @@ public class DBPaymentMethodManager {
      */
 
     public PaymentMethod readPaymentMethodByPaymentMethodId(final String paymentMethodId) {
+        refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
-            where.put("payment_method_id", UUID.fromString(paymentMethodId));
+            where.put("payment_method_id", paymentMethodId);
             document = getCollection().find(where).first();
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
@@ -114,6 +117,7 @@ public class DBPaymentMethodManager {
      */
 
     public PaymentMethod readPaymentMethodByNumberAndCVC(final String cardNumber, final String cardCVC) {
+        refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
@@ -136,6 +140,7 @@ public class DBPaymentMethodManager {
      * @author Jung
      */
     public void readAllPaymentMethods() {
+        refresh();
         try {
             int counter = 1;
             for (Document document : getCollection().find()) {
@@ -158,12 +163,13 @@ public class DBPaymentMethodManager {
      **/
 
     public void updatePaymentMethod(PaymentMethod paymentMethod) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", paymentMethod.getObjectId());
             BasicDBObject newDocument = new BasicDBObject();
-            newDocument.put("payment_method_id", paymentMethod.getPaymentMethodId());
-            newDocument.put("opal_card_id", paymentMethod.getOpalCardId());
+            newDocument.put("payment_method_id", paymentMethod.getPaymentMethodId().toString());
+            newDocument.put("opal_card_id", paymentMethod.getOpalCardId().toString());
             newDocument.put("card_number", paymentMethod.getCardNumber());
             newDocument.put("card_name", paymentMethod.getCardName());
             newDocument.put("cvc", paymentMethod.getCardCVC());
@@ -186,10 +192,11 @@ public class DBPaymentMethodManager {
      */
 
     public void deletePaymentByPaymentMethodId(final String paymentMethodId) {
+        refresh();
         try {
             //deleting an object from table
             BasicDBObject where = new BasicDBObject();
-            where.put("payment_method_id", UUID.fromString(paymentMethodId));
+            where.put("payment_method_id", paymentMethodId);
             getCollection().deleteMany(where);
         }catch(Exception e) {
             System.out.println("Error: Delete error happens. Check the code");
@@ -204,6 +211,7 @@ public class DBPaymentMethodManager {
      */
 
     public void deletePaymentByObjectId(final ObjectId objectId) {
+        refresh();
         try {
             //deleting an object from table
             BasicDBObject where = new BasicDBObject();

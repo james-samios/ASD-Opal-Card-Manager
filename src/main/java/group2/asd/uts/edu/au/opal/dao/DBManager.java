@@ -17,7 +17,6 @@ public class DBManager {
         this.connection = DBConnection.getDB();
         this.collection = connection.getCollection(type);
     }
-
     public void refresh() {
         this.collection = connection.getCollection(type);
     }

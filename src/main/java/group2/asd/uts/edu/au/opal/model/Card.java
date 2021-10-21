@@ -31,12 +31,12 @@ public class Card extends Document {
 
     public Card(final Document document) {
         this.objectId = new ObjectId(document.get("_id").toString());
-        this.cardId = UUID.fromString(document.get("card_id").toString());
+        this.cardId = UUID.fromString(document.getString("card_id"));
         this.cardNumber = document.getString("card_number");
         this.cardPin = document.getString("card_pin");
         this.type = CardType.valueOf(document.getString("type").toUpperCase());
         this.balance = document.getDouble("balance");
-        this.accountId = UUID.fromString(document.get("account_id").toString());
+        this.accountId = UUID.fromString(document.getString("account_id"));
         this.active = document.getBoolean("active");
         this.locked = document.getBoolean("locked");
         this.topUp = new TopUp(document.get("top_up", Document.class));
@@ -72,13 +72,17 @@ public class Card extends Document {
         this.trips = trips;
     }
 
+    public Card() {
+
+    }
+
     public Document convertClassToDocument() {
-        Document document = new Document("card_id", cardId)
+        Document document = new Document("card_id", cardId.toString())
                 .append("card_number", cardNumber)
                 .append("card_pin", cardPin)
                 .append("type", type.toString().toUpperCase())
                 .append("balance", balance)
-                .append("account_id", accountId)
+                .append("account_id", accountId.toString())
                 .append("active", active)
                 .append("locked", locked);
         document.put("top_up", topUp.convertClassToDocument());

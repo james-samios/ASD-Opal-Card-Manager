@@ -8,13 +8,13 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpSession;
 
 
-public class Validator implements Serializable{
+public class Validator implements Serializable {
 
     /*Fields for initialising Input format*/
     private final String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)";
     private final String namePattern = "([A-Z][a-z]+[\\s])+[A-Z][a-z]*";
     private final String firstLastNamePattern = "[A-Za-z\\s]{1,20}";
-    private final String passwordPattern = "[A-za-z0-9]{4,15}";
+    private final String passwordPattern = "[A-za-z0-9]{8,15}";
     private final String usernamePattern = "[A-Za-z0-9]{4,15}";
     private final String phonePattern = "[0-9]{8,13}";
     private final String numberPattern = "[0-9]{1,}";
@@ -99,8 +99,7 @@ public class Validator implements Serializable{
             int month = Integer.parseInt(splits[0]);
             int year = Integer.parseInt(splits[1]);
             if(month <= 0 || month >= 13) return false;
-            if(month + year * 12 < cYear * 12 + cMonth) return false;
-            return true;
+            return month + year * 12 >= cYear * 12 + cMonth;
         }catch(Exception e) {
             return false;
         }
@@ -110,8 +109,7 @@ public class Validator implements Serializable{
         if(validateNumber(month) && validateNumber(days)){
             int intMonth = Integer.parseInt(month);
             int intDays = Integer.parseInt(days);
-            if((intMonth <= 12 && intMonth >= 0) && (intDays > 0 && intDays <= getDaysByMonth(intMonth)))
-                return true;
+            return (intMonth <= 12 && intMonth >= 0) && (intDays > 0 && intDays <= getDaysByMonth(intMonth));
         }
         return false;
     }
@@ -170,5 +168,8 @@ public class Validator implements Serializable{
         session.setAttribute("previous_payment_owner", "");
         session.setAttribute("previous_payment_cvc", "");
         session.setAttribute("previous_payment_expiry", "");
+        session.setAttribute("previous_email", "");
+        session.setAttribute("previous_password", "");
+        session.setAttribute("previous_url", "");
     }
 }

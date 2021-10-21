@@ -1,8 +1,4 @@
 package group2.asd.uts.edu.au.opal.test;
-
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClients;
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
 
 import group2.asd.uts.edu.au.opal.model.Card;
@@ -27,9 +23,9 @@ public class TestDBCardManagerClass {
         add(trip);
     }};
 
-    private final Card expectedCard = new Card(new ObjectId(), cardId, "0000222244446666",
-            "0246",
-            CardType.ADULT,
+    private final Card expectedCard = new Card(new ObjectId(), cardId, "4444333322221111",
+            "4321",
+            CardType.CHILD,
             100.0,
             UUID.randomUUID(),
             false,
@@ -127,7 +123,6 @@ public class TestDBCardManagerClass {
         dbCardsManager.deleteCardByObjectId(expectedCard.getObjectId());
         /*Test two objects are the same or not*/
         assertEquals(expectedCard, actualCard);
-
     }
 
     @Test

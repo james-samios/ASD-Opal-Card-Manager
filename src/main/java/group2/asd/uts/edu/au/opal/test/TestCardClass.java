@@ -39,12 +39,12 @@ public class TestCardClass {
     @Test
     public void testCardConstructor() {
         Document document = new Document("_id", objectId)
-                .append("card_id", cardId)
+                .append("card_id", cardId.toString())
                 .append("card_number", cardNumber)
                 .append("card_pin", cardPin)
                 .append("type", cardType.toString())
                 .append("balance", balance)
-                .append("account_id", accountId)
+                .append("account_id", accountId.toString())
                 .append("active", active)
                 .append("locked", locked);
         document.put("top_up", topUp.convertClassToDocument());
@@ -61,12 +61,12 @@ public class TestCardClass {
     @Test
     public void testCardConvertToDocument() {
         Document document = expectedCard.convertClassToDocument();
-        Document expectDoc = new Document("card_id", cardId)
+        Document expectDoc = new Document("card_id", cardId.toString())
                 .append("card_number", cardNumber)
                 .append("card_pin", cardPin)
                 .append("type", cardType.toString().toUpperCase())
                 .append("balance", balance)
-                .append("account_id", accountId)
+                .append("account_id", accountId.toString())
                 .append("active", active)
                 .append("locked", locked);
         expectDoc.put("top_up", topUp.convertClassToDocument());

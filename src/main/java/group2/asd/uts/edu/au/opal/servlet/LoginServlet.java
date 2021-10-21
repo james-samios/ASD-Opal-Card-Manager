@@ -42,9 +42,10 @@ public class LoginServlet extends HttpServlet {
 
                 //Push view to welcome.jsp
                 req.getRequestDispatcher("/userprofile.jsp").forward(req, resp);
+                req.getSession().removeAttribute("logErr");
             } else {
                 //Store error message into attribute
-                req.setAttribute("error_message", "Sorry, there was an error retrieving your account details. Please try again later.");
+                req.getSession().setAttribute("logErr", "Invalid email or password. Please try again.");
 
                 //Stay view at login.jsp
                 req.getRequestDispatcher("/login.jsp").forward(req, resp);

@@ -10,6 +10,8 @@ import org.bson.types.ObjectId;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
+import java.util.UUID;
 
 @Getter
 public class DBCustomerManager extends DBManager {
@@ -34,20 +36,20 @@ public class DBCustomerManager extends DBManager {
         Document address = new Document();
 
         address.append(
-                "address_line_1", a.getAddressLine1())
+                        "address_line_1", a.getAddressLine1())
                 .append("address_line_2", a.getAddressLine2())
                 .append("suburb", a.getSuburb())
                 .append("post_code", a.getPostCode())
                 .append("state", a.getState()
-        );
+                );
 
         Document weeklyReward = new Document();
 
         weeklyReward.append(
-                "reward_percentage", 0.0)
+                        "reward_percentage", 0.0)
                 .append("reward_name", "null")
                 .append("reward_claimed", false
-        );
+                );
 
         Document user = new Document("_id", new ObjectId());
         user.append("account_id", customer.getAccountId().toString())
@@ -104,6 +106,114 @@ public class DBCustomerManager extends DBManager {
         return new Customer(doc);
     }
 
+    public Customer getCustomerById(final UUID uuid) {
+        refresh();
+        BasicDBObject where = new BasicDBObject();
+        where.put("account_id", uuid.toString());
+        Document doc = getCollection().find(where).first();
+        if (doc == null || doc.isEmpty()) return null;
+        return new Customer(doc);
+    }
+
     /*   *************************************Methods for "U" section below****************************************   */
+
+    /**
+     * Update a Customer's password. Used in the ChangePasswordServlet.
+     * @param uuid The Customer's account ID.
+     * @param newPassword The new password the customer would like
+     */
+    public void changePassword(final UUID uuid, final String newPassword) {
+        refresh();
+        BasicDBObject where = new BasicDBObject();
+        where.put("account_id", uuid.toString());
+        BasicDBObject update = new BasicDBObject();
+        update.put("password", stringToMd5(newPassword));
+        getCollection().updateOne(where, update);
+    }
+
+    /**
+     * Updates all customer fields. Used in the EditProfileServlet.
+     * @param customer The Customer object.
+     */
+    public void updateCustomer(final Customer customer) {
+        // Customer Account
+        updateField(customer.getAccountId(), AccountField.FIRST_NAME, customer.getFirstName());
+        updateField(customer.getAccountId(), AccountField.LAST_NAME, customer.getLastName());
+        updateField(customer.getAccountId(), AccountField.EMAIL_ADDRESS, customer.getEmailAddress());
+        updateField(customer.getAccountId(), AccountField.PHONE_NUMBER, customer.getPhoneNumber());
+
+        // Customer Address
+        Address address = customer.getAddress();
+        updateAddressField(customer.getAccountId(), AddressField.ADDRESS_LINE_1, address.getAddressLine1());
+        updateAddressField(customer.getAccountId(), AddressField.ADDRESS_LINE_2, address.getAddressLine2());
+        updateAddressField(customer.getAccountId(), AddressField.SUBURB, address.getSuburb());
+        updateAddressField(customer.getAccountId(), AddressField.POSTCODE, address.getPostCode());
+        updateAddressField(customer.getAccountId(), AddressField.STATE, address.getState());
+    }
+
+    /**
+     * Update a customer field. Such as first or last name, email address, phone number, etc.
+     * @param uuid The Customer's account ID.
+     * @param field The field to be updated.
+     * @param update The updated field contents.
+     */
+    private void updateField(final UUID uuid, final AccountField field, final String update) {
+        refresh();
+        BasicDBObject where = new BasicDBObject();
+        where.put("account_id", uuid.toString());
+        BasicDBObject up = new BasicDBObject();
+        up.put(field.name().toLowerCase(Locale.ROOT), update);
+        getCollection().updateOne(where, up);
+    }
+
+    /**
+     * Update a customer's address field.
+     * @param uuid The Customer's account ID.
+     * @param field The field to be updated.
+     * @param update The updated field contents.
+     */
+    public void updateAddressField(final UUID uuid, final AddressField field, final Object update) {
+        refresh();
+        BasicDBObject where = new BasicDBObject();
+        where.put("account_id", uuid.toString());
+        BasicDBObject up = new BasicDBObject();
+        up.put("address." + field.name().toLowerCase(Locale.ROOT), update);
+        getCollection().updateOne(where, up);
+    }
+
+    /**
+     * The available fields in a customer account that can be updated.
+     */
+    public enum AccountField {
+        FIRST_NAME,
+        LAST_NAME,
+        EMAIL_ADDRESS,
+        PHONE_NUMBER;
+    }
+
+    /**
+     * The available fields in a customer's address that can be updated.
+     */
+    public enum AddressField {
+        ADDRESS_LINE_1,
+        ADDRESS_LINE_2,
+        SUBURB,
+        POSTCODE,
+        STATE;
+    }
+
     /*   *************************************Methods for "D" section below****************************************   */
+
+    /**
+     * Deletes a Customer's account by removing the document from the MongoDB collection.
+     * It also unlinks all active cards.
+     * @param uuid The Customer's account ID.
+     */
+    public void deleteAccount(final UUID uuid) {
+        refresh();
+        BasicDBObject where = new BasicDBObject();
+        where.put("account_id", uuid.toString());
+        getCollection().deleteOne(where);
+        new DBCardsManager().unLinkCardByGivenAccountId(uuid.toString());
+    }
 }

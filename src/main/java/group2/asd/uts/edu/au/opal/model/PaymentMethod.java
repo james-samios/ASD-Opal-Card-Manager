@@ -26,18 +26,18 @@ public class PaymentMethod extends Document {
      */
     public PaymentMethod(final Document document) {
         this.objectId = new ObjectId(document.get("_id").toString());
-        this.paymentMethodId = UUID.fromString(document.get("payment_method_id").toString());
-        this.opalCardId = UUID.fromString(document.get("opal_card_id").toString());
+        this.paymentMethodId = UUID.fromString(document.getString("payment_method_id"));
+        this.opalCardId = UUID.fromString(document.getString("opal_card_id"));
         this.cardNumber = document.getString("card_number");
         this.cardName = document.getString("card_name");
         this.cardCVC = document.getString("cvc");
         this.expiryDate = document.getString("expiry_date");
     }
 
-    public PaymentMethod(String paymentMethodId, String opalCardId, String cardNumber, String cardName, String cardCVC,
+    public PaymentMethod(UUID paymentMethodId, UUID opalCardId, String cardNumber, String cardName, String cardCVC,
                          String expiryDate) {
-        this.paymentMethodId = UUID.fromString(paymentMethodId);
-        this.opalCardId = UUID.fromString(opalCardId);
+        this.paymentMethodId = paymentMethodId;
+        this.opalCardId = opalCardId;
         this.cardNumber = cardNumber;
         this.cardName = cardName;
         this.cardCVC = cardCVC;
@@ -45,8 +45,8 @@ public class PaymentMethod extends Document {
     }
 
     public Document convertClassToDocument() {
-        return new Document("payment_method_id", paymentMethodId)
-                .append("opal_card_id", opalCardId)
+        return new Document("payment_method_id", paymentMethodId.toString())
+                .append("opal_card_id", opalCardId.toString())
                 .append("card_number", cardNumber)
                 .append("card_name", cardName)
                 .append("cvc", cardCVC)

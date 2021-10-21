@@ -16,7 +16,7 @@ public class TestTopUpClass {
     private final double when = 5.0;
 
     /*create a new document and append all fields into the document*/
-    private final Document document = new Document("payment_method_id", paymentMethodId)
+    private final Document document = new Document("payment_method_id", paymentMethodId.toString())
     //private final Document document = new Document()
             .append("enabled", enabled)
             .append("amount", amount)

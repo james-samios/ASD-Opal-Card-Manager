@@ -1,8 +1,6 @@
 package group2.asd.uts.edu.au.opal.dao;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import group2.asd.uts.edu.au.opal.model.Card;
@@ -23,7 +21,6 @@ import java.util.logging.Logger;
  * */
 @Getter
 public class DBCardsManager extends DBManager {
-
     public DBCardsManager() {
         super(CollectionType.CARDS);
     }
@@ -42,6 +39,7 @@ public class DBCardsManager extends DBManager {
     /*   *************************************Methods for "C" section below****************************************   */
 
     public void createOpalCard(final Card card) {
+        refresh();
         try {
             getCollection().insertOne(card.convertClassToDocument());
 
@@ -67,6 +65,7 @@ public class DBCardsManager extends DBManager {
      */
 
     public Card readCardByNumberAndPin(final String cardNumber, final String cardPin) {
+        refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
@@ -94,10 +93,11 @@ public class DBCardsManager extends DBManager {
      */
 
     public Card readCardByCardId(final String cardId) {
+        refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
-            where.put("card_id", UUID.fromString(cardId));
+            where.put("card_id", cardId);
             document = getCollection().find(where).first();
 
             //Retrieving the documents
@@ -121,6 +121,7 @@ public class DBCardsManager extends DBManager {
      */
 
     public Card readCardByObjectId(final ObjectId objectId) {
+        refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
@@ -137,7 +138,35 @@ public class DBCardsManager extends DBManager {
         }
     }
 
+    /**
+     * Returns a Card with provided card ID.
+     * If no data is found, it will return
+     * null, implying incorrect details were supplied.
+     * @param accountId The Opal card's linked account Id
+     * @return Card
+     * @author Jung
+     */
+
+    public ArrayList<Card> readCardByAccountId(final String accountId) {
+        refresh();
+        try {
+            ArrayList<Card> cardLists = new ArrayList<>();
+            BasicDBObject where = new BasicDBObject();
+            where.put("account_id", accountId);
+
+            for(Document document: getCollection().find(where)) {
+                cardLists.add(new Card(document));
+            }
+            //Retrieving the documents
+            return cardLists;
+        }catch(Exception e) {
+            Logger.getLogger(DBCardsManager.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+
     public void readAllCards() {
+        refresh();
         try {
             int counter = 1;
             for (Document document : getCollection().find()) {
@@ -161,6 +190,7 @@ public class DBCardsManager extends DBManager {
      */
 
     public void updateCardBalance(final ObjectId objectId, final double amount) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -179,6 +209,7 @@ public class DBCardsManager extends DBManager {
      */
 
     public void updateCardNumber(final ObjectId objectId, final String cardNumber) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -198,6 +229,7 @@ public class DBCardsManager extends DBManager {
      */
 
     public void updateCardPin(final ObjectId objectId, final String cardPin) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -217,6 +249,7 @@ public class DBCardsManager extends DBManager {
      */
 
     public void updateCardType(final ObjectId objectId, final String type) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -234,10 +267,11 @@ public class DBCardsManager extends DBManager {
      * @author Jung
      */
     public void updateAccountId(final ObjectId objectId, final UUID accountId) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
-            getCollection().updateOne(where, Updates.set("account_id", accountId));
+            getCollection().updateOne(where, Updates.set("account_id", accountId.toString()));
         }catch(Exception e) {
             System.out.println("Error: the failure of updating card's linked account ID");
         }
@@ -252,6 +286,7 @@ public class DBCardsManager extends DBManager {
      */
 
     public void updateCardActive(final ObjectId objectId, final boolean active) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -270,6 +305,7 @@ public class DBCardsManager extends DBManager {
      * @author Jung
      */
     public void updateCardTopUp(final ObjectId objectId, final TopUp topUp) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -287,6 +323,7 @@ public class DBCardsManager extends DBManager {
      * @author Jung
      */
     public void updateCardTrips(final ObjectId objectId, final ArrayList<Document> trips) {
+        refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
@@ -296,8 +333,29 @@ public class DBCardsManager extends DBManager {
         }
     }
 
+    /**
+     * No return
+     * If a card is found, it will update Document of Trips
+     * @param accountId The Opal card's object ID
+     * @author Jung
+     */
+
+    public void unLinkCardByGivenAccountId(final String accountId) {
+        refresh();
+        try {
+            BasicDBObject where = new BasicDBObject();
+            where.put("account_id", accountId);
+            getCollection().updateMany(where, Updates.set("account_id", new UUID(0, 0).toString()));
+        }catch(Exception e) {
+            System.out.println("Error: the failure of updating card's id");
+        }
+
+    }
+
+
     /*   *************************************Methods for "D" section below****************************************   */
     public void deleteCardByObjectId(final ObjectId objectId) {
+        refresh();
         try {
             //deleting an object from table
             getCollection().deleteMany(Filters.eq("_id", objectId));
@@ -307,6 +365,7 @@ public class DBCardsManager extends DBManager {
     }
 
     public void deleteCardByCardNumberAndPin(final String cardNumber, final String cardPin) {
+        refresh();
         try {
             //deleting an object from table
             BasicDBObject where = new BasicDBObject();
