@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Opal Card Theft or Loss</title>
-    <link rel="stylesheet" href="CSS/interface.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 

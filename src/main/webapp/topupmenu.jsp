@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="CSS/topupmenu.css">
+        <link rel="stylesheet" href="CSS/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Top Up Menu</title>
     </head>
@@ -71,6 +71,7 @@
                 <input type="text" name="payment_expiry" value="<%=previousPaymentExpiry != null? previousPaymentExpiry:""%>" autocomplete="off" placeholder="XX/XX">
             </label>
             <input type="submit" form="top_up" name="confirm" value="Confirm">
+
             <input type="button" value="Back" onclick="location.href='carddetails.jsp'">
             <p class="errorinfo"><%=cardNumberFormErr != null? cardNumberFormErr: empty%></p>
             <p class="errorinfo"><%=cardCvcErr != null? cardCvcErr: empty%></p>

@@ -72,6 +72,10 @@ public class Card extends Document {
         this.trips = trips;
     }
 
+    public Card() {
+
+    }
+
     public Document convertClassToDocument() {
         Document document = new Document("card_id", cardId.toString())
                 .append("card_number", cardNumber)
