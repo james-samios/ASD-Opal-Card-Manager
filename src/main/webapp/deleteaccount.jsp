@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="CSS/style.css">
-    <title>Login Page</title>
+    <title>Delete Account</title>
 </head>
 <body>
     <form class="box" action="DeleteAccountServlet" method="post" id="delete">

@@ -50,6 +50,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.EditProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <url-pattern>/EditProfileServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <servlet-class>group2.asd.uts.edu.au.opal.servlet.ChangePasswordServlet</servlet-class>
     </servlet>

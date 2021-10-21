@@ -132,12 +132,32 @@ public class DBCustomerManager extends DBManager {
     }
 
     /**
+     * Updates all customer fields. Used in the EditProfileServlet.
+     * @param customer The Customer object.
+     */
+    public void updateCustomer(final Customer customer) {
+        // Customer Account
+        updateField(customer.getAccountId(), AccountField.FIRST_NAME, customer.getFirstName());
+        updateField(customer.getAccountId(), AccountField.LAST_NAME, customer.getLastName());
+        updateField(customer.getAccountId(), AccountField.EMAIL_ADDRESS, customer.getEmailAddress());
+        updateField(customer.getAccountId(), AccountField.PHONE_NUMBER, customer.getPhoneNumber());
+
+        // Customer Address
+        Address address = customer.getAddress();
+        updateAddressField(customer.getAccountId(), AddressField.ADDRESS_LINE_1, address.getAddressLine1());
+        updateAddressField(customer.getAccountId(), AddressField.ADDRESS_LINE_2, address.getAddressLine2());
+        updateAddressField(customer.getAccountId(), AddressField.SUBURB, address.getSuburb());
+        updateAddressField(customer.getAccountId(), AddressField.POSTCODE, address.getPostCode());
+        updateAddressField(customer.getAccountId(), AddressField.STATE, address.getState());
+    }
+
+    /**
      * Update a customer field. Such as first or last name, email address, phone number, etc.
      * @param uuid The Customer's account ID.
      * @param field The field to be updated.
      * @param update The updated field contents.
      */
-    public void updateField(final UUID uuid, final AccountField field, final String update) {
+    private void updateField(final UUID uuid, final AccountField field, final String update) {
         refresh();
         BasicDBObject where = new BasicDBObject();
         where.put("account_id", uuid.toString());
@@ -157,7 +177,7 @@ public class DBCustomerManager extends DBManager {
         BasicDBObject where = new BasicDBObject();
         where.put("account_id", uuid.toString());
         BasicDBObject up = new BasicDBObject();
-        up.put(field.name().toLowerCase(Locale.ROOT), update);
+        up.put("address." + field.name().toLowerCase(Locale.ROOT), update);
         getCollection().updateOne(where, up);
     }
 

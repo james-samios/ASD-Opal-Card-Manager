@@ -1,6 +1,7 @@
 package group2.asd.uts.edu.au.opal.model;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -8,17 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
+@Getter @Setter
 public class Customer {
 
     private ObjectId objectId;
     private final UUID accountId;
-    private final String emailAddress;
+    private String emailAddress;
     private final String password;
-    private final String firstName;
-    private final String lastName;
-    private final String phoneNumber;
-    private final Address address;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private Address address;
     private WeeklyTripReward weeklyTripReward;
     private List<Card> linkedCards;
 
