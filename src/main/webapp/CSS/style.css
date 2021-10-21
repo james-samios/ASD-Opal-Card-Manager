@@ -49,21 +49,6 @@ a:hover {
     text-decoration: underline;
 }
 
-button{
-    width: auto;
-    background: transparent;
-    border: none;
-    background: #57bcd8;
-    color: #fff;
-    padding: 15px;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: all 0.35s ease;
-    float: left;
-    margin-right: 5px;
-
-}
-
 
 .checkbtn {
     font-size: 30px;
@@ -294,12 +279,12 @@ button{
 }
 
 .submit3 {
-    width: 80%;
+    width: 100%;
     padding: 12px;
     border-radius: 3px;
     font-size: 15px;
     color: white;
-    background-color: #57BCD8;
+    background-color: #B89F5D;
     border-style: none;
 }
 
@@ -307,23 +292,6 @@ button{
     color: white;
     background-color: lightgrey;
 }
-
-.submit4 {
-    width: 80%;
-    padding: 12px;
-    border-radius: 3px;
-    font-size: 15px;
-    color: white;
-    background-color: darkred;
-    border-style: none;
-}
-
-.submit4:hover {
-    color: white;
-    background-color: lightgrey;
-}
-
-
 
 .padding {
     padding: 12px 16px;
@@ -756,7 +724,20 @@ button:hover{
     color: #fff;
     text-align: center;
 }
+button{
+    width: 45%;
+    background: transparent;
+    border: none;
+    background: #57bcd8;
+    color: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.35s ease;
+    float: left;
+    margin-right: 5px;
 
+}
 
 .form-control {
     margin-bottom: 10px;
