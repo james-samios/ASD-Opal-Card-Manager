@@ -22,7 +22,11 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <%
-    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("linked_cards");
+    Customer customer = (Customer) session.getAttribute("customer");
+    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("linked_cards");    ArrayList<Trip> tripList = new ArrayList<Trip>();
+    customer.getLinkedCards().forEach(card -> {
+        tripList.addAll(card.getTrips());
+    });
 %>
 
 <body>
@@ -80,18 +84,25 @@
                 </tr>
             </table>
         <%}%>
-        <!--
-            <div class="adult">
-                <table class = "table-style"><br/>
-                    <tr class = "table-style">
-                        <th class = "table-header">Date/time</th>
-                        <th class = "table-header">Mode</th>
-                        <th class = "table-header">Details</th>
-                        <th class = "table-header">Fare</th>
+        <div class="adult">
+            <table class = "table-style"><br/>
+                <tr class = "table-style">
+                    <th class = "table-header">Date/time</th>
+                    <th class = "table-header">Mode</th>
+                    <th class = "table-header">Details</th>
+                    <th class = "table-header">Fare</th>
+                </tr>
+                <c:forEach items="tripList" var="element">
+                    <tr>
+                        <td>${element.getStartTime()}</td>
+                        <td>${element.getTripStart()}</td>
+                        <td>${element.getTripEnd()}</td>
+                        <td>${element.getFare()}</td>
                     </tr>
-                </table>
-            </div>
-        -->
+                </c:forEach>
+
+            </table>
+        </div>
     </section>
 </center>
 
