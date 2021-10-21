@@ -24,9 +24,19 @@
 <%
     Customer customer = (Customer) session.getAttribute("customer");
     ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("linked_cards");    ArrayList<Trip> tripList = new ArrayList<Trip>();
+    HashMap<Integer, Double> discounts = new HashMap<Integer, Double>();
+    discounts.put(1,1.0);discounts.put(3,2.5);discounts.put(5,3.7);discounts.put(10,4.5);discounts.put(15,10.0);
+
+    boolean check = false;
+    int checker = 0;
     customer.getLinkedCards().forEach(card -> {
         tripList.addAll(card.getTrips());
     });
+    int totalTrips = tripList.size();
+    Double currentDiscount = 0.0;
+    Double nextDiscount = 0.0;
+    int remainingTrips = 0;
+
 %>
 
 <body>
@@ -84,25 +94,51 @@
                 </tr>
             </table>
         <%}%>
-        <div class="adult">
-            <table class = "table-style"><br/>
-                <tr class = "table-style">
-                    <th class = "table-header">Date/time</th>
-                    <th class = "table-header">Mode</th>
-                    <th class = "table-header">Details</th>
-                    <th class = "table-header">Fare</th>
-                </tr>
-                <c:forEach items="tripList" var="element">
-                    <tr>
-                        <td>${element.getStartTime()}</td>
-                        <td>${element.getTripStart()}</td>
-                        <td>${element.getTripEnd()}</td>
-                        <td>${element.getFare()}</td>
-                    </tr>
-                </c:forEach>
+        <table class="table-style">
+            <%
+                for(Integer i = 0; i < totalTrips; i++){
+                    if (discounts.containsKey(i)) {
+                        currentDiscount = discounts.get(i);
+                        checker = i;
+                    }
+                }
 
-            </table>
-        </div>
+
+                while(!check){
+                    checker++;
+                    if (discounts.containsKey(checker)) {
+                        check = true;
+                        nextDiscount = discounts.get(checker);
+                    }
+                }
+            %>
+            <tr>
+                <td class="table-header ">Total Trips</td>
+                <td><%=totalTrips%></td>
+            </tr>
+            <tr>
+                <td class="table-header ">Available reward</td>
+                <td><%=currentDiscount%>% off</td>
+            </tr>
+            <tr>
+                <td class="table-header ">Next reward</td>
+                <td><%=nextDiscount%>% off</td>
+            </tr>
+            <tr>
+                <td class="table-header ">Trips until next reward</td>
+                <td><%=checker-totalTrips%></td>
+            </tr>
+            <tr>
+                <td class="table-header">
+                    <form method="get" action="ViewTripsServlet">
+                        <input type="hidden" name="index" value="">
+                        <input class="submit3" type="submit" value="Claim Reward">
+                    </form>
+                </td>
+                <td class="table-header">
+                </td>
+            </tr>
+        </table>
     </section>
 </center>
 
