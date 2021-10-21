@@ -53,20 +53,11 @@ public class EditProfileServlet extends HttpServlet {
             return;
         }
 
-        String addressLine1 = req.getParameter("address_line_1");
-        String addressLine2 = req.getParameter("address_line_2");
-        String suburb = req.getParameter("suburb");
-        int postcode = Integer.parseInt(req.getParameter("postcode"));
-        String state = req.getParameter("state");
-
-        Address address = new Address(addressLine1, addressLine2, suburb, postcode, state);
-
         Customer customer = (Customer) session.getAttribute("customer");
         customer.setFirstName(firstName);
         customer.setLastName(lastName);
         customer.setEmailAddress(email);
         customer.setPhoneNumber(phone);
-        customer.setAddress(address);
 
         dbCustomerManager.updateCustomer(customer);
 
