@@ -1,5 +1,6 @@
 package group2.asd.uts.edu.au.opal.model;
 
+import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.Document;
@@ -38,7 +39,9 @@ public class Customer {
         this.phoneNumber = document.getString("phone_number");
         this.address = new Address(document.get("address", Document.class));
         this.weeklyTripReward = new WeeklyTripReward(document.get("weekly_trip_reward", Document.class));
-        this.linkedCards = new ArrayList<>();
+
+        DBCardsManager manager = new DBCardsManager();
+        this.linkedCards = manager.readCardByAccountId(this.accountId.toString());
     }
 
     /**

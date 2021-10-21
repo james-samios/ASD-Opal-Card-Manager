@@ -206,7 +206,7 @@ public class DBCustomerManager extends DBManager {
 
     /**
      * Deletes a Customer's account by removing the document from the MongoDB collection.
-     * It will also unlink all active cards.
+     * It also unlinks all active cards.
      * @param uuid The Customer's account ID.
      */
     public void deleteAccount(final UUID uuid) {
@@ -214,5 +214,6 @@ public class DBCustomerManager extends DBManager {
         BasicDBObject where = new BasicDBObject();
         where.put("account_id", uuid.toString());
         getCollection().deleteOne(where);
+        new DBCardsManager().unLinkCardByGivenAccountId(uuid.toString());
     }
 }
