@@ -138,6 +138,33 @@ public class DBCardsManager extends DBManager {
         }
     }
 
+    /**
+     * Returns a Card with provided card ID.
+     * If no data is found, it will return
+     * null, implying incorrect details were supplied.
+     * @param accountId The Opal card's linked account Id
+     * @return Card
+     * @author Jung
+     */
+
+    public ArrayList<Card> readCardByAccountId(final String accountId) {
+        refresh();
+        try {
+            ArrayList<Card> cardLists = new ArrayList<>();
+            BasicDBObject where = new BasicDBObject();
+            where.put("account_id", accountId);
+
+            for(Document document: getCollection().find(where)) {
+                cardLists.add(new Card(document));
+            }
+            //Retrieving the documents
+            return cardLists;
+        }catch(Exception e) {
+            Logger.getLogger(DBCardsManager.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+
     public void readAllCards() {
         refresh();
         try {
@@ -305,6 +332,26 @@ public class DBCardsManager extends DBManager {
             System.out.println("Error: the failure of updating card's object");
         }
     }
+
+    /**
+     * No return
+     * If a card is found, it will update Document of Trips
+     * @param accountId The Opal card's object ID
+     * @author Jung
+     */
+
+    public void unLinkCardByGivenAccountId(final String accountId) {
+        refresh();
+        try {
+            BasicDBObject where = new BasicDBObject();
+            where.put("account_id", accountId);
+            getCollection().updateMany(where, Updates.set("account_id", new UUID(0, 0).toString()));
+        }catch(Exception e) {
+            System.out.println("Error: the failure of updating card's id");
+        }
+
+    }
+
 
     /*   *************************************Methods for "D" section below****************************************   */
     public void deleteCardByObjectId(final ObjectId objectId) {

@@ -230,5 +230,31 @@
         <url-pattern>/StaffLoginServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>TopUpMenuServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.TopUpMenuServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TopUpMenuServlet</servlet-name>
+        <url-pattern>/TopUpMenuServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CancelCustomerLinkedCardServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CancelCustomerLinkedCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CancelCustomerLinkedCardServlet</servlet-name>
+        <url-pattern>/CancelCustomerLinkedCardServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewTripsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ViewTripsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewTripsServlet</servlet-name>
+        <url-pattern>/ViewTripsServlet</url-pattern>
+    </servlet-mapping>
 
 </web-app>

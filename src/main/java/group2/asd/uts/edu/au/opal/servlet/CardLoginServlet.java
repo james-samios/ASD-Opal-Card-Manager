@@ -34,7 +34,7 @@ public class CardLoginServlet extends HttpServlet {
         //Create the card DBManager
         DBCardsManager dbCardsManager = new DBCardsManager();
 
-        // Reading post parameters from the request
+        //Reading post parameters from the request
         String cardNumber = req.getParameter("card_number");
         String cardPin = req.getParameter("card_pin");
 
@@ -45,12 +45,15 @@ public class CardLoginServlet extends HttpServlet {
 
             /*call method to store previous input and then push view to /opalcard.jsp*/
             setPreviousInput(session, req, resp, cardNumber, cardPin);
+
         } else if(!validator.validateCardPin(cardPin)) {
             /*store error message of the type of card Pin*/
             session.setAttribute("cardPinFormErr", "Error: 4 digits for card pin");
 
             /*call method to store previous input and then push view to /opalcard.jsp*/
             setPreviousInput(session, req, resp, cardNumber, cardPin);
+
+
         } else {
             //Get customer data by calling API
             Card card = dbCardsManager.readCardByNumberAndPin(cardNumber, cardPin);
@@ -97,6 +100,8 @@ public class CardLoginServlet extends HttpServlet {
 
                 /*call method to store previous input and then push view to /opalcard.jsp*/
                 setPreviousInput(session, req, resp, cardNumber, cardPin);
+
+
             }
         }
     }
