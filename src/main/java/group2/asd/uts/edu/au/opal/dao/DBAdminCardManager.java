@@ -65,7 +65,7 @@ public class DBAdminCardManager extends DBManager {
      * @param cardNumber The Opal card's number
      * @param cardPin    The customer's password, in md5 hash form.
      * @return Card
-     * @author Jung
+     * @author Qiyang Wu
      */
 
     public Card readCardByNumberAndPin(final String cardNumber, final String cardPin) {
@@ -93,7 +93,7 @@ public class DBAdminCardManager extends DBManager {
      *
      * @param cardId The Opal card's ID
      * @return Card
-     * @author Jung
+     * @author Qiyang Wu
      */
 
     public CardForm readCardByCardId(final String cardId) {
@@ -123,7 +123,7 @@ public class DBAdminCardManager extends DBManager {
      *
      * @param objectId The Opal card's ID
      * @return Card
-     * @author Jung
+     * @author Qiyang Wu
      */
 
     public Card readCardByObjectId(final ObjectId objectId) {
@@ -163,7 +163,7 @@ public class DBAdminCardManager extends DBManager {
     public List<CardForm> readAllCardsByType(String type) {
         List<CardForm> list = new ArrayList();
         BasicDBObject where = new BasicDBObject();
-        where.put("type", type);
+        where.put("type", type.toUpperCase());
         try {
             int counter = 1;
             for (Document document : getCollection().find(where)) {
@@ -199,7 +199,7 @@ public class DBAdminCardManager extends DBManager {
      * null, implying incorrect details were supplied.
      * @param objectId The Opal card's ID
      * @param amount The Opal card's new balance
-     * @author Jung
+     * @author Qiyang Wu
      */
 
     public void updateCardBalance(final ObjectId objectId, final double amount) {
@@ -217,7 +217,7 @@ public class DBAdminCardManager extends DBManager {
      * If a card is found, it will update the card's number
      * @param objectId The Opal card's object ID
      * @param cardNumber The Opal card's pin
-     * @author Jung
+     * @author Qiyang Wu
      */
 
     public void updateCardNumber(final ObjectId objectId, final String cardNumber) {
@@ -236,7 +236,7 @@ public class DBAdminCardManager extends DBManager {
      * If a card is found, it will update the card's pin
      * @param objectId The Opal card's object ID
      * @param cardPin The Opal card's pin
-     * @author Jung
+     * @author Qiyang Wu
      */
 
     public void updateCardPin(final ObjectId objectId, final String cardPin) {
@@ -307,7 +307,7 @@ public class DBAdminCardManager extends DBManager {
      * If a card is found, it will update the card's type
      * @param objectId The Opal card's object ID
      * @param type The Opal card's type
-     * @author Jung
+     * @author Qiyang Wu
      */
 
     public void updateCardType(final ObjectId objectId, final String type) {
@@ -325,7 +325,7 @@ public class DBAdminCardManager extends DBManager {
      * If a card is found, it will update the UUID of account ID
      * @param objectId The Opal card's object ID
      * @param accountId The Opal card's linked account ID
-     * @author Jung
+     * @author Qiyang Wu
      */
     public void updateAccountId(final ObjectId objectId, final UUID accountId) {
         try {
@@ -342,7 +342,7 @@ public class DBAdminCardManager extends DBManager {
      * If a card is found, it will update boolean of card activation
      * @param objectId The Opal card's object ID
      * @param active The Opal card's activation
-     * @author Jung
+     * @author Qiyang Wu
      */
 
     public void updateCardActive(final ObjectId objectId, final boolean active) {
@@ -361,7 +361,7 @@ public class DBAdminCardManager extends DBManager {
      * If a card is found, it will update Document of Top up
      * @param objectId The Opal card's object ID
      * @param topUp The Opal card's Top up
-     * @author Jung
+     * @author Qiyang Wu
      */
     public void updateCardTopUp(final ObjectId objectId, final TopUp topUp) {
         try {
@@ -378,7 +378,7 @@ public class DBAdminCardManager extends DBManager {
      * If a card is found, it will update Document of Trips
      * @param objectId The Opal card's object ID
      * @param trips The Opal card's trips
-     * @author Jung
+     * @author Qiyang Wu
      */
     public void updateCardTrips(final ObjectId objectId, final ArrayList<Document> trips) {
         try {

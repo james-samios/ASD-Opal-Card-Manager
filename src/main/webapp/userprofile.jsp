@@ -22,7 +22,7 @@
     <ul>
         <li><a href="LinkedOpalCardsServlet">Opal Cards</a></li>
 
-        <li><a href="EditProfileServlet">Edit Profile</a></li>
+        <li><a href="editProfile.jsp">Edit Profile</a></li>
 
         <li><a href="payment.jsp">Payment</a></li>
 
@@ -77,9 +77,9 @@
             </tbody>
         </table>
 
-        <button class="userprofile" onclick="window.location.href='changepassword.jsp'" type="button">Change Password</button>
-        <br>
-        <button class="userprofile" onclick="window.location.href='deleteaccount.jsp'" type="button">Delete Account</button>
+        <button class="userprofile" onclick="window.location.href='changepassword.jsp'">Change Password</button>
+        <br><br>
+        <button class="userprofile" onclick="window.location.href='deleteaccount.jsp'">Delete Account</button>
     </section>
 </center>
 </body>
