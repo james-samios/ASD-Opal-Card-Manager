@@ -32,7 +32,6 @@
     <input type="button" value="Back" onclick="location.href='userprofile.jsp'">
     <br>
     <p><a href="editAddress.jsp">Click here to edit address details.</a></p>
-    <p>${editErr}</p>
     <p style="color:red">${editErr}</p>
 </form>
 
