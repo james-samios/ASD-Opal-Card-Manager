@@ -42,7 +42,6 @@
     </nav>
     <center>
         <section>
-
                     <%for(PaymentHistory paymentHistory: paymentHistories) {%>
                         <table class="table-style">
                             <tbody>

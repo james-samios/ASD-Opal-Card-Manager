@@ -284,7 +284,7 @@ a:hover {
     border-radius: 3px;
     font-size: 15px;
     color: white;
-    background-color: #B89F5D;
+    background-color: #3FB0AC;
     border-style: none;
 }
 
@@ -292,6 +292,36 @@ a:hover {
     color: white;
     background-color: lightgrey;
 }
+
+.submit4 {
+    width: 100%;
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: white;
+    background-color: #e74c3c;
+    border-style: none;
+}
+
+.submit4:hover {
+    color: white;
+    background-color: lightgrey;
+}
+
+.input_text {
+    width: 100%;
+    padding: 12px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: black;
+    background-color: lightgrey;
+    border-style: none;
+}
+.input_text:hover {
+    color: black;
+    background-color: white;
+}
+
 
 .padding {
     padding: 12px 16px;
@@ -323,12 +353,17 @@ a:hover {
 }
 
 .child {
-    background-color: #3FB0AC;
+    background-color: #778899;
 }
 
 .concession {
     background-color: gray;
 }
+
+.school {
+    background-color: #57bcd8;
+}
+
 
 .box {
     width: 300px;
