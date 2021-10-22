@@ -27,7 +27,28 @@ public class ChangePasswordServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
 
-        String password = req.getParameter("new_password");
+        String currentPassword = req.getParameter("password");
+        String password = req.getParameter("npassword");
+        String confirmPassword = req.getParameter("npassword2");
+
+        if (currentPassword == null || password == null || confirmPassword == null) {
+            session.setAttribute("updatePassErr", "Please fill out all fields.");
+            req.getRequestDispatcher("/changepassword.jsp").forward(req, resp);
+            return;
+        }
+
+
+        if (!customer.getPassword().equals(manager.stringToMd5(currentPassword))) {
+            session.setAttribute("updatePassErr", "Incorrect password.");
+            req.getRequestDispatcher("/changepassword.jsp").forward(req, resp);
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            session.setAttribute("updatePassErr", "New passwords do not match.");
+            req.getRequestDispatcher("/changepassword.jsp").forward(req, resp);
+            return;
+        }
 
         if (!validator.validatePassword(password)) {
             session.setAttribute("updatePassErr", "Invalid password. Minimum requirements: 8 characters");

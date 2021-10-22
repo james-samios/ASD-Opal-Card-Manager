@@ -68,7 +68,7 @@ public class DBCustomerManager extends DBManager {
      * Converts a plaintext password to md5 hash for storage in MongoDB.
      * @author James
      */
-    private String stringToMd5(String password) {
+    public String stringToMd5(String password) {
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md5.digest(password.getBytes());
