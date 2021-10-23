@@ -36,7 +36,7 @@
     Double currentDiscount = 0.0;
     Double nextDiscount = 0.0;
     int remainingTrips = 0;
-
+    String currentString = "";
 %>
 
 <body>
@@ -99,6 +99,7 @@
                 for(Integer i = 0; i < totalTrips; i++){
                     if (discounts.containsKey(i)) {
                         currentDiscount = discounts.get(i);
+                        currentString = currentDiscount==100?"Claimed":currentDiscount.toString();
                         checker = i;
                     }
                 }
@@ -116,9 +117,17 @@
                 <td class="table-header ">Total Trips</td>
                 <td><%=totalTrips%></td>
             </tr>
+            <SCRIPT>
+                function claim()
+                {
+                    <%
+                        currentString = "Claimed";
+                    %>
+                }
+            </SCRIPT>
             <tr>
                 <td class="table-header ">Available reward</td>
-                <td><%=currentDiscount%>% off</td>
+                <td><%=currentString%>% off</td>
             </tr>
             <tr>
                 <td class="table-header ">Next reward</td>
@@ -130,11 +139,12 @@
             </tr>
             <tr>
                 <td class="table-header">
-                    <form method="get" action="ViewTripsServlet">
-                        <input type="hidden" name="index" value="">
-                        <input class="submit3" type="submit" value="Claim Reward">
+                    <form method="POST" action>
+                        <input type="hidden" name="claimer" value="">
+                        <input class="submit3" type="BUTTON" value="Claim Reward" ONCLICK="claim()">
                     </form>
                 </td>
+
                 <td class="table-header">
                 </td>
             </tr>
