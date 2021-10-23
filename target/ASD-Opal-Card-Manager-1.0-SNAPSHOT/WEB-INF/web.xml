@@ -4,16 +4,23 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
 
-
-        <servlet>
-            <servlet-name>LoginServlet</servlet-name>
-            <servlet-class>group2.asd.uts.edu.au.opal.servlet.LoginServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>LoginServlet</servlet-name>
-            <url-pattern>/LoginServlet</url-pattern>
-        </servlet-mapping>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
 
         <servlet>
             <servlet-name>CardLoginServlet</servlet-name>
@@ -32,6 +39,43 @@
             <servlet-name>LogoutServlet</servlet-name>
             <url-pattern>/LogoutServlet</url-pattern>
         </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteAccountServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.DeleteAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteAccountServlet</servlet-name>
+        <url-pattern>/DeleteAccountServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.EditProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <url-pattern>/EditProfileServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditAddressServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.EditAddressServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditAddressServlet</servlet-name>
+        <url-pattern>/EditAddressServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ChangePasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <url-pattern>/ChangePasswordServlet</url-pattern>
+    </servlet-mapping>
 
         <servlet>
             <servlet-name>TopUpServlet</servlet-name>
@@ -58,6 +102,32 @@
         <servlet-mapping>
             <servlet-name>AutoTopUpServlet</servlet-name>
             <url-pattern>/AutoTopUpServlet</url-pattern>
+        </servlet-mapping>
+        <servlet>
+            <servlet-name>CancelAccountLinkServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.CancelAccountLinkServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>CancelAccountLinkServlet</servlet-name>
+            <url-pattern>/CancelAccountLinkServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>PaymentHistoryServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.PaymentHistoryServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>PaymentHistoryServlet</servlet-name>
+            <url-pattern>/PaymentHistoryServlet</url-pattern>
+        </servlet-mapping>
+
+        <servlet>
+            <servlet-name>LinkAccountServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.LinkAccountServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>LinkAccountServlet</servlet-name>
+            <url-pattern>/LinkAccountServlet</url-pattern>
         </servlet-mapping>
 
         <servlet>
@@ -131,32 +201,77 @@
         <servlet-name>CustomerResolveReportServlet</servlet-name>
         <url-pattern>/CustomerResolveReportServlet</url-pattern>
     </servlet-mapping>
-        <servlet>
-            <servlet-name>LinkAccountServlet</servlet-name>
-            <servlet-class>group2.asd.uts.edu.au.opal.servlet.LinkAccountServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>LinkAccountServlet</servlet-name>
-            <url-pattern>/LinkAccountServlet</url-pattern>
-        </servlet-mapping>
 
-        <servlet>
-            <servlet-name>CancelAccountLinkServlet</servlet-name>
-            <servlet-class>group2.asd.uts.edu.au.opal.servlet.CancelAccountLinkServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>CancelAccountLinkServlet</servlet-name>
-            <url-pattern>/CancelAccountLinkServlet</url-pattern>
-        </servlet-mapping>
-
-        <servlet>
-            <servlet-name>PaymentHistoryServlet</servlet-name>
-            <servlet-class>group2.asd.uts.edu.au.opal.servlet.PaymentHistoryServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>PaymentHistoryServlet</servlet-name>
-            <url-pattern>/PaymentHistoryServlet</url-pattern>
-        </servlet-mapping>
+    <servlet>
+        <servlet-name>LinkedOpalCardsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.LinkedOpalCardsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LinkedOpalCardsServlet</servlet-name>
+        <url-pattern>/LinkedOpalCardsServlet</url-pattern>
+    </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>FaresServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.FaresServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FaresServlet</servlet-name>
+        <url-pattern>/FaresServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateFaresServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.UpdateFaresServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateFaresServlet</servlet-name>
+        <url-pattern>/UpdateFaresServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>StaffLoginServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.StaffLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StaffLoginServlet</servlet-name>
+        <url-pattern>/StaffLoginServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TopUpMenuServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.TopUpMenuServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TopUpMenuServlet</servlet-name>
+        <url-pattern>/TopUpMenuServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CancelCustomerLinkedCardServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.CancelCustomerLinkedCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CancelCustomerLinkedCardServlet</servlet-name>
+        <url-pattern>/CancelCustomerLinkedCardServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewTripsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ViewTripsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewTripsServlet</servlet-name>
+        <url-pattern>/ViewTripsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SearchLinkedCardServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.SearchLinkedCardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchLinkedCardServlet</servlet-name>
+        <url-pattern>/SearchLinkedCardServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

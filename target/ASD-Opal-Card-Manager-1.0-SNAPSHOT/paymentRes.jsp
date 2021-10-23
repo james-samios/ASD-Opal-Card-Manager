@@ -3,7 +3,7 @@
 <head>
 
     <title>Payment Information</title>
-    <link rel="stylesheet" href="CSS/paymentresult.css">
+    <link rel="stylesheet" href="CSS/style.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 </head>
@@ -83,10 +83,10 @@
 
         <script>
             function submitForm(x){
-                if(x.id=='b1'){
+                if(x.id==='b1'){
                     document.getElementById('hid1').value='button1action';
                 }
-                else if(x.id=='b2'){
+                else if(x.id==='b2'){
                     document.getElementById('hid1').value='button2action';
                 }
                 else{

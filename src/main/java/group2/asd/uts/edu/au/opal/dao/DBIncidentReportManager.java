@@ -86,6 +86,27 @@ public class DBIncidentReportManager extends DBManager {
 
     }
 
+    /**
+     * Returns a list of all Incident Reports that are not resolved
+     */
+
+    public ArrayList<IncidentReport> listUnresolvedIncidentReports() {
+
+        ArrayList<IncidentReport> incidentReports = new ArrayList<>();
+
+        BasicDBObject where = new BasicDBObject();
+
+        List<Document> enquiriesList = getCollection().find(where).into(new ArrayList<>());
+        for (Document enquiry : enquiriesList) {
+            IncidentReport newIncidentReport = new IncidentReport(enquiry);
+            incidentReports.add(newIncidentReport);
+        }
+
+        return incidentReports;
+
+    }
+
+
     /*   *************************************Methods for "U" section below****************************************   */
 
     /**
