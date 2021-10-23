@@ -274,4 +274,32 @@
         <servlet-name>SearchLinkedCardServlet</servlet-name>
         <url-pattern>/SearchLinkedCardServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+    <servlet-name>ListUnresolvedEnquiriesServlet</servlet-name>
+    <servlet-class>group2.asd.uts.edu.au.opal.servlet.ListUnresolvedEnquiriesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>ListUnresolvedEnquiriesServlet</servlet-name>
+    <url-pattern>/ListUnresolvedEnquiriesServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ResolveEnquiryServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ResolveEnquiryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResolveEnquiryServlet</servlet-name>
+        <url-pattern>/ResolveEnquiryServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReviewEnquiryServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ReviewEnquiryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReviewEnquiryServlet</servlet-name>
+        <url-pattern>/ReviewEnquiryServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

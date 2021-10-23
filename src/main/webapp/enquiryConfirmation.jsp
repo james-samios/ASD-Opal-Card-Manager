@@ -26,9 +26,7 @@
         </ul>
     </nav>
 
-    <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
-
-    <div class="enquiryConfirmation">
+    <div class="wrapper">
         <h1>Customer Enquiry Submission Confirmed</h1>
         <p>You enquiry has been successfully submitted. Our team will get in touch with you soon.</p>
         <button onclick="document.location='enquiryHome.jsp'" class="navButton">Return</button>

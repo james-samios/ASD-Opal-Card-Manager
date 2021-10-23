@@ -53,9 +53,7 @@
 
             <%
                 if (customerEnquiryList != null) {
-                    for (CustomerEnquiry customerEnquiry: customerEnquiryList){
-            %>
-
+                    %>
         <table class="enquiryTable">
             <tr>
                 <th>Enquiry ID</th>
@@ -64,6 +62,9 @@
                 <th>Date</th>
                 <th>Status</th>
             </tr>
+                    <%
+                    for (CustomerEnquiry customerEnquiry: customerEnquiryList){
+            %>
 
             <tr>
                 <td><%=customerEnquiry.getCustomerEnquiryId()%></td>
@@ -72,10 +73,12 @@
                 <td><%=customerEnquiry.getEnquiryDate()%></td>
                 <td><%=customerEnquiry.getEnquiryStatus()%></td>
             </tr>
-        </table>
 
             <%
                 }
+                    %>
+        </table>
+            <%
                 } else {
             %>
 

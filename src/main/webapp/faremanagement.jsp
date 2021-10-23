@@ -9,10 +9,21 @@
 <html>
 <head>
     <title>Opal Cards Manage</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<nav class="customer">
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+    </label>
+    <label class="logo">Staff Home Page</label>
+    <ul>
+        <li><a href="customerService.jsp">Customer Service Support</a></li>
+        <li><a href="index.jsp">Logout</a></li>
+    </ul>
+</nav>
 
 <h1>Opal cards fares and Concession Manager </h1>
     <table>

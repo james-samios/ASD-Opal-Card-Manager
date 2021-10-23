@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Enquiry Details</title>
+    <title>Review Enquiry</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,12 +21,6 @@
         </label>
         <label class="logo">Customer Support</label>
         <ul>
-            <li><a href="userprofile.jsp">Return to profile</a></li>
-
-            <li><a href="enquiryForm.jsp">Make an enquiry</a></li>
-
-            <li><a href="incidentReportHome.jsp">Theft or loss</a></li>
-
             <li><a href="index.jsp">Logout</a></li>
         </ul>
     </nav>
@@ -38,36 +32,14 @@
     <div class="wrapper">
         <a href="enquiryList.jsp">&lt Return</a>
         <h2>Enquiry Details</h2>
-
-        <%
-            if (customerEnquiry.getEnquiryStatus().equals("Resolved")) {
-        %>
-
-        <p>This enquiry is currently <span style="color: darkorange"><%=customerEnquiry.getEnquiryStatus()%></span>. Please see below comments.</p>
         <table class="detailsTable">
             <tr>
                 <th>Title:</th>
                 <td><%=customerEnquiry.getEnquiryTitle()%></td>
             </tr>
             <tr>
-                <th>Details:</th>
-                <td><%=customerEnquiry.getEnquiryDetails()%></td>
-            </tr>
-            <tr>
-                <th>Staff Comment:</th>
-                <td><%=customerEnquiry.getResolveComment()%></td>
-            </tr>
-        </table>
-
-        <%
-            } else {
-        %>
-
-        <p>This enquiry is currently <span style="color: darkorange"><%=customerEnquiry.getEnquiryStatus()%></span>. Our team is reviewing your enquiry and will be in touch with you soon.</p>
-        <table class="detailsTable">
-            <tr>
-                <th>Title:</th>
-                <td><%=customerEnquiry.getEnquiryTitle()%></td>
+                <th>Status:</th>
+                <td><%=customerEnquiry.getEnquiryStatus()%></td>
             </tr>
             <tr>
                 <th>Details:</th>
@@ -75,9 +47,15 @@
             </tr>
         </table>
 
-        <%
-            }
-        %>
+        <div class="addComments">
+            <h2>Resolve Enquiry</h2>
+            <form method="post" action="ResolveEnquiryServlet">
+                <textarea name="resolveComment" rows="5" col="50" required></textarea>
+                <div style="padding: 10px;">
+                    <input type="submit" value="Resolve" class="submitButton">
+                </div>
+            </form>
+        </div>
 
     </div>
 

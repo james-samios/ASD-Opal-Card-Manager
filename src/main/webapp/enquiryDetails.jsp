@@ -35,15 +35,15 @@
         CustomerEnquiry customerEnquiry = (CustomerEnquiry) session.getAttribute("customerEnquiry");
     %>
 
-    <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
-
-    <div class="return">
+    <div class="wrapper">
         <a href="enquiryList.jsp">&lt Return</a>
-    </div>
+        <h2>Enquiry Details</h2>
 
-    <div class="enquiryDetails">
-        <h1>Enquiry Details</h1>
-        <p>This enquiry is currently <span style="color: darkorange"><%=customerEnquiry.getEnquiryStatus()%></span>. Our team is reviewing your enquiry and will be in touch with you soon.</p>
+        <%
+            if (customerEnquiry.getEnquiryStatus().equals("Resolved")) {
+        %>
+
+        <p>This enquiry is currently <span style="color: darkorange"><%=customerEnquiry.getEnquiryStatus()%></span>. Please see below comments.</p>
         <table class="detailsTable">
             <tr>
                 <th>Title:</th>
@@ -54,21 +54,30 @@
                 <td><%=customerEnquiry.getEnquiryDetails()%></td>
             </tr>
             <tr>
-                <th>Comments:</th>
-                <td>TO DO</td>
+                <th>Staff Comment:</th>
+                <td><%=customerEnquiry.getResolveComment()%></td>
             </tr>
         </table>
 
-        <div class="addComments">
-            <h2>Add Comments</h2>
-            <p>You can provide comments to your enquiry if you have further details.</p>
-            <form>
-                <textarea name="enquiryComments" rows="5" col="50"></textarea>
-                <div style="padding: 10px;">
-                    <input type="submit" value="Add comment" class="submitButton">
-                </div>
-            </form>
-        </div>
+        <%
+            } else {
+        %>
+
+        <p>This enquiry is currently <span style="color: darkorange"><%=customerEnquiry.getEnquiryStatus()%></span>. Our team is reviewing your enquiry and will be in touch with you soon.</p>
+        <table class="detailsTable">
+            <tr>
+                <th>Title:</th>
+                <td><%=customerEnquiry.getEnquiryTitle()%></td>
+            </tr>
+            <tr>
+                <th>Details:</th>
+                <td><%=customerEnquiry.getEnquiryDetails()%></td>
+            </tr>
+        </table>
+
+        <%
+            }
+        %>
 
     </div>
 
