@@ -462,6 +462,10 @@ a:hover {
     color: red;
 }
 
+.sectionText p {
+    text-align: center;
+}
+
 h1 {
     align-content: center;
 }

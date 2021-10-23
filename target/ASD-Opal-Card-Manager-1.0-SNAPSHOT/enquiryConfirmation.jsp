@@ -4,17 +4,27 @@
 
 <head>
     <title>Customer Enquiry Confirmation</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <div class="navbar">
-        <a href="userprofile.jsp">Return to profile</a>
-        <a href="enquiryHome.jsp">Make an enquiry</a>
-        <a href="incidentReportHome.jsp">Theft or loss</a>
-        <a href="index.jsp">Logout</a>
-    </div>
+    <nav class="customer">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">Customer Support</label>
+        <ul>
+            <li><a href="userprofile.jsp">Return to profile</a></li>
+
+            <li><a href="enquiryForm.jsp">Make an enquiry</a></li>
+
+            <li><a href="incidentReportHome.jsp">Theft or loss</a></li>
+
+            <li><a href="index.jsp">Logout</a></li>
+        </ul>
+    </nav>
 
     <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
 

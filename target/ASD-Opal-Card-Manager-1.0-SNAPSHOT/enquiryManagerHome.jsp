@@ -21,11 +21,9 @@
         </label>
         <label class="logo">Customer Support</label>
         <ul>
-            <li><a href="userprofile.jsp">Return to profile</a></li>
+            <li><a href="enquiryManagerHome.jsp">Manage Incident Reports</a></li>
 
-            <li><a href="enquiryForm.jsp">Make an enquiry</a></li>
-
-            <li><a href="incidentReportHome.jsp">Theft or loss</a></li>
+            <li><a href="">Manage Enquiries</a></li>
 
             <li><a href="index.jsp">Logout</a></li>
         </ul>
