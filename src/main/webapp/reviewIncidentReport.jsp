@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Review Incident Report</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 

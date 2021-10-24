@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Enquiry Details</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 
