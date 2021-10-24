@@ -34,6 +34,12 @@ public class LinkedOpalCardsServlet extends HttpServlet {
         //Get customer from session
         Customer customer = (Customer)session.getAttribute("customer");
 
+        //create an instance of the Validator class
+        Validator validator = new Validator();
+
+        //initialise all messages in session
+        validator.clean(session);
+
         //Store customer's linked opal card into the session
         //1. Initialise DBCardManager
         DBCardsManager dbCardsManager = new DBCardsManager();
@@ -45,9 +51,16 @@ public class LinkedOpalCardsServlet extends HttpServlet {
         if(linkedCards != null) {
             //Store linked opal cards into the current session
             session.setAttribute("linked_cards", linkedCards);
+
+            //Store linked opal cards into the current session
+            session.setAttribute("filter_cards", linkedCards);
         }else {
             session.setAttribute("linked_cards", new ArrayList<Card>());
+
+            //Store linked opal cards into the current session
+            session.setAttribute("filter_cards", new ArrayList<Card>());
         }
+
 
         //Push view to linkedopalcards.jsp
         request.getRequestDispatcher("linkedopalcards.jsp").include(request, response);
