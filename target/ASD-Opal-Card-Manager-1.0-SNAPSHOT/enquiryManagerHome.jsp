@@ -21,7 +21,7 @@
         </label>
         <label class="logo">Customer Support</label>
         <ul>
-            <li><a href="customerService.jsp">Home</a></li>
+            <li><a href="customerService.jsp">Staff Home</a></li>
 
             <li><a href="index.jsp">Logout</a></li>
         </ul>
@@ -35,7 +35,7 @@
     %>
 
     <div class="wrapper">
-        <a href="enquiryHome.jsp">&lt Return</a>
+        <a href="customerService.jsp">&lt Return</a>
 
         <h2>Unresolved Enquiries</h2>
         <form method="post" action="ReviewEnquiryServlet">

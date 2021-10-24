@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Report List</title>
+    <title>Customer Enquiries</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -22,34 +22,24 @@
         </label>
         <label class="logo">Customer Support</label>
         <ul>
-            <li><a href="userprofile.jsp">Return to profile</a></li>
-
-            <li><a href="enquiryForm.jsp">Make an enquiry</a></li>
-
-            <li><a href="incidentReportHome.jsp">Theft or loss</a></li>
+            <li><a href="customerService.jsp">Staff Home</a></li>
 
             <li><a href="index.jsp">Logout</a></li>
         </ul>
     </nav>
 
     <%
-        ArrayList<IncidentReport> incidentReportsList = (ArrayList<IncidentReport>) session.getAttribute("incidentReportsList");
+        ArrayList<IncidentReport> unresolvedReports = (ArrayList<IncidentReport>) session.getAttribute("unresolvedReports");
+        ArrayList<IncidentReport> resolvedReports = (ArrayList<IncidentReport>) session.getAttribute("resolvedReports");
         String reportSearchErr = (String) session.getAttribute("reportSearchErr");
         session.setAttribute("reportSearchErr", "");
     %>
 
-
-
     <div class="wrapper">
+        <a href="customerService.jsp">&lt Return</a>
 
-        <a href="incidentReportHome.jsp">&lt Return</a>
-
-        <h2>Recent Reports</h2>
-        <p>Below is a summary of your recent reports. We will endeavour to provide you updates as soon as possible.</p>
-
-        <h2>View report details</h2>
-
-        <form method="post" action="IncidentReportDetailsServlet">
+        <h2>Unresolved Reports</h2>
+        <form method="post" action="ReviewIncidentReportServlet">
             <input type="text" name="incidentReportId" placeholder="Report ID" required>
             <input type="submit" value="Search">
         </form>
@@ -57,7 +47,7 @@
         <span><%=(reportSearchErr != null ? reportSearchErr : "")%></span>
 
             <%
-                if (incidentReportsList != null) {
+                if (unresolvedReports != null) {
                     %>
 
         <table class="enquiryTable">
@@ -65,12 +55,12 @@
                 <th>Report ID</th>
                 <th>Report Type</th>
                 <th>Details</th>
-                <th>Date of Incident</th>
+                <th>Date</th>
                 <th>Status</th>
             </tr>
 
         <%
-                    for (IncidentReport incidentReport: incidentReportsList){
+                    for (IncidentReport incidentReport: unresolvedReports){
             %>
 
             <tr>
@@ -80,18 +70,55 @@
                 <td><%=incidentReport.getIncidentReportDate()%></td>
                 <td><%=incidentReport.getIncidentReportStatus()%></td>
             </tr>
-
             <%
                 }
                     %>
-
-        </table>
-
-        <%
+            </table>
+            <%
                 } else {
             %>
 
-        <p>There are no reports submitted. <a href="incidentReportForm.jsp">Click here</a> to report a lost or stolen Opal Card.</p>
+        <p>There are no reports to view. </p>
+
+            <%
+                }
+            %>
+
+        <h2>Resolved Reports</h2>
+
+        <%
+            if (resolvedReports != null) {
+        %>
+
+        <table class="enquiryTable">
+            <tr>
+                <th>Report ID</th>
+                <th>Report Type</th>
+                <th>Details</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+
+            <%
+                for (IncidentReport incidentReport: resolvedReports){
+            %>
+
+            <tr>
+                <td><%=incidentReport.getIncidentReportId()%></td>
+                <td><%=incidentReport.getIncidentReportType()%></td>
+                <td><%=incidentReport.getIncidentReportDetails()%></td>
+                <td><%=incidentReport.getIncidentReportDate()%></td>
+                <td><%=incidentReport.getIncidentReportStatus()%></td>
+            </tr>
+            <%
+                }
+            %>
+        </table>
+        <%
+        } else {
+        %>
+
+        <p>There are no reports to view. </p>
 
         <%
             }

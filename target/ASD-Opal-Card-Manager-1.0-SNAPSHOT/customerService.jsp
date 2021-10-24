@@ -21,6 +21,7 @@
         </label>
         <label class="logo">Customer Support</label>
         <ul>
+            <li><a href="faremanagement.jsp">Staff Home</a></li>
             <li><a href="index.jsp">Logout</a></li>
         </ul>
     </nav>
@@ -29,6 +30,7 @@
         <h2>Review Customer Enquiries</h2>
         <form action="ListUnresolvedEnquiriesServlet" method="post"><input class="button1" type="submit" value="Review Enquiries"></form>
         <h2>Review Incident Reports</h2>
+        <form action="IncidentReportReviewListServlet" method="post"><input class="button1" type="submit" value="Review Reports"></form>
     </div>
 
 </body>

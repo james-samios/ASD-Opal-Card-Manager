@@ -2,8 +2,9 @@ package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBConnection;
 import group2.asd.uts.edu.au.opal.dao.DBCustomerEnquiryManager;
-import group2.asd.uts.edu.au.opal.model.Customer;
+import group2.asd.uts.edu.au.opal.dao.DBIncidentReportManager;
 import group2.asd.uts.edu.au.opal.model.CustomerEnquiry;
+import group2.asd.uts.edu.au.opal.model.IncidentReport;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,15 +14,15 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ListUnresolvedEnquiriesServlet extends HttpServlet {
+public class IncidentReportReviewListServlet extends HttpServlet {
 
     private DBConnection connection;
-    private DBCustomerEnquiryManager customerEnquiryManager;
+    private DBIncidentReportManager incidentReportManager;
 
     @Override
     public void init() {
         this.connection = DBConnection.getDB();
-        this.customerEnquiryManager = new DBCustomerEnquiryManager();
+        this.incidentReportManager = new DBIncidentReportManager();
     }
 
     @Override
@@ -29,20 +30,19 @@ public class ListUnresolvedEnquiriesServlet extends HttpServlet {
         //Retrieve the current session
         HttpSession session = request.getSession();
 
-        //Return unresolved enquiries
-        ArrayList<CustomerEnquiry> unresolvedEnquiriesList = null;
-        String unresolvedStatus = "Submitted";
-        unresolvedEnquiriesList = customerEnquiryManager.listEnquiriesByStatus(unresolvedStatus);
-        session.setAttribute("unresolvedEnquiries", unresolvedEnquiriesList);
+        //Return unresolved reports
+        ArrayList<IncidentReport> unresolvedReportsList = null;
+        unresolvedReportsList = incidentReportManager.listUnresolvedReports();
+        session.setAttribute("unresolvedReports", unresolvedReportsList);
 
-        //Return resolved enquiries
-        ArrayList<CustomerEnquiry> resolvedEnquiriesList = null;
+        //Return resolved reports
+        ArrayList<IncidentReport> resolvedReportsList = null;
         String resolvedStatus = "Resolved";
-        resolvedEnquiriesList = customerEnquiryManager.listEnquiriesByStatus(resolvedStatus);
-        session.setAttribute("resolvedEnquiries", resolvedEnquiriesList);
+        resolvedReportsList = incidentReportManager.listReportsByStatus(resolvedStatus);
+        session.setAttribute("resolvedReports", resolvedReportsList);
 
         //Redirect to Enquiry Manager Home page
-        request.getRequestDispatcher("/enquiryManagerHome.jsp").forward(request, response);
+        request.getRequestDispatcher("/incidentReportManagerHome.jsp").forward(request, response);
 
     }
 

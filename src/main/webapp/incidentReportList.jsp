@@ -58,8 +58,7 @@
 
             <%
                 if (incidentReportsList != null) {
-                    for (IncidentReport incidentReport: incidentReportsList){
-            %>
+                    %>
 
         <table class="enquiryTable">
             <tr>
@@ -70,6 +69,10 @@
                 <th>Status</th>
             </tr>
 
+        <%
+                    for (IncidentReport incidentReport: incidentReportsList){
+            %>
+
             <tr>
                 <td><%=incidentReport.getIncidentReportId()%></td>
                 <td><%=incidentReport.getIncidentReportType()%></td>
@@ -78,10 +81,13 @@
                 <td><%=incidentReport.getIncidentReportStatus()%></td>
             </tr>
 
-        </table>
-
             <%
                 }
+                    %>
+
+        </table>
+
+        <%
                 } else {
             %>
 

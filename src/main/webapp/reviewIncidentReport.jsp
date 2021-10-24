@@ -1,5 +1,6 @@
 <%@ page import="group2.asd.uts.edu.au.opal.model.Customer" %>
-<%@ page import="group2.asd.uts.edu.au.opal.model.CustomerEnquiry" %><%--
+<%@ page import="group2.asd.uts.edu.au.opal.model.CustomerEnquiry" %>
+<%@ page import="group2.asd.uts.edu.au.opal.model.IncidentReport" %><%--
   Created by IntelliJ IDEA.
   User: chrom
   Date: 7/09/2021
@@ -9,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Review Enquiry</title>
+    <title>Review Incident Report</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,33 +27,37 @@
     </nav>
 
     <%
-        CustomerEnquiry customerEnquiry = (CustomerEnquiry) session.getAttribute("customerEnquiry");
+        IncidentReport incidentReport = (IncidentReport) session.getAttribute("incidentReport");
     %>
 
     <div class="wrapper">
-        <a href="enquiryManagerHome.jsp">&lt Return</a>
-        <h2>Enquiry Details</h2>
+        <a href="incidentReportManagerHome.jsp">&lt Return</a>
+        <h2>Report Details</h2>
         <table class="detailsTable">
             <tr>
-                <th>Title:</th>
-                <td><%=customerEnquiry.getEnquiryTitle()%></td>
+                <th>Report Type:</th>
+                <td><%=incidentReport.getIncidentReportType()%></td>
             </tr>
             <tr>
                 <th>Status:</th>
-                <td><%=customerEnquiry.getEnquiryStatus()%></td>
+                <td><%=incidentReport.getIncidentReportStatus()%></td>
             </tr>
             <tr>
                 <th>Details:</th>
-                <td><%=customerEnquiry.getEnquiryDetails()%></td>
+                <td><%=incidentReport.getIncidentReportDetails()%></td>
             </tr>
         </table>
 
         <div class="addComments">
-            <h2>Resolve Enquiry</h2>
-            <form method="post" action="ResolveEnquiryServlet">
+            <h2>Review Report</h2>
+            <form method="post" action="ResolveOrEscalateReportServlet">
+                <select name="updatedStatus" required>
+                    <option value="Resolve">Resolve</option>
+                    <option value="Escalate">Escalate</option>
+                </select>
                 <textarea name="resolveComment" rows="5" col="50" required></textarea>
                 <div style="padding: 10px;">
-                    <input type="submit" value="Resolve" class="submitButton">
+                    <input type="submit" value="Submit" class="submitButton">
                 </div>
             </form>
         </div>

@@ -89,16 +89,16 @@ public class DBCustomerEnquiryManager extends DBManager {
     }
 
     /**
-     * Returns a list of unresolved enquiries
+     * Returns a list of enquiries according to status
      * @return
      */
 
-    public ArrayList<CustomerEnquiry> listUnresolvedEnquiries() {
+    public ArrayList<CustomerEnquiry> listEnquiriesByStatus(String status) {
 
         ArrayList<CustomerEnquiry> enquiries = new ArrayList<CustomerEnquiry>();
 
         BasicDBObject where = new BasicDBObject();
-        where.put("enquiry_status", "Submitted");
+        where.put("enquiry_status", status);
 
         List<Document> enquiriesList = getCollection().find(where).into(new ArrayList<>());
         for (Document enquiry : enquiriesList) {

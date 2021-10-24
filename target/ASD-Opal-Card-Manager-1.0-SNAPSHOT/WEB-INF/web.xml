@@ -302,4 +302,31 @@
         <url-pattern>/ReviewEnquiryServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>IncidentReportReviewListServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.IncidentReportReviewListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IncidentReportReviewListServlet</servlet-name>
+        <url-pattern>/IncidentReportReviewListServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReviewIncidentReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ReviewIncidentReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReviewIncidentReportServlet</servlet-name>
+        <url-pattern>/ReviewIncidentReportServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ResolveOrEscalateReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ResolveOrEscalateReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResolveOrEscalateReportServlet</servlet-name>
+        <url-pattern>/ResolveOrEscalateReportServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
