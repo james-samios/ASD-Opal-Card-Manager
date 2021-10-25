@@ -17,21 +17,34 @@
     Fares fares = (Fares) session.getAttribute("fares");
 %>
 
+<nav class="customer">
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+    </label>
+    <label class="logo">Fares Management</label>
+    <ul>
+        <li><a href="customerService.jsp">Customer Service Support</a></li>
+        <li><a href="index.jsp">Logout</a></li>
+    </ul>
+</nav>
 
-<tr>    <h1>Fares</h1></tr>
-
+<div class = "wrapper1">
 <h2>Daily and Weekly Caps</h2>
+    <br/>
 <form method="post" action="UpdateFaresServlet">
     <p>never pay more than $<input type="number" name="daily_weekly_min" value="<%=fares.getDaily_weekly_min()%>"> a day, $<input type="number" name="daily_weekly_max" value="<%=fares.getDaily_weekly_max()%>"> a week or $<input type="number" name="daily_weekly_weekends" value="<%=fares.getDaily_weekly_weekends()%>"> on Saturdays, Sundays and public holidays.</p>
-
+    <br/>
     <h2>Peak and off-peak times</h2>
+    <br/>
     <p>30% fare discount on metro/train, bus and light rail services.<br>
         Sydney metro and trains peak times: 6.30am-10am; 3pm-7pm <br>
         Intercity trains peak times: 6am-10am; 3pm-7pm <br>
         Bus and light rail peak times: 6.30am-10am; 3pm-7pm
     </p>
-
+    <br/>
     <h2>Metro and train fares</h2>
+    <br/>
     <table>
         <tr>
 
@@ -57,6 +70,7 @@
             <td>$<input type="number" name="metro_train_off_peak_10_20" value="<%=fares.getMetro_train_off_peak_10_20()%>"></td>
             <td>$<input type="number" name="metro_train_fare_10_20" value="<%=fares.getMetro_train_fare_10_20()%>"></td>
         </tr>
+
         <tr>
 
             <td>20-35 km</td>
@@ -64,6 +78,7 @@
             <td>$<input type="number" name="metro_train_off_peak_20_35" value="<%=fares.getMetro_train_off_peak_20_35()%>"></td>
             <td>$<input type="number" name="metro_train_fare_20_35" value="<%=fares.getMetro_train_fare_20_35()%>"></td>
         </tr>
+
         <tr>
 
             <td>35 - 65 km</td>
@@ -79,9 +94,11 @@
             <td>$<input type="number" name="metro_train_off_peak_65" value="<%=fares.getMetro_train_off_peak_65()%>"></td>
             <td>$<input type="number" name="metro_train_fare_65" value="<%=fares.getMetro_train_fare_65()%>"></td>
         </tr>
+
     </table>
 
     <h2>Bus fares</h2>
+
     <table>
         <tr>
 
@@ -116,7 +133,7 @@
         </tr>
 
     </table>
-    <h2>Ferry fares</h2>
+    <h2>Ferry fares</h2><br/>
     <table>
         <tr>
 
@@ -144,7 +161,7 @@
         </tr>
         <tr>
 
-            <td>Newcastle Stockton ferry 0-3 km</td>
+            <td>NS 0-3 km</td>
             <td>$<input type="number" name="Ferry_single_NS_0_3" value="<%=fares.getFerry_single_NS_0_3()%>"></td>
             <td>$<input type="number" name="Ferry_off_peak_NS_0_3" value="<%=fares.getFerry_off_peak_NS_0_3()%>"></td>
             <td>$<input type="number" name="Ferry_fare_NS_0_3" value="<%=fares.getFerry_fare_NS_0_3()%>"></td>
@@ -152,7 +169,7 @@
 
     </table>
 
-    <h2>Light rail fares</h2>
+    <h2>Light rail fares</h2><br/>
     <table>
         <tr>
 
@@ -188,10 +205,11 @@
     </table>
     <br>
 
-    <button type="submit">Save</button>
-    <button  onclick="location.href='faremanagement.jsp'" type="button">Return</button>
-</form>
+    <button  class = "button1" type="submit">Save</button>
+    <button class = "button1"  onclick="location.href='faremanagement.jsp'" type="button">Return</button>
 
+</form>
+</div>
 </body>
 </html>
 

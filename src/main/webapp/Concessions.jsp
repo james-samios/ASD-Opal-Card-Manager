@@ -29,7 +29,6 @@
     </ul>
 </nav>
 
-<div class = "wrapper">
 <h2>Daily and Weekly Caps</h2>
     <br/>
 <form method="post" action="UpdateFaresServlet">

@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Report Details</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 
@@ -24,7 +24,7 @@
         <ul>
             <li><a href="userprofile.jsp">Return to profile</a></li>
 
-            <li><a href="enquiryForm.jsp">Make an enquiry</a></li>
+            <li><a href="enquiryHome.jsp">Make an enquiry</a></li>
 
             <li><a href="incidentReportHome.jsp">Theft or loss</a></li>
 
