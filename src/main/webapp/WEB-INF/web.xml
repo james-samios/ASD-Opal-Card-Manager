@@ -139,6 +139,18 @@
             <url-pattern>/CancelAutoTopUpServlet</url-pattern>
         </servlet-mapping>
 
+        <servlet>
+            <servlet-name>LinkedOpalCardsServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.LinkedOpalCardsServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>LinkedOpalCardsServlet</servlet-name>
+            <url-pattern>/LinkedOpalCardsServlet</url-pattern>
+        </servlet-mapping>
+
+
+
+
     <servlet>
         <servlet-name>CreateCustomerEnquiryServlet</servlet-name>
         <servlet-class>group2.asd.uts.edu.au.opal.servlet.CreateCustomerEnquiryServlet</servlet-class>
@@ -203,16 +215,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>LinkedOpalCardsServlet</servlet-name>
-        <servlet-class>group2.asd.uts.edu.au.opal.servlet.LinkedOpalCardsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LinkedOpalCardsServlet</servlet-name>
-        <url-pattern>/LinkedOpalCardsServlet</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
         <servlet-name>FaresServlet</servlet-name>
         <servlet-class>group2.asd.uts.edu.au.opal.servlet.FaresServlet</servlet-class>
     </servlet>
@@ -230,6 +232,14 @@
         <url-pattern>/UpdateFaresServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UpdateDiscountsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.UpdateDiscountsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateDiscountsServlet</servlet-name>
+        <url-pattern>/UpdateDiscountsServlet</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>StaffLoginServlet</servlet-name>

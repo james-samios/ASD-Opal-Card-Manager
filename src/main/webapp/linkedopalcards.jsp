@@ -22,7 +22,42 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <%
-    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("filter_cards");
+    Customer customer = (Customer) session.getAttribute("customer");
+    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("linked_cards");
+    ArrayList<Trip> tripList = new ArrayList<Trip>();
+    HashMap<Integer, Double> discounts = new HashMap<Integer, Double>();
+    discounts.put(1,1.0);discounts.put(3,2.5);discounts.put(5,3.7);discounts.put(10,4.5);discounts.put(15,10.0);
+
+    boolean check = false;
+    int checker = 0;
+    customer.getLinkedCards().forEach(card -> {
+        tripList.addAll(card.getTrips());
+    });
+    int totalTrips = tripList.size();
+    Double currentDiscount = 0.0;
+    Double nextDiscount = 0.0;
+    int remainingTrips = 0;
+
+
+
+    String currentString = "";
+    String claimedString = "Unclaimed";
+    boolean valueAttribute = false;
+    String attribute = (String)session.getAttribute("claimStatus");
+    if (attribute == null){
+        valueAttribute = false;
+    }
+    else {
+        if (attribute.equals("Claimed")){
+            valueAttribute = true;
+        }
+        else {
+            valueAttribute = false;
+        }
+    }
+
+    System.out.println(attribute);
+    linkedCards = (ArrayList<Card>) session.getAttribute("filter_cards");
     String searchResult = (String) session.getAttribute("search_result");
 %>
 
@@ -93,6 +128,59 @@
                 </tr>
             </table>
         <%}%>
+        <table class="table-style">
+            <%
+                for(Integer i = 0; i < totalTrips; i++){
+                    if (discounts.containsKey(i)) {
+                        currentDiscount = discounts.get(i);
+                        currentString = currentDiscount.toString();
+                        checker = i;
+                    }
+                }
+
+
+                while(!check){
+                    checker++;
+                    if (discounts.containsKey(checker)) {
+                        check = true;
+                        nextDiscount = discounts.get(checker);
+                    }
+                }
+
+
+            %>
+            <tr style="color:black">
+                <td class="table-header ">Total Trips</td>
+                <td><%=totalTrips%></td>
+            </tr>
+            <tr>
+                <td class="table-header ">Available reward</td>
+                <td><%=currentString%>% off</td>
+            </tr>
+            <tr>
+                <td class="table-header ">Next reward</td>
+                <td><%=nextDiscount%>% off</td>
+            </tr>
+            <tr>
+                <td class="table-header ">Trips until next reward</td>
+                <td><%=checker-totalTrips%></td>
+            </tr>
+            <tr>
+                <td class="table-header ">Claimed status</td>
+                <td><%=valueAttribute? "Claimed":"Unclaimed"%></td>
+            </tr>
+            <tr>
+                <td class="table-header">
+                    <form method="Get" action="UpdateDiscountsServlet">
+                        <input class="submit3" type="submit" value="<%=valueAttribute? "Cancel Reward":"Claim Reward"%>">
+                        <input class="submit3" type="hidden" name="value" value="<%=valueAttribute?1:0%>">
+                    </form>
+                </td>
+
+                <td class="table-header">
+                </td>
+            </tr>
+        </table>
     </section>
 </center>
 
