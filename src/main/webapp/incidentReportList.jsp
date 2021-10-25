@@ -15,12 +15,22 @@
 </head>
 <body>
 
-    <div class="navbar">
-        <a href="userprofile.jsp">Return to profile</a>
-        <a href="enquiryHome.jsp">Make an enquiry</a>
-        <a href="incidentReportForm.jsp">Theft or loss</a>
-        <a href="index.jsp">Logout</a>
-    </div>
+    <nav class="customer">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">Customer Support</label>
+        <ul>
+            <li><a href="userprofile.jsp">Return to profile</a></li>
+
+            <li><a href="enquiryForm.jsp">Make an enquiry</a></li>
+
+            <li><a href="incidentReportHome.jsp">Theft or loss</a></li>
+
+            <li><a href="index.jsp">Logout</a></li>
+        </ul>
+    </nav>
 
     <%
         ArrayList<IncidentReport> incidentReportsList = (ArrayList<IncidentReport>) session.getAttribute("incidentReportsList");
@@ -28,15 +38,13 @@
         session.setAttribute("reportSearchErr", "");
     %>
 
-    <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
 
-    <div class="return">
+
+    <div class="wrapper">
+
         <a href="incidentReportHome.jsp">&lt Return</a>
-    </div>
 
-    <div class="enquiryHome">
-
-        <h1>Recent Reports</h1>
+        <h2>Recent Reports</h2>
         <p>Below is a summary of your recent reports. We will endeavour to provide you updates as soon as possible.</p>
 
         <h2>View report details</h2>
@@ -50,8 +58,7 @@
 
             <%
                 if (incidentReportsList != null) {
-                    for (IncidentReport incidentReport: incidentReportsList){
-            %>
+                    %>
 
         <table class="enquiryTable">
             <tr>
@@ -62,6 +69,10 @@
                 <th>Status</th>
             </tr>
 
+        <%
+                    for (IncidentReport incidentReport: incidentReportsList){
+            %>
+
             <tr>
                 <td><%=incidentReport.getIncidentReportId()%></td>
                 <td><%=incidentReport.getIncidentReportType()%></td>
@@ -70,10 +81,13 @@
                 <td><%=incidentReport.getIncidentReportStatus()%></td>
             </tr>
 
-        </table>
-
             <%
                 }
+                    %>
+
+        </table>
+
+        <%
                 } else {
             %>
 

@@ -32,7 +32,7 @@ public class CustomerResolveReportServlet extends HttpServlet {
         String resolveReason = request.getParameter("resolveReason");
         IncidentReport incidentReport = (IncidentReport)  session.getAttribute("incidentReport");
         String incidentReportId = incidentReport.getIncidentReportId().toString();
-        String updatedStatus = "Requested for resolution by customer";
+        String updatedStatus = "Customer Resolution Requested";
 
         incidentReportManager.updateResolveReason(incidentReportId, resolveReason, updatedStatus);
 

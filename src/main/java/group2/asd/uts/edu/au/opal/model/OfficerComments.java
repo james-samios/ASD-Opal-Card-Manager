@@ -7,13 +7,13 @@ import org.bson.Document;
 public class OfficerComments extends Document {
     private final String comment;
     private final String order;
-    //add date
+
 
     /**Constructor**/
     public OfficerComments(final Document document) {
         this.comment = document.getString("officer_comments.comment");
         this.order = document.getString("officer_comments.order");
-        //add date
+
     }
 
     @Override
