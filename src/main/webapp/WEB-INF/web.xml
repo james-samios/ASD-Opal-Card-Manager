@@ -232,6 +232,14 @@
         <url-pattern>/UpdateFaresServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UpdateDiscountsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.UpdateDiscountsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateDiscountsServlet</servlet-name>
+        <url-pattern>/UpdateDiscountsServlet</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>StaffLoginServlet</servlet-name>

@@ -37,6 +37,13 @@
     Double nextDiscount = 0.0;
     int remainingTrips = 0;
     String currentString = "";
+    String claimedString = "unclaimed";
+    String attribute = (String)session.getAttribute("claimStatus");
+    if (attribute == null || !attribute.equals("Claimed")) attribute = "unclaimed";
+
+    session.setAttribute("claimedStatus", claimedString);
+
+    System.out.println(claimedString);
 %>
 
 <body>
@@ -99,7 +106,7 @@
                 for(Integer i = 0; i < totalTrips; i++){
                     if (discounts.containsKey(i)) {
                         currentDiscount = discounts.get(i);
-                        currentString = currentDiscount==100?"Claimed":currentDiscount.toString();
+                        currentString = currentDiscount.toString();
                         checker = i;
                     }
                 }
@@ -112,22 +119,16 @@
                         nextDiscount = discounts.get(checker);
                     }
                 }
+
+
             %>
             <tr>
                 <td class="table-header ">Total Trips</td>
                 <td><%=totalTrips%></td>
             </tr>
-            <SCRIPT>
-                function claim()
-                {
-                    <%
-                        currentString = "Claimed";
-                    %>
-                }
-            </SCRIPT>
             <tr>
                 <td class="table-header ">Available reward</td>
-                <td><%=currentString%>% off</td>
+                <td><%=currentDiscount%>% off</td>
             </tr>
             <tr>
                 <td class="table-header ">Next reward</td>
@@ -138,10 +139,14 @@
                 <td><%=checker-totalTrips%></td>
             </tr>
             <tr>
+                <td class="table-header ">Claimed status</td>
+                <td><%=claimedString%></td>
+            </tr>
+            <tr>
                 <td class="table-header">
-                    <form method="POST" action>
-                        <input type="hidden" name="claimer" value="">
-                        <input class="submit3" type="BUTTON" value="Claim Reward" ONCLICK="claim()">
+                    <form method="Get" action="UpdateDiscountsServlet">
+                        <input class="submit3" type="submit" value="Claim Reward">
+                        <input class="submit3" type="hidden" value="1">
                     </form>
                 </td>
 
