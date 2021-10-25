@@ -23,7 +23,8 @@
 </head>
 <%
     Customer customer = (Customer) session.getAttribute("customer");
-    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("linked_cards");    ArrayList<Trip> tripList = new ArrayList<Trip>();
+    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("linked_cards");
+    ArrayList<Trip> tripList = new ArrayList<Trip>();
     HashMap<Integer, Double> discounts = new HashMap<Integer, Double>();
     discounts.put(1,1.0);discounts.put(3,2.5);discounts.put(5,3.7);discounts.put(10,4.5);discounts.put(15,10.0);
 
@@ -56,7 +57,7 @@
     }
 
     System.out.println(attribute);
-    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("filter_cards");
+    linkedCards = (ArrayList<Card>) session.getAttribute("filter_cards");
     String searchResult = (String) session.getAttribute("search_result");
 %>
 
@@ -148,7 +149,7 @@
 
 
             %>
-            <tr>
+            <tr style="color:black">
                 <td class="table-header ">Total Trips</td>
                 <td><%=totalTrips%></td>
             </tr>
