@@ -16,7 +16,6 @@
 %>
 
 <body>
-
 <nav class="customer">
     <input type="checkbox" id="check">
     <label for="check" class="checkbtn">

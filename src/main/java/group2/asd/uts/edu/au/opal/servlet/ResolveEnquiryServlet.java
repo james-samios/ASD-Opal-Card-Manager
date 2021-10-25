@@ -13,15 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class CustomerResolveReportServlet extends HttpServlet {
+public class ResolveEnquiryServlet extends HttpServlet {
 
     private DBConnection connection;
-    private DBIncidentReportManager incidentReportManager;
+    private DBCustomerEnquiryManager customerEnquiryManager;
 
     @Override
     public void init() {
         this.connection = DBConnection.getDB();
-        this.incidentReportManager = new DBIncidentReportManager();
+        this.customerEnquiryManager = new DBCustomerEnquiryManager();
     }
 
     @Override
@@ -29,15 +29,15 @@ public class CustomerResolveReportServlet extends HttpServlet {
         //Retrieve the current session
         HttpSession session = request.getSession();
 
-        String resolveReason = request.getParameter("resolveReason");
-        IncidentReport incidentReport = (IncidentReport)  session.getAttribute("incidentReport");
-        String incidentReportId = incidentReport.getIncidentReportId().toString();
-        String updatedStatus = "Customer Resolution Requested";
+        //Update the enquiry details
+        String resolveReason = request.getParameter("resolveComment");
+        CustomerEnquiry customerEnquiry = (CustomerEnquiry)  session.getAttribute("customerEnquiry");
+        String customerEnquiryId = customerEnquiry.getCustomerEnquiryId().toString();
+        String updatedStatus = "Resolved";
+        customerEnquiryManager.resolveEnquiry(customerEnquiryId, resolveReason, updatedStatus);
 
-        incidentReportManager.updateResolveReason(incidentReportId, resolveReason, updatedStatus);
-
-        //Redirect to reports list
-        request.getRequestDispatcher("/incidentReportHome.jsp").forward(request, response);
+        //Redirect to Enquiry Manager Home page
+        request.getRequestDispatcher("/enquiryManagerHome.jsp").forward(request, response);
 
     }
 

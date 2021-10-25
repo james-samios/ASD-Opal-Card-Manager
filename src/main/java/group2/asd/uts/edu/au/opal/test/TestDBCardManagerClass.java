@@ -23,9 +23,9 @@ public class TestDBCardManagerClass {
         add(trip);
     }};
 
-    private final Card expectedCard = new Card(new ObjectId(), cardId, "4444333322221111",
-            "4321",
-            CardType.CHILD,
+    private final Card expectedCard = new Card(new ObjectId(), cardId, "6666777788889999",
+            "6789",
+            CardType.ADULT,
             100.0,
             UUID.randomUUID(),
             false,

@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class CustomerResolveReportServlet extends HttpServlet {
+public class IncidentReportReviewListServlet extends HttpServlet {
 
     private DBConnection connection;
     private DBIncidentReportManager incidentReportManager;
@@ -29,15 +30,19 @@ public class CustomerResolveReportServlet extends HttpServlet {
         //Retrieve the current session
         HttpSession session = request.getSession();
 
-        String resolveReason = request.getParameter("resolveReason");
-        IncidentReport incidentReport = (IncidentReport)  session.getAttribute("incidentReport");
-        String incidentReportId = incidentReport.getIncidentReportId().toString();
-        String updatedStatus = "Customer Resolution Requested";
+        //Return unresolved reports
+        ArrayList<IncidentReport> unresolvedReportsList = null;
+        unresolvedReportsList = incidentReportManager.listUnresolvedReports();
+        session.setAttribute("unresolvedReports", unresolvedReportsList);
 
-        incidentReportManager.updateResolveReason(incidentReportId, resolveReason, updatedStatus);
+        //Return resolved reports
+        ArrayList<IncidentReport> resolvedReportsList = null;
+        String resolvedStatus = "Resolved";
+        resolvedReportsList = incidentReportManager.listReportsByStatus(resolvedStatus);
+        session.setAttribute("resolvedReports", resolvedReportsList);
 
-        //Redirect to reports list
-        request.getRequestDispatcher("/incidentReportHome.jsp").forward(request, response);
+        //Redirect to Enquiry Manager Home page
+        request.getRequestDispatcher("/incidentReportManagerHome.jsp").forward(request, response);
 
     }
 

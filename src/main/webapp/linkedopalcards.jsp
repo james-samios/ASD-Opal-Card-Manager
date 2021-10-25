@@ -56,6 +56,8 @@
     }
 
     System.out.println(attribute);
+    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("filter_cards");
+    String searchResult = (String) session.getAttribute("search_result");
 %>
 
 <body>
@@ -74,6 +76,18 @@
 </nav>
 <center>
     <section>
+        <form method="get" action="SearchLinkedCardServlet">
+            <table class="table-style">
+                <tr>
+                    <td><input class="input_text" type="text" name="search_input" placeholder="Card type, card number, all"></td>
+                    <td><input class="submit2" type="submit" value="Search"></td>
+                </tr>
+                <tr>
+                    <td><p class="successinfo"><%=searchResult%></p></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
         <%
             for(int i = 0; i < linkedCards.size(); i++){
                 Card card = linkedCards.get(i);
