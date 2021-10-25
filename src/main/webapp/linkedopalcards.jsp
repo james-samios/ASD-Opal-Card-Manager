@@ -36,14 +36,26 @@
     Double currentDiscount = 0.0;
     Double nextDiscount = 0.0;
     int remainingTrips = 0;
+
+
+
     String currentString = "";
-    String claimedString = "unclaimed";
+    String claimedString = "Unclaimed";
+    boolean valueAttribute = false;
     String attribute = (String)session.getAttribute("claimStatus");
-    if (attribute == null || !attribute.equals("Claimed")) attribute = "unclaimed";
+    if (attribute == null){
+        valueAttribute = false;
+    }
+    else {
+        if (attribute.equals("Claimed")){
+            valueAttribute = true;
+        }
+        else {
+            valueAttribute = false;
+        }
+    }
 
-    session.setAttribute("claimedStatus", claimedString);
-
-    System.out.println(claimedString);
+    System.out.println(attribute);
 %>
 
 <body>
@@ -128,7 +140,7 @@
             </tr>
             <tr>
                 <td class="table-header ">Available reward</td>
-                <td><%=currentDiscount%>% off</td>
+                <td><%=currentString%>% off</td>
             </tr>
             <tr>
                 <td class="table-header ">Next reward</td>
@@ -140,13 +152,13 @@
             </tr>
             <tr>
                 <td class="table-header ">Claimed status</td>
-                <td><%=claimedString%></td>
+                <td><%=valueAttribute? "Claimed":"Unclaimed"%></td>
             </tr>
             <tr>
                 <td class="table-header">
                     <form method="Get" action="UpdateDiscountsServlet">
-                        <input class="submit3" type="submit" value="Claim Reward">
-                        <input class="submit3" type="hidden" value="1">
+                        <input class="submit3" type="submit" value="<%=valueAttribute? "Cancel Reward":"Claim Reward"%>">
+                        <input class="submit3" type="hidden" name="value" value="<%=valueAttribute?1:0%>">
                     </form>
                 </td>
 

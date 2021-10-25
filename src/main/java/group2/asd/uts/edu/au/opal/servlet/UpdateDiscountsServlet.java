@@ -15,8 +15,10 @@ public class UpdateDiscountsServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
 
+        int value = request.getParameter("value").equals("0")? 1:0;
+        String claimStatus = value == 1? "Claimed" : "Unclaimed";
 
-        session.setAttribute("claimStatus","Claimed");
+        session.setAttribute("claimStatus",claimStatus);
 
         request.getRequestDispatcher("linkedopalcards.jsp").forward(request, response);
 
