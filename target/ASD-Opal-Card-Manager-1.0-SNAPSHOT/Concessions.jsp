@@ -29,9 +29,10 @@
     </ul>
 </nav>
 
-<div class = "wrapper1">
+<div class ="fare">
 <h2>Daily and Weekly Caps</h2>
     <br/>
+
 <form method="post" action="UpdateFaresServlet">
     <p>never pay more than $<input type="number" name="daily_weekly_min" value="<%=fares.getDaily_weekly_min()%>"> a day, $<input type="number" name="daily_weekly_max" value="<%=fares.getDaily_weekly_max()%>"> a week or $<input type="number" name="daily_weekly_weekends" value="<%=fares.getDaily_weekly_weekends()%>"> on Saturdays, Sundays and public holidays.</p>
     <br/>

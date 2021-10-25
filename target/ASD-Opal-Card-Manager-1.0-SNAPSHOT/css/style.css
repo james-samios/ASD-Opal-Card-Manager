@@ -833,28 +833,7 @@ img {
     visibility: visible;
 }
 
-.wrapper1{
+.fare {
     background-color: #fff;
-
-    padding: 25px;
-    margin: 25px auto 0;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-
-}
-
-.wrapper1 h2{
-    background-color: white;
-    color: #57bcd8;
-    font-size: 30px;
-    padding: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-    border: none;
-}
-
-.wrapper1 h4{
-    padding-bottom: 5px;
-    color: #57bcd8;
-    font-size: 20px;
 
 }

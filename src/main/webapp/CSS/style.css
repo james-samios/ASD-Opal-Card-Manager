@@ -657,7 +657,7 @@ img {
 
 .wrapper{
     background-color: #fff;
-    width: 50%;
+    width: 500px;
     padding: 25px;
     margin: 25px auto 0;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
@@ -832,3 +832,4 @@ img {
 .form-control.error small {
     visibility: visible;
 }
+
