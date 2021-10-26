@@ -149,24 +149,24 @@
 
 
             %>
-            <tr style="color:black">
-                <td class="table-header ">Total Trips</td>
+            <tr>
+                <td>Total Trips</td>
                 <td><%=totalTrips%></td>
             </tr>
             <tr>
-                <td class="table-header ">Available reward</td>
+                <td>Available reward</td>
                 <td><%=currentString%>% off</td>
             </tr>
             <tr>
-                <td class="table-header ">Next reward</td>
+                <td>Next reward</td>
                 <td><%=nextDiscount%>% off</td>
             </tr>
             <tr>
-                <td class="table-header ">Trips until next reward</td>
+                <td>Trips until next reward</td>
                 <td><%=checker-totalTrips%></td>
             </tr>
             <tr>
-                <td class="table-header ">Claimed status</td>
+                <td>Claimed status</td>
                 <td><%=valueAttribute? "Claimed":"Unclaimed"%></td>
             </tr>
             <tr>
