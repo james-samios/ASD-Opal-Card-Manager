@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Opal Cards Manage</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 
@@ -45,8 +45,8 @@
 
             <td>20</td>
 
-            <td><button onclick="location.href='FaresServlet'">Detail</button></td>
-            <td><button onclick="location.href='CardsServlet?method=show&type=ADULT'">Enter</button></td>
+            <td><button class ='button1' onclick="location.href='FaresServlet'">Detail</button></td>
+            <td><button class ='button1' onclick="location.href='CardsServlet?method=show&type=ADULT'">Enter</button></td>
         </tr>
         <tr>
             <td>2</td>
@@ -55,8 +55,8 @@
 
             <td>10 </td>
 
-            <td><button onclick="location.href='FaresServlet'">Detail</button></td>
-            <td><button onclick="location.href='CardsServlet?method=show&type=CHILD'">Enter</button></td>
+            <td><button class ='button1' onclick="location.href='FaresServlet'">Detail</button></td>
+            <td><button class ='button1' onclick="location.href='CardsServlet?method=show&type=CHILD'">Enter</button></td>
         </tr>
         <tr>
             <td>3</td>
@@ -65,8 +65,8 @@
 
             <td> 10 </td>
 
-            <td><button onclick="location.href='FaresServlet'">Detail</button></td>
-            <td><button onclick="location.href='CardsServlet?method=show&type=SCHOOL'">Enter</button></td>
+            <td><button class ='button1' onclick="location.href='FaresServlet'">Detail</button></td>
+            <td><button class ='button1' onclick="location.href='CardsServlet?method=show&type=SCHOOL'">Enter</button></td>
 
         </tr>
         <tr>
@@ -76,8 +76,8 @@
 
             <td> 10 </td>
 
-            <td><button onclick="location.href='FaresServlet'">Detail</button></td>
-            <td><button onclick="location.href='CardsServlet?method=show&type=CONCESSION'">Enter</button></td>
+            <td><button class ='button1' onclick="location.href='FaresServlet'">Detail</button></td>
+            <td><button  class ='button1' onclick="location.href='CardsServlet?method=show&type=CONCESSION'">Enter</button></td>
 
         </tr>
 
