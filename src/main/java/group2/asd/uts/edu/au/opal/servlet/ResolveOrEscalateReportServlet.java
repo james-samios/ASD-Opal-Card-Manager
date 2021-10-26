@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class CustomerResolveReportServlet extends HttpServlet {
+public class ResolveOrEscalateReportServlet extends HttpServlet {
 
     private DBConnection connection;
     private DBIncidentReportManager incidentReportManager;
@@ -29,15 +29,23 @@ public class CustomerResolveReportServlet extends HttpServlet {
         //Retrieve the current session
         HttpSession session = request.getSession();
 
-        String resolveReason = request.getParameter("resolveReason");
+        //Resolve report
+        String updatedStatus = request.getParameter("updatedStatus");
+        String resolveReason = request.getParameter("resolveComment");
         IncidentReport incidentReport = (IncidentReport)  session.getAttribute("incidentReport");
         String incidentReportId = incidentReport.getIncidentReportId().toString();
-        String updatedStatus = "Customer Resolution Requested";
 
-        incidentReportManager.updateResolveReason(incidentReportId, resolveReason, updatedStatus);
+        if (updatedStatus.equals("Resolve")) {
+            String resolvedStatus = "Resolved";
+            incidentReportManager.resolveReport(incidentReportId, resolveReason, resolvedStatus);
+            request.getRequestDispatcher("/incidentReportManagerHome.jsp").forward(request, response);
+        }
 
-        //Redirect to reports list
-        request.getRequestDispatcher("/incidentReportHome.jsp").forward(request, response);
+        if (updatedStatus.equals("Escalate")) {
+            String escalateStatus = "Escalated";
+            incidentReportManager.escalateReport(incidentReportId, resolveReason, escalateStatus);
+            request.getRequestDispatcher("/incidentReportManagerHome.jsp").forward(request, response);
+        }
 
     }
 
