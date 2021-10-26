@@ -22,19 +22,13 @@ public class DBConnection {
      * The database is not loaded here. It is opened and closed after each request.
      * @author James
      */
-   public DBConnection() {
+    public DBConnection() {
         ConnectionString connectionString = new ConnectionString(
                 "mongodb+srv://opal:OPALCARDMANAGER@asd.axojh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
         MongoClientSettings settings = MongoClientSettings.builder().applyConnectionString(connectionString).build();
         mongoDatabase = MongoClients.create(settings).getDatabase("dev");
         System.out.println("MongoDB setup and ready for queries.");
     }
-    
-    /*public DBConnection() {
-        MongoClient mongoClient = new MongoClient("localhost",27017);
-        mongoDatabase = mongoClient.getDatabase("opal");
-        System.out.println("MongoDB setup and ready for queries.");
-    }*/
 
     /**
      * Gets a collection of documents from the Mongo Database.
@@ -43,7 +37,7 @@ public class DBConnection {
      * @author James
      */
     public MongoCollection<Document> getCollection(final CollectionType type) {
-        return connection.mongoDatabase.getCollection(type.name());
+        return getDB().getMongoDatabase().getCollection(type.name().toLowerCase());
     }
 
     /**
