@@ -1,0 +1,14 @@
+[
+  {"_id":{"$oid":"61751fcbfc02817e132704e4"},"arrival":"12:00am","departure":"12:15am","name":"Central","type":"Bus","fare":60,"coordinates":[3,4]},
+  {"_id":{"$oid":"61751fcbfc02817e132704e5"},"arrival":"2:00am","departure":"2:15am","name":"Townhall","type":"Bus","fare":60,"coordinates":[7,5]},
+  {"_id":{"$oid":"61751fcbfc02817e132704e6"},"arrival":"7:00am","departure":"7:15am","name":"Redfern","type":"Bus","fare":60,"coordinates":[9,13]},
+  {"_id":{"$oid":"61751fcffc02817e132704e7"},"arrival":"12:00am","departure":"12:15am","name":"Circular Quay","type":"Bus","fare":60,"coordinates":[0,0]},
+  {"_id":{"$oid":"61751fcffc02817e132704e8"},"arrival":"2:00am","departure":"2:15am","name":"Museum Town","type":"Bus","fare":60,"coordinates":[1,2]},
+  {"_id":{"$oid":"61751fcffc02817e132704e9"},"arrival":"7:00am","departure":"7:15am","name":"New Town","type":"Bus","fare":60,"coordinates":[9,9]},
+  {"_id":{"$oid":"61759afb6a76ef1a80a95698"},"arrival":"12:00am","departure":"12:15am","name":"Central","type":"Train","fare":60,"coordinates":[3,4]},
+  {"_id":{"$oid":"61759b0c6a76ef1a80a95699"},"arrival":"2:00am","departure":"2:15am","name":"Townhall","type":"Train","fare":60,"coordinates":[7,5]},
+  {"_id":{"$oid":"61759b166a76ef1a80a9569a"},"arrival":"7:00am","departure":"7:15am","name":"Redfern","type":"Train","fare":60,"coordinates":[9,13]},
+  {"_id":{"$oid":"61759b546a76ef1a80a9569b"},"arrival":"12:00am","departure":"12:15am","name":"Circular Quay","type":"Train","fare":60,"coordinates":[0,0]},
+  {"_id":{"$oid":"61759b7c6a76ef1a80a9569c"},"arrival":"2:00am","departure":"2:15am","name":"Museum Town","type":"Train","fare":60,"coordinates":[1,2]},
+  {"_id":{"$oid":"61759b876a76ef1a80a9569d"},"arrival":"7:00am","departure":"7:15am","name":"New Town","type":"Train","fare":60,"coordinates":[9,9]}
+]
