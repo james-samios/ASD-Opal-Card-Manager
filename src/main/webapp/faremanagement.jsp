@@ -9,21 +9,9 @@
 <html>
 <head>
     <title>Opal Cards Manage</title>
-    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 
-<nav class="customer">
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
-        <i class="fas fa-bars"></i>
-    </label>
-    <label class="logo">Staff Home Page</label>
-    <ul>
-        <li><a href="customerService.jsp">Customer Service Support</a></li>
-        <li><a href="index.jsp">Logout</a></li>
-    </ul>
-</nav>
 
 <h1>Opal cards fares and Concession Manager </h1>
     <table>
@@ -31,6 +19,7 @@
             <th>ID</th>
             <th>Card type name</th>
             <th>Requirements</th>
+            <th>Picture</th>
             <th>Price</th>
             <th>Fares</th>
             <th>Manage</th>
@@ -41,43 +30,43 @@
             <td>1</td>
             <td>Adult</td>
             <td>16 years of age, or older </td>
-
+            <td>(Opal card Picture)</td>
 
             <td>20</td>
 
-            <td><button class ='button1' onclick="location.href='FaresServlet'">Detail</button></td>
-            <td><button class ='button1' onclick="location.href='CardsServlet?method=show&type=ADULT'">Enter</button></td>
+            <td><button onclick="location.href='FaresServlet'">Detail</button></td>
+            <td><button onclick="location.href='CardsServlet?method=show&type=ADULT'">Enter</button></td>
         </tr>
         <tr>
             <td>2</td>
             <td>Child/Youth</td>
             <td>Children aged 4 - 15 years </td>
-
+            <td>(Opal card Picture)</td>
             <td>10 </td>
 
-            <td><button class ='button1' onclick="location.href='FaresServlet'">Detail</button></td>
-            <td><button class ='button1' onclick="location.href='CardsServlet?method=show&type=CHILD'">Enter</button></td>
+            <td><button onclick="location.href='Concessions.jsp'">Detail</button></td>
+            <td><button onclick="location.href='CardsServlet?method=show&type=CHILD'">Enter</button></td>
         </tr>
         <tr>
             <td>3</td>
             <td>Senior/pensioner</td>
             <td>NSW permanent resident aged 60 or over </td>
-
+            <td>(Opal card Picture)</td>
             <td> 10 </td>
 
-            <td><button class ='button1' onclick="location.href='FaresServlet'">Detail</button></td>
-            <td><button class ='button1' onclick="location.href='CardsServlet?method=show&type=SCHOOL'">Enter</button></td>
+            <td><button onclick="location.href='Concessions.jsp'">Detail</button></td>
+            <td><button onclick="location.href='CardsServlet?method=show&type=SCHOOL'">Enter</button></td>
 
         </tr>
         <tr>
             <td>4</td>
             <td>Concessions</td>
             <td>students, apprentices and trainees, job seekers and Centrelink customers </td>
-
+            <td>(Opal card Picture)</td>
             <td> 10 </td>
 
-            <td><button class ='button1' onclick="location.href='FaresServlet'">Detail</button></td>
-            <td><button  class ='button1' onclick="location.href='CardsServlet?method=show&type=CONCESSION'">Enter</button></td>
+            <td><button onclick="location.href='Concessions.jsp'">Detail</button></td>
+            <td><button onclick="location.href='CardsServlet?method=show&type=CONCESSION'">Enter</button></td>
 
         </tr>
 

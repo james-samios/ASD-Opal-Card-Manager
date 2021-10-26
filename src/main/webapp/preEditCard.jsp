@@ -11,7 +11,6 @@
 <html>
 <head>
     <title>edit card</title>
-    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 <div id="main"  align="center">
@@ -44,10 +43,10 @@
             <tr>
                 <td>type</td>
                 <td><select name="type">${card.leixing}
-                    <option <c:if test="${card.leixing.toUpperCase() eq 'ADULT'}"> selected </c:if> value="ADULT">Adult</option>
-                    <option <c:if test="${card.leixing.toUpperCase() eq 'CHILD'}"> selected </c:if> value="CHILD">Child</option>
-                    <option <c:if test="${card.leixing.toUpperCase() eq 'SCHOOL'}"> selected </c:if> value="SCHOOL">School</option>
-                    <option <c:if test="${card.leixing.toUpperCase() eq 'CONCESSION'}"> selected </c:if> value="CONCESSION">Concession</option>
+                    <option <c:if test="${card.leixing eq 'ADULT'}"> selected </c:if> value="ADULT">Adult</option>
+                    <option <c:if test="${card.leixing eq 'CHILD'}"> selected </c:if> value="CHILD">Child</option>
+                    <option <c:if test="${card.leixing eq 'SCHOOL'}"> selected </c:if> value="SCHOOL">Senior</option>
+                    <option <c:if test="${card.leixing eq 'CONCESSION'}"> selected </c:if> value="CONCESSION">Concessions</option>
                 </select></td>
             </tr>
             <tr>

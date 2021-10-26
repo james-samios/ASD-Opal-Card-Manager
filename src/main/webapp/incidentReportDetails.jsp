@@ -15,55 +15,25 @@
 </head>
 <body>
 
-    <nav class="customer">
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <label class="logo">Customer Support</label>
-        <ul>
-            <li><a href="userprofile.jsp">Return to profile</a></li>
-
-            <li><a href="enquiryHome.jsp">Make an enquiry</a></li>
-
-            <li><a href="incidentReportHome.jsp">Theft or loss</a></li>
-
-            <li><a href="index.jsp">Logout</a></li>
-        </ul>
-    </nav>
+    <div class="navbar">
+        <a href="userprofile.jsp">Return to profile</a>
+        <a href="enquiryHome.jsp">Make an enquiry</a>
+        <a href="incidentReportHome.jsp">Theft or loss</a>
+        <a href="index.jsp">Logout</a>
+    </div>
 
     <%
         IncidentReport incidentReport = (IncidentReport)  session.getAttribute("incidentReport");
     %>
 
-    <div class="wrapper">
+    <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
+
+    <div class="return">
         <a href="incidentReportList.jsp">&lt Return</a>
-        <h2>Report Details</h2>
+    </div>
 
-        <%
-            if (incidentReport.getIncidentReportStatus().equals("Resolved")) {
-        %>
-
-        <p>This report is currently <span style="color: darkorange"><%=incidentReport.getIncidentReportStatus()%></span>. Please see below comments.</p>
-        <table class="detailsTable">
-            <tr>
-                <th>Report Type:</th>
-                <td><%=incidentReport.getIncidentReportType()%></td>
-            </tr>
-            <tr>
-                <th>Details:</th>
-                <td><%=incidentReport.getIncidentReportDetails()%></td>
-            </tr>
-            <tr>
-                <th>Staff Comment:</th>
-                <td><%=incidentReport.getResolveComment()%></td>
-            </tr>
-        </table>
-
-        <%
-        } else if (incidentReport.getIncidentReportStatus().equals("Customer Resolution Requested")){
-        %>
-
+    <div class="enquiryDetails">
+        <h1>Report Details</h1>
         <p>This report is currently <span style="color: darkorange"><%=incidentReport.getIncidentReportStatus()%></span>. Our team is investigating your report and will be in touch with you soon.</p>
         <table class="detailsTable">
             <tr>
@@ -74,29 +44,24 @@
                 <th>Details:</th>
                 <td><%=incidentReport.getIncidentReportDetails()%></td>
             </tr>
-        </table>
-
-        <%
-            } else {
-        %>
-
-        <p>This report is currently <span style="color: darkorange"><%=incidentReport.getIncidentReportStatus()%></span>. Our team is investigating your report and will be in touch with you soon.</p>
-        <table class="detailsTable">
             <tr>
-                <th>Report Type:</th>
-                <td><%=incidentReport.getIncidentReportType()%></td>
-            </tr>
-            <tr>
-                <th>Details:</th>
-                <td><%=incidentReport.getIncidentReportDetails()%></td>
+                <th>Comments:</th>
+                <td>TO DO</td>
             </tr>
         </table>
 
         <p>If you no longer need to continue with the report, <a href="resolveIncidentReport.jsp">click here</a> to request an early resolution.</p>
 
-        <%
-            }
-        %>
+        <div class="addComments">
+            <h2>Add Comments</h2>
+            <p>You can provide comments to your report if you have further details.</p>
+            <form>
+                <textarea name="enquiryComments" rows="5" col="50"></textarea>
+                <div style="padding: 10px;">
+                    <input type="submit" value="Add comment" class="submitButton">
+                </div>
+            </form>
+        </div>
 
     </div>
 

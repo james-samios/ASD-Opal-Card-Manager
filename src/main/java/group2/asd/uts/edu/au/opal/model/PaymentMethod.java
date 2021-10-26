@@ -53,6 +53,38 @@ public class PaymentMethod extends Document {
                 .append("expiry_date", expiryDate);
     }
 
+    public void setObjectId(ObjectId objectId) {
+        this.objectId = objectId;
+    }
+
+    public ObjectId getObjectId() {
+        return objectId;
+    }
+
+    public UUID getPaymentMethodId() {
+        return paymentMethodId;
+    }
+
+    public UUID getOpalCardId() {
+        return opalCardId;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public String getCardCVC() {
+        return cardCVC;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
     @Override
     public String toString() {
         return getPaymentMethodId() + " " +

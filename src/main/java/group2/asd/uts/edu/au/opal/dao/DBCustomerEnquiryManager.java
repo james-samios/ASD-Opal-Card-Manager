@@ -3,8 +3,6 @@ package group2.asd.uts.edu.au.opal.dao;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.client.model.Updates;
-import group2.asd.uts.edu.au.opal.model.Customer;
-import group2.asd.uts.edu.au.opal.model.CustomerComments;
 import group2.asd.uts.edu.au.opal.model.CustomerEnquiry;
 import lombok.Getter;
 import org.bson.Document;
@@ -33,7 +31,7 @@ public class DBCustomerEnquiryManager extends DBManager {
      * @param enquiryStatus The status of the enquiry (initially set as "Submitted").
      */
     public void createCustomerEnquiry(final UUID customerEnquiryID, final String accountId, final String enquiryTitle, final String enquiryDetails, final String enquiryDate, final String enquiryStatus) {
-        refresh();
+        // refresh();
 
         Document enquiry = new Document("_id", new ObjectId());
         enquiry.append("enquiry_id", customerEnquiryID.toString())
@@ -41,8 +39,8 @@ public class DBCustomerEnquiryManager extends DBManager {
                 .append("enquiry_title", enquiryTitle)
                 .append("enquiry_details", enquiryDetails)
                 .append("date_of_enquiry", enquiryDate)
-                .append("enquiry_status", enquiryStatus)
-                .append("resolve_comment", "");
+                .append("enquiry_status", enquiryStatus);
+                //to add comments
         getCollection().insertOne(enquiry);
     }
 
@@ -57,7 +55,7 @@ public class DBCustomerEnquiryManager extends DBManager {
      */
 
     public CustomerEnquiry getCustomerEnquiry(final String customerEnquiryId) {
-        refresh();
+        // refresh();
         BasicDBObject where = new BasicDBObject();
         where.put("enquiry_id", customerEnquiryId);
         Document doc = getCollection().find(where).first();
@@ -88,28 +86,6 @@ public class DBCustomerEnquiryManager extends DBManager {
 
     }
 
-    /**
-     * Returns a list of enquiries according to status
-     * @return
-     */
-
-    public ArrayList<CustomerEnquiry> listEnquiriesByStatus(String status) {
-
-        ArrayList<CustomerEnquiry> enquiries = new ArrayList<CustomerEnquiry>();
-
-        BasicDBObject where = new BasicDBObject();
-        where.put("enquiry_status", status);
-
-        List<Document> enquiriesList = getCollection().find(where).into(new ArrayList<>());
-        for (Document enquiry : enquiriesList) {
-            CustomerEnquiry newEnquiry = new CustomerEnquiry(enquiry);
-            enquiries.add(newEnquiry);
-        }
-
-        return enquiries;
-
-    }
-
     /*   *************************************Methods for "U" section below****************************************   */
 
     /**
@@ -123,21 +99,21 @@ public class DBCustomerEnquiryManager extends DBManager {
         BasicDBObject where = new BasicDBObject();
         where.put("enquiry_id", customerEnquiryId);
         getCollection().updateOne(where, Updates.set("enquiry_status", updatedStatus));
+
+        // to do
     }
 
     /**
-     * Updates and resolves an enquiry
-     * @param customerEnquiryId the ID of the enquiry
-     * @param resolveComment the staff comment for resolving the enquiry
-     * @param updatedStatus the updated status
+     * Adds a customer comment to the enquiry
      */
 
-    public void resolveEnquiry(final String customerEnquiryId, final String resolveComment, final String updatedStatus) {
+    public void addCustomerComment(final String customerEnquiryId, String comment) {
         BasicDBObject where = new BasicDBObject();
         where.put("enquiry_id", customerEnquiryId);
-        getCollection().updateOne(where, Updates.set("enquiry_status", updatedStatus));
-        getCollection().updateOne(where, Updates.set("resolve_comment", resolveComment));
+        //to do
     }
+
+
 
     /*   *************************************Methods for "D" section below****************************************   */
 
@@ -151,6 +127,8 @@ public class DBCustomerEnquiryManager extends DBManager {
         BasicDBObject where = new BasicDBObject();
         where.put("enquiry_id", customerEnquiryId);
         getCollection().deleteOne(where);
+
+        //to do
     }
 
 

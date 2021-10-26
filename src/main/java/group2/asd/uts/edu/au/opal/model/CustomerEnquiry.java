@@ -4,7 +4,6 @@ import lombok.Getter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 @Getter
@@ -17,7 +16,8 @@ public class CustomerEnquiry extends Document {
     private String enquiryDetails;
     private String enquiryDate; //requires Date type
     private String enquiryStatus;
-    private String resolveComment;
+    // private CustomerComments customerComments;
+    // private String officerComments; //Create an officer comments object - to do for next release
 
     /**
      * Loads a CustomerEnquiry object from the API.
@@ -33,7 +33,9 @@ public class CustomerEnquiry extends Document {
         this.enquiryDetails = document.getString("enquiry_details");
         this.enquiryDate = document.getString("date_of_enquiry"); //to fix
         this.enquiryStatus = document.getString("enquiry_status");
-        this.resolveComment = document.getString("resolve_comment");
+        //this.customerComments = new CustomerComments(document.get("customer_comments", Document.class));
+        //to add officerComments
+
     }
 
     /**
@@ -63,8 +65,8 @@ public class CustomerEnquiry extends Document {
                 getEnquiryTitle() + " - " +
                 getEnquiryDetails() + " - " +
                 getEnquiryDate() + " - " +
-                getEnquiryStatus() + " - " +
-                getResolveComment();
+                getEnquiryStatus();
+                //getCustomerComments();
                 //to add officerComments
     }
 

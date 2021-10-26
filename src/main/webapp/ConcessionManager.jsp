@@ -11,20 +11,9 @@
 <html>
 <head>
     <title>Concession Manager</title>
-    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-<nav class="customer">
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
-        <i class="fas fa-bars"></i>
-    </label>
-    <label class="logo">Concession Management</label>
-    <ul>
-        <li><a href="customerService.jsp">Customer Service Support</a></li>
-        <li><a href="index.jsp">Logout</a></li>
-    </ul>
-</nav>
+
 <h1>Opal cards concessions manager </h1>
 <br>
 <a href="CardsServlet?method=toadd">add</a>

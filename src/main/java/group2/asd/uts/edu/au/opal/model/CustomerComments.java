@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class CustomerComments {
 
     private final String comment;
-    private final String date;
+    private final String order;
 
     /**
      * Creates a new Customer Comments object from the provided MongoDB Document.
@@ -17,21 +17,21 @@ public class CustomerComments {
      */
     public CustomerComments(final Document document) {
         this.comment = document.getString("comment");
-        this.date = document.getString("date");
+        this.order = document.getString("order");
     }
 
     /**
      * Creates a new Customer Comments object from the registration form.
      * @param comment Text of the customer's comment
-     * @param date The order of the comment
+     * @param order The order of the comment
      */
-    public CustomerComments(final String comment, final String date) {
+    public CustomerComments(final String comment, final String order) {
         this.comment = comment;
-        this.date = date;
+        this.order = order;
     }
 
     @Override
     public String toString() {
-        return comment + " " + date;
+        return comment + " " + order;
     }
 }

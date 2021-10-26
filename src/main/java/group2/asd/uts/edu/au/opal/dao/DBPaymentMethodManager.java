@@ -2,20 +2,24 @@ package group2.asd.uts.edu.au.opal.dao;
 
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.client.FindIterable;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 import lombok.Getter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * DBPaymentMethodManager is used for access of PaymentMethod table on mongoDB
- *
- * */
+ */
 @Getter
-public class DBPaymentMethodManager extends DBManager{
+public class DBPaymentMethodManager extends DBManager {
     public DBPaymentMethodManager() {
         super(CollectionType.PAYMENT_METHODS);
     }
@@ -35,13 +39,15 @@ public class DBPaymentMethodManager extends DBManager{
      */
 
     /*   *************************************Methods for "C" section below****************************************   */
+
     /**
      * Registers a new object of payment method into the API.
+     *
      * @param paymentMethod The payment method to register.
      **/
 
     public void createPaymentMethod(final PaymentMethod paymentMethod) {
-        refresh();
+        // refresh();
         try {
             getCollection().insertOne(paymentMethod.convertClassToDocument());
         } catch (Exception e) {
@@ -55,24 +61,47 @@ public class DBPaymentMethodManager extends DBManager{
      * Returns a payment with provided objectId.
      * If no data is found, it will return
      * null, implying incorrect details were supplied.
+     *
      * @param objectId The credit card's _id
      * @return PaymentMethod
      * @author Jung
      */
 
     public PaymentMethod readPaymentByObjectId(final ObjectId objectId) {
-        refresh();
+        // refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
-            document = getCollection().find(where).first();
+            document = (Document) getCollection().find(where).first();
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
             }
             return new PaymentMethod(document);
-        }catch(Exception e) {
+        } catch (Exception e) {
+            Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+
+    public List<PaymentMethod> readPaymentByCustomerId(final UUID accountId) {
+        // refresh();
+        try {
+            BasicDBObject where = new BasicDBObject();
+            where.put("opal_card_id", accountId);
+            FindIterable<Document> docs = getCollection().find(where);
+            //Retrieving the documents
+            if (docs == null ) {
+                throw new Exception("Error: The document is null or empty.");
+            }
+
+            List<PaymentMethod> paymentMethods = new ArrayList<>();
+            for (Document document : docs) {
+                paymentMethods.add(new PaymentMethod(document));
+            }
+            return paymentMethods;
+        } catch (Exception e) {
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
@@ -82,24 +111,25 @@ public class DBPaymentMethodManager extends DBManager{
      * Returns a payment with provided payment details' ID.
      * If no data is found, it will return
      * null, implying incorrect details were supplied.
+     *
      * @param paymentMethodId The credit card's number
      * @return PaymentMethod
      * @author Jung
      */
 
     public PaymentMethod readPaymentMethodByPaymentMethodId(final String paymentMethodId) {
-        refresh();
+        // refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
             where.put("payment_method_id", paymentMethodId);
-            document = getCollection().find(where).first();
+            document = (Document) getCollection().find(where).first();
             //Retrieving the documents
             if (document == null || document.isEmpty()) {
                 throw new Exception("Error: The document is null or empty.");
             }
             return new PaymentMethod(document);
-        }catch(Exception e) {
+        } catch (Exception e) {
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
@@ -110,14 +140,15 @@ public class DBPaymentMethodManager extends DBManager{
      * Returns a payment with provided card number and CVC.
      * If no data is found, it will return
      * null, implying incorrect details were supplied.
+     *
      * @param cardNumber The credit card's number
-     * @param cardCVC The card CVS.
+     * @param cardCVC    The card CVS.
      * @return PaymentMethod
      * @author Jung
      */
 
     public PaymentMethod readPaymentMethodByNumberAndCVC(final String cardNumber, final String cardCVC) {
-        refresh();
+        // refresh();
         try {
             Document document;
             BasicDBObject where = new BasicDBObject();
@@ -128,7 +159,24 @@ public class DBPaymentMethodManager extends DBManager{
                 throw new Exception("Error: The document is null or empty.");
             }
             return new PaymentMethod(document);
-        }catch(Exception e) {
+        } catch (Exception e) {
+            Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+
+    public PaymentMethod readPaymentMethodByCardNumber(final String cardNumber) {
+        // refresh();
+        try {
+            Document document;
+            BasicDBObject where = new BasicDBObject();
+            where.put("card_number", cardNumber);
+            document = getCollection().find(where).first();
+            if (document == null || document.isEmpty()) {
+                throw new Exception("Error: The document is null or empty.");
+            }
+            return new PaymentMethod(document);
+        } catch (Exception e) {
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
@@ -137,20 +185,42 @@ public class DBPaymentMethodManager extends DBManager{
     /**
      * read all payment methods form the payment method table
      * No return
+     *
      * @author Jung
      */
     public void readAllPaymentMethods() {
-        refresh();
+        // refresh();
         try {
             int counter = 1;
             for (Document document : getCollection().find()) {
                 System.out.println("" + counter + ": " + document);
                 counter = counter + 1;
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
         }
 
+    }
+
+    public List<PaymentMethod> readPayments() {
+        // refresh();
+        try {
+            BasicDBObject where = new BasicDBObject();
+            FindIterable<Document> docs = getCollection().find();
+            //Retrieving the documents
+            if (docs == null) {
+                throw new Exception("Error: The document is null or empty.");
+            }
+
+            List<PaymentMethod> paymentMethods = new ArrayList<>();
+            for (Document document : docs) {
+                paymentMethods.add(new PaymentMethod(document));
+            }
+            return paymentMethods;
+        } catch (Exception e) {
+            Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
     }
 
     /*   *************************************Methods for "U" section below****************************************   */
@@ -158,12 +228,13 @@ public class DBPaymentMethodManager extends DBManager{
     /**
      * If a payment method is found with provided object ID, it will update the payment method's owner name
      * No return
+     *
      * @param paymentMethod A payment method
      * @author Jung
      **/
 
     public void updatePaymentMethod(PaymentMethod paymentMethod) {
-        refresh();
+        // refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("_id", paymentMethod.getObjectId());
@@ -177,7 +248,27 @@ public class DBPaymentMethodManager extends DBManager{
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
             getCollection().updateOne(where, updateObject);
-        }catch(Exception e) {
+        } catch (Exception e) {
+            System.out.println("Error: Update error happens. Check the code");
+        }
+    }
+
+    public void updatePaymentMethodByCustomer(PaymentMethod paymentMethod) {
+        // refresh();
+        try {
+            BasicDBObject where = new BasicDBObject();
+            where.put("opal_card_id", paymentMethod.getOpalCardId());
+            BasicDBObject newDocument = new BasicDBObject();
+            newDocument.put("payment_method_id", paymentMethod.getPaymentMethodId().toString());
+            newDocument.put("opal_card_id", paymentMethod.getOpalCardId().toString());
+            newDocument.put("card_number", paymentMethod.getCardNumber());
+            newDocument.put("card_name", paymentMethod.getCardName());
+            newDocument.put("cvc", paymentMethod.getCardCVC());
+            newDocument.put("expiry_date", paymentMethod.getExpiryDate());
+            BasicDBObject updateObject = new BasicDBObject();
+            updateObject.put("$set", newDocument);
+            getCollection().updateOne(where, updateObject);
+        } catch (Exception e) {
             System.out.println("Error: Update error happens. Check the code");
         }
     }
@@ -187,18 +278,29 @@ public class DBPaymentMethodManager extends DBManager{
     /**
      * If a payment method is found with provided payment_details_id, it will delete it
      * No return
+     *
      * @param paymentMethodId The credit card's payment_details_id
      * @author Jung
      */
 
     public void deletePaymentByPaymentMethodId(final String paymentMethodId) {
-        refresh();
+        // refresh();
         try {
             //deleting an object from table
             BasicDBObject where = new BasicDBObject();
             where.put("payment_method_id", paymentMethodId);
             getCollection().deleteMany(where);
-        }catch(Exception e) {
+        } catch (Exception e) {
+            System.out.println("Error: Delete error happens. Check the code");
+        }
+    }
+
+    public void deletePaymentMethodByID(final String cardNumber) {
+        // refresh();
+        try {
+            //deleting an object from table
+            getCollection().deleteOne(new Document("_id", new ObjectId(cardNumber)));
+        } catch (Exception e) {
             System.out.println("Error: Delete error happens. Check the code");
         }
     }
@@ -206,18 +308,19 @@ public class DBPaymentMethodManager extends DBManager{
     /**
      * If a payment method is found with provided objectId, it will delete it
      * No return
+     *
      * @param objectId The credit card's objectId
      * @author Jung
      */
 
     public void deletePaymentByObjectId(final ObjectId objectId) {
-        refresh();
+        // refresh();
         try {
             //deleting an object from table
             BasicDBObject where = new BasicDBObject();
             where.put("_id", objectId);
             getCollection().deleteOne(where);
-        }catch(Exception e) {
+        } catch (Exception e) {
             Logger.getLogger(DBPaymentMethodManager.class.getName()).log(Level.SEVERE, null, e);
         }
     }

@@ -14,22 +14,12 @@
 </head>
 <body>
 
-    <nav class="customer">
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <label class="logo">Customer Support</label>
-        <ul>
-            <li><a href="userprofile.jsp">Return to profile</a></li>
-
-            <li><a href="enquiryHome.jsp">Make an enquiry</a></li>
-
-            <li><a href="incidentReportHome.jsp">Theft or loss</a></li>
-
-            <li><a href="index.jsp">Logout</a></li>
-        </ul>
-    </nav>
+    <div class="navbar">
+        <a href="userprofile.jsp">Return to profile</a>
+        <a href="enquiryHome.jsp">Make an enquiry</a>
+        <a href="incidentReportHome.jsp">Theft or loss</a>
+        <a href="index.jsp">Logout</a>
+    </div>
 
     <%
         ArrayList<CustomerEnquiry> customerEnquiryList = (ArrayList<CustomerEnquiry>) session.getAttribute("enquiriesList");
@@ -37,9 +27,15 @@
         session.setAttribute("enquirySearchErr", "");
     %>
 
-    <div class="wrapper">
+    <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
+
+    <div class="return">
         <a href="enquiryHome.jsp">&lt Return</a>
-        <h2>Your enquiries</h2>
+    </div>
+
+    <div class="enquiryHome">
+
+        <h1>Your enquiries</h1>
         <p>Below is a summary of your recent enquiries. We will endeavour to provide you updates as soon as possible.</p>
 
         <h2>Search an enquiry</h2>
@@ -53,7 +49,9 @@
 
             <%
                 if (customerEnquiryList != null) {
-                    %>
+                    for (CustomerEnquiry customerEnquiry: customerEnquiryList){
+            %>
+
         <table class="enquiryTable">
             <tr>
                 <th>Enquiry ID</th>
@@ -62,9 +60,6 @@
                 <th>Date</th>
                 <th>Status</th>
             </tr>
-                    <%
-                    for (CustomerEnquiry customerEnquiry: customerEnquiryList){
-            %>
 
             <tr>
                 <td><%=customerEnquiry.getCustomerEnquiryId()%></td>
@@ -73,12 +68,10 @@
                 <td><%=customerEnquiry.getEnquiryDate()%></td>
                 <td><%=customerEnquiry.getEnquiryStatus()%></td>
             </tr>
+        </table>
 
             <%
                 }
-                    %>
-        </table>
-            <%
                 } else {
             %>
 

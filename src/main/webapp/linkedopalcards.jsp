@@ -23,42 +23,11 @@
 </head>
 <%
     Customer customer = (Customer) session.getAttribute("customer");
-    ArrayList<Card> linkedCards = (ArrayList<Card>) session.getAttribute("linked_cards");
-    ArrayList<Trip> tripList = new ArrayList<Trip>();
-    HashMap<Integer, Double> discounts = new HashMap<Integer, Double>();
-    discounts.put(1,1.0);discounts.put(3,2.5);discounts.put(5,3.7);discounts.put(10,4.5);discounts.put(15,10.0);
-
-    boolean check = false;
-    int checker = 0;
-    customer.getLinkedCards().forEach(card -> {
-        tripList.addAll(card.getTrips());
-    });
-    int totalTrips = tripList.size();
-    Double currentDiscount = 0.0;
-    Double nextDiscount = 0.0;
-    int remainingTrips = 0;
-
-
-
-    String currentString = "";
-    String claimedString = "Unclaimed";
-    boolean valueAttribute = false;
-    String attribute = (String)session.getAttribute("claimStatus");
-    if (attribute == null){
-        valueAttribute = false;
-    }
-    else {
-        if (attribute.equals("Claimed")){
-            valueAttribute = true;
-        }
-        else {
-            valueAttribute = false;
-        }
-    }
-
-    System.out.println(attribute);
-    linkedCards = (ArrayList<Card>) session.getAttribute("filter_cards");
-    String searchResult = (String) session.getAttribute("search_result");
+    //List<Card> cards = customer.getLinkedCards();
+    ArrayList<Trip> tripList = (ArrayList<Trip>) request.getAttribute("trips");
+    Trip trip1 = tripList.get(0);
+    Trip trip2 = tripList.get(1);
+    Trip trip3 = tripList.get(2);
 %>
 
 <body>
@@ -71,118 +40,77 @@
     <label class="logo">My Opal Cards</label>
 
     <ul>
+        <!--<li><a href="AddProductController">ADD PRODUCT</a></li>-->
         <li><a href="userprofile.jsp">BACK</a></li>
     </ul>
 
 </nav>
-<center>
-    <section>
-        <form method="get" action="SearchLinkedCardServlet">
-            <table class="table-style">
-                <tr>
-                    <td><input class="input_text" type="text" name="search_input" placeholder="Card type, card number, all"></td>
-                    <td><input class="submit2" type="submit" value="Search"></td>
-                </tr>
-                <tr>
-                    <td><p class="successinfo"><%=searchResult%></p></td>
-                    <td></td>
-                </tr>
-            </table>
+<section>
+    <div>
+        <form class="keyword" method="post" action="SearchCardServlet">
+            <input type="text" class="search" name="keyword" autocomplete="off" placeholder="Enter Opal card number">
+            <button type="submit" class="submit" name="filter" value="search">Search</button>
+            <p class="successinfo"></p>
         </form>
-        <%
-            for(int i = 0; i < linkedCards.size(); i++){
-                Card card = linkedCards.get(i);
-                String cardType = card.getType().toString();
-                String tdClass = "table-header " + cardType.toLowerCase();
-        %>
-            <table class="table-style">
-                <tr>
-                    <td class="<%=tdClass%>">Card Status</td>
-                    <td><%=card.isActive()? "ON":"OFF"%></td>
-                </tr>
-                <tr>
-                    <td class="<%=tdClass%>">Card Type</td>
-                    <td><%=cardType%></td>
-                </tr>
-                <tr>
-                    <td class="<%=tdClass%>">Card Number</td>
-                    <td><%=card.getCardNumber()%></td>
-                </tr>
-                <tr>
-                    <td class="<%=tdClass%>">Card Balance</td>
-                    <td><%=card.getBalance()%></td>
-                </tr>
-                <tr>
-                    <td class="<%=tdClass%>">
-                        <form method="get" action="ViewTripsServlet">
-                            <input type="hidden" name="index" value="<%=i%>">
-                            <input class="submit3" type="submit" value="View trips">
-                        </form>
-                    </td>
-                    <td class="<%=tdClass%>">
-                        <form method="get" action="CancelCustomerLinkedCardServlet">
-                            <input type="hidden" name="index" value="<%=i%>">
-                            <input class="submit4" type="submit" value="Cancel link">
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        <%}%>
-        <table class="table-style">
-            <%
-                for(Integer i = 0; i < totalTrips; i++){
-                    if (discounts.containsKey(i)) {
-                        currentDiscount = discounts.get(i);
-                        currentString = currentDiscount.toString();
-                        checker = i;
-                    }
-                }
+    </div>
 
+    <div>
+        <div class="adult">
+            <h1>Type: Adult</h1>
+        </div>
+        <div class="adult">
+            <h3>Card number:</h3>
+            <h3>Card status: Activated</h3>
+            <h3>Balance:</h3>
+        </div>
+        <div class="adult">
+            <form class="inline" method="post">
+                <button type="submit" class="edit" name="topup" value="cardnumber">Top-up</button>
+            </form>
+            <form class="inline" method="post">
+                <button type="submit" class="lock" name="deactivate" value="lock">Lock</button>
+            </form>
+            <form class="inline" method="post">
+                <button type="submit" class="delete" name="delete" value="delete">Delete</button>
+            </form>
+        </div>
+    </div>
 
-                while(!check){
-                    checker++;
-                    if (discounts.containsKey(checker)) {
-                        check = true;
-                        nextDiscount = discounts.get(checker);
-                    }
-                }
-
-
-            %>
-            <tr>
-                <td>Total Trips</td>
-                <td><%=totalTrips%></td>
+    <div class="adult">
+        <table class = "table-style"><br/>
+            <tr class = "table-style">
+                <th class = "table-header">Date/time</th>
+                <th class = "table-header">Mode</th>
+                <th class = "table-header">Details</th>
+                <th class = "table-header">Fare</th>
             </tr>
-            <tr>
-                <td>Available reward</td>
-                <td><%=currentString%>% off</td>
-            </tr>
-            <tr>
-                <td>Next reward</td>
-                <td><%=nextDiscount%>% off</td>
-            </tr>
-            <tr>
-                <td>Trips until next reward</td>
-                <td><%=checker-totalTrips%></td>
-            </tr>
-            <tr>
-                <td>Claimed status</td>
-                <td><%=valueAttribute? "Claimed":"Unclaimed"%></td>
-            </tr>
-            <tr>
-                <td class="table-header">
-                    <form method="Get" action="UpdateDiscountsServlet">
-                        <input class="submit3" type="submit" value="<%=valueAttribute? "Cancel Reward":"Claim Reward"%>">
-                        <input class="submit3" type="hidden" name="value" value="<%=valueAttribute?1:0%>">
-                    </form>
-                </td>
-
-                <td class="table-header">
-                </td>
-            </tr>
+            <c:if test = "${customer.getFirstName().equals('test')}">
+                <%
+                    System.out.println("new row");
+                    System.out.println(trip1.toString());
+                    System.out.println(trip1.getTripStart());
+                %>
+                <tr class = "table-style">
+                    <td class = "table-style customer">9/2/2021 12:32</td>
+                    <td class = "table-style customer">Train</td>
+                    <td class = "table-style customer">Kings Cross to Town Hall</td>
+                    <td class = "table-style customer">$1.49</td>
+                </tr>
+                <tr class = "table-style">
+                    <td class = "table-style customer">29/6/2021 21:20</td>
+                    <td class = "table-style customer">Bus</td>
+                    <td class = "table-style customer">High St nr Gate 9 UNSW to Eddy Av</td>
+                    <td class = "table-style customer">$1.49</td>
+                </tr>
+                <tr class = "table-style">
+                    <td class = "table-style customer">17/9/2021 10:08</td>
+                    <td class = "table-style customer">Ferry</td>
+                    <td class = "table-style customer">Balmain East to Circular Quay</td>
+                    <td class = "table-style customer">$2</td>
+                </tr>
+            </c:if>
         </table>
-    </section>
-</center>
-
+     </div>
+</section>
 </body>
 </html>

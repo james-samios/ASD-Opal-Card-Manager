@@ -4,7 +4,6 @@ import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
 import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.model.Card;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
-import group2.asd.uts.edu.au.opal.model.TopUp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -69,37 +68,39 @@ public class AutoTopUpServlet extends HttpServlet {
                     amount, paymentNumber, paymentOwner, paymentCvc, paymentExpiry);
         }else {
             /*Get payment method*/
-            PaymentMethod paymentMethod = new PaymentMethod(UUID.randomUUID(), card.getCardId(),
-                    paymentNumber,
-                    paymentOwner,
-                    paymentCvc,
-                    paymentExpiry);
+            PaymentMethod paymentMethod =
+                    dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(
+                            card.getTopUp().getPaymentMethodId().toString());
+            if(paymentMethod == null) {
+                paymentMethod = new PaymentMethod(UUID.randomUUID(), card.getCardId(),
+                        paymentNumber,
+                        paymentOwner,
+                        paymentCvc,
+                        paymentExpiry);
+                dbPaymentMethodManager.createPaymentMethod(paymentMethod);
 
-            //Create a new paymentMethod
-            dbPaymentMethodManager.createPaymentMethod(paymentMethod);
+            }else {
+                paymentMethod.setOpalCardId(card.getCardId());
+                paymentMethod.setCardNumber(paymentNumber);
+                paymentMethod.setCardName(paymentOwner);
+                paymentMethod.setCardCVC(paymentCvc);
+                paymentMethod.setExpiryDate(paymentExpiry);
+                dbPaymentMethodManager.updatePaymentMethod(paymentMethod);
 
-            //Create a new top up
-            double newWhen = Double.parseDouble(when);
-            double newAmount = Double.parseDouble(amount);
+            }
 
-            TopUp newTopUp = new TopUp(paymentMethod.getPaymentMethodId(), true, newAmount, newWhen);
-
-            //set new top up to the card
-            card.setTopUp(newTopUp);
-
-            //update the card top up in database
-            dbCardsManager.updateCardTopUp(card.getObjectId(), newTopUp);
-
-            //store new payment into session
             session.setAttribute("paymentMethod", paymentMethod);
 
-            //store card into session
+            /*Update amount and when*/
+            double newWhen = Double.parseDouble(when);
+            double newAmount = Double.parseDouble(amount);
+            card.setTopUpEnabled(true);
+            card.setTopUpWhen(newWhen);
+            card.setTopUpAmount(newAmount);
+
+            dbCardsManager.updateCardTopUp(card.getObjectId(), card.getTopUp());
             session.setAttribute("card", card);
-
-            //clean error information message
             validator.clean(session);
-
-            //push view to carddetails.jsp
             req.getRequestDispatcher("/carddetails.jsp").forward(req, resp);
 
         }

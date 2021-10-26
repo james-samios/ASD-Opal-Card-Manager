@@ -32,4 +32,20 @@ public class FaresServlet extends HttpServlet {
         //3 push view
         request.getRequestDispatcher("/Concessions.jsp").forward(request, response);
     }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	DBFaresManager dbFaresManager = new DBFaresManager();
+
+        //1.2 create a variable of fares to store data from database
+        Fares fares = dbFaresManager.readFare();
+
+        //2 store data into current session
+        //2.1 create a variable of HttpSession to store current session
+        HttpSession session = request.getSession();
+
+        //2.2 store fares into the current session
+        session.setAttribute("fares", fares);
+    	
+    }
 }

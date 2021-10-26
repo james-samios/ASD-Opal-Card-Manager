@@ -27,7 +27,7 @@ public class DBFaresManager extends DBManager{
 
     /*   *************************************Methods for "C" section below****************************************   */
     public void createFare(final Fares fare) {
-        refresh();
+        // refresh();
         try {
             getCollection().insertOne(fare.convertClassToDocument());
         } catch (Exception e) {
@@ -37,10 +37,9 @@ public class DBFaresManager extends DBManager{
 
     /*   *************************************Methods for "R" section below****************************************   */
     public Fares readFare() {
-        refresh();
+        // refresh();
         try {
-            Document document;
-            document = getCollection().find().first();
+            Document document = (Document) getCollection().find().first();
             //Retrieving the documents
             System.out.println(document);
 
@@ -57,7 +56,7 @@ public class DBFaresManager extends DBManager{
 
     /*   *************************************Methods for "U" section below****************************************   */
     public void updateFaresByFares(final Fares fares) {
-        refresh();
+        // refresh();
         try {
             //deleting an object from table
             deleteFaresByFares(fares);
@@ -72,7 +71,7 @@ public class DBFaresManager extends DBManager{
 
     /*   *************************************Methods for "D" section below****************************************   */
     public void deleteFaresByFares(final Fares fares) {
-        refresh();
+        // refresh();
         try {
             //deleting an object from table
             getCollection().deleteMany(Filters.eq("fare_id", fares.getFareId().toString()));

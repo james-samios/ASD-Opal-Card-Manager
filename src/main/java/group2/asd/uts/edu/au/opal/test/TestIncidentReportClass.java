@@ -48,7 +48,7 @@ public class TestIncidentReportClass {
 
     @Test
     public void testGetResolveReason() {
-        assertEquals(resolveReason, expectedIncidentReport.getCustomerResolveReason());
+        assertEquals(resolveReason, expectedIncidentReport.getResolveReason());
     }
 
 }

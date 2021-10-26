@@ -9,9 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 @WebServlet(name = "CardsServlet", value = "/CardsServlet")
@@ -48,17 +46,17 @@ public class CardsServlet extends HttpServlet {
 
                 new DBAdminCardManager().add( cardPin
                         , cardNumber
-                        ,  e.toUpperCase()
+                        ,  e
                         ,  card.getBalance()
                         , card.isActive());
                 List<CardForm> list = new DBAdminCardManager().readAllCards();
 
                 request.setAttribute("list",list);
                 request.getRequestDispatcher("/ConcessionManager.jsp").forward(request,response);
-                break;
+                break; //可选
             case "toadd" :
                 request.getRequestDispatcher("/addCard.jsp").forward(request,response);
-                break;
+                break; //可选
             case "delete" :
                 String id = request.getParameter("id");
                 System.out.println(id);
@@ -68,8 +66,8 @@ public class CardsServlet extends HttpServlet {
 
                 request.setAttribute("list",list);
                 request.getRequestDispatcher("/ConcessionManager.jsp").forward(request,response);
-
-                break;
+                //语句
+                break; //可选
             case "edit" :
                 String objectId = request.getParameter("objectId");
                 cardId = request.getParameter("cardId");
@@ -100,7 +98,7 @@ public class CardsServlet extends HttpServlet {
                 new DBAdminCardManager().update(card.getObjectId()
                         ,  cardPin
                         , cardNumber
-                        ,  e.toUpperCase()
+                        ,  e
                         ,  card.getBalance()
                         , card.isActive());
                 CardForm  cardForm = new DBAdminCardManager().readCardByCardId(cardId);
@@ -124,10 +122,10 @@ public class CardsServlet extends HttpServlet {
 
                 request.setAttribute("list",list);
                 request.getRequestDispatcher("/ConcessionManager.jsp").forward(request,response);
-                break;
-
-            default :
-
+                break; //可选
+            //你可以有任意数量的case语句
+            default : //可选
+                //语句
         }
     }
 

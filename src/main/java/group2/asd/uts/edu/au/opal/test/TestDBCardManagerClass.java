@@ -23,8 +23,8 @@ public class TestDBCardManagerClass {
         add(trip);
     }};
 
-    private final Card expectedCard = new Card(new ObjectId(), cardId, "6666777788889999",
-            "6789",
+    private final Card expectedCard = new Card(new ObjectId(), cardId, "0000222244446666",
+            "0246",
             CardType.ADULT,
             100.0,
             UUID.randomUUID(),
@@ -123,6 +123,7 @@ public class TestDBCardManagerClass {
         dbCardsManager.deleteCardByObjectId(expectedCard.getObjectId());
         /*Test two objects are the same or not*/
         assertEquals(expectedCard, actualCard);
+
     }
 
     @Test

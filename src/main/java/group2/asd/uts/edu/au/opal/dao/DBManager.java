@@ -8,7 +8,7 @@ import org.bson.Document;
 @Getter
 public class DBManager {
 
-    private MongoCollection<Document> collection;
+    private MongoCollection collection;
     private final DBConnection connection;
     private final CollectionType type;
 
@@ -17,7 +17,12 @@ public class DBManager {
         this.connection = DBConnection.getDB();
         this.collection = connection.getCollection(type);
     }
+
     public void refresh() {
         this.collection = connection.getCollection(type);
+    }
+
+    public MongoCollection<Document> getCollection(){
+        return collection;
     }
 }

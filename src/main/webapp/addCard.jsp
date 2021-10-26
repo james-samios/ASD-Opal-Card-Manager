@@ -11,7 +11,6 @@
 <html>
 <head>
     <title>add card</title>
-    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 <div id="main"  align="center">

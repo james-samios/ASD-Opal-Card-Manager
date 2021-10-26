@@ -25,7 +25,7 @@ public class DBPaymentHistoryManager extends DBManager {
 
     /*   *************************************Methods for "C" section below****************************************   */
     public void createPaymentHistory(final PaymentHistory paymentHistory) {
-        refresh();
+        // refresh();
         try {
             getCollection().insertOne(paymentHistory.convertClassToDocument());
 
@@ -38,14 +38,14 @@ public class DBPaymentHistoryManager extends DBManager {
 
     /*   *************************************Methods for "R" section below****************************************   */
     public ArrayList<PaymentHistory> readAllPaymentHistoryByProvidedCardId(final UUID cardId) {
-        refresh();
+        // refresh();
         ArrayList<PaymentHistory> paymentHistories = new ArrayList<>();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("card_id", cardId.toString());
 
-            for(Document document: getCollection().find(where)) {
-                paymentHistories.add(new PaymentHistory(document));
+            for(Object document: getCollection().find(where)) {
+                paymentHistories.add(new PaymentHistory((Document) document));
             }
             return paymentHistories;
         }catch (Exception e) {
@@ -60,13 +60,13 @@ public class DBPaymentHistoryManager extends DBManager {
     }
 
     public ArrayList<PaymentHistory> readAllPaymentHistoryByProvidedPaymentMethodId(final UUID paymentId) {
-        refresh();
+        // refresh();
         ArrayList<PaymentHistory> paymentHistories = new ArrayList<>();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("payment_id", paymentId.toString());
-            for (Document document : getCollection().find(where)) {
-                paymentHistories.add(new PaymentHistory(document));
+            for (Object document : getCollection().find(where)) {
+                paymentHistories.add(new PaymentHistory((Document) document));
             }
             return paymentHistories;
         }catch (Exception e) {
@@ -77,11 +77,11 @@ public class DBPaymentHistoryManager extends DBManager {
     }
 
     public PaymentHistory readAPaymentHistoryByProvidedPaymentMethodId(final UUID paymentId) {
-        refresh();
+        // refresh();
         try {
             BasicDBObject where = new BasicDBObject();
             where.put("payment_id", paymentId.toString());
-            Document document = getCollection().find(where).first();
+            Document document = (Document) getCollection().find(where).first();
             return new PaymentHistory(document);
         }catch (Exception e) {
             System.out.println("Error: Failure of running readPaymentHistoryByPaymentMethodId");
@@ -94,7 +94,7 @@ public class DBPaymentHistoryManager extends DBManager {
 
     /*   *************************************Methods for "D" section below****************************************   */
     public void deletePaymentHistoryByProvidedPaymentId(final UUID paymentMethodId) {
-        refresh();
+        // refresh();
         try {
             //deleting an object from table
             getCollection().deleteMany(Filters.eq("payment_id", paymentMethodId.toString()));

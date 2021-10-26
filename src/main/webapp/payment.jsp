@@ -1,3 +1,4 @@
+<%@ page import="group2.asd.uts.edu.au.opal.model.Customer" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -6,12 +7,15 @@
     <link rel="stylesheet" href="CSS/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" rel="stylesheet"
           type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          crossorigin="anonymous">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 </head>
 <body>
+<% Customer customer = (Customer) request.getSession().getAttribute("customer"); %>
 
-<nav class="customer">
+<nav>
     <input type="checkbox" id="check">
     <label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
@@ -20,6 +24,7 @@
 
     <ul>
         <!--<li><a href="AddProductController">ADD PRODUCT</a></li>-->
+        <li><a href="PaymentMethodServlet?card=all">View Payment Methods</a></li>
         <li><a href="userprofile.jsp">BACK</a></li>
     </ul>
 
@@ -27,15 +32,17 @@
 
   <div class="wrapper" id="form">
       <h2>Payment Information</h2>
-      <form name="PaymentForm" action="paymentRes.jsp" method="post">
+      <form name="PaymentForm" action="PaymentMethodServlet?method=add" method="post">
           <h4>Account</h4>
           <div class="input-group">
               <div class = input-box>
                  <input type="text" placeholder="First Name" name="first" required class="name">
+                 <input type="hidden" name="customer" required value="<%=customer.getAccountId().toString()%>" >
               </div>
               <div class="input-box">
                   <input type="text" placeholder="Last Name" name="last" required class="name">
               </div>
+
           </div>
 
           <div class="input-group">
@@ -47,7 +54,7 @@
           <div class="input-group">
               <div class="input-box">
                   <h4>Payment Details</h4>
-                  <input type="radio" name="pay" id="bc1" checked class="radio">
+                  <input type="radio" name="pay" id="bc1" checked class="radio" value="card">
                   <label for="bc1">Credit Card</label>
               </div>
           </div>
@@ -69,7 +76,7 @@
 
           <div class="input-group">
               <div class="input-box">
-                  <input type="radio" name="pay" id="bc2" checked class="radio">
+                  <input type="radio" name="pay" id="bc2" value="paypal" class="radio">
                   <label for="bc2">Paypal</label>
               </div>
           </div>

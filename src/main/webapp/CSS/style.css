@@ -3,6 +3,7 @@
     margin: 0;
     text-decoration: none;
     list-style: none;
+    box-sizing: border-box;
 }
 
 body {
@@ -264,6 +265,7 @@ a:hover {
     background-color: lightgrey;
 }
 
+
 .submit2 {
     width: 100%;
     padding: 12px;
@@ -284,7 +286,7 @@ a:hover {
     border-radius: 3px;
     font-size: 15px;
     color: white;
-    background-color: #3FB0AC;
+    background-color: #B89F5D;
     border-style: none;
 }
 
@@ -292,36 +294,6 @@ a:hover {
     color: white;
     background-color: lightgrey;
 }
-
-.submit4 {
-    width: 100%;
-    padding: 12px;
-    border-radius: 3px;
-    font-size: 15px;
-    color: white;
-    background-color: #e74c3c;
-    border-style: none;
-}
-
-.submit4:hover {
-    color: white;
-    background-color: lightgrey;
-}
-
-.input_text {
-    width: 100%;
-    padding: 12px;
-    border-radius: 3px;
-    font-size: 15px;
-    color: black;
-    background-color: lightgrey;
-    border-style: none;
-}
-.input_text:hover {
-    color: black;
-    background-color: white;
-}
-
 
 .padding {
     padding: 12px 16px;
@@ -353,17 +325,12 @@ a:hover {
 }
 
 .child {
-    background-color: #778899;
+    background-color: #3FB0AC;
 }
 
 .concession {
     background-color: gray;
 }
-
-.school {
-    background-color: #57bcd8;
-}
-
 
 .box {
     width: 300px;
@@ -460,10 +427,6 @@ a:hover {
 
 .errorinfo {
     color: red;
-}
-
-.sectionText p {
-    text-align: center;
 }
 
 h1 {
@@ -614,7 +577,7 @@ img {
     color: #222222;
 }
 
-.button1 {
+.button {
     background-color: #3FB0AC;
     border: none;
     color: white;
@@ -628,22 +591,9 @@ img {
     transition-duration: 0.4s;
 }
 
-.button1:hover {
+.button:hover {
     background-color: #165da6;
     color: white;
-}
-
-.userprofile {
-    background-color: #3FB0AC;
-    border: none;
-    color: white;
-    padding: 6px 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    transition-duration: 0.4s;
 }
 
 .adult {
@@ -753,7 +703,10 @@ img {
     transition: 0.5s;
 
 }
-
+button:hover{
+    cursor: pointer;
+    background: #57bcd8;
+}
 .input-box select{
     display: inline-block;
     width: 50%;
@@ -772,6 +725,20 @@ img {
     background-color: #57bcd8;
     color: #fff;
     text-align: center;
+}
+button{
+    width: 45%;
+    background: transparent;
+    border: none;
+    background: #57bcd8;
+    color: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.35s ease;
+    float: left;
+    margin-right: 5px;
+
 }
 
 .form-control {
@@ -832,4 +799,3 @@ img {
 .form-control.error small {
     visibility: visible;
 }
-

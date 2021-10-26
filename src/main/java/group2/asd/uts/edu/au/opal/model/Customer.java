@@ -1,8 +1,6 @@
 package group2.asd.uts.edu.au.opal.model;
 
-import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
 import lombok.Getter;
-import lombok.Setter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -10,17 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Getter @Setter
+@Getter
 public class Customer {
 
     private ObjectId objectId;
     private final UUID accountId;
-    private String emailAddress;
+    private final String emailAddress;
     private final String password;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private Address address;
+    private final String firstName;
+    private final String lastName;
+    private final String phoneNumber;
+    private final Address address;
     private WeeklyTripReward weeklyTripReward;
     private List<Card> linkedCards;
 
@@ -39,9 +37,7 @@ public class Customer {
         this.phoneNumber = document.getString("phone_number");
         this.address = new Address(document.get("address", Document.class));
         this.weeklyTripReward = new WeeklyTripReward(document.get("weekly_trip_reward", Document.class));
-
-        DBCardsManager manager = new DBCardsManager();
-        this.linkedCards = manager.readCardByAccountId(this.accountId.toString());
+        this.linkedCards = new ArrayList<>();
     }
 
     /**
@@ -63,6 +59,10 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.address = address;
+    }
+
+    public UUID getAccountId() {
+        return accountId;
     }
 
     @Override

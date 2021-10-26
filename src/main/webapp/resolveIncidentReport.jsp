@@ -9,26 +9,21 @@
 
 <body>
 
-    <nav class="customer">
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <label class="logo">Customer Support</label>
-        <ul>
-            <li><a href="userprofile.jsp">Return to profile</a></li>
+    <div class="navbar">
+        <a href="userprofile.jsp">Return to profile</a>
+        <a href="enquiryHome.jsp">Make an enquiry</a>
+        <a href="incidentReportForm.jsp">Theft or loss</a>
+        <a href="index.jsp">Logout</a>
+    </div>
 
-            <li><a href="enquiryHome.jsp">Make an enquiry</a></li>
+    <img src="img/Opal_card_logo.png" alt="Opal card logo"/>
 
-            <li><a href="incidentReportHome.jsp">Theft or loss</a></li>
-
-            <li><a href="index.jsp">Logout</a></li>
-        </ul>
-    </nav>
-
-    <div class="wrapper">
+    <div class="return">
         <a href="incidentReportDetails.jsp">&lt Return</a>
-        <h2>Request to resolve a report</h2>
+    </div>
+
+    <div class="enquirySubmissionForm">
+        <h1>Request to resolve a report</h1>
         <p>Please fill out the reason for resolving your report. Your Opal Card will remain locked until reviewed by our team. We thank you for your patience.</p>
 
         <form method="post" action="CustomerResolveReportServlet">

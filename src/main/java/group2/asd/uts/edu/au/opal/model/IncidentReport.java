@@ -16,9 +16,9 @@ public class IncidentReport extends Document {
     private String incidentReportDetails;
     private String incidentReportDate; //requires Date type
     private String incidentReportStatus;
-    private String customerResolveReason;
-    private String resolveComment;
-    private String escalationReason;
+    private String resolveReason;
+    // private CustomerComments customerComments;
+    // private String officerComments; //Create an officer comments object - to do for next release
 
     /**
      * Loads an Incident Report object from the API.
@@ -33,9 +33,9 @@ public class IncidentReport extends Document {
         this.incidentReportDetails = document.getString("report_details");
         this.incidentReportDate = document.getString("date_of_report"); //to fix
         this.incidentReportStatus = document.getString("report_status");
-        this.customerResolveReason = document.getString("resolve_reason");
-        this.resolveComment = document.getString("resolve_comment");
-        this.escalationReason = document.getString("escalation_reason");
+        this.resolveReason = document.getString("resolve_reason");
+        //this.customerComments = new CustomerComments(document.get("customer_comments", Document.class));
+        //to add officerComments
 
     }
 
@@ -55,9 +55,7 @@ public class IncidentReport extends Document {
         this.incidentReportDetails = incidentReportDetails;
         this.incidentReportDate = incidentReportDate; //to fix
         this.incidentReportStatus = incidentReportStatus;
-        this.customerResolveReason = resolveReason;
-        this.resolveComment = "";
-        this.escalationReason = "";
+        this.resolveReason = resolveReason;
     }
 
     @Override
@@ -70,9 +68,9 @@ public class IncidentReport extends Document {
                 getIncidentReportDetails() + " - " +
                 getIncidentReportDate() + " - " +
                 getIncidentReportStatus() + " - " +
-                getCustomerResolveReason() + " - " +
-                getResolveComment() + " - " +
-                getEscalationReason();
+                getResolveReason();
+                //getCustomerComments();
+                //to add officerComments
     }
 
 }

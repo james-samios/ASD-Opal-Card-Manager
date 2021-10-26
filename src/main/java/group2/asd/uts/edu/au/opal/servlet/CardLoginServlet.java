@@ -1,14 +1,11 @@
 package group2.asd.uts.edu.au.opal.servlet;
 
 import group2.asd.uts.edu.au.opal.dao.DBCardsManager;
-import group2.asd.uts.edu.au.opal.dao.DBCustomerManager;
 import group2.asd.uts.edu.au.opal.dao.DBPaymentMethodManager;
 import group2.asd.uts.edu.au.opal.model.Card;
-import group2.asd.uts.edu.au.opal.model.Customer;
 import group2.asd.uts.edu.au.opal.model.PaymentMethod;
 
 import java.io.IOException;
-import java.util.UUID;
 import javax.servlet.ServletException;
 
 import javax.servlet.http.HttpServlet;
@@ -34,7 +31,7 @@ public class CardLoginServlet extends HttpServlet {
         //Create the card DBManager
         DBCardsManager dbCardsManager = new DBCardsManager();
 
-        //Reading post parameters from the request
+        // Reading post parameters from the request
         String cardNumber = req.getParameter("card_number");
         String cardPin = req.getParameter("card_pin");
 
@@ -45,15 +42,12 @@ public class CardLoginServlet extends HttpServlet {
 
             /*call method to store previous input and then push view to /opalcard.jsp*/
             setPreviousInput(session, req, resp, cardNumber, cardPin);
-
         } else if(!validator.validateCardPin(cardPin)) {
             /*store error message of the type of card Pin*/
             session.setAttribute("cardPinFormErr", "Error: 4 digits for card pin");
 
             /*call method to store previous input and then push view to /opalcard.jsp*/
             setPreviousInput(session, req, resp, cardNumber, cardPin);
-
-
         } else {
             //Get customer data by calling API
             Card card = dbCardsManager.readCardByNumberAndPin(cardNumber, cardPin);
@@ -65,32 +59,16 @@ public class CardLoginServlet extends HttpServlet {
                 /*clean previous input*/
                 validator.clean(session);
 
+                //Store customer into attribute
+                session.setAttribute("card", card);
+
                 if(card.getTopUp().isEnabled()) {
                     DBPaymentMethodManager dbPaymentMethodManager = new DBPaymentMethodManager();
                     PaymentMethod paymentMethod = dbPaymentMethodManager.readPaymentMethodByPaymentMethodId(
                             card.getTopUp().getPaymentMethodId().toString());
-
-                    //Check the paymentMethod is null, then disable the payment
-                    if(paymentMethod == null) {
-                        card.setTopUpEnabled(false);
-                    } else {
-                        //otherwise, store payment into session
-                        session.setAttribute("paymentMethod", paymentMethod);
-                    }
+                    System.out.println(paymentMethod);
+                    session.setAttribute("paymentMethod", paymentMethod);
                 }
-
-                if(card.getAccountId() != UUID.fromString("00000000-0000-0000-0000-000000000000")) {
-                    DBCustomerManager dbCustomerManager = new DBCustomerManager();
-                    Customer customer = dbCustomerManager.getCustomerById(card.getAccountId());
-                    if(customer != null) {
-                        session.setAttribute("customerEmail", customer.getEmailAddress());
-                    }else {
-                        session.setAttribute("customerEmail", "OFF");
-                    }
-                }
-
-                //Store customer into attribute
-                session.setAttribute("card", card);
 
                 //Push view to welcome.jsp
                 req.getRequestDispatcher("/carddetails.jsp").forward(req, resp);
@@ -100,13 +78,9 @@ public class CardLoginServlet extends HttpServlet {
 
                 /*call method to store previous input and then push view to /opalcard.jsp*/
                 setPreviousInput(session, req, resp, cardNumber, cardPin);
-
-
             }
         }
     }
-
-
     private void setPreviousInput(HttpSession session, HttpServletRequest req, HttpServletResponse resp,
                                   final String cardNumber, final String cardPin)
             throws IOException, ServletException {
