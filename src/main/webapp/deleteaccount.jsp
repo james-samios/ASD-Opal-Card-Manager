@@ -7,7 +7,7 @@
 </head>
 <body>
     <form class="box" action="DeleteAccountServlet" method="post" id="delete">
-        <h1>Delete Account - Confirmation</h1>
+        <h1>Delete Account Confirmation</h1>
         <br>
         <p>Are you sure you want to do this? This action is immediate and irrevokable. Your opal cards will be unlinked but the balances were remain.</p>
         <br>

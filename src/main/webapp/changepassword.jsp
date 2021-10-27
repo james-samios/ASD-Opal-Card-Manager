@@ -22,10 +22,10 @@
             <input type="password" form="changePass" name="npassword" placeholder="New Password">
         </label>
         <label>
-            <input type="password" form="changePass" name="npassword" placeholder="New Password">
+            <input type="password" form="changePass" name="npassword2" placeholder="New Password">
         </label>
         <br>
-        <p>${updatePassErr}</p>
+        <p style="color:red">${updatePassErr}</p>
         <br>
         <input type="submit" form="changePass" name="changePass" value="Change Password">
     </form>

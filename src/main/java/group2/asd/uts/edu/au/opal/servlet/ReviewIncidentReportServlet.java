@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class CustomerResolveReportServlet extends HttpServlet {
+public class ReviewIncidentReportServlet extends HttpServlet {
 
     private DBConnection connection;
     private DBIncidentReportManager incidentReportManager;
@@ -29,15 +29,18 @@ public class CustomerResolveReportServlet extends HttpServlet {
         //Retrieve the current session
         HttpSession session = request.getSession();
 
-        String resolveReason = request.getParameter("resolveReason");
-        IncidentReport incidentReport = (IncidentReport)  session.getAttribute("incidentReport");
-        String incidentReportId = incidentReport.getIncidentReportId().toString();
-        String updatedStatus = "Customer Resolution Requested";
+        //Search for enquiry
+        String incidentReportId = request.getParameter("incidentReportId");
+        IncidentReport incidentReport = incidentReportManager.getIncidentReport(incidentReportId);
+        session.setAttribute("incidentReport", incidentReport);
 
-        incidentReportManager.updateResolveReason(incidentReportId, resolveReason, updatedStatus);
-
-        //Redirect to reports list
-        request.getRequestDispatcher("/incidentReportHome.jsp").forward(request, response);
+        //Set error message if incident report is null
+        if (incidentReport != null) {
+            request.getRequestDispatcher("/reviewIncidentReport.jsp").forward(request, response);
+        } else {
+            session.setAttribute("reportSearchErr", "Error: The report does not exist");
+            request.getRequestDispatcher("/incidentReportManagerHome.jsp").forward(request, response);
+        }
 
     }
 

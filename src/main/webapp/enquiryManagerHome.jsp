@@ -21,30 +21,24 @@
         </label>
         <label class="logo">Customer Support</label>
         <ul>
-            <li><a href="userprofile.jsp">Return to profile</a></li>
-
-            <li><a href="enquiryHome.jsp">Make an enquiry</a></li>
-
-            <li><a href="incidentReportHome.jsp">Theft or loss</a></li>
+            <li><a href="customerService.jsp">Staff Home</a></li>
 
             <li><a href="index.jsp">Logout</a></li>
         </ul>
     </nav>
 
     <%
-        ArrayList<CustomerEnquiry> customerEnquiryList = (ArrayList<CustomerEnquiry>) session.getAttribute("enquiriesList");
+        ArrayList<CustomerEnquiry> unresolvedEnquiries = (ArrayList<CustomerEnquiry>) session.getAttribute("unresolvedEnquiries");
+        ArrayList<CustomerEnquiry> resolvedEnquiries = (ArrayList<CustomerEnquiry>) session.getAttribute("resolvedEnquiries");
         String enquirySearchErr = (String) session.getAttribute("enquirySearchErr");
         session.setAttribute("enquirySearchErr", "");
     %>
 
     <div class="wrapper">
-        <a href="enquiryHome.jsp">&lt Return</a>
-        <h2>Your enquiries</h2>
-        <p>Below is a summary of your recent enquiries. We will endeavour to provide you updates as soon as possible.</p>
+        <a href="customerService.jsp">&lt Return</a>
 
-        <h2>Search an enquiry</h2>
-
-        <form method="post" action="EnquiryDetailsServlet">
+        <h2>Unresolved Enquiries</h2>
+        <form method="post" action="ReviewEnquiryServlet">
             <input type="text" name="customerEnquiryId" placeholder="Enquiry ID" required>
             <input type="submit" value="Search">
         </form>
@@ -52,8 +46,9 @@
         <span><%=(enquirySearchErr != null ? enquirySearchErr : "")%></span>
 
             <%
-                if (customerEnquiryList != null) {
+                if (unresolvedEnquiries != null) {
                     %>
+
         <table class="enquiryTable">
             <tr>
                 <th>Enquiry ID</th>
@@ -62,8 +57,9 @@
                 <th>Date</th>
                 <th>Status</th>
             </tr>
-                    <%
-                    for (CustomerEnquiry customerEnquiry: customerEnquiryList){
+
+        <%
+                    for (CustomerEnquiry customerEnquiry: unresolvedEnquiries){
             %>
 
             <tr>
@@ -73,20 +69,60 @@
                 <td><%=customerEnquiry.getEnquiryDate()%></td>
                 <td><%=customerEnquiry.getEnquiryStatus()%></td>
             </tr>
-
             <%
                 }
                     %>
-        </table>
+            </table>
             <%
                 } else {
             %>
 
-        <p>There are no enquiries to view. <a href="enquiryForm.jsp">Click here</a> to submit an enquiry.</p>
+        <p>There are no enquiries to view. </p>
 
             <%
                 }
             %>
+
+        <h2>Resolved Enquiries</h2>
+
+        <%
+            if (resolvedEnquiries != null) {
+        %>
+
+        <table class="enquiryTable">
+            <tr>
+                <th>Enquiry ID</th>
+                <th>Enquiry Title</th>
+                <th>Enquiry Details</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+
+            <%
+                for (CustomerEnquiry customerEnquiry: resolvedEnquiries){
+            %>
+
+            <tr>
+                <td><%=customerEnquiry.getCustomerEnquiryId()%></td>
+                <td><%=customerEnquiry.getEnquiryTitle()%></td>
+                <td><%=customerEnquiry.getEnquiryDetails()%></td>
+                <td><%=customerEnquiry.getEnquiryDate()%></td>
+                <td><%=customerEnquiry.getEnquiryStatus()%></td>
+            </tr>
+            <%
+                }
+            %>
+        </table>
+        <%
+        } else {
+        %>
+
+        <p>There are no enquiries to view. </p>
+
+        <%
+            }
+        %>
+
     </div>
 
 </body>

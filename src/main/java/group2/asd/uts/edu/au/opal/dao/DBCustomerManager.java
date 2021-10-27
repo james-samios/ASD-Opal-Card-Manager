@@ -1,6 +1,7 @@
 package group2.asd.uts.edu.au.opal.dao;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.client.model.Updates;
 import group2.asd.uts.edu.au.opal.model.Address;
 import group2.asd.uts.edu.au.opal.model.Customer;
 import lombok.Getter;
@@ -62,13 +63,14 @@ public class DBCustomerManager extends DBManager {
                 .append("weekly_trip_reward", weeklyReward);
 
         getCollection().insertOne(user);
+        customer.setPassword(stringToMd5(password));
     }
 
     /**
      * Converts a plaintext password to md5 hash for storage in MongoDB.
      * @author James
      */
-    private String stringToMd5(String password) {
+    public String stringToMd5(String password) {
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md5.digest(password.getBytes());
@@ -126,9 +128,7 @@ public class DBCustomerManager extends DBManager {
         refresh();
         BasicDBObject where = new BasicDBObject();
         where.put("account_id", uuid.toString());
-        BasicDBObject update = new BasicDBObject();
-        update.put("password", stringToMd5(newPassword));
-        getCollection().updateOne(where, update);
+        getCollection().updateOne(where, Updates.set("password", stringToMd5(newPassword)));
     }
 
     /**
@@ -161,9 +161,7 @@ public class DBCustomerManager extends DBManager {
         refresh();
         BasicDBObject where = new BasicDBObject();
         where.put("account_id", uuid.toString());
-        BasicDBObject up = new BasicDBObject();
-        up.put(field.name().toLowerCase(Locale.ROOT), update);
-        getCollection().updateOne(where, up);
+        getCollection().updateOne(where, Updates.set(field.name().toLowerCase(), update));
     }
 
     /**
@@ -176,9 +174,7 @@ public class DBCustomerManager extends DBManager {
         refresh();
         BasicDBObject where = new BasicDBObject();
         where.put("account_id", uuid.toString());
-        BasicDBObject up = new BasicDBObject();
-        up.put("address." + field.name().toLowerCase(Locale.ROOT), update);
-        getCollection().updateOne(where, up);
+        getCollection().updateOne(where, Updates.set("address." + field.name().toLowerCase(), update));
     }
 
     /**

@@ -139,6 +139,18 @@
             <url-pattern>/CancelAutoTopUpServlet</url-pattern>
         </servlet-mapping>
 
+        <servlet>
+            <servlet-name>LinkedOpalCardsServlet</servlet-name>
+            <servlet-class>group2.asd.uts.edu.au.opal.servlet.LinkedOpalCardsServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>LinkedOpalCardsServlet</servlet-name>
+            <url-pattern>/LinkedOpalCardsServlet</url-pattern>
+        </servlet-mapping>
+
+
+
+
     <servlet>
         <servlet-name>CreateCustomerEnquiryServlet</servlet-name>
         <servlet-class>group2.asd.uts.edu.au.opal.servlet.CreateCustomerEnquiryServlet</servlet-class>
@@ -203,16 +215,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>LinkedOpalCardsServlet</servlet-name>
-        <servlet-class>group2.asd.uts.edu.au.opal.servlet.LinkedOpalCardsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LinkedOpalCardsServlet</servlet-name>
-        <url-pattern>/LinkedOpalCardsServlet</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
         <servlet-name>FaresServlet</servlet-name>
         <servlet-class>group2.asd.uts.edu.au.opal.servlet.FaresServlet</servlet-class>
     </servlet>
@@ -230,6 +232,14 @@
         <url-pattern>/UpdateFaresServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UpdateDiscountsServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.UpdateDiscountsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateDiscountsServlet</servlet-name>
+        <url-pattern>/UpdateDiscountsServlet</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>StaffLoginServlet</servlet-name>
@@ -274,4 +284,59 @@
         <servlet-name>SearchLinkedCardServlet</servlet-name>
         <url-pattern>/SearchLinkedCardServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+    <servlet-name>ListUnresolvedEnquiriesServlet</servlet-name>
+    <servlet-class>group2.asd.uts.edu.au.opal.servlet.ListUnresolvedEnquiriesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>ListUnresolvedEnquiriesServlet</servlet-name>
+    <url-pattern>/ListUnresolvedEnquiriesServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ResolveEnquiryServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ResolveEnquiryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResolveEnquiryServlet</servlet-name>
+        <url-pattern>/ResolveEnquiryServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReviewEnquiryServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ReviewEnquiryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReviewEnquiryServlet</servlet-name>
+        <url-pattern>/ReviewEnquiryServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>IncidentReportReviewListServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.IncidentReportReviewListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IncidentReportReviewListServlet</servlet-name>
+        <url-pattern>/IncidentReportReviewListServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReviewIncidentReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ReviewIncidentReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReviewIncidentReportServlet</servlet-name>
+        <url-pattern>/ReviewIncidentReportServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ResolveOrEscalateReportServlet</servlet-name>
+        <servlet-class>group2.asd.uts.edu.au.opal.servlet.ResolveOrEscalateReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResolveOrEscalateReportServlet</servlet-name>
+        <url-pattern>/ResolveOrEscalateReportServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

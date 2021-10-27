@@ -27,9 +27,9 @@ public class DBIncidentReportManager extends DBManager {
      * @param incidentReportDetails The details of the report.
      * @param incidentReportDate The date of the incident.
      * @param incidentReportStatus The status of the report (initially set as "Submitted").
-     * @param resolveReason Customer's reason for resolving an incident before investigation.
+     * @param customerResolveReason Customer's reason for resolving an incident before investigation.
      */
-    public void createIncidentReport(final UUID incidentReportId, final String accountId, final String incidentReportType, final String incidentReportDetails, final String incidentReportDate, final String incidentReportStatus, final String resolveReason) {
+    public void createIncidentReport(final UUID incidentReportId, final String accountId, final String incidentReportType, final String incidentReportDetails, final String incidentReportDate, final String incidentReportStatus, final String customerResolveReason) {
         refresh();
 
         Document incidentReport = new Document("_id", new ObjectId());
@@ -39,8 +39,9 @@ public class DBIncidentReportManager extends DBManager {
                 .append("report_details", incidentReportDetails)
                 .append("date_of_report", incidentReportDate)
                 .append("report_status", incidentReportStatus)
-                .append("resolve_reason", resolveReason);
-                //to add comments
+                .append("customer_resolve_reason", customerResolveReason)
+                .append("resolve_comment", "")
+                .append("escalation_reason", "");
         getCollection().insertOne(incidentReport);
     }
 
@@ -86,6 +87,50 @@ public class DBIncidentReportManager extends DBManager {
 
     }
 
+    /**
+     * Return an Arraylist of reports according to status
+     */
+
+    public ArrayList<IncidentReport> listReportsByStatus(String status) {
+
+        ArrayList<IncidentReport> incidentReports = new ArrayList<>();
+
+        BasicDBObject where = new BasicDBObject();
+        where.put("report_status", status);
+
+        List<Document> enquiriesList = getCollection().find(where).into(new ArrayList<>());
+        for (Document enquiry : enquiriesList) {
+            IncidentReport newIncidentReport = new IncidentReport(enquiry);
+            incidentReports.add(newIncidentReport);
+        }
+
+        return incidentReports;
+
+    }
+
+    /**
+     * Returns a list of reports that are unresolved
+     * @return
+     */
+
+    public ArrayList<IncidentReport> listUnresolvedReports() {
+
+        ArrayList<IncidentReport> incidentReports = new ArrayList<>();
+
+        BasicDBObject where = new BasicDBObject();
+
+        List<Document> enquiriesList = getCollection().find(where).into(new ArrayList<>());
+        for (Document enquiry : enquiriesList) {
+            IncidentReport newIncidentReport = new IncidentReport(enquiry);
+            if (!newIncidentReport.getIncidentReportStatus().equals("Resolved")) {
+                incidentReports.add(newIncidentReport);
+            }
+        }
+
+        return incidentReports;
+
+    }
+
     /*   *************************************Methods for "U" section below****************************************   */
 
     /**
@@ -99,36 +144,50 @@ public class DBIncidentReportManager extends DBManager {
     public void updateResolveReason(final String incidentReportId, final String resolveReason, final String reportStatus) {
         BasicDBObject where = new BasicDBObject();
         where.put("report_id", incidentReportId);
-        getCollection().updateOne(where, Updates.set("resolve_reason", resolveReason));
+        getCollection().updateOne(where, Updates.set("customer_resolve_comment", resolveReason));
         getCollection().updateOne(where, Updates.set("report_status", reportStatus));
     }
 
     /**
-     * Adds a customer comment to the enquiry
+     * Resolves a report
+     * @param incidentReportId the report ID
+     * @param resolveComment the reason for resolving the report
+     * @param updatedStatus the updated status of the report
      */
 
-    public void addCustomerComment(final String customerEnquiryId, String comment) {
+    public void resolveReport(final String incidentReportId, final String resolveComment, final String updatedStatus) {
         BasicDBObject where = new BasicDBObject();
-        where.put("enquiry_id", customerEnquiryId);
-        //to do
+        where.put("report_id", incidentReportId);
+        getCollection().updateOne(where, Updates.set("report_status", updatedStatus));
+        getCollection().updateOne(where, Updates.set("resolve_comment", resolveComment));
     }
 
+    /**
+     * Escalates a report
+     * @param incidentReportId the report ID
+     * @param escalationReason the reason for escalating the report
+     * @param updatedStatus the updated status of the report
+     */
 
+    public void escalateReport(final String incidentReportId, final String escalationReason, final String updatedStatus) {
+        BasicDBObject where = new BasicDBObject();
+        where.put("report_id", incidentReportId);
+        getCollection().updateOne(where, Updates.set("report_status", updatedStatus));
+        getCollection().updateOne(where, Updates.set("escalation_reason", escalationReason));
+    }
 
     /*   *************************************Methods for "D" section below****************************************   */
 
     /**
-     * Deletes a Customer Enquiry with a provided customerEnquiryId
-     * @param customerEnquiryId The ID of the customer enquiry to be deleted.
+     * Deletes an Incident Report with a provided report ID
+     * @param incidentReportId The ID of the report to be deleted.
      * @author Chris
      */
 
-    public void deleteCustomerEnquiry(final String customerEnquiryId) {
+    public void deleteIncidentReport(final String incidentReportId) {
         BasicDBObject where = new BasicDBObject();
-        where.put("enquiry_id", customerEnquiryId);
+        where.put("report_id", incidentReportId);
         getCollection().deleteOne(where);
-
-        //to do
     }
 
 
