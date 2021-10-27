@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +15,7 @@ public class Customer {
     private ObjectId objectId;
     private final UUID accountId;
     private String emailAddress;
-    private final String password;
+    private String password;
     private String firstName;
     private String lastName;
     private String phoneNumber;

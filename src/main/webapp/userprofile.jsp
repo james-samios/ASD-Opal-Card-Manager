@@ -26,6 +26,8 @@
 
         <li><a href="payment.jsp">Payment</a></li>
 
+        <li><a href="paymentmethods.jsp">View Payment Methods</a></li>
+
         <li><a href="enquiryHome.jsp">Make an Enquiry</a></li>
 
         <li><a href="incidentReportHome.jsp">Report a lost or stolen Opal Card</a></li>
