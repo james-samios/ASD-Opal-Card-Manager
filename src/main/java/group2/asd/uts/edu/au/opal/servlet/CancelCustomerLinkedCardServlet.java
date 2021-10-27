@@ -48,10 +48,9 @@ public class CancelCustomerLinkedCardServlet extends HttpServlet {
                 break;
             }
         }
-        filterCards.remove(index);
 
         //Store the list into the current session
-        session.setAttribute("filter_cards", filterCards);
+        session.setAttribute("filter_cards", linkedCards);
         session.setAttribute("linked_cards", linkedCards);
 
         //Push view to welcome.jsp
