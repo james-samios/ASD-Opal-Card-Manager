@@ -37,8 +37,9 @@ public class ChangePasswordServlet extends HttpServlet {
             return;
         }
 
+        String currentToMd5 = manager.stringToMd5(currentPassword);
 
-        if (!customer.getPassword().equals(manager.stringToMd5(currentPassword))) {
+        if (!customer.getPassword().equals(currentToMd5)) {
             session.setAttribute("updatePassErr", "Incorrect password.");
             req.getRequestDispatcher("/changepassword.jsp").forward(req, resp);
             return;
@@ -56,7 +57,8 @@ public class ChangePasswordServlet extends HttpServlet {
             return;
         }
 
+        customer.setPassword(currentToMd5);
         manager.changePassword(customer.getAccountId(), password);
-        resp.sendRedirect("/userprofile.jsp");
+        req.getRequestDispatcher("/userprofile.jsp").forward(req, resp);
     }
 }
