@@ -56,7 +56,6 @@
         }
     }
 
-    System.out.println(attribute);
     String searchResult = (String) session.getAttribute("search_result");
 %>
 
